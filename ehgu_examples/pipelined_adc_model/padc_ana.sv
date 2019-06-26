@@ -22,7 +22,9 @@ generate
   end
 endgenerate
 
-assign vin_vec[0]=ana_in;
-assign vin_vec[1:7]=residue_vec[0:6];
+always_comb begin
+ vin_vec[0]=ana_in;
+ vin_vec[1:7]=residue_vec[0:6];
+end
 
 endmodule
