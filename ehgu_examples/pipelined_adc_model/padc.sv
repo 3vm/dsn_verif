@@ -2,7 +2,7 @@ module padc (
 input real ana_in,
 input logic clk,
 input logic rstn,
-output logic [6:0] dig_out
+output logic signed [7:0] dig_out
 );
 
 logic [1:0] dig_raw [7];

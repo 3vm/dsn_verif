@@ -2,7 +2,7 @@ module padc_dig (
   input logic clk,
   input logic rstn,
   input logic [1:0] dig_raw [7],
-  output logic [6:0] dig_out
+  output logic signed [7:0] dig_out
 );
 
 logic [1:0] dig_raw_delayed [7][7];
@@ -21,7 +21,7 @@ end
 
 always_comb begin
   foreach ( dig_raw_aligned[i] ) begin
-    dig_raw_aligned [i] = dig_raw_delayed[i][i];
+    dig_raw_aligned [i] = dig_raw_delayed[6-i][i];
   end
 end
 

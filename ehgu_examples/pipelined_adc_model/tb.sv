@@ -1,4 +1,3 @@
-
 module tb ();
 
 timeunit 1ns;
@@ -7,7 +6,10 @@ timeprecision 1ps;
 logic clk;
 logic rstn;
 real ana_in;
-logic [6:0] dig_out;
+logic signed [7:0] dig_out;
+real dig_out_real;
+
+assign dig_out_real = dig_out / 127.0 ;
 
 padc dut 
 (
@@ -30,10 +32,16 @@ forever begin
 end
 end
 
-initial begin
-  
+initial begin  
   repeat (5) @(posedge clk);
   ana_in = 0.6;
+  repeat (1) @(posedge clk);
+  ana_in = -0.6;
+  repeat (1) @(posedge clk);
+  ana_in = 0.9;
+  repeat (1) @(posedge clk);
+  ana_in = 0.81;
+
   repeat (10) @(posedge clk);
   $finish;
 end
