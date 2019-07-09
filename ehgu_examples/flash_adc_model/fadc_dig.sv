@@ -12,4 +12,25 @@ always_comb begin
   end
 end
 
+//or while loop
+/*
+logic [256-1:0] raw_tmp;
+cnt=0;
+while (raw_tmp>0) begin
+  cnt++;
+  raw_tmp >>= 1;
+end
+dig_out = cnt -1;
+
+or
+
+logic [8:0] sum;
+sum=0;
+foreach ( dig_raw[i]) begin
+ sum += dig_raw[i];
+end
+sum -= 1;
+
+//or sum of bits -1
+
 endmodule
