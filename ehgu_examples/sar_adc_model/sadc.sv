@@ -15,7 +15,7 @@ sadc_ana  sadc_ana (
 .clk,
 .rstn,
 .cmp_out,
-.code
+.dig_out
 );
 
 sadc_dig  sadc_dig (
@@ -23,7 +23,6 @@ sadc_dig  sadc_dig (
 .rstn,
 .start,
 .cmp_out,
-.code,
 .dig_out,
 .eoc
 );

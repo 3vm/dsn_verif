@@ -40,9 +40,13 @@ initial begin
   start = 0 ;
   repeat (10) @(posedge clk);
   ana_in = 0.6;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
   ana_in = 0.2;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
+  ana_in = 0.34;
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
+  ana_in = 0.95;
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
   $finish;
 end
 
