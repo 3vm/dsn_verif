@@ -6,17 +6,21 @@ timeprecision 1ps;
 logic clk;
 logic rstn;
 real ana_in;
-logic signed [7:0] dig_out;
+logic [7:0] dig_out;
 real dig_out_real;
+logic start;
+logic eoc;
 
-assign dig_out_real = dig_out / 127.0 ;
+assign dig_out_real = dig_out / 256.0 ;
 
 sadc dut 
 (
 .clk,
 .rstn,
+.start,
 .ana_in,
-.dig_out
+.dig_out,
+.eoc
 );
 
 initial begin
@@ -32,17 +36,13 @@ forever begin
 end
 end
 
-initial begin  
-  repeat (5) @(posedge clk);
-  ana_in = 0.6;
-  repeat (1) @(posedge clk);
-  ana_in = -0.6;
-  repeat (1) @(posedge clk);
-  ana_in = 0.9;
-  repeat (1) @(posedge clk);
-  ana_in = 0.81;
-
+initial begin    
+  start = 0 ;
   repeat (10) @(posedge clk);
+  ana_in = 0.6;
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);
+  ana_in = 0.2;
+  start = 1; @(posedge clk) ; start=0; @(posedge eoc);
   $finish;
 end
 

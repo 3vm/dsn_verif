@@ -1,11 +1,11 @@
 module ehgu_cntr 
-( parameter WIDTH=3 )
+#( parameter WIDTH=3 )
 (
 input logic clk,
 input logic rstn,
 input logic sync_clr,
 input logic en,
-output logic [WIDTH:0] cnt
+output logic [WIDTH-1:0] cnt
 );
 
 always_ff @( posedge clk, negedge rstn ) begin
