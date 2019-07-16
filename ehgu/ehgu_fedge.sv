@@ -3,7 +3,7 @@ module ehgu_fedge
 input logic clk,
 input logic rstn,
 input logic din,
-output logic falledge
+output logic fedge
 );
 
 logic din_delayed ;
