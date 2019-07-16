@@ -1,4 +1,4 @@
-A model of a 1.5bit per stage pipelined ADC
+Example code for realizing time delays in FSM 
 
 For further description refer to this book
 

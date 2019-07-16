@@ -1,4 +1,4 @@
-module ehgu_edge
+module ehgu_edges
 (
 input logic clk,
 input logic rstn,

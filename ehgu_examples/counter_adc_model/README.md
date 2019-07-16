@@ -1,4 +1,4 @@
-A model of a 1.5bit per stage pipelined ADC
+A model of a counter type ADC
 
 For further description refer to this book
 
