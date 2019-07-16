@@ -1,4 +1,4 @@
-module ehgu_falledge
+module ehgu_fedge
 (
 input logic clk,
 input logic rstn,
