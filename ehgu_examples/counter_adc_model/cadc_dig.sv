@@ -1,42 +1,38 @@
 module cadc_dig (
   input logic clk,
   input logic rstn,
-  input logic [1:0] dig_raw [7],
-  output logic signed [7:0] dig_out
+  input logic cmp_out,
+  input logic start,
+  output logic [7:0] dig_out,
+  output logic eoc
 );
 
-logic [1:0] dig_raw_delayed [7][7];
-logic [1:0] dig_raw_aligned [7];
+logic [$clog2(8)-1:0] index, cnt;
+logic sync_clr;
+logic [7:0] code;
+
+logic conversion_running;
+
+ehgu_cntr #(.WIDTH(8)) cntr (
+.clk,
+.rstn,
+.sync_clr,
+.en(conversion_running),
+.cnt
+);
+
+assign sync_clr = start;
 
 always_ff @(posedge clk, negedge rstn) begin
-  if ( !rstn ) begin
-    dig_raw_delayed <= '{default:0};
+  if ( !rstn) begin
+    conversion_running <=0;
+    dig_out <= 0;
+    eoc <= 0;
   end else begin
-    dig_raw_delayed[0] <= dig_raw;
-    for ( int i = 1 ; i<7;i++) begin
-      dig_raw_delayed[i] <= dig_raw_delayed[i-1];
-    end
+    conversion_running <=start ? 1 : (cnt==8-1) ? 0 : conversion_running;
+    dig_out <= cnt;
+    eoc <= cmp_out == 1'b1;
   end
-end
-
-always_comb begin
-  foreach ( dig_raw_aligned[i] ) begin
-    dig_raw_aligned [i] = dig_raw_delayed[6-i][i];
-  end
-end
-
-always_comb begin
-  dig_out = 0 ;
-  foreach ( dig_raw_aligned[i] ) begin
-    if (dig_raw_aligned[i] ==1 ) begin
-      dig_out += (2**(6-i));
-    end else if (dig_raw_aligned[i] ==2'b11 ) begin
-      dig_out -= (2**(6-i));
-    end else begin
-      dig_out += 0;
-    end
-//    dig_out += (2**(6-i)) * $signed(dig_raw_aligned[i]) ;
-  end
-end
+end 
 
 endmodule
