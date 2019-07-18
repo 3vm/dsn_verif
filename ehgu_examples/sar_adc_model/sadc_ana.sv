@@ -9,6 +9,7 @@ output logic cmp_out
 real ana_sampled;
 real dac_out;
 
+//CHECKME sampling should not be per clk cycle rather it should be per conversion, need to use start for sampling
 always_ff @(posedge clk) begin
   ana_sampled <= ana_in;
 end

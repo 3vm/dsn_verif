@@ -10,7 +10,7 @@ logic [7:0] dig_out;
 real dig_out_real;
 logic start,eoc;
 
-assign dig_out_real = dig_out / 127.0 ;
+assign dig_out_real = 1.0 * dig_out / 2**8 ;
 
 cadc dut 
 (
@@ -38,13 +38,13 @@ initial begin
   repeat (10) @(posedge clk);
 
   ana_in = 0.6;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
-  ana_in = -0.6;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
+  start = 1; repeat (2) @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk); //CHECKME why two cycles needed for start?
+  ana_in = 0.43;
+  start = 1; repeat (2) @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
   ana_in = 0.9;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
-  ana_in = 0.81;
-  start = 1; @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
+  start = 1; repeat (2) @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
+  ana_in = 0.2;
+  start = 1; repeat (2) @(posedge clk) ; start=0; @(posedge eoc);@(posedge clk);
   
   $finish;
 end

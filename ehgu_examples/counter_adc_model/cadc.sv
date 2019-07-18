@@ -7,11 +7,15 @@ output logic [7:0] dig_out,
 output logic eoc
 );
 
+logic cmp_out;
+logic [8-1:0] cnt;
+
 cadc_ana  cadc_ana (
 .ana_in,
 .clk,
 .rstn,
-.dig_out
+.cmp_out,
+.cnt
 );
 
 cadc_dig  cadc_dig (
@@ -19,6 +23,8 @@ cadc_dig  cadc_dig (
 .rstn,
 .start,
 .eoc,
+.cmp_out,
+.cnt,
 .dig_out
 );
 
