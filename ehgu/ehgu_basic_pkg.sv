@@ -1,17 +1,16 @@
 package ehgu_basic_pkg;
 
-localparam DP_WIDTH=`EHGU_BASIC_PKG_DP_WIDTH;
-//import ehgu_config::DP_WIDTH;
+import ehgu_config_pkg::DP_WIDTH;
 
-localparam THERMOMETER_SIZE = 2**BINARY_SIZE-1;
 localparam BINARY_OF_THERM_SIZE=8;
+localparam THERMOMETER_SIZE = 2**BINARY_OF_THERM_SIZE-1;
 
 function automatic void bin2therm (
 input logic [BINARY_OF_THERM_SIZE-1:0] binary_in,
 output logic [THERMOMETER_SIZE-1:0] thermometer_out
 );
   for (int i=0;i<THERMOMETER_SIZE;i++) begin
-    if ( i>bin[i]) begin
+    if ( i>binary_in[i]) begin
        thermometer_out[i] = 0 ;
     end else begin
        thermometer_out[i] = 1 ;
@@ -20,7 +19,7 @@ output logic [THERMOMETER_SIZE-1:0] thermometer_out
 endfunction 
 
 function automatic void therm2bin (
-output logic [BINARY_SIZE-1:0] binary_out,
+output logic [BINARY_OF_THERM_SIZE-1:0] binary_out,
 input logic [THERMOMETER_SIZE-2:0] thermometer_in
 );
   for (int i=THERMOMETER_SIZE-1;i>=0;i--) begin
@@ -79,6 +78,14 @@ input logic [$clog2(DP_WIDTH)-1:0] majority_check_size
   end else begin
     ones_majority = 0 ;
   end
+endfunction
+
+function automatic void hamming_dist (
+input logic [DP_WIDTH-1:0] inp0,
+input logic [DP_WIDTH-1:0] inp1,
+output logic [$clog2(DP_WIDTH)-1:0] distance
+);
+  sum_of_ones (.sum(distance), .inp(inp0^inp1));  
 endfunction
 
 endpackage
