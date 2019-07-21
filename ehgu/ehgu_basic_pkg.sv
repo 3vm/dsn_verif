@@ -3,27 +3,27 @@ package ehgu_basic_pkg;
 import ehgu_config_pkg::DP_WIDTH;
 
 localparam BINARY_OF_THERM_SIZE=8;
-localparam THERMOMETER_SIZE = 2**BINARY_OF_THERM_SIZE-1;
+localparam THERM_SIZE = 2**BINARY_OF_THERM_SIZE-1;
 
 function automatic void bin2therm (
 input logic [BINARY_OF_THERM_SIZE-1:0] binary_in,
-output logic [THERMOMETER_SIZE-1:0] thermometer_out
+output logic [THERM_SIZE-1:0] therm_out
 );
-  for (int i=0;i<THERMOMETER_SIZE;i++) begin
+  for (int i=0;i<THERM_SIZE;i++) begin
     if ( i>binary_in[i]) begin
-       thermometer_out[i] = 0 ;
+       therm_out[i] = 0 ;
     end else begin
-       thermometer_out[i] = 1 ;
+       therm_out[i] = 1 ;
     end
   end
 endfunction 
 
 function automatic void therm2bin (
 output logic [BINARY_OF_THERM_SIZE-1:0] binary_out,
-input logic [THERMOMETER_SIZE-2:0] thermometer_in
+input logic [THERM_SIZE-2:0] therm_in
 );
-  for (int i=THERMOMETER_SIZE-1;i>=0;i--) begin
-    if ( thermometer_in[i]) begin
+  for (int i=THERM_SIZE-1;i>=0;i--) begin
+    if ( therm_in[i]) begin
        binary_out = i ;
        break;
     end
