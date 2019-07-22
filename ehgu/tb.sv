@@ -50,6 +50,7 @@ initial begin
         logic [BINARY_OF_THERM_SIZE-1:0] bin_in , bin_out ;
         logic [THERM_SIZE-1:0] therm;
         bin_in = $urandom_range(2**BINARY_OF_THERM_SIZE-1);
+        //bin_in = 2;
         bin2therm ( .binary_in(bin_in), .therm_out(therm));
         therm2bin ( .binary_out(bin_out), .therm_in(therm));
         $display ( "Binary %b thermometer %b binout %b ",bin_in,therm,bin_out);
@@ -57,6 +58,15 @@ initial begin
         	test_result = 0 ;
         	break;
         end
+	end
+
+	for ( int i = 0 ; i < 10 ; i++ ) begin
+        logic [8-1:0] bin_in ;
+        logic maj;
+		bin_in = $urandom_range(2**8-1);
+        //bin_in = 2;
+        majority_fn ( .ones_majority(maj), .inp(bin_in),.majority_check_size(8));
+        $display ( "inp %b maj %b ",bin_in,maj);
 	end
 
 
