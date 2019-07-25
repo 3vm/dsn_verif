@@ -10,6 +10,6 @@ logic din_delayed ;
 
 ehgu_dly din_delay_i ( .clk , .rstn , .din , .dout(din_delayed));
 
-assign falledge = ~din_delayed & din_delayed ;
+assign falledge = ~din & din_delayed ;
 
 endmodule

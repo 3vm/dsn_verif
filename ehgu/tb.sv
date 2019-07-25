@@ -7,17 +7,23 @@ timeprecision 1ps;
 logic clk;
 logic rstn;
 logic final_out;
+logic din;
+logic fedge;
+logic redge;
+logic toggle;
 
 import ehgu_config_pkg::*;
 import ehgu_basic_pkg::*;
 
+
+
 logic test_result=1;
 int sv_result, user_func_result;
 logic [DP_WIDTH-1:0] inp;
+/*
 initial begin
 
 	for ( int i = 0 ; i < 10 ; i++ ) begin
-/*
 		inp = $urandom_range(2**DP_WIDTH-1);
 		sv_result = $countones(inp);
 		sum_of_ones(.sum(user_func_result), .inp(inp));
@@ -26,7 +32,7 @@ initial begin
 			test_result=0;
 			break;
 		end
-*/
+
 		int unsigned inp0,inp1,distance,sum;
 		inp0 = $urandom_range(2**DP_WIDTH-1);
 		inp1 = $urandom_range(2**DP_WIDTH-1);
@@ -75,6 +81,45 @@ initial begin
 	end else begin
 		$display ( "PASS");
 	end
+end
+*/
+
+ehgu_edges ehgu_edges
+(
+ .clk ,
+ .rstn ,
+ .din ,
+ .fedge ,
+ .redge ,
+ .toggle 
+);
+
+initial begin
+	clk = 0;
+	#1ns;
+	forever begin
+		clk = ~clk;
+		#1ns;
+	end
+end
+
+initial begin
+	repeat (1) @(posedge clk);
+	#0.1ns;
+	rstn = 0;
+	din = 0 ;
+	repeat (1) @(posedge clk);
+	#0.1ns;
+	rstn = 1;
+	din = 0 ;
+	repeat (1) @(posedge clk);
+	#0.1ns;
+	din = 1 ;
+	repeat (5) @(posedge clk);
+	#0.1ns;
+	din = 0 ;
+	repeat (5) @(posedge clk);
+	$finish();
 end
 
 endmodule
