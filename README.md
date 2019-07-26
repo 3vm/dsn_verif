@@ -10,3 +10,4 @@ https://www.amazon.com/Ehgu-Proposal-experiment-efficient-ecosystem-ebook/dp/B07
 If you like the idea of efficient hardware design ecosystem, become a patron here
 https://www.patreon.com/3vm
 
+
