@@ -4,29 +4,25 @@ module tb ;
 timeunit 1ns;
 timeprecision 1ps;
 
-parameter LUT_SIZE=16;
-parameter LUT_DATA_WIDTH=8;
+parameter int LUT_SIZE=16;
+parameter int LUT_DATA_WIDTH=12;
 real angle_rad, angle_deg;
 real sin_val;
-logic signed [LUT_DATA_WIDTH-1:0] sin_val_int;
+logic signed [LUT_DATA_WIDTH-1:0] lut [LUT_SIZE];
 
 parameter string outfile="SINE_LUT.txt" ;
 int fd;
-import thee_mathsci_consts_pkg::const_pi;
+
+import thee_utils_pkg::lut_processing_c; 
+
 
 initial begin
   fd = $fopen(outfile,"w");
+  lut_processing_c #(.LUT_SIZE(LUT_SIZE) , .LUT_DATA_WIDTH(LUT_DATA_WIDTH))  :: gen_sinewave_lut ( lut ) ;
+
   for ( int i = 0 ; i < LUT_SIZE ; i++ ) begin
-  	angle_rad = i*2*const_pi/LUT_SIZE;
-  	angle_deg = i*360.0/LUT_SIZE;
-    sin_val = $sin(angle_rad);
-    if ( sin_val == 1.0 ) begin
-      sin_val_int = 2**(LUT_DATA_WIDTH-1)-1;
-    end else begin
-      sin_val_int = sin_val * ( 2**(LUT_DATA_WIDTH-1));
-    end
-  	$display("Angle %f rad, %f deg, sin(angle) %f", angle_rad, angle_deg, $sin(angle_rad));
-  	$fwrite(fd,"%d\n", sin_val_int);
+  	$display("Angle %f rad, %f deg, sin(angle) %f", angle_rad, angle_deg, lut[i]);
+  	$fwrite(fd,"%d\n", lut[i]);
   end
   $fclose(fd);
 end
