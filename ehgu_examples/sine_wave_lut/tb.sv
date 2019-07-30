@@ -20,7 +20,11 @@ initial begin
   	angle_rad = i*2*const_pi/LUT_SIZE;
   	angle_deg = i*360.0/LUT_SIZE;
     sin_val = $sin(angle_rad);
+    if ( sin_val == 1.0 ) begin
+      sin_val_int = 2**(LUT_DATA_WIDTH-1)-1;
+    end else begin
       sin_val_int = sin_val * ( 2**(LUT_DATA_WIDTH-1));
+    end
   	$display("Angle %f rad, %f deg, sin(angle) %f", angle_rad, angle_deg, $sin(angle_rad));
   	$fwrite(fd,"%d\n", sin_val_int);
   end
