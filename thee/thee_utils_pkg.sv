@@ -33,26 +33,26 @@ package thee_utils_pkg;
     endfunction
   endclass
    
-task automatic toggle_clk 
-(
-  ref clk 
-);
-  clk=1;
-  #1ns;
-  clk=0;
-  #1ns;  
-endtask
+  task automatic toggle_clk 
+  (
+    ref clk 
+  );
+    clk=1;
+    #1ns;
+    clk=0;
+    #1ns;  
+  endtask
 
-task automatic toggle_rstn 
-(
-ref rstn
-);
-  rstn=1;
-  #1ns;
-  rstn=0;
-  #1ns;  
-  rstn=1;
-  #1ns;
-endtask
+  task automatic toggle_rstn 
+  (
+    ref rstn
+  );
+    rstn=1;
+    #1ns;
+    rstn=0;
+    #1ns;  
+    rstn=1;
+    #1ns;
+  endtask
 
 endpackage 
