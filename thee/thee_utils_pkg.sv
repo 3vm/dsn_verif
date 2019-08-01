@@ -1,4 +1,6 @@
 package thee_utils_pkg;
+timeunit 1ns;
+timeprecision 100ps;
 
  class  util_tasks_c #( string disp_type = "binary" , type T = int , int SIZE=3 ) ;
    static function void arr_print ( T inp_array ) ;
@@ -53,6 +55,27 @@ package thee_utils_pkg;
     #1ns;  
     rstn=1;
     #1ns;
+  endtask
+   
+  task automatic clk_gen_basic
+  (
+    input real freq=100.0e6,
+    output logic clk
+  );
+
+    real half_period;
+    half_period = (1.0 / freq ) /2.0;
+    fork 
+      begin
+        clk = 0;
+        forever begin
+	  #(half_period);
+          clk=1;
+	  #(half_period);
+          clk=1;
+        end
+      end
+    join_none
   endtask
 
 endpackage 

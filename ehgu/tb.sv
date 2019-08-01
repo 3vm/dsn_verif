@@ -94,6 +94,14 @@ ehgu_edges ehgu_edges
  .toggle 
 );
 
+logic rstn_in, rstn_out;
+ehgu_rst_sync ehgu_rst_sync 
+(
+ .clk,
+ .rstn_in,
+ .rstn_out
+);
+
 initial begin
 	clk = 0;
 	#1ns;
@@ -121,5 +129,21 @@ initial begin
 	repeat (5) @(posedge clk);
 	$finish();
 end
+
+initial begin
+	#0.1ns;
+	rstn_in = 0;
+	#0.3ns;
+	rstn_in = 1;
+	#1.2ns;
+	rstn_in = 0;
+	#1.6ns;
+	rstn_in = 1;
+	#1.2ns;
+	rstn_in = 0;
+	#7ns;
+	rstn_in = 1;
+end
+
 
 endmodule
