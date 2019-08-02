@@ -1,5 +1,13 @@
 Commonly used operations like gray coding, majority, count ones, hamming distance, binary to thermometer.
 
+ehgu_cntr.sv -- simple counter
+ehgu_config_pkg.sv -- setup the datapath width of the basic math functions
+ehgu_dly.sv - adjustable delay or shift register
+ehgu_edges.sv - rise fall or any edge 
+ehgu_fedge.sv - fall edge
+ehgu_redge.sv - rise edge
+ehgu_rst_sync.sv - reset synchronizer with parameterized stage count
+
 For further description refer to this book
 
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem

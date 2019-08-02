@@ -11,18 +11,29 @@ logic rstn, setn,enable, scan_enable,scan_in, sync_clr;
 logic [7:0] q_multibit,din_multibit;
 
 initial begin
-   clk_gen_basic (.clk(clk));
+   fork 
+   	clk_gen_basic (.clk(clk)); 
+   join_none;
+   
    repeat (30) @(posedge clk);
+   $finish;
 end
 
 initial begin
 	#0.9ns;
-	rstn = 0;
-	#0.9ns;
+	rstn = 0; scan_enable = 0; scan_in = 0 ; sync_clr = 0; setn = 0; enable=0;
+	#1.9ns;
 	rstn = 1;
-	#0.9ns;
+	#2.9ns;
+	setn = 1;
+	#1.9ns;
 	din = 1;
-	#0.9ns;
+	#1.2ns;
+	din = 0;
+	#1.9ns;
+	enable =1 ;
+	din = 1;
+	#1.2ns;
 	din = 0;
 end
 
