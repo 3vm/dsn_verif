@@ -1,4 +1,7 @@
 package thee_utils_pkg;
+
+//localparam time PKG_TIME_UNIT=1ns;
+//timeunit PKG_TIME_UNIT;
 timeunit 1ns;
 timeprecision 100ps;
 
@@ -35,13 +38,13 @@ timeprecision 100ps;
     endfunction
   endclass
    
-  task automatic toggle_clk 
+  task automatic toggle_local_clk 
   (
-    ref clk 
+    ref local_clk 
   );
-    clk=1;
+    local_clk=1;
     #1ns;
-    clk=0;
+    local_clk=0;
     #1ns;  
   endtask
 
@@ -56,26 +59,29 @@ timeprecision 100ps;
     rstn=1;
     #1ns;
   endtask
-   
+
   task automatic clk_gen_basic
   (
-    input real freq=100.0e6,
-    output logic clk
+    input real freq=1000,
+    input real freq_unit=1.0e6,
+    ref logic clk
   );
 
-    real half_period;
-    half_period = (1.0 / freq ) /2.0;
-    fork 
-      begin
+    realtime half_period, period_in_local_units, period_in_seconds;
+    real freq_in_Hz;
+    freq_in_Hz = freq * freq_unit;
+    period_in_seconds = 1.0 / freq_in_Hz ;
+    period_in_local_units = period_in_seconds / 1e-9 ; 
+    half_period = period_in_local_units /2.0;
+
         clk = 0;
         forever begin
-	  #(half_period);
-          clk=1;
-	  #(half_period);
+	        #(half_period);
+          clk=0;
+	        #(half_period);
           clk=1;
         end
-      end
-    join_none
+
   endtask
 
 endpackage 
