@@ -5,8 +5,8 @@ timeunit 1ns;
 timeprecision 1ps;
 
 import thee_utils_pkg::*;
-logic clk;
-logic din, q, q_resettable, q_setreset, q_all, q_en , q_scanable;
+logic clk, clk2;
+logic din, q, q_resettable, q_setreset, q_all, q_en , q_scanable, q_negedge;
 logic rstn, setn,enable, scan_enable,scan_in, sync_clr;
 logic [7:0] q_multibit,din_multibit;
 
@@ -14,10 +14,12 @@ initial begin
    fork 
    	clk_gen_basic (.clk(clk)); 
    join_none;
-   
+
    repeat (30) @(posedge clk);
    $finish;
 end
+
+thee_clk_gen_module clk2_gen (.clk(clk2));
 
 initial begin
 	#0.9ns;
@@ -44,6 +46,13 @@ initial begin
 	din_multibit = 0;
 end
 
+always_ff @(posedge clk) begin
+  q <= din;
+end
+
+always_ff @(negedge clk) begin
+  q_negedge <= din;
+end
 
 always_ff @(posedge clk or negedge rstn) begin
 	if(~rstn) begin
@@ -51,10 +60,6 @@ always_ff @(posedge clk or negedge rstn) begin
 	end else begin
 		q_resettable <= din;
 	end
-end
-
-always_ff @(posedge clk) begin
-  q <= din;
 end
 
 always_ff @(posedge clk) begin
