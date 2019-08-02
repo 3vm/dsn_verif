@@ -17,10 +17,11 @@ timeprecision 100ps;
       if ( CLK_GEN_TYPE == "basic" ) begin
         : ckgen_basic
         initial begin
-          freq_in_Hz = FREQ_UNIT * FREQ_UNIT;
+          freq_in_Hz = FREQ * FREQ_UNIT;
           period_in_seconds = 1.0 / freq_in_Hz ;
           period_in_local_units = period_in_seconds / 1e-9 ; 
           half_period = period_in_local_units /2.0;
+          $display("%f %f",freq_in_Hz, half_period);
           clk = 0;
           forever begin
             #(half_period);
