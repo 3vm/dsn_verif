@@ -4,27 +4,21 @@ module tb ;
 timeunit 1ns;
 timeprecision 1ps;
 
-parameter int LUT_SIZE=16;
-parameter int LUT_DATA_WIDTH=12;
-real angle_rad, angle_deg;
-real sin_val;
-logic signed [LUT_DATA_WIDTH-1:0] lut [LUT_SIZE];
+logic clk1;
+logic clk2;
 
-parameter string outfile="SINE_LUT.txt" ;
-int fd;
-
-import thee_utils_pkg::lut_processing_c; 
-
+thee_clk_gen_module #(.FREQ(10), .FREQ_UNIT(1e6)) clk_gen1 (.clk(clk1));
+thee_clk_gen_module #(.FREQ(93), .FREQ_UNIT(1e6)) clk_gen2 (.clk(clk2));
+real fout;
 
 initial begin
-  fd = $fopen(outfile,"w");
-  lut_processing_c #(.LUT_SIZE(LUT_SIZE) , .LUT_DATA_WIDTH(LUT_DATA_WIDTH))  :: gen_sinewave_lut ( lut ) ;
-
-  for ( int i = 0 ; i < LUT_SIZE ; i++ ) begin
-  	$display("Angle %f rad, %f deg, sin(angle) %f", angle_rad, angle_deg, lut[i]);
-  	$fwrite(fd,"%d\n", lut[i]);
-  end
-  $fclose(fd);
+	import thee_sig_analysis_pkg::get_binary_clk_freq;
+	@(posedge clk1);
+	get_binary_clk_freq ( .clk(clk1),.freq_in_hertz(fout));
+	$display ("Frequency of clk1 is %e", fout);
+	@(posedge clk2);
+	get_binary_clk_freq ( .clk(clk2),.freq_in_hertz(fout));
+	$display ("Frequency of clk2 is %e", fout);
 end
 
 endmodule
