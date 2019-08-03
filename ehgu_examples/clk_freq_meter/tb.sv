@@ -13,12 +13,14 @@ real fout;
 
 initial begin
 	import thee_sig_analysis_pkg::get_binary_clk_freq;
+	$display ("Started");
 	@(posedge clk1);
 	get_binary_clk_freq ( .clk(clk1),.freq_in_hertz(fout));
 	$display ("Frequency of clk1 is %e", fout);
 	@(posedge clk2);
 	get_binary_clk_freq ( .clk(clk2),.freq_in_hertz(fout));
 	$display ("Frequency of clk2 is %e", fout);
+	$finish;
 end
 
 endmodule
