@@ -7,12 +7,12 @@ timeprecision 1ps;
 real integral, ana_in, step;
 logic rstn;
 
-localparam real RST_VAL = 0 ;
+localparam real RST_VAL = 0.0 ;
 localparam realtime DT_STEP_SIZE = 1e-12; // to be matched to integration forever loop time step
 localparam real SCALE_FACTOR = 1.0;
 //COMMON MODE value?
 localparam real INTEG_MAX = 1.0;
-localparam real INTEG_MIN = 1.0;
+localparam real INTEG_MIN = -1.0;
 
 initial begin
 	integral = RST_VAL;
@@ -32,7 +32,7 @@ end
 initial begin
 	forever begin
 		#20ps;
-		$display("Input %1.3f Step %1.3f Integral %1.3f Current time %t",ana_in,step, integral,$realtime());
+		$display("Input %1.3f Step %1.3e Integral %1.3e Current time %t",ana_in,step, integral,$realtime());
 	end
 end
 
