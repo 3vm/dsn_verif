@@ -3,7 +3,7 @@ package thee_sig_analysis_pkg;
   timeunit 1ns;
   timeprecision 100ps;
  
-  static task automatic get_binary_clk_freq
+ task automatic get_binary_clk_freq
   (
     const ref logic clk,
     output real freq_in_hertz
@@ -13,7 +13,7 @@ package thee_sig_analysis_pkg;
     real period_in_seconds;
       $display ("In task");
 
-    @(posedge clk);
+    repeat (1) @(posedge clk);
     first_rise_edge = $realtime();
   $display ("Started");
     @(posedge clk);

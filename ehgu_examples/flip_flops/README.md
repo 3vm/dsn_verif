@@ -1,4 +1,5 @@
-Types of flip flops
+Types of flip flops 
+dff, scanable dff, reset, preset dff, dff with enable signal
 
 For further description refer to this book
 
