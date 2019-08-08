@@ -71,9 +71,23 @@ initial begin
 			prev_crossing = crossing;
 			crossing = $realtime();
 			wave_period = crossing - prev_crossing ;
-			$display ( "Wave period %t", wave_period);
+			$display ( "Wave period output %t", wave_period);
 		end
 		prev_integral = integral;
+	end
+end
+
+initial begin
+realtime crossing, prev_crossing, wave_period;
+real prev_integral;
+	forever @(ana_in) begin
+		if ( ana_in > 0 && prev_integral <= 0 ) begin
+			prev_crossing = crossing;
+			crossing = $realtime();
+			wave_period = crossing - prev_crossing ;
+			$display ( "Wave period input %t", wave_period);
+		end
+		prev_integral = ana_in;
 	end
 end
 
