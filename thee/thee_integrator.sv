@@ -1,35 +1,35 @@
 module thee_integrator
 #(
-parameter real FREQ=1000,
-parameter real FREQ_UNIT=1.0e6,
-parameter string CLK_GEN_TYPE="basic"
+parameter real RST_VAL = 0.0 ,
+parameter realtime DT_STEP_SIZE = 1e-12, // to be matched to integration forever loop time step
+parameter real SCALE_FACTOR = 1.0,
+//COMMON MODE value?
+parameter real INTEG_MAX = 1.0,
+parameter real INTEG_MIN = -1.0
 )
 (
-output logic clk
+input real ana_in,
+output real integral
 );
 
 timeunit 1ns;
-timeprecision 100ps;
+timeprecision 1ps;
 
-    realtime half_period, period_in_local_units, period_in_seconds;
-    real freq_in_Hz;
-    generate
-      if ( CLK_GEN_TYPE == "basic" ) begin
-        : ckgen_basic
-        initial begin
-          freq_in_Hz = FREQ * FREQ_UNIT;
-          period_in_seconds = 1.0 / freq_in_Hz ;
-          period_in_local_units = period_in_seconds / 1e-9 ; 
-          half_period = period_in_local_units /2.0;
-          clk = 0;
-          forever begin
-            #(half_period);
-            clk=0;
-            #(half_period);
-            clk=1;
-          end
-        end
-      end
-    endgenerate
+real step;
+
+initial begin
+  integral = RST_VAL;
+  forever begin
+    #1ps;
+    step = ana_in * DT_STEP_SIZE * SCALE_FACTOR ;
+    if ( integral + step > INTEG_MAX ) begin
+      integral = INTEG_MAX ;
+    end else if ( integral + step < INTEG_MIN ) begin
+      integral = INTEG_MIN ;
+    end else begin
+      integral += step;
+    end
+  end
+end
 
 endmodule
