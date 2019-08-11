@@ -43,12 +43,12 @@ int LUT_SIZE = 128;
 initial begin
 	logic input_type = 1; 
 	if ( input_type == 0 ) begin
-	ana_in = 0 ;
-	#0.9ns;
-	rstn = 0; 
-	#1.9ns;
-	rstn = 1; ana_in = 1;
-	#20ns;
+		ana_in = 0 ;
+		#0.9ns;
+		rstn = 0; 
+		#1.9ns;
+		rstn = 1; ana_in = 1;
+		#20ns;
 	end else begin
       for ( int i = 0 ; i < LUT_SIZE ; i=(i+1)%LUT_SIZE ) begin
         angle_rad = i*2*const_pi/LUT_SIZE;
