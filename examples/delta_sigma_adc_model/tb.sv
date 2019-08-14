@@ -10,13 +10,22 @@ real integral, ana_in, step;
 logic rstn;
 logic clk_oversamp;
 logic clk;
-logic [WIDTH-1:0] dig_out;
+logic signed [WIDTH-1:0] dig_out;
+real ana_recreated;
 
 thee_clk_gen_module #(.FREQ(10)) clk_gen (.clk(clk));
 thee_clk_gen_module clk_gen_oversamp (.clk(clk_oversamp));
-
+assign ana_recreated = dig_out / 50.0;
 initial begin
-	#100ns;
+	rstn=0;#100ns;rstn=1;
+	ana_in = 0.3;
+	repeat (10) @(posedge clk);
+	ana_in = 1;
+	repeat (10) @(posedge clk);
+	ana_in = -1;
+	repeat (10) @(posedge clk);
+	ana_in = -0.3;
+	repeat (10) @(posedge clk);
 	$finish;
 end
 
