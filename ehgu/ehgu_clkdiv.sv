@@ -11,9 +11,10 @@ import ehgu_basic_pkg::increment_modulo_unsigned;
 localparam WIDTH = $clog2(DIVISION);
 
 logic [WIDTH-1:0] cnt, cnt_comb;
+logic nc;
 
 always_comb begin
-	increment_modulo_unsigned (.inp(cnt),.modulo(DIVISION),.out(cnt_comb));
+	increment_modulo_unsigned (.inp(cnt),.modulo(DIVISION),.out(cnt_comb),.wrapped(nc));
 end
 
 always_ff @( posedge clkin, negedge rstn ) begin

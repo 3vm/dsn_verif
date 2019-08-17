@@ -92,6 +92,7 @@ function automatic void add_modulo_unsigned (
 input logic [DP_WIDTH-1:0] inp0,
 input logic [DP_WIDTH-1:0] inp1,
 input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
+output logic wrapped,
 output logic [DP_WIDTH-1:0] sum
 );
 
@@ -99,8 +100,10 @@ logic [DP_WIDTH-1+1:0] sum_full;
 sum_full = inp0 + inp1;
 if ( sum_full >= modulo ) begin
   sum = sum_full - modulo ;
+  wrapped = 1;
 end else begin
   sum = sum_full;
+  wrapped =0;
 end
 
 endfunction
@@ -108,10 +111,11 @@ endfunction
 function automatic void increment_modulo_unsigned (
 input logic [DP_WIDTH-1:0] inp,
 input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
+output logic wrapped,
 output logic [DP_WIDTH-1:0] out
 );
 
-add_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.sum(out));
+add_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.sum(out),.wrapped(wrapped));
 
 endfunction
 

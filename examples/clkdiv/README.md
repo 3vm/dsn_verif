@@ -1,4 +1,4 @@
-A meter to measure the frequency of a clock signal
+Clock divider logic aka integer clock divider or whole number clock divider
 
 For further description refer to this book
 

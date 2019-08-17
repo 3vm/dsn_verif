@@ -1,0 +1,6 @@
+Bugs
+
+Possible bugs
+
+
+cdc problems in analog to digital transfer - sample and hold
