@@ -12,8 +12,8 @@ module thee_clk_freq_meter
   real sum_of_periods;
 
   initial begin
-    sum_of_periods = 0 ;
     forever begin
+      sum_of_periods = 0 ;
       @(posedge clk);
       first_rise_edge = $realtime();
       repeat (MEAS_WINDOW) @(posedge clk) begin

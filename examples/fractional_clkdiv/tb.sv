@@ -10,7 +10,7 @@ logic rstn;
 
 thee_clk_gen_module clk_gen (.clk(clkin));
 
-thee_clk_freq_meter #(.MEAS_WINDOW(100)) fmeter0  (.clk(clkout0),.freq_in_hertz(fout0));
+thee_clk_freq_meter #(.MEAS_WINDOW(4)) fmeter0  (.clk(clkout0),.freq_in_hertz(fout0));
 //thee_clk_freq_meter fmeter1  (.clk(clkout1),.freq_in_hertz(fout1));
 
 ehgu_clkdiv_fractional clkdiv0
@@ -28,7 +28,7 @@ initial begin
   rstn=0;
   repeat (10) @(posedge clkin);
   rstn=1;  
-  repeat (1000) @(posedge clkout0);
+  repeat (50) @(posedge clkout0);
   $display ( " Clkout frequencies 0 %e , 1 %e", fout0,fout1);
   check_approx_equality (.inp(fout0),.expected(1.0e9/3.25),.result(result0));
   if ( result0==1) begin
