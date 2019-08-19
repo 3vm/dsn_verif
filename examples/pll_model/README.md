@@ -1,4 +1,4 @@
-Clock divider logic aka integer clock divider or whole number clock divider
+Model of a PLL using real data type in SystemVerilog
 
 For further description refer to this book
 

@@ -1,4 +1,4 @@
-Clock divider logic aka integer clock divider or whole number clock divider
+Fractional Clock divider using fractional accumulator logic
 
 For further description refer to this book
 
