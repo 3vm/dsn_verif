@@ -2,12 +2,11 @@
 module tb ;
 import thee_utils_pkg::check_approx_equality;
 
-localparam INT_DIVISION = 7;
-localparam FRAC_DIVISION = 14;
-localparam INT_WIDTH=3;
+localparam INT_DIVISION = 12;
+localparam FRAC_DIVISION = 10;
+localparam INT_WIDTH=4;
 localparam FRAC_WIDTH=4;
 
-logic clkin;
 logic clk_ref;
 
 real fout0,exp_fout;
@@ -17,7 +16,7 @@ logic pll_lock;
 
 thee_clk_gen_module #(.FREQ(100)) ref_gen (.clk(clk_ref));
 
-pll_model pll
+pll_model #(.INT_WIDTH(INT_WIDTH), .FRAC_WIDTH(FRAC_WIDTH)) pll
 (
  .clk_ref ,
  .rstn ,
@@ -28,15 +27,12 @@ pll_model pll
  .lock (pll_lock)
 );
 
-
 thee_clk_freq_meter #(.MEAS_WINDOW(50)) fmeter0  (.clk(clk_vco),.freq_in_hertz(fout0));
 
-
-
 initial begin
-  repeat (2) @(posedge clkin);
+  repeat (2) @(posedge clk_ref);
   rstn=0;
-  repeat (10) @(posedge clkin);
+  repeat (10) @(posedge clk_ref);
   rstn=1;  
   repeat (500) @(posedge clk_vco);
   exp_fout = 1.0e9/(INT_DIVISION + 1.0*FRAC_DIVISION/(2**FRAC_WIDTH));

@@ -9,7 +9,7 @@ output logic down
 logic q0,q1;
 logic rst_pfd;
 
-always_ff @(posedge clk0 or negedge rst_pfd) begin 
+always_ff @(posedge clk0 or posedge rst_pfd) begin 
   if(rst_pfd) begin
     q0 <= 0;
   end else begin
@@ -17,7 +17,7 @@ always_ff @(posedge clk0 or negedge rst_pfd) begin
   end
 end
 
-always_ff @(posedge clk1 or negedge rst_pfd) begin 
+always_ff @(posedge clk1 or posedge rst_pfd) begin 
   if(rst_pfd) begin
     q1 <= 0;
   end else begin

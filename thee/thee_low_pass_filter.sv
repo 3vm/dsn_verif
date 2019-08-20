@@ -28,11 +28,17 @@ generate
     for ( genvar i =0 ;i<TAPS;i++) begin
       always begin
           #(STEP_SIZE_IN_NS);
-          tap_inputs[i] = tap_inputs[i];
+          tap_outputs[i] = tap_inputs[i];
       end          
     end
 endgenerate
 
-assign filtered_out = tap_inputs.sum() / TAPS ;
+always_comb begin
+  filtered_out = 0;
+  foreach (tap_outputs[i]) begin 
+    filtered_out += tap_outputs[i];
+  end
+  filtered_out /= 1.0*TAPS ;
+end
 
 endmodule

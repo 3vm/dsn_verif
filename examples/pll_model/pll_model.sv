@@ -49,8 +49,8 @@ ehgu_clkdiv_fractional #(.INT_WIDTH(INT_WIDTH), .FRAC_WIDTH(FRAC_WIDTH)) clkdiv0
  .clkin (clk_vco) ,
  .rstn ,
  .en (1'b1),
- .int_div(INT_DIVISION),
- .frac_div(FRAC_DIVISION),
+ .int_div,
+ .frac_div,
  .clkout (clk_fb)
 );
 endmodule
