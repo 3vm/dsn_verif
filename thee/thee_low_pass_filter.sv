@@ -6,7 +6,7 @@ parameter real VMIN = -1.0,
 parameter int TAPS=4
 )
 (
-input real ana_in,
+input real sig_in,
 output real filtered_out
 );
 //CHECKME more realistic filter model needed
@@ -20,7 +20,7 @@ real tap_inputs [TAPS];
 generate
     for ( genvar i =0 ;i<TAPS;i++) begin
         if ( i == 0 ) begin
-          assign tap_inputs[i] = ana_in;
+          assign tap_inputs[i] = sig_in;
         end else begin
           assign tap_inputs[i] = tap_outputs[i-1];
         end          

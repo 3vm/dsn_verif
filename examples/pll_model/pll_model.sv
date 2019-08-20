@@ -39,9 +39,9 @@ thee_low_pass_filter lpf (
 );
 
 thee_vco vco (
-.vin ( lpf_out ),
-.clkout ( clk_vco)
-	);
+	.vin ( lpf_out ),
+	.clk ( clk_vco)
+);
 
 
 ehgu_clkdiv_fractional #(.INT_WIDTH(INT_WIDTH), .FRAC_WIDTH(FRAC_WIDTH)) clkdiv0

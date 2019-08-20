@@ -14,6 +14,7 @@ timescale.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
 ../../thee/thee_pfd.sv
+../../thee/thee_integrator.sv
 ../../thee/thee_charge_pump.sv
 ../../thee/thee_vco.sv
 ../../thee/thee_low_pass_filter.sv
