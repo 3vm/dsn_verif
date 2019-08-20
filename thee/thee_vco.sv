@@ -12,7 +12,7 @@ parameter string CLK_GEN_TYPE="basic"
 );
 
 timeunit 1ns;
-timeprecision 10ps;
+timeprecision 0.1ps;
 
     realtime half_period, period_in_local_units, period_in_seconds;
     real freq_in_Hz;
