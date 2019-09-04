@@ -84,6 +84,7 @@ initial begin
 end
 */
 
+/*
 ehgu_edges ehgu_edges
 (
  .clk ,
@@ -144,6 +145,24 @@ initial begin
 	#7ns;
 	rstn_in = 1;
 end
+*/
 
+initial begin
+int inp0,inp1,max_value,outp, saturated;
+
+inp0 = 10; inp1=20; max_value=31;   add_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.sum(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 14; inp1=20; max_value=31;   add_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.sum(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+
+inp0 = 10; inp1=30; max_value=31;   increment_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 14; inp1=31; max_value=31;   increment_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+end
 
 endmodule

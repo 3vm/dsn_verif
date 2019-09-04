@@ -1,0 +1,1 @@
+C:\Xilinx\Vivado\2019.1\bin\xvlog --sv -f sim.f

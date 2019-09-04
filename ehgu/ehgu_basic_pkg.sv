@@ -119,4 +119,35 @@ add_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.sum(out),.wrapped(w
 
 endfunction
 
+function automatic void add_saturate_unsigned (
+input logic [DP_WIDTH-1:0] inp0,
+input logic [DP_WIDTH-1:0] inp1,
+input logic [DP_WIDTH-1:0] maximum='1,
+output logic saturated,
+output logic [DP_WIDTH-1:0] sum
+);
+
+logic [DP_WIDTH-1+1:0] sum_full;
+sum_full = inp0 + inp1;
+if ( sum_full >= maximum ) begin
+  sum = maximum ;
+  saturated = 1;
+end else begin
+  sum = sum_full;
+  saturated =0;
+end
+
+endfunction
+
+function automatic void increment_saturate_unsigned (
+input logic [DP_WIDTH-1:0] inp,
+input logic [DP_WIDTH-1:0] maximum='1,
+output logic saturated,
+output logic [DP_WIDTH-1:0] out
+);
+
+add_saturate_unsigned (.inp0(inp),.inp1(1'b1),.maximum(maximum),.sum(out),.saturated(saturated));
+
+endfunction
+
 endpackage
