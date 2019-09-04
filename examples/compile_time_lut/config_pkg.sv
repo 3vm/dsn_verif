@@ -1,5 +1,6 @@
 
 package config_pkg ;
+
 localparam POWER_ENTRIES=10;
 typedef logic [15:0] power3_lut_t [POWER_ENTRIES];
 
