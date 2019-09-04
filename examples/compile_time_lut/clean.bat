@@ -1,0 +1,1 @@
+del *.jou *.log *.pb ; rmdir xsim.dir .Xil /S /Q
