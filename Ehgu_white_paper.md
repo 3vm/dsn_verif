@@ -43,7 +43,6 @@ Vikram
 
 September 2019
 
-First version: July 2019
 
 Ehgu Proposal
 --------------
