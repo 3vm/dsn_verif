@@ -40,7 +40,9 @@ Suppose, I tell you the number of chip designers can be increased by a factor of
 Sadly, when older professions are fading away into history newer professions like chip design has a significant shortage of skilled people. Chip design is accessible to only a few people in the world. The design process is also far less efficient than what it can be. In this book,  I describe my ideas related to a hardware design ecosystem that is more efficient at producing useful hardware and also reward more people across the whole world. It is quite cumbersome to refer to hardware design engineers or ASIC design engineers or digital designers or RTL designers or IC designers or FPGA designers. It is also rather useless to add the term engineer to every job title. So,  I am naming this particular trade as chipping and the practitioner as a chipper.
 
 Vikram
+
 September 2019
+
 First version: July 2019
 
 Ehgu Proposal
