@@ -35,10 +35,12 @@ Ana Cortez is a professor in San Carlos university Argentina. She has limited ac
 Preface
 --------
 
-Digital hardware is now everywhere. Any system be it computational, mechanical, electrical, chemical or biological has some kind of sensor, connectivity, control and processing chips. My guess is that the weight of chips in operation probably far exceeds the weight of all humans living. Definitely the count of all chips far exceeds the entire human population. Training more digital design engineers will help in creating even more useful electronic systems. 
-But the story of hardware design is more like the imaginary stories in the preceding sad story section. Why can’t it be more like the story of Joseph, the Kenyan electrician? In this proposal, I briefly describe my ideas related to hardware design ecosystem that is more efficient at producing useful hardware and also rewarding more people across the whole world. It is quite cumbersome to refer to hardware design engineers or ASIC design engineers or digital designer or RTL designer or IC designer or FPGA designer. It is also rather useless to add the term engineer to every job title. So, I am naming this particular trade as chipping and the practitioner as a chipper.
+Electronic chips are now everywhere. There are chips deep in the Sahara dessert, there are chips in space, there are chips inside the human body, there are chips deep in the ocean, there are chips inside cars, there are chips in rockets and there are chips in unimaginable places. But chip designers are only a tiny fraction of the world population and are also located only in a few selected pockets of the world. The headcount of chip designers is so small, it is a miracle they are able to make an out-sized impact on the world. Every piece of modern machine contains chips in one form or another. Our life in the information age is underpinned by chips.  Even at the current level of technology the value added by chips is immense. So immense that most of the world population depends on it for healthy, happy and prosperous living.
+Suppose, I tell you the number of chip designers can be increased by a factor of 100x and the number of electronics systems designed by a factor of 1000x, what wonders would come to pass? Is it even possible? Oh, Yes! I think so.
+Sadly, when older professions are fading away into history newer professions like chip design has a significant shortage of skilled people. Chip design is accessible to only a few people in the world. The design process is also far less efficient than what it can be. In this book,  I describe my ideas related to a hardware design ecosystem that is more efficient at producing useful hardware and also reward more people across the whole world. It is quite cumbersome to refer to hardware design engineers or ASIC design engineers or digital designers or RTL designers or IC designers or FPGA designers. It is also rather useless to add the term engineer to every job title. So,  I am naming this particular trade as chipping and the practitioner as a chipper.
+
 Vikram
-August 2019
+September 2019
 First version: July 2019
 
 Ehgu Proposal
