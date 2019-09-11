@@ -65,6 +65,7 @@ Proposed Certifications
 Chipping has evolved into two natural specializations,  one for ASIC design and another for FPGA. There is a lot of overlap between the two,  but,  there is a lot of specific learning as well. So,  I am recommending three curriculums,  Chipper Basics,  Chipper ASIC and Chipper FPGA. The basics certification is to get anyone a simple job in the ecosystem quickly. Other certifications are for career growth.
 
 Chipper Basics
+
 Circuits: Kirchoff’s laws, Ohm’s law, power consumption in electrical circuits.
 CMOS : NAND, NOR, NOT, AND, OR gate transistor circuits, power dissipation in CMOS – switching, short circuit and leakage power
 Behavioral model for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
@@ -73,20 +74,33 @@ Digital logic theory,  SystemVerilog 2013 language,  Concepts from logic synthes
 RTL simulation with Vivado/Modelsim/Incisive/Xcellium/VCS, Waveform debugging with Vivado/Modelsim/Simvision/Verdi/DVE, Gate Level Simulation – handling synchronizers, initializing unintialized flip flops and combinational loops, Performing design ECOs
 
 Chipper ASIC
+
 Concepts from DFT, Standard cells, ROM, RAM
+
 Chipper FPGA
+
 FPGA resources – LUT, DSP, BRAMS, clocking. IP integration, RISC-V, interfacing with SPI, I2C, UART, AXI, APB, AHB, Tilelink, Synthesis and physical design for FPGA – pin assignment
 
 Advanced Specializations
+
 Chipper Algorithms 
+
 Chipper Mixed Signal
+
 Chipper SoC/Integration
-Chipper Networking 
+
+Chipper Networking
+
 Chipper SerDes
+
 Chipper Cryptography
+
 Chipper Processors
+
 Chipper Machine Learning
+
 Chipper Neo
+
 
 FAQ
 ----
