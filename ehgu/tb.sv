@@ -177,6 +177,33 @@ $display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 inp0 = 14; inp1=12; modulo=31;   increment_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
 
+// Subtraction
+inp0 = 10; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.diff(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 14; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.diff(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+
+inp0 = 10; inp1=30; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 14; inp1=31; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+$display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 21; inp1=20; modulo=31;   sub_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.diff(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d - %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
+
+inp0 = 14; inp1=20; modulo=31;   sub_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.diff(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d - %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
+
+
+inp0 = 10; inp1=0; modulo=31;   decrement_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
+
+inp0 = 14; inp1=12; modulo=31;   decrement_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
+
 end
 
 endmodule
