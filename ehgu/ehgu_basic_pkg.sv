@@ -129,7 +129,7 @@ output logic [DP_WIDTH-1:0] sum
 
 logic [DP_WIDTH-1+1:0] sum_full;
 sum_full = inp0 + inp1;
-if ( sum_full >= maximum ) begin
+if ( sum_full > maximum ) begin
   sum = maximum ;
   saturated = 1;
 end else begin
@@ -150,4 +150,61 @@ add_saturate_unsigned (.inp0(inp),.inp1(1'b1),.maximum(maximum),.sum(out),.satur
 
 endfunction
 
+function automatic void sub_modulo_unsigned (
+input logic [DP_WIDTH-1:0] inp0,
+input logic [DP_WIDTH-1:0] inp1,
+input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
+output logic wrapped,
+output logic [DP_WIDTH-1:0] diff
+);
+
+if ( inp0 < inp1 ) begin
+  diff = inp0 + modulo - inp1;
+  wrapped = 1;
+end else begin
+  diff = inp0 - inp1;
+  wrapped =0;
+end
+
+endfunction
+
+function automatic void decrement_modulo_unsigned (
+input logic [DP_WIDTH-1:0] inp,
+input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
+output logic wrapped,
+output logic [DP_WIDTH-1:0] out
+);
+
+sub_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.diff(out),.wrapped(wrapped));
+
+endfunction
+
+function automatic void sub_saturate_unsigned (
+input logic [DP_WIDTH-1:0] inp0,
+input logic [DP_WIDTH-1:0] inp1,
+input logic [DP_WIDTH-1:0] maximum='1,
+output logic saturated,
+output logic [DP_WIDTH-1:0] diff
+);
+
+if ( inp0 < inp1 ) begin
+  diff = 0;
+  saturated = 1;
+end else begin
+  diff = inp0 - inp1;
+  saturated =0;
+end
+
+endfunction
+
+function automatic void decrement_saturate_unsigned (
+input logic [DP_WIDTH-1:0] inp,
+input logic [DP_WIDTH-1:0] maximum='1,
+output logic saturated,
+output logic [DP_WIDTH-1:0] out
+);
+
+sub_saturate_unsigned (.inp0(inp),.inp1(1'b1),.maximum(maximum),.diff(out),.saturated(saturated));
+
+endfunction
 endpackage

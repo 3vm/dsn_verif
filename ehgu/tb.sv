@@ -148,7 +148,8 @@ end
 */
 
 initial begin
-int inp0,inp1,max_value,outp, saturated;
+int inp0,inp1,max_value,outp, saturated, modulo;
+logic wrapped;
 
 inp0 = 10; inp1=20; max_value=31;   add_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.sum(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
@@ -162,6 +163,19 @@ $display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, 
 
 inp0 = 14; inp1=31; max_value=31;   increment_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+
+inp0 = 10; inp1=20; modulo=31;   add_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.sum(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d + %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
+
+inp0 = 14; inp1=20; modulo=31;   add_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.sum(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d + %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
+
+
+inp0 = 10; inp1=30; modulo=31;   increment_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
+
+inp0 = 14; inp1=12; modulo=31;   increment_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
+$display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
 
 end
 
