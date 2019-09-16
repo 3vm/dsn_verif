@@ -7,9 +7,12 @@ int main (void) {
 	int din;
 	int buf[AVG_LENGTH];
 	int exp;
+	int i ;
+	for(i=0;i<AVG_LENGTH;i++)
+		buf[i]=0;
 	din = 10 ; exp = 2;
 	out = moving_average ( din,buf);
-	if ( out != 30 )  {
+	if ( out != exp )  {
 		result = 1;
 		printf("Test Vector 0 Failed. Expected %d , got %d \n",exp, out);
 	}
