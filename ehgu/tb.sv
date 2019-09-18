@@ -178,17 +178,17 @@ inp0 = 14; inp1=12; modulo=31;   increment_modulo_unsigned ( .inp(inp1),.modulo(
 $display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
 
 // Subtraction
-inp0 = 10; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.diff(outp),.saturated(saturated));
+inp0 = 10; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(max_value),.diff(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
 
-inp0 = 14; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.diff(outp),.saturated(saturated));
+inp0 = 14; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(max_value),.diff(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
 
 
-inp0 = 10; inp1=30; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+inp0 = 10; inp1=30; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.minimum(max_value),.out(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
 
-inp0 = 14; inp1=31; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.maximum(max_value),.out(outp),.saturated(saturated));
+inp0 = 14; inp1=31; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.minimum(max_value),.out(outp),.saturated(saturated));
 $display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
 
 inp0 = 21; inp1=20; modulo=31;   sub_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.diff(outp),.wrapped(wrapped));
@@ -203,6 +203,30 @@ $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 
 inp0 = 14; inp1=12; modulo=31;   decrement_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
+
+begin
+int mnm,mxm,clamped, dummy;
+inp = 14; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
+$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
+inp = 6; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
+$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
+inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
+$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
+inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(dummy));
+end
+
+begin
+int inp, rotation, out, signal_width;
+inp = 'b00011;   rotate (.inp(inp),.out(out));
+$display ( "rotate left input %b output %b", inp, out);
+inp = 'b0110110011; rotation = 3; signal_width=7 ; rotate (.inp(inp),.rotation(rotation), .signal_width(signal_width),.out(out));
+$display ( "rotate left input %b rotation %d width %d output %b", inp, rotation, signal_width, out);
+
+inp = 'b00011;   rotate (.inp(inp),.rotation(-1),.out(out));
+$display ( "rotate right input %b output %b", inp, out);
+inp = 'b0110110011; rotation = -6; signal_width=7 ; rotate (.inp(inp),.rotation(rotation), .signal_width(signal_width),.out(out));
+$display ( "rotate right input %b rotation %d width %d output %b", inp, rotation, signal_width, out);
+end
 
 end
 

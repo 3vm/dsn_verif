@@ -182,7 +182,7 @@ endfunction
 function automatic void sub_saturate_unsigned (
 input logic [DP_WIDTH-1:0] inp0,
 input logic [DP_WIDTH-1:0] inp1,
-input logic [DP_WIDTH-1:0] maximum='1,
+input logic [DP_WIDTH-1:0] minimum=0,
 output logic saturated,
 output logic [DP_WIDTH-1:0] diff
 );
@@ -199,12 +199,67 @@ endfunction
 
 function automatic void decrement_saturate_unsigned (
 input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1:0] maximum='1,
+input logic [DP_WIDTH-1:0] minimum=0,
 output logic saturated,
 output logic [DP_WIDTH-1:0] out
 );
 
-sub_saturate_unsigned (.inp0(inp),.inp1(1'b1),.maximum(maximum),.diff(out),.saturated(saturated));
+sub_saturate_unsigned (.inp0(inp),.inp1(1'b1),.minimum(minimum),.diff(out),.saturated(saturated));
 
 endfunction
+
+function automatic void clamp_unsigned (
+input logic [DP_WIDTH-1:0] minimum=0,
+input logic [DP_WIDTH-1:0] inp,
+input logic [DP_WIDTH-1:0] maximum='1,
+output logic [DP_WIDTH-1:0] out,
+output logic signed [1:0] clamped
+);
+
+if ( inp < minimum ) begin
+  out = minimum;
+  clamped = -1;
+end else if ( inp > maximum ) begin
+  out = maximum;
+  clamped = +1;
+end else begin
+  out = inp;
+  clamped = 0;
+end
+
+endfunction
+
+function automatic logic is_positive (
+input logic signed [DP_WIDTH-1:0] inp
+);
+return (inp>0);
+endfunction
+
+function automatic void rotate (
+input logic [DP_WIDTH-1:0] inp,
+input logic [$clog2(DP_WIDTH)-1:0] signal_width=DP_WIDTH,
+input logic signed [$clog2(DP_WIDTH)-1+1:0] rotation=1,
+output logic [DP_WIDTH-1:0] out
+);
+
+logic dir_left;
+logic saved_bit;
+logic [$clog2(DP_WIDTH)-1:0] rotation_amount_unsigned ;
+out = inp;
+dir_left = is_positive(rotation);
+rotation_amount_unsigned = dir_left ? rotation : -rotation;
+for ( int i = 0 ; i < rotation_amount_unsigned ; i++ ) begin
+  if ( dir_left) begin
+    saved_bit = out[signal_width-1];
+    out = out << 1 ;
+    out[0] = saved_bit;
+  end else begin
+    saved_bit = out[0];
+    out = out >> 1 ;
+    out[signal_width-1] = saved_bit;
+  end
+end
+
+endfunction
+
 endpackage
