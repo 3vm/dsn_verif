@@ -229,15 +229,21 @@ end
 
 endfunction
 
+function automatic logic signed [1:0] get_sign (
+input logic signed [DP_WIDTH-1:0] inp
+);
+return ((inp>0)?+2'd1:-2'd1);
+endfunction
+
 function automatic logic is_positive (
 input logic signed [DP_WIDTH-1:0] inp
 );
-return (inp>0);
+return (get_sign(inp)==+2'b1);
 endfunction
 
 function automatic void rotate (
 input logic [DP_WIDTH-1:0] inp,
-input logic [$clog2(DP_WIDTH)-1:0] signal_width=DP_WIDTH,
+input logic [$clog2(DP_WIDTH)-1+1:0] signal_width=DP_WIDTH,
 input logic signed [$clog2(DP_WIDTH)-1+1:0] rotation=1,
 output logic [DP_WIDTH-1:0] out
 );
@@ -251,12 +257,13 @@ rotation_amount_unsigned = dir_left ? rotation : -rotation;
 for ( int i = 0 ; i < rotation_amount_unsigned ; i++ ) begin
   if ( dir_left) begin
     saved_bit = out[signal_width-1];
-    out = out << 1 ;
+    out = out << 1'b1 ;
     out[0] = saved_bit;
   end else begin
     saved_bit = out[0];
-    out = out >> 1 ;
+    out = out >> 1'b1 ;
     out[signal_width-1] = saved_bit;
+    $display("rotate right amount %d saved_bit %b signal width %d DP_WIDTH %d bits for sig wid", rotation_amount_unsigned, saved_bit, signal_width, DP_WIDTH , $bits(signal_width));
   end
 end
 
