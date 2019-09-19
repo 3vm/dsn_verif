@@ -203,7 +203,7 @@ $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 
 inp0 = 14; inp1=12; modulo=31;   decrement_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
-
+/*
 begin
 int mnm,mxm,clamped, dummy;
 inp = 14; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
@@ -214,6 +214,7 @@ inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm)
 $display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
 inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(dummy));
 end
+*/
 
 begin
 int inp, rotation, out, signal_width;
@@ -228,6 +229,17 @@ inp = 'b0110110011; rotation = -6; signal_width=7 ; rotate (.inp(inp),.rotation(
 $display ( "rotate right input %b rotation %d width %d output %b", inp, rotation, signal_width, out);
 end
 
+begin
+  logic [DP_WIDTH -1:0] inp, lw;logic towards;
+  logic [DP_WIDTH -1+1:0] out;
+  inp = 'b11101010; lw=4; round_lsb_unsigned (.inp(inp),.lsb_width(lw),.out(out));
+  $display("Rounding last %d bits of input %b = %b", lw, inp,out);
+  inp = 'b11101100; lw=3; round_lsb_unsigned (.inp(inp),.lsb_width(lw),.out(out));
+  $display("Rounding last %d bits of input %b = %b", lw, inp,out);
+  inp = 'b11101100; lw=3; towards = 0 ; round_lsb_unsigned (.inp(inp),.lsb_width(lw),.towards(towards),.out(out));
+  $display("Rounding last %d bits of input %b towards %b = %b", lw, inp, towards, out);
 end
+
+end //initial block
 
 endmodule

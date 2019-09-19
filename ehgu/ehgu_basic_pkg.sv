@@ -263,9 +263,37 @@ for ( int i = 0 ; i < rotation_amount_unsigned ; i++ ) begin
     saved_bit = out[0];
     out = out >> 1'b1 ;
     out[signal_width-1] = saved_bit;
-    $display("rotate right amount %d saved_bit %b signal width %d DP_WIDTH %d bits for sig wid", rotation_amount_unsigned, saved_bit, signal_width, DP_WIDTH , $bits(signal_width));
   end
 end
+
+endfunction
+
+function automatic void round_lsb_unsigned (
+input logic [DP_WIDTH-1:0] inp,
+input logic [$clog2(DP_WIDTH)-1:0] lsb_width=3,
+input logic towards=1,
+output logic [DP_WIDTH-1+1:0] out
+);
+  logic [DP_WIDTH-3:0] ls_bits,mid_value,inc_value;
+  
+  ls_bits = 0 ;
+  mid_value=0;
+  mid_value[lsb_width-1]=1'b1;
+  inc_value = mid_value << 1'b1;
+  out = inp;
+
+  for(int i=0;i<lsb_width;i++) begin
+   ls_bits[i]=inp[i];
+   out[i] = 0 ;
+  end
+  
+  if ( ls_bits > mid_value) begin
+     out+=inc_value;
+  end else if ( ls_bits == mid_value ) begin
+    if ( towards == 1 ) begin
+      out+=inc_value;
+    end
+  end
 
 endfunction
 
