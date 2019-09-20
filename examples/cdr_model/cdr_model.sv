@@ -16,23 +16,21 @@ int edge_cnt ;
 
 initial begin
 	edge_cnt=0; prev_edge = $realtime();
-	min_period=1;
+	min_period=15;
 	forever @(data_in) begin
 
 		curr_edge = $realtime();
-		$display("Data changed %e", curr_edge);
-		periods.push_front(prev_edge - curr_edge);
+		periods.push_front(curr_edge - prev_edge);
 		prev_edge = curr_edge;
 		if ( edge_cnt != CDR_LOCKING_WINDOW )
 			edge_cnt++;
 		else begin 
 			periods.pop_back();
 			foreach (periods[i]) begin
-								$display ("Period %1.3e" , periods[i]);
-
 				if ( min_period > periods[i] ) begin
 					min_period = periods[i] ;
 					$display ("Period changed %1.3e" , min_period);
+					$display ("Period %1.3e" , periods[i]);
 				end
 			end
 		end
