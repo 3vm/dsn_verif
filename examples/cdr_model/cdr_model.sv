@@ -1,56 +1,52 @@
 module cdr_model 
-#(
-parameter INT_WIDTH=3,
-parameter FRAC_WIDTH=4
-)
 (
-input logic clk_ref,
-input logic rstn,
-input logic en,
-input logic [INT_WIDTH-1:0] int_div,
-input logic [FRAC_WIDTH-1:0] frac_div,
+input logic data_in,
 output logic clkout,
 output logic lock
 );
 
-logic up, down;
-logic clk_vco;
-logic clk_fb;
-real cp_out;
-real lpf_out;
+timeunit 1ns;
+timeprecision 1ps;
 
-thee_pfd pfd
-(
- .clk0(clk_ref) ,
- .clk1(clk_fb) ,
- .up (up),
- .down (down) 
-);
+localparam CDR_LOCKING_WINDOW=100;
 
-thee_charge_pump cp (
-.up,
-.down,
-.vout(cp_out)
-);
+realtime periods[$];
+realtime curr_edge, prev_edge,min_period;
+int edge_cnt ;
 
-thee_low_pass_filter #(.TAPS(10), .STEP_SIZE_IN_NS(50)) lpf (
-	.sig_in ( cp_out),
-	.filtered_out (lpf_out)
-);
+initial begin
+	edge_cnt=0; prev_edge = $realtime();
+	min_period=1;
+	forever @(data_in) begin
 
-thee_vco vco (
-	.vin ( lpf_out ),
-	.clk ( clk_vco)
-);
+		curr_edge = $realtime();
+		$display("Data changed %e", curr_edge);
+		periods.push_front(prev_edge - curr_edge);
+		prev_edge = curr_edge;
+		if ( edge_cnt != CDR_LOCKING_WINDOW )
+			edge_cnt++;
+		else begin 
+			periods.pop_back();
+			foreach (periods[i]) begin
+								$display ("Period %1.3e" , periods[i]);
 
+				if ( min_period > periods[i] ) begin
+					min_period = periods[i] ;
+					$display ("Period changed %1.3e" , min_period);
+				end
+			end
+		end
+	end
+end
 
-ehgu_clkdiv_fractional #(.INT_WIDTH(INT_WIDTH), .FRAC_WIDTH(FRAC_WIDTH)) clkdiv0
-(
- .clkin (clk_vco) ,
- .rstn ,
- .en (1'b1),
- .int_div,
- .frac_div,
- .clkout (clk_fb)
-);
+initial begin
+	clkout = 0 ;
+	forever begin
+		#(min_period/2);
+		clkout=1;
+		#(min_period/2);
+		clkout=0;
+	end
+end
+
 endmodule

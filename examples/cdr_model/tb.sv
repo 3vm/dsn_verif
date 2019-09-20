@@ -13,16 +13,23 @@ real fout0,exp_fout;
 bit result0,result1;
 logic rstn;
 logic pll_lock;
+logic data_in;
 
 thee_clk_gen_module #(.FREQ(REF_FREQ/1e6)) ref_gen (.clk(clk_ref));
 
-cdr_model #(.INT_WIDTH(INT_WIDTH), .FRAC_WIDTH(FRAC_WIDTH)) cdr
+initial begin
+  data_in = 0 ;
+  forever begin
+    repeat (1) @(posedge clk_ref);
+      data_in = 1;
+    repeat (3) @(posedge clk_ref);
+      data_in = 0 ;
+  end
+end
+
+cdr_model cdr
 (
- .clk_ref  ,
- .rstn ,
- .en (1'b1),
-.int_div(INT_DIVISION),
-.frac_div(FRAC_DIVISION),
+ .data_in,
  .clkout (clk_vco),
  .lock (pll_lock)
 );
@@ -34,8 +41,10 @@ initial begin
   rstn=0;
   repeat (10) @(posedge clk_ref);
   rstn=1;  
-  repeat (500) @(posedge clk_vco);
-  exp_fout = REF_FREQ * (INT_DIVISION + 1.0*FRAC_DIVISION/(2**FRAC_WIDTH));
+  
+  repeat (5000) @(posedge clk_vco);
+
+  exp_fout = REF_FREQ ;
   $display ( " Clkout frequencies 0 %e , expected %e", fout0, exp_fout);
   check_approx_equality (.inp(fout0),.expected(exp_fout),.result(result0));
   if ( result0==1) begin
