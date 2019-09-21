@@ -9,7 +9,7 @@ output logic clk
 );
 
 timeunit 1ns;
-timeprecision 100ps;
+timeprecision 1ps;
 
     realtime half_period, period_in_local_units, period_in_seconds;
     real freq_in_Hz;
