@@ -45,7 +45,7 @@ initial begin
       repeat (600) @(posedge clk_vco);
 
   exp_fout = REF_FREQ ;
-  $display ( " Clkout frequencies 0 %e , expected %e", fout0, exp_fout);
+  $display ( " Clkout frequencies %1.3e , expected %1.3e", fout0, exp_fout);
   check_approx_equality (.inp(fout0),.expected(exp_fout),.result(result0));
   if ( result0==1) begin
     repeat (3) $display ( "PASS");
