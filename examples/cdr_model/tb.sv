@@ -1,12 +1,9 @@
 
 module tb ;
 import thee_utils_pkg::check_approx_equality;
+import thee_utils_pkg::urand_range_real;
 
-localparam INT_DIVISION = 12;
-localparam FRAC_DIVISION = 10;
-localparam INT_WIDTH=4;
-localparam FRAC_WIDTH=4;
-localparam real REF_FREQ = 350e6;
+localparam real REF_FREQ = 100e6;
 logic clk_ref,clk_vco;
 
 real fout0,exp_fout;
@@ -15,7 +12,7 @@ logic rstn;
 logic pll_lock;
 logic data_in;
 
-thee_clk_gen_module #(.FREQ(REF_FREQ/1e6)) ref_gen (.clk(clk_ref));
+thee_clk_gen_module #(.FREQ(REF_FREQ/1e6),.CLK_GEN_TYPE("jitter_only")) ref_gen (.clk(clk_ref));
 
 initial begin
   data_in = 0 ;
@@ -25,6 +22,16 @@ initial begin
     repeat (3) @(posedge clk_ref);
       data_in = 0 ;
   end
+end
+initial begin
+  real out;
+  repeat (20) begin
+
+  //  $display ( "Random real number %f", $urandom());
+   urand_range_real(-100,100,out);
+    $display ( "Random real number %f", out);
+    end
+  $finish;
 end
 
 cdr_model cdr
@@ -42,7 +49,7 @@ initial begin
   repeat (10) @(posedge clk_ref);
   rstn=1;  
 
-      repeat (600) @(posedge clk_vco);
+  repeat (600) @(posedge clk_vco);
 
   exp_fout = REF_FREQ ;
   $display ( " Clkout frequencies %1.3e , expected %1.3e", fout0, exp_fout);

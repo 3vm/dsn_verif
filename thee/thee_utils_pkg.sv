@@ -99,5 +99,19 @@ timeprecision 100ps;
       result = 1;
     end
   endtask
+   
+  task automatic urand_range_real 
+  (
+    input real low,
+    input real high,
+    output real out
+  );
+
+  int tmp;
+  const longint MAX_VALUE = (64'd2 ** 32 ) -1;
+  tmp=$urandom();
+  out = ( low + (tmp/MAX_VALUE)*(high-low));
+
+  endtask
 
 endpackage 

@@ -26,13 +26,11 @@ initial begin
 		curr_edge = $realtime();
 		this_period = curr_edge - prev_edge;
 		prev_edge = curr_edge;
-				if ( min_period > this_period ) begin
-					min_period = 0.5 * this_period + 0.5 * min_period;
-					$display ("Period changed %1.3e" , min_period);
-					$display ("Period %1.3e" , this_period);
-				end
-			
-		
+		if ( min_period > this_period ) begin
+			min_period = 0.5 * this_period + 0.5 * min_period;
+			$display ("Period changed %1.3e" , min_period);
+			$display ("Period %1.3e" , this_period);
+		end		
 	end
 end
 
