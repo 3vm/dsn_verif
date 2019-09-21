@@ -53,7 +53,7 @@ initial begin
 			end
 		join_any
 		disable fork;
-		//clkout=0;
+		clkout=0;
 	end
 end
 

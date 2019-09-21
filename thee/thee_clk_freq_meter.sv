@@ -5,7 +5,7 @@ module thee_clk_freq_meter
     output real freq_in_hertz
   );
   timeunit 1ns;
-  timeprecision 100ps;
+  timeprecision 1ps;
 
   realtime first_rise_edge, second_rise_edge;
   real period_in_seconds;
