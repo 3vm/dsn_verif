@@ -8,7 +8,7 @@ output logic lock
 timeunit 1ns;
 timeprecision 1ps;
 
-localparam CDR_LOCKING_WINDOW=100;
+localparam CDR_LOCKING_WINDOW=20;
 
 realtime periods[$];
 realtime curr_edge, prev_edge,min_period;
@@ -38,13 +38,25 @@ initial begin
 end
 
 initial begin
+	bit new_data_transition;
 	clkout = 0 ;
 	forever begin
-		#(min_period/2);
-		clkout=1;
-		#(min_period/2);
-		clkout=0;
+		new_data_transition = 0 ;
+	    fork 
+	    	begin
+				#(min_period/2);
+				clkout= ~clkout;
+			end
+			begin
+				@(data_in);
+				new_data_transition = 1;				
+			end
+		join_any
+		
 	end
 end
+
+initial 
+	$monitor("Clock %b , data %b , time %t, edge count %d", clkout,data_in, $realtime(), edge_cnt);
 
 endmodule
