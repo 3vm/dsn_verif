@@ -6,7 +6,7 @@ localparam INT_DIVISION = 12;
 localparam FRAC_DIVISION = 10;
 localparam INT_WIDTH=4;
 localparam FRAC_WIDTH=4;
-localparam real REF_FREQ = 1012e6;
+localparam real REF_FREQ = 350e6;
 logic clk_ref,clk_vco;
 
 real fout0,exp_fout;

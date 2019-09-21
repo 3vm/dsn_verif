@@ -37,18 +37,17 @@ initial begin
 end
 
 initial begin
-	bit new_data_transition;
 	clkout = 0 ;
 	forever begin
-		new_data_transition = 0 ;
 	    fork 
 	    	begin
 				#(min_period/2.0);
-				clkout= ~clkout;
+				clkout= 1;
+				#(min_period/2.0);
+				clkout= 0;
 			end
 			begin
 				@(data_in);
-				new_data_transition = 1;				
 			end
 		join_any
 		disable fork;
