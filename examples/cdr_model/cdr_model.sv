@@ -52,7 +52,7 @@ initial begin
 				new_data_transition = 1;				
 			end
 		join_any
-		
+		disable fork;
 	end
 end
 
