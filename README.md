@@ -1,4 +1,8 @@
 A library of Synthesizable RTL and associated verification functions, feel free to use it as you please. Also, please support me as much as you can.
+Special mention : 
+ADC models - flash, counter, delta sigma, pipelined ADC
+Fractional-N PLL model
+CDR, Clock and Data Recover, model 
 
 For further description refer to this book
 
