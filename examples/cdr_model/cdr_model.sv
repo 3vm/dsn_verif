@@ -9,31 +9,30 @@ timeunit 1ns;
 timeprecision 1ps;
 
 localparam CDR_LOCKING_WINDOW=20;
+localparam realtime NATIVE_CLOCK_PERIOD=40;
 
-realtime periods[$];
+realtime period_avg, this_period;
 realtime curr_edge, prev_edge,min_period;
-int edge_cnt ;
 
 initial begin
-	edge_cnt=0; prev_edge = $realtime();
-	min_period=15;
-	forever @(data_in) begin
+	repeat (CDR_LOCKING_WINDOW) @(data_in);
+	lock = 1;
+end
 
+initial begin
+	prev_edge = $realtime();
+	min_period=NATIVE_CLOCK_PERIOD;
+	forever @(data_in) begin
 		curr_edge = $realtime();
-		periods.push_front(curr_edge - prev_edge);
+		this_period = curr_edge - prev_edge;
 		prev_edge = curr_edge;
-		if ( edge_cnt != CDR_LOCKING_WINDOW )
-			edge_cnt++;
-		else begin 
-			periods.pop_back();
-			foreach (periods[i]) begin
-				if ( min_period > periods[i] ) begin
-					min_period = periods[i] ;
+				if ( min_period > this_period ) begin
+					min_period = 0.5 * this_period + 0.5 * min_period;
 					$display ("Period changed %1.3e" , min_period);
-					$display ("Period %1.3e" , periods[i]);
+					$display ("Period %1.3e" , this_period);
 				end
-			end
-		end
+			
+		
 	end
 end
 
@@ -44,7 +43,7 @@ initial begin
 		new_data_transition = 0 ;
 	    fork 
 	    	begin
-				#(min_period/2);
+				#(min_period/2.0);
 				clkout= ~clkout;
 			end
 			begin
@@ -57,6 +56,6 @@ initial begin
 end
 
 initial 
-	$monitor("Clock %b , data %b , time %t, edge count %d", clkout,data_in, $realtime(), edge_cnt);
+	$monitor("Clock %b , data %b , time %t", clkout,data_in, $realtime());
 
 endmodule

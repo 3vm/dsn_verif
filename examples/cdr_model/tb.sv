@@ -6,7 +6,7 @@ localparam INT_DIVISION = 12;
 localparam FRAC_DIVISION = 10;
 localparam INT_WIDTH=4;
 localparam FRAC_WIDTH=4;
-localparam real REF_FREQ = 87e6;
+localparam real REF_FREQ = 1012e6;
 logic clk_ref,clk_vco;
 
 real fout0,exp_fout;
@@ -41,8 +41,8 @@ initial begin
   rstn=0;
   repeat (10) @(posedge clk_ref);
   rstn=1;  
-  
-  repeat (500) @(posedge clk_vco);
+
+      repeat (600) @(posedge clk_vco);
 
   exp_fout = REF_FREQ ;
   $display ( " Clkout frequencies 0 %e , expected %e", fout0, exp_fout);
