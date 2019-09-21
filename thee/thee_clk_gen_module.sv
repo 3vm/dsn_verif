@@ -41,7 +41,7 @@ timeprecision 1ps;
           half_period = period_in_local_units /2.0;
           clk = 0;
           forever begin
-       //     this_ppm = 1.0 + urand_range_real(-pp_jitter_ppm,pp_jitter_ppm)/1e6;
+            this_ppm = 1.0 + urand_range_real(-pp_jitter_ppm,pp_jitter_ppm)/1e6;
             $display ("This ppm %1.6e", this_ppm);
             #(half_period*this_ppm);
             clk=0;

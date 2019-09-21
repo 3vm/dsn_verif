@@ -100,18 +100,19 @@ timeprecision 100ps;
     end
   endtask
    
-  task automatic urand_range_real 
+  function automatic real urand_range_real 
   (
     input real low,
-    input real high,
-    output real out
+    input real high
   );
 
-  int tmp;
-  const longint MAX_VALUE = (64'd2 ** 32 ) -1;
+  int unsigned tmp;
+  real out;
+  static int unsigned MAX_VALUE = '1;
   tmp=$urandom();
-  out = ( low + (tmp/MAX_VALUE)*(high-low));
-
-  endtask
+  out = ( low + (tmp*1.0/MAX_VALUE)*(high-low));
+  return out;
+  endfunction
+  
 
 endpackage 

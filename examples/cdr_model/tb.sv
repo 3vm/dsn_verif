@@ -25,10 +25,12 @@ initial begin
 end
 initial begin
   real out;
+  int tmp;
+  const longint MAX_VALUE = (64'd2 ** 32 ) -1;
   repeat (20) begin
 
   //  $display ( "Random real number %f", $urandom());
-   urand_range_real(-100,100,out);
+   out = urand_range_real(-100,100);
     $display ( "Random real number %f", out);
     end
   $finish;
