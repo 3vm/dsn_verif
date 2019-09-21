@@ -3,7 +3,7 @@ module thee_clk_gen_module
 parameter real FREQ=1000,
 parameter real FREQ_UNIT=1.0e6,
 parameter string CLK_GEN_TYPE="basic",
-parameter real pp_jitter_ppm=100
+parameter real PP_JITTER_PPM=100
 )
 (
 output logic clk
@@ -41,8 +41,7 @@ timeprecision 1ps;
           half_period = period_in_local_units /2.0;
           clk = 0;
           forever begin
-            this_ppm = 1.0 + urand_range_real(-pp_jitter_ppm,pp_jitter_ppm)/1e6;
-            $display ("This ppm %1.6e", this_ppm);
+            this_ppm = 1.0 + urand_range_real(-PP_JITTER_PPM,PP_JITTER_PPM)/1e6;
             #(half_period*this_ppm);
             clk=0;
             #(half_period*this_ppm);

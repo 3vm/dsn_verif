@@ -12,7 +12,7 @@ logic rstn;
 logic pll_lock;
 logic data_in;
 
-thee_clk_gen_module #(.FREQ(REF_FREQ/1e6),.CLK_GEN_TYPE("jitter_only")) ref_gen (.clk(clk_ref));
+thee_clk_gen_module #(.FREQ(REF_FREQ/1e6),.CLK_GEN_TYPE("jitter_only"),.PP_JITTER_PPM(10000)) ref_gen (.clk(clk_ref));
 
 initial begin
   data_in = 0 ;
@@ -22,18 +22,6 @@ initial begin
     repeat (3) @(posedge clk_ref);
       data_in = 0 ;
   end
-end
-initial begin
-  real out;
-  int tmp;
-  const longint MAX_VALUE = (64'd2 ** 32 ) -1;
-  repeat (20) begin
-
-  //  $display ( "Random real number %f", $urandom());
-   out = urand_range_real(-100,100);
-    $display ( "Random real number %f", out);
-    end
-  $finish;
 end
 
 cdr_model cdr
