@@ -34,7 +34,7 @@ initial begin
 			$display ("Expand: Min period %1.5e" , min_period);
 			$display ("Expand: This period %1.5e" , this_period);
 			min_period = 0.5 * this_period + 0.5 * min_period;
-		end		
+		end
 	end
 end
 
@@ -53,6 +53,7 @@ initial begin
 			end
 		join_any
 		disable fork;
+		//clkout=0;
 	end
 end
 
