@@ -27,9 +27,13 @@ initial begin
 		this_period = curr_edge - prev_edge;
 		prev_edge = curr_edge;
 		if ( min_period > this_period ) begin
+			$display ("Shrink: Min period %1.5e" , min_period);
+			$display ("Shrink: This period %1.5e" , this_period);
 			min_period = 0.5 * this_period + 0.5 * min_period;
-			$display ("Period changed %1.3e" , min_period);
-			$display ("Period %1.3e" , this_period);
+		end	else if ( min_period > 0.95 * this_period  && min_period < 1.05 * this_period ) begin
+			$display ("Expand: Min period %1.5e" , min_period);
+			$display ("Expand: This period %1.5e" , this_period);
+			min_period = 0.5 * this_period + 0.5 * min_period;
 		end		
 	end
 end

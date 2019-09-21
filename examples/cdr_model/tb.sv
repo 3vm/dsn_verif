@@ -12,7 +12,7 @@ logic rstn;
 logic pll_lock;
 logic data_in;
 
-thee_clk_gen_module #(.FREQ(REF_FREQ/1e6),.CLK_GEN_TYPE("jitter_only"),.PP_JITTER_PPM(10000)) ref_gen (.clk(clk_ref));
+thee_clk_gen_module #(.FREQ(REF_FREQ/1e6),.CLK_GEN_TYPE("jitter_only"),.PP_JITTER_PPM(1000)) ref_gen (.clk(clk_ref));
 
 initial begin
   data_in = 0 ;
@@ -39,7 +39,7 @@ initial begin
   repeat (10) @(posedge clk_ref);
   rstn=1;  
 
-  repeat (600) @(posedge clk_vco);
+  repeat (1000) @(posedge clk_vco);
 
   exp_fout = REF_FREQ ;
   $display ( " Clkout frequencies %1.3e , expected %1.3e", fout0, exp_fout);
