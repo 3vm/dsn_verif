@@ -21,6 +21,7 @@ initial begin
 	repeat (16) begin
 	  #1;
 	  addr=$urandom();
+	  #1;
 	  $display("Addr %h data %h", addr,dout);
 	end
 	$finish;
