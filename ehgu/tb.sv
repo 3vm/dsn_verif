@@ -203,18 +203,18 @@ $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 
 inp0 = 14; inp1=12; modulo=31;   decrement_modulo_unsigned ( .inp(inp1),.modulo(modulo),.out(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
-/*
+
 begin
-int mnm,mxm,clamped, dummy;
-inp = 14; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
-$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
-inp = 6; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
-$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
-inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(clamped));
-$display ( "clamp minimum %d input %d max %d output %d clamped %d", mnm, inp, mxm, outp,clamped);
-inp = 1; mnm=3; mxm=8;  clamp_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.clamped(dummy));
+int mnm,mxm,cliped, dummy;
+inp = 14; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
+$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+inp = 6; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
+$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+inp = 1; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
+$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+inp = 1; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(dummy));
 end
-*/
+
 
 begin
 int inp, rotation, out, signal_width;

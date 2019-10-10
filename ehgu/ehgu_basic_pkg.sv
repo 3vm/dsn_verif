@@ -208,23 +208,23 @@ sub_saturate_unsigned (.inp0(inp),.inp1(1'b1),.minimum(minimum),.diff(out),.satu
 
 endfunction
 
-function automatic void clamp_unsigned (
+function automatic void clip_unsigned (
 input logic [DP_WIDTH-1:0] minimum=0,
 input logic [DP_WIDTH-1:0] inp,
 input logic [DP_WIDTH-1:0] maximum='1,
 output logic [DP_WIDTH-1:0] out,
-output logic signed [1:0] clamped
+output logic signed [1:0] cliped
 );
 
 if ( inp < minimum ) begin
   out = minimum;
-  clamped = -1;
+  cliped = -1;
 end else if ( inp > maximum ) begin
   out = maximum;
-  clamped = +1;
+  cliped = +1;
 end else begin
   out = inp;
-  clamped = 0;
+  cliped = 0;
 end
 
 endfunction
