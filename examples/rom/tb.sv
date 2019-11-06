@@ -10,7 +10,8 @@ logic clk;
 logic [7:0] dout;
 logic [2:0] addr;
 
-rom_comb rom (
+//rom_comb rom (
+rom_comb_file_read rom (
 .addr,
 .dout
 );

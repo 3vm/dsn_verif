@@ -19,4 +19,5 @@ timescale.sv
 ../../thee/thee_vco.sv
 ../../thee/thee_low_pass_filter.sv
 rom_comb.sv
+rom_comb_file_read.sv
 tb.sv
