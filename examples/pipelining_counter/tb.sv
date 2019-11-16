@@ -36,6 +36,7 @@ result = 1;
 for ( int i = 0 ; i < 2**WIDTH ; i++ ) begin
 repeat (1) @(posedge clk);
 cnt++;
+cnt %= (2**WIDTH);
 if ( cnt_nopi == cnt && cnt_pipd == cnt ) begin
   $display ("Vector Passed");
 end else begin
