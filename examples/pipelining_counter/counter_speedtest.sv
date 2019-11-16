@@ -9,9 +9,7 @@ output logic [WIDTH-1:0] cnt_nopi_out,
 output logic [WIDTH-1:0] cnt_pipd_out
 );
 
-logic [WIDTH-1:0] cnt_nopi_out_reg;
-logic [WIDTH/2-1:0] cnt_pipd_out_reg_halfs[2];
-logic [WIDTH-1:0] cnt_pipd_out_reg;
+logic [WIDTH/2-1:0] cnt_pipd_out_halfs[2];
 logic carry ;
 
 always @(posedge clk, negedge rstn) begin
@@ -22,10 +20,17 @@ always @(posedge clk, negedge rstn) begin
 end
 
 always @(posedge clk) begin
-	{carry, cnt_pipd_out_reg_halfs[0]} <= cnt_pipd_out[WIDTH/2-1:0] + 1 ;
-	cnt_pipd_out_reg_halfs[1] <= cnt_pipd_out[WIDTH-1 : WIDTH/2] ;
-	cnt_pipd_out_reg[WIDTH/2-1:0] <= cnt_pipd_out_reg_halfs[0];
-	cnt_pipd_out_reg[WIDTH-1:WIDTH/2] <= cnt_pipd_out_reg_halfs[1]+carry;
+	if (!rstn) begin
+		{carry, cnt_pipd_out_halfs[0]} <= 0 ;
+		cnt_pipd_out_halfs[1] <= 0 ;
+		cnt_pipd_out[WIDTH/2-1:0] <= 0 ;
+		cnt_pipd_out[WIDTH-1:WIDTH/2] <= 0 ;
+	end else begin
+		{carry, cnt_pipd_out_halfs[0]} <= cnt_pipd_out[WIDTH/2-1:0] + 1 ;
+		cnt_pipd_out_halfs[1] <= cnt_pipd_out[WIDTH-1 : WIDTH/2] ;
+		cnt_pipd_out[WIDTH/2-1:0] <= cnt_pipd_out_halfs[0];
+		cnt_pipd_out[WIDTH-1:WIDTH/2] <= cnt_pipd_out_halfs[1]+carry;
+	end
 end
 
 endmodule

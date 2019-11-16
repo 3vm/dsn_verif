@@ -14,4 +14,5 @@ timescale.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
 counter_speedtest.sv
+counter_pipelined.sv
 tb.sv
