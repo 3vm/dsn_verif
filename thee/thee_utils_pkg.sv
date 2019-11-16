@@ -50,14 +50,16 @@ timeprecision 100ps;
 
   task automatic toggle_rstn 
   (
-    ref rstn
+    ref rstn , 
+    input realtime rst_high = 1ns,
+    input realtime rst_low = 1ns
   );
     rstn=1;
-    #1ns;
+    #(rst_high);
     rstn=0;
-    #1ns;  
+    #(rst_low);
     rstn=1;
-    #1ns;
+    #(rst_high);
   endtask
 
   task automatic clk_gen_basic
