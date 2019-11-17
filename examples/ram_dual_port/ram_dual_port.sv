@@ -32,4 +32,12 @@ always_ff @(posedge wclk) begin
 	end
 end
 
+`ifndef SYNTHESIS
+always @(*) begin
+	if (renable && wenable && (raddr==waddr)) begin
+		$display("Read/Write Contention at addr %h", raddr);
+	end
+end
+`endif
+
 endmodule
