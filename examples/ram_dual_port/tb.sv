@@ -45,13 +45,14 @@ thee_clk_gen_module #(.FREQ(FREQ*1.0)) clk_gen_i1 (.clk(rclk));
 
 initial begin
 	result=1;
+	repeat (1) @(posedge wclk);
+	repeat (1) @(posedge rclk);
 	
 	for ( int i =0 ; i<3*DEPTH ;i++) begin
-  		repeat (1) @(posedge wclk);
-  		repeat (1) @(posedge rclk);
 
 		raddr = $urandom();
 		if ( SHOW_CONTENTION ) begin
+			//waddr = $urandom();
 			do
 				waddr = $urandom();
 			while (waddr==raddr);
@@ -62,7 +63,6 @@ initial begin
 	
 		fork 
 			begin
-		  		waddr=i;
 		  		wdata=$urandom();
 		  		wenable = 1;
 			    mem_mirror[waddr] = wdata;
@@ -70,7 +70,6 @@ initial begin
 		  		repeat (1) @(posedge wclk);
 		  	end
 		  	begin
-		  		raddr=$urandom();
 		  		renable = 1;
 	 	  		repeat (1) @(posedge rclk);
  	  			$display ( "Read Data %h at %h ", rdata, raddr);
