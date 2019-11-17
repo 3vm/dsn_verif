@@ -19,9 +19,11 @@ always_ff @(posedge clk) begin
 		if ( r_wn ) begin
 			rdata <= mem_arr[addr];
 		end else begin
-			rdata <= 0;
-			mem_arr[addr] = wdata;
+			rdata <= 'x;
+			mem_arr[addr] <= wdata;
 		end
+	end else begin
+		rdata <= 'x;
 	end
 end
 

@@ -6,7 +6,7 @@ timeprecision 1ps;
 
 import thee_utils_pkg::*;
 
-parameter DEPTH=8;
+parameter DEPTH=32;
 parameter AWIDTH=$clog2(DEPTH);
 parameter DWIDTH=8;
 
@@ -34,6 +34,7 @@ thee_clk_gen_module clk_gen (.clk);
 
 initial begin
 	result=1;
+	repeat (1) @(posedge clk);
 	for ( int i =0 ; i<DEPTH ;i++) begin
 	  addr=i;
 	  wdata=$urandom();
@@ -43,7 +44,7 @@ initial begin
 	  $display("Write %h data to addr %h ", wdata, addr);
 	  repeat (1) @(posedge clk);
 	end
-	for ( int i =0 ; i<DEPTH ;i++) begin
+	for ( int i =0 ; i<3*DEPTH ;i++) begin
 	  addr=$urandom();
 	  ce = 1;
 	  r_wn=1;
