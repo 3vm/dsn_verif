@@ -6,9 +6,11 @@ timeprecision 1ps;
 
 import thee_utils_pkg::*;
 
-parameter DEPTH=32;
+parameter DEPTH=8;
 parameter AWIDTH=$clog2(DEPTH);
 parameter DWIDTH=8;
+
+parameter SHOW_CONTENTION = 0;
 
 logic wclk;
 logic [DWIDTH-1:0] wdata;
@@ -44,34 +46,43 @@ thee_clk_gen_module #(.FREQ(FREQ*1.0)) clk_gen_i1 (.clk(rclk));
 initial begin
 	result=1;
 	
-	repeat (1) @(posedge rclk);
-	repeat (1) @(posedge wclk);
-	fork 
-		begin
-			for ( int i =0 ; i<DEPTH ;i++) begin
-	  			waddr=i;
-	  			wdata=$urandom();
-	  			wenable = 1;
-		    	mem_mirror[waddr] = wdata;
-	  			$display("Write %h data to addr %h ", wdata, waddr);
-	  			repeat (1) @(posedge wclk);
-	  		end
-	  	end
-	  	begin
-	  		for ( int i =0 ; i<3*DEPTH ;i++) begin
-	  			raddr=$urandom();
-	  			renable = 1;
- 	  			repeat (1) @(posedge rclk);
- 	  			if ( mem_mirror[raddr] === rdata) begin
- 	  				$display ( "Passed : Data %h at %h ", rdata, raddr);
- 	  			end else begin
- 	  				$display ( "Failed : Data %h at %h is different from expected data %h ", rdata, raddr, mem_mirror[raddr]);
- 	  				result = 0;
- 	  			end
- 	  		end
- 		end
- 	join
+	for ( int i =0 ; i<3*DEPTH ;i++) begin
+  		repeat (1) @(posedge wclk);
+  		repeat (1) @(posedge rclk);
 
+		raddr = $urandom();
+		if ( SHOW_CONTENTION ) begin
+			do
+				waddr = $urandom();
+			while (waddr==raddr);
+		end else begin
+			waddr = raddr + DEPTH/2;
+		end	
+		$display("ra %h wa %h", raddr, waddr);
+	
+		fork 
+			begin
+		  		waddr=i;
+		  		wdata=$urandom();
+		  		wenable = 1;
+			    mem_mirror[waddr] = wdata;
+		  		$display("Write %h data to addr %h ", wdata, waddr);
+		  		repeat (1) @(posedge wclk);
+		  	end
+		  	begin
+		  		raddr=$urandom();
+		  		renable = 1;
+	 	  		repeat (1) @(posedge rclk);
+ 	  			$display ( "Read Data %h at %h ", rdata, raddr);
+	 	  		if ( mem_mirror[raddr] === rdata) begin
+	 	  			$display ( "Passed : Data %h at %h ", rdata, raddr);
+	 	  		end else begin
+	 	  			$display ( "Failed : Data %h at %h is different from expected data %h ", rdata, raddr, mem_mirror[raddr]);
+	 	  			result = 0;
+	 	  		end
+	 		end
+	 	join
+	 end
  	print_test_result(result);
 	$finish;
 end
