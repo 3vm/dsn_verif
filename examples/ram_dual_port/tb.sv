@@ -49,23 +49,25 @@ initial begin
 	fork 
 		begin
 			for ( int i =0 ; i<DEPTH ;i++) begin
-	  		waddr=i;
-	  		wdata=$urandom();
-	  		wenable = 1;
-		    mem_mirror[addr] = wdata;
-	  		$display("Write %h data to addr %h ", wdata, addr);
-	  		repeat (1) @(posedge wclk);
+	  			waddr=i;
+	  			wdata=$urandom();
+	  			wenable = 1;
+		    	mem_mirror[waddr] = wdata;
+	  			$display("Write %h data to addr %h ", wdata, waddr);
+	  			repeat (1) @(posedge wclk);
+	  		end
 	  	end
 	  	begin
 	  		for ( int i =0 ; i<3*DEPTH ;i++) begin
-	  		addr=$urandom();
-	  		renable = 1;
- 	  		repeat (1) @(posedge clk);
- 	  		if ( mem_mirror[addr] === rdata) begin
- 	  			$display ( "Passed : Data %h at %h ", rdata, addr);
- 	  		end else begin
- 	  			$display ( "Failed : Data %h at %h is different from expected data %h ", rdata, addr, mem_mirror[addr]);
- 	  			result = 0;
+	  			raddr=$urandom();
+	  			renable = 1;
+ 	  			repeat (1) @(posedge rclk);
+ 	  			if ( mem_mirror[raddr] === rdata) begin
+ 	  				$display ( "Passed : Data %h at %h ", rdata, raddr);
+ 	  			end else begin
+ 	  				$display ( "Failed : Data %h at %h is different from expected data %h ", rdata, raddr, mem_mirror[raddr]);
+ 	  				result = 0;
+ 	  			end
  	  		end
  		end
  	join
