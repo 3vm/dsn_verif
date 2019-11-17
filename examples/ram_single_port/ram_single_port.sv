@@ -1,4 +1,5 @@
-
+// Free - this code is copywrite free and can be used for any purpose
+// 3vm, 2019 Nov
 module ram_single_port 
 #(
 parameter DEPTH=3,

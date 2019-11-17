@@ -1,4 +1,4 @@
-Examples for pipelining logic
+Examples for pipelining a sequential logic, a counter
 
 For further description refer to this book
 

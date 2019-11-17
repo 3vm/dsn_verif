@@ -108,13 +108,23 @@ timeprecision 100ps;
     input real high
   );
 
-  int unsigned tmp;
-  real out;
-  static int unsigned MAX_VALUE = '1;
-  tmp=$urandom();
-  out = ( low + (tmp*1.0/MAX_VALUE)*(high-low));
-  return out;
+    int unsigned tmp;
+    real out;
+    static int unsigned MAX_VALUE = '1;
+    tmp=$urandom();
+    out = ( low + (tmp*1.0/MAX_VALUE)*(high-low));
+    return out;
   endfunction
+
+  task automatic print_test_result 
+  (
+    logic result
+  );
+    if ( result === 1 )
+      repeat (4) $display("Test Pass");
+    else
+      repeat (4) $display("Test Fail");
+  endtask
   
 
 endpackage 
