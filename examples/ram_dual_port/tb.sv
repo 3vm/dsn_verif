@@ -6,7 +6,7 @@ timeprecision 1ps;
 
 import thee_utils_pkg::*;
 
-parameter DEPTH=8;
+parameter DEPTH=32;
 parameter AWIDTH=$clog2(DEPTH);
 parameter DWIDTH=8;
 
@@ -40,7 +40,7 @@ ram_dual_port #(.DEPTH(DEPTH), .WIDTH(DWIDTH)) ram (
 parameter real FREQ = 100;
 thee_clk_gen_module #(.FREQ(FREQ)) clk_gen_i0 (.clk(wclk));
 
-thee_clk_gen_module #(.FREQ(FREQ*1.0)) clk_gen_i1 (.clk(rclk));
+thee_clk_gen_module #(.FREQ(FREQ*1.05)) clk_gen_i1 (.clk(rclk));
 
 
 initial begin
@@ -50,7 +50,7 @@ initial begin
 	
 	for ( int i =0 ; i<3*DEPTH ;i++) begin
 
-		raddr = $urandom();
+		raddr = i; //$urandom();
 		if ( SHOW_CONTENTION ) begin
 			//waddr = $urandom();
 			do
