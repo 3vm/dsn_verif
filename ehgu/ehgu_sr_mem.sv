@@ -23,7 +23,8 @@ always_ff @(posedge clk, negedge rstn) begin
 	if ( rstn ) begin
 		waddr <= 0 ;
 		raddr <= MEM_DEPTH - SHIFT ;
-	end else begin
+	end else if (en ) begin
+		$display("R addr %d R data %h , W addr %d , W data %h", raddr, data_out, waddr, data_in);
 		waddr <= (waddr + 1)%MEM_DEPTH;
 		raddr <= (raddr + 1)%MEM_DEPTH ;
 	end
@@ -34,12 +35,11 @@ ehgu_ram_dual_port #(.DEPTH(MEM_DEPTH) , .WIDTH(WIDTH) ) dmem_i
 .wclk (clk) ,
 .wenable (en),
 .waddr ,
-.wdata (data_out),
+.wdata (data_in),
 .rclk (clk) ,
 .renable (en),
 .raddr ,
 .rdata (data_out)
 );
-
 
 endmodule
