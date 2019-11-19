@@ -24,8 +24,6 @@ initial begin
 		$display("List element at node %d value %d" , i, this_elem.elem );
 		this_elem = this_elem.prev;
 	end
-
-
 end
 
 endmodule

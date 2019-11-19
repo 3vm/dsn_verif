@@ -1,6 +1,6 @@
 // Free - this code is copywrite free, use as you please
 // 3vm, 2019 Nov
-module ram_dual_port 
+module ehgu_ram_dual_port 
 #(
 parameter DEPTH=3,
 parameter WIDTH=8

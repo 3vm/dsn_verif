@@ -27,7 +27,7 @@ logic result;
 logic [DWIDTH-1:0] mem_mirror [DEPTH];
 
 //rom_comb rom (
-ram_dual_port #(.DEPTH(DEPTH), .WIDTH(DWIDTH)) ram (
+ehgu_ram_dual_port #(.DEPTH(DEPTH), .WIDTH(DWIDTH)) ram (
 .wclk,
 .wenable,
 .waddr,
