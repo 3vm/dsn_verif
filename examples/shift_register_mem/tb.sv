@@ -45,7 +45,7 @@ initial begin
 		repeat (SHIFT) @(posedge clk);
 		while (1) begin
 			repeat (1) @(posedge clk) ;
-			expected_data = $past(data_in, SHIFT,1,@(posedge clk))  ; 
+			expected_data = $past(data_in, SHIFT)  ; 
 			if ( data_out === expected_data ) begin
 				$display("P - output data %h expected data %h", data_out, expected_data );
 			end else begin
