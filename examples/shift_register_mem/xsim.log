@@ -1,0 +1,116 @@
+#-----------------------------------------------------------
+# xsim v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Nov 19 10:54:40 2019
+# Process ID: 29052
+# Current directory: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem
+# Command line: xsim.exe -mode tcl -source {xsim.dir/work.tb/xsim_script.tcl}
+# Log file: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem/xsim.log
+# Journal file: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem\xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/work.tb/xsim_script.tcl
+# xsim {work.tb} -autoloadwcfg -runall -sv_seed 11726
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+run -all
+P - output data xx expected data xx
+P - output data 08 expected data 08
+P - output data 64 expected data 64
+P - output data 06 expected data 06
+P - output data 11 expected data 11
+P - output data a4 expected data a4
+P - output data db expected data db
+P - output data 14 expected data 14
+P - output data 42 expected data 42
+P - output data 18 expected data 18
+P - output data 1e expected data 1e
+P - output data 5f expected data 5f
+P - output data d0 expected data d0
+P - output data 59 expected data 59
+P - output data 95 expected data 95
+P - output data 20 expected data 20
+P - output data 82 expected data 82
+P - output data 65 expected data 65
+P - output data e2 expected data e2
+P - output data fd expected data fd
+P - output data 70 expected data 70
+P - output data 34 expected data 34
+P - output data c4 expected data c4
+P - output data 7e expected data 7e
+P - output data 00 expected data 00
+P - output data 5d expected data 5d
+P - output data 41 expected data 41
+P - output data 8d expected data 8d
+P - output data 59 expected data 59
+P - output data 9e expected data 9e
+P - output data 82 expected data 82
+P - output data c2 expected data c2
+P - output data 23 expected data 23
+P - output data 8b expected data 8b
+P - output data c9 expected data c9
+P - output data d3 expected data d3
+P - output data 46 expected data 46
+P - output data 40 expected data 40
+P - output data 23 expected data 23
+P - output data e8 expected data e8
+P - output data 0a expected data 0a
+P - output data 60 expected data 60
+P - output data 9f expected data 9f
+P - output data df expected data df
+P - output data a5 expected data a5
+P - output data aa expected data aa
+P - output data 2d expected data 2d
+P - output data eb expected data eb
+P - output data 68 expected data 68
+P - output data b2 expected data b2
+P - output data eb expected data eb
+P - output data eb expected data eb
+P - output data 50 expected data 50
+P - output data d3 expected data d3
+P - output data 73 expected data 73
+P - output data 12 expected data 12
+P - output data 8a expected data 8a
+P - output data ca expected data ca
+P - output data f5 expected data f5
+P - output data 7e expected data 7e
+P - output data a0 expected data a0
+P - output data fe expected data fe
+P - output data f2 expected data f2
+P - output data 7c expected data 7c
+P - output data e0 expected data e0
+P - output data 69 expected data 69
+P - output data f1 expected data f1
+P - output data d1 expected data d1
+P - output data 65 expected data 65
+P - output data 8e expected data 8e
+P - output data 6a expected data 6a
+P - output data 33 expected data 33
+P - output data e6 expected data e6
+P - output data 4f expected data 4f
+P - output data 06 expected data 06
+P - output data 8c expected data 8c
+P - output data 5d expected data 5d
+P - output data af expected data af
+P - output data c7 expected data c7
+P - output data b8 expected data b8
+P - output data f7 expected data f7
+P - output data 5e expected data 5e
+P - output data c2 expected data c2
+P - output data 3d expected data 3d
+P - output data 31 expected data 31
+P - output data eb expected data eb
+P - output data dd expected data dd
+P - output data ad expected data ad
+P - output data c8 expected data c8
+P - output data ca expected data ca
+P - output data 8e expected data 8e
+P - output data 9a expected data 9a
+P - output data a4 expected data a4
+Test Pass
+Test Pass
+Test Pass
+Test Pass
+$finish called at time : 960 ns : File "D:/vik/RTL_design/dsn_verif/examples/shift_register_mem/tb.sv" Line 63
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Nov 19 10:54:44 2019...

@@ -1,0 +1,116 @@
+#-----------------------------------------------------------
+# xsim v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Nov 19 10:53:58 2019
+# Process ID: 29536
+# Current directory: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem
+# Command line: xsim.exe -mode tcl -source {xsim.dir/work.tb/xsim_script.tcl}
+# Log file: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem/xsim.log
+# Journal file: D:/vik/RTL_design/dsn_verif/examples/shift_register_mem\xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/work.tb/xsim_script.tcl
+# xsim {work.tb} -autoloadwcfg -runall -sv_seed 4011
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+run -all
+P - output data xx expected data xx
+F - output data xx expected data f5
+F - output data xx expected data 86
+F - output data xx expected data 53
+F - output data xx expected data c3
+F - output data xx expected data 44
+F - output data xx expected data 0c
+F - output data xx expected data 9d
+F - output data xx expected data e4
+F - output data xx expected data b0
+F - output data xx expected data fd
+F - output data xx expected data ce
+F - output data xx expected data 15
+F - output data xx expected data be
+F - output data xx expected data 42
+F - output data xx expected data a5
+F - output data xx expected data 83
+F - output data xx expected data 21
+F - output data xx expected data d8
+F - output data xx expected data 02
+F - output data xx expected data 4f
+F - output data xx expected data 42
+F - output data xx expected data 67
+F - output data xx expected data d1
+F - output data xx expected data d5
+F - output data xx expected data d0
+F - output data xx expected data 64
+F - output data xx expected data 00
+F - output data xx expected data aa
+F - output data xx expected data 76
+F - output data xx expected data 59
+F - output data xx expected data f1
+F - output data xx expected data 3c
+F - output data xx expected data 03
+F - output data xx expected data f9
+F - output data xx expected data b9
+F - output data xx expected data c0
+F - output data xx expected data c2
+F - output data xx expected data 11
+F - output data xx expected data d3
+F - output data xx expected data 5d
+F - output data xx expected data b9
+F - output data xx expected data 6a
+F - output data xx expected data 39
+F - output data xx expected data 6a
+F - output data xx expected data c5
+F - output data xx expected data 99
+F - output data xx expected data bc
+F - output data xx expected data 63
+F - output data xx expected data f2
+F - output data xx expected data 2b
+F - output data xx expected data 87
+F - output data xx expected data aa
+F - output data xx expected data 90
+F - output data xx expected data c0
+F - output data xx expected data ab
+F - output data xx expected data 95
+F - output data xx expected data c0
+F - output data xx expected data 15
+F - output data xx expected data 55
+F - output data xx expected data 59
+F - output data xx expected data 68
+F - output data xx expected data f9
+F - output data xx expected data b2
+F - output data xx expected data 40
+F - output data xx expected data dc
+F - output data xx expected data 04
+F - output data xx expected data f8
+F - output data xx expected data b9
+F - output data xx expected data 5e
+F - output data xx expected data d5
+F - output data xx expected data 9d
+F - output data xx expected data 19
+F - output data xx expected data 4d
+F - output data xx expected data 13
+F - output data xx expected data c6
+F - output data xx expected data ce
+F - output data xx expected data 4f
+F - output data xx expected data 59
+F - output data xx expected data 29
+F - output data xx expected data 17
+F - output data xx expected data be
+F - output data xx expected data 88
+F - output data xx expected data ad
+F - output data xx expected data 2e
+F - output data xx expected data c6
+F - output data xx expected data 30
+F - output data xx expected data 0b
+F - output data xx expected data 9b
+F - output data xx expected data 73
+F - output data xx expected data fd
+F - output data xx expected data 16
+F - output data xx expected data 89
+Test Fail
+Test Fail
+Test Fail
+Test Fail
+$finish called at time : 960 ns : File "D:/vik/RTL_design/dsn_verif/examples/shift_register_mem/tb.sv" Line 62
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Nov 19 10:54:02 2019...

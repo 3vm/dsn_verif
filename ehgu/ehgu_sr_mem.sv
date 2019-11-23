@@ -20,11 +20,10 @@ logic [AWIDTH-1:0] waddr;
 logic [AWIDTH-1:0] raddr;
 
 always_ff @(posedge clk, negedge rstn) begin
-	if ( rstn ) begin
+	if ( !rstn ) begin
 		waddr <= 0 ;
 		raddr <= MEM_DEPTH - SHIFT ;
 	end else if (en ) begin
-		$display("R addr %d R data %h , W addr %d , W data %h", raddr, data_out, waddr, data_in);
 		waddr <= (waddr + 1)%MEM_DEPTH;
 		raddr <= (raddr + 1)%MEM_DEPTH ;
 	end

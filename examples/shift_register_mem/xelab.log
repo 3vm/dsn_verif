@@ -1,0 +1,15 @@
+Vivado Simulator 2019.1
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.1/bin/unwrapped/win64.o/xelab.exe tb -L xil_defaultlib 
+Multi-threading is on. Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package work.thee_utils_pkg
+Compiling module work.ehgu_ram_dual_port(DEPTH=32)
+Compiling module work.ehgu_sr_mem(SHIFT=3,MEM_DEPTH=32...
+Compiling module work.thee_clk_gen_module(FREQ=100.0)
+Compiling module work.tb
+Built simulation snapshot work.tb

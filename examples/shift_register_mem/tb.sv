@@ -35,6 +35,7 @@ thee_clk_gen_module #(.FREQ(FREQ)) clk_gen_i0 (.clk(clk));
 
 initial begin
 	result=1;
+	en=1;
 	toggle_rstn(.rstn(rstn));
 	fork
 	for ( int i =0 ; i<3*DEPTH ;i++) begin
