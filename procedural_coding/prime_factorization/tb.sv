@@ -6,7 +6,7 @@ int num,try_factor;
 int factors[$];
 num = 45;
 try_factor = 2;
-factorize(num,2,factors);
+factorize(num,try_factor,factors);
 $finish;
 end
 
