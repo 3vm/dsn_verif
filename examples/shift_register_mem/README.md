@@ -1,4 +1,4 @@
-Scripts for Windows and Linux to rest periodically
+Shift Register implemented with memory
 
 For further description refer to this book
 

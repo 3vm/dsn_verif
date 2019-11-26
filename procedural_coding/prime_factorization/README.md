@@ -1,5 +1,4 @@
-Scripts for Windows and Linux to rest periodically
-
+Example of recursive prime factorization in SV
 For further description refer to this book
 
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem

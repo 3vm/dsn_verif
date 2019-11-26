@@ -1,4 +1,4 @@
-Scripts for Windows and Linux to rest periodically
+Ideas to pipeline reset signal for large distances
 
 For further description refer to this book
 
