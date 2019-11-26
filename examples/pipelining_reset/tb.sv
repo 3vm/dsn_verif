@@ -15,16 +15,20 @@ initial begin
 import thee_utils_pkg::toggle_rstn;
 repeat (4) @(posedge clk);
 result = 1;
-for(int i = 0 ; i<LEAFS;i++)
-	if ( rstn_out[i]!==1 )
+for(int i = 0 ; i<LEAFS;i++) begin
+	$display("Reset outputs of branch %d is %b", i, rstn_out[i]);
+	if ( rstn_out[i]!==1'bx )
 		result = 0;
+end
 toggle_rstn(.rstn(rstn),.rst_low(9.4ns));
 
 repeat (PIPE_STAGES + SYNC_STAGES +1) @(posedge clk);
 
-for(int i = 0 ; i<LEAFS;i++)
+for(int i = 0 ; i<LEAFS;i++) begin
+	$display("Reset outputs of branch %d is %b", i, rstn_out[i]);
 	if ( rstn_out[i]!==1 )
 		result = 0;
+end
 
 if ( result ) 
   $display ("All Vectors passed");
