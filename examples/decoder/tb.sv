@@ -14,16 +14,16 @@ decoder_large # ( .WIDTH(WIDTH) ) dut
 );
 
 initial begin
-#0;
 result = 1;
 for(int i = 0 ; i<10;i++) begin
 	addr = $urandom();
+	#0;
 	if ( (dec_out[addr] !== 1) || ($countones(dec_out) !== 1) ) begin
 		result = 0;
 		$display ("Vector fail dec_out %b addr %d ",dec_out, addr);
 	end
 	else
-		$display ("Vector pass");
+		$display ("Vector pass dec_out %b addr %d ",dec_out, addr);
 end
 
 if ( result ) 

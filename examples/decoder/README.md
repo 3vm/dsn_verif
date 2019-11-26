@@ -1,4 +1,4 @@
-Ideas to pipeline reset signal for large distances
+RTL for a large decoder to help placement
 
 For further description refer to this book
 
