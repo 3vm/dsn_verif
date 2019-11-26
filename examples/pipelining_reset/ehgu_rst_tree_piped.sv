@@ -44,6 +44,3 @@ generate
 endgenerate
 
 endmodule
-
-//exercise problem when leaf is large
-//tree stage in between

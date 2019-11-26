@@ -13,7 +13,7 @@ thee_clk_gen_module clk_gen (.clk(clk));
 
 initial begin
 import thee_utils_pkg::toggle_rstn;
-repeat (4) @(posedge clk);
+repeat (1) @(posedge clk);
 result = 1;
 for(int i = 0 ; i<LEAFS;i++) begin
 	$display("Reset outputs of branch %d is %b", i, rstn_out[i]);
