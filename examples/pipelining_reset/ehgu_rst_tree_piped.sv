@@ -1,3 +1,4 @@
+//Free to use for any purpose
 module ehgu_rst_tree_piped
 # ( 
 parameter SYNC_STAGES=2,
@@ -23,7 +24,10 @@ ehgu_rst_sync #(.STAGES(SYNC_STAGES)) rst_sync_i
 
 always_comb 
 	for ( int branch = 0 ; branch < LEAFS ; branch++ )
+	begin
 		rstn_array[branch][0] = rstn_synced;
+		rstn_out[branch] = rstn_array[branch][PIPE_STAGES];
+	end
 
 generate
 	for ( genvar branch = 0 ; branch < LEAFS ; branch++ ) 
