@@ -5,15 +5,14 @@ parameter WIDTH=32;
 
 logic result ;
 logic [WIDTH-1:0] data,crc,crc_expected,polynomial;
-logic [WIDTH-1:0] crc_tv[2] = '{ 'h0,'h0};
+logic [WIDTH-1:0] crc_tv[] = '{ 97,'h e8b7be43};
 
 initial begin
 polynomial = 'h ed33ff33;
 result = 1;
-foreach (crc_tv[i]) begin
-	data = crc_tv[i][0];
-	crc_expected = crc_tv[i][0];
-	crc = generic_crc ( .data(data),.crc(crc),.polynomial(polynomial));
+	data = crc_tv[0];
+	crc_expected = crc_tv[1];
+	crc = generic_crc ( .data(data),.crc('1),.polynomial(polynomial));
 	#0;
 	if ( crc !== crc_expected ) begin
 		result = 0;
@@ -21,7 +20,7 @@ foreach (crc_tv[i]) begin
 	end
 	else
 		$display ("Vector pass crc %h expected %h ",crc, crc_expected);
-end
+
 
 if ( result ) 
   $display ("All Vectors passed");
@@ -36,7 +35,16 @@ input logic [WIDTH-1:0] data,
 input logic [WIDTH-1:0] crc,
 input logic [WIDTH-1:0] polynomial
 );
-return '1;
+
+    for ( int i = WIDTH-1 ; i >= 0 ; i-- ) begin
+	  if ( crc[0] ^ data[i]) begin
+	    crc >>= 1 ;
+	    crc ^= polynomial ;
+	  end else
+	    crc >>= 1 ;
+	end
+    return crc ;
+
 endfunction
 
 endmodule
