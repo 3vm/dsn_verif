@@ -1,18 +1,20 @@
 
 module tb ;
-
-parameter WIDTH=32;
+parameter WIDTH=8;
 
 logic result ;
 logic [WIDTH-1:0] data,crc,crc_expected,polynomial;
-logic [WIDTH-1:0] crc_tv[] = '{ 97,'h e8b7be43};
+logic [WIDTH-1:0] data_vector[] ;
 
 initial begin
-polynomial = 'h ed33ff33;
-result = 1;
-	data = crc_tv[0];
-	crc_expected = crc_tv[1];
-	crc = generic_crc ( .data(data),.crc('1),.polynomial(polynomial));
+	result = 1;
+	polynomial = 'h 73;
+	data_vector = '{'h42,'h32};
+	crc_expected = 'hxx;
+	crc = '1;
+	for ( int i = 0 ; i < data_vector.size(); i++) begin
+		crc = generic_crc ( .data(data_vector[i]),.crc(crc),.polynomial(polynomial));
+	end
 	#0;
 	if ( crc !== crc_expected ) begin
 		result = 0;
@@ -20,7 +22,6 @@ result = 1;
 	end
 	else
 		$display ("Vector pass crc %h expected %h ",crc, crc_expected);
-
 
 if ( result ) 
   $display ("All Vectors passed");
@@ -32,17 +33,37 @@ end
 
 function automatic logic [WIDTH-1:0] generic_crc (
 input logic [WIDTH-1:0] data,
+input logic data_lsb_first=1,
+input logic [WIDTH-1:0] crc,
+input logic [$clog2(WIDTH)-1:0] iterations=8,
+input logic [WIDTH-1:0] polynomial
+);
+
+	if (data_lsb_first==0) begin
+		data = {>>{data}};
+	end
+
+    for ( int i = 0 ; i < iterations ; i++ ) begin
+	  crc = generic_crc_logic (.d(data[0]),.crc(crc),.polynomial(polynomial));
+	  data = data >> 1;
+	end
+
+    return crc ;
+
+endfunction
+
+function automatic logic [WIDTH-1:0] generic_crc_logic (
+input logic d,
 input logic [WIDTH-1:0] crc,
 input logic [WIDTH-1:0] polynomial
 );
 
-    for ( int i = WIDTH-1 ; i >= 0 ; i-- ) begin
-	  if ( crc[0] ^ data[i]) begin
-	    crc >>= 1 ;
-	    crc ^= polynomial ;
-	  end else
-	    crc >>= 1 ;
-	end
+	if ( crc[0] ^ d) begin
+		crc >>= 1 ;
+		crc ^= polynomial ;
+	end else
+		crc >>= 1 ;
+
     return crc ;
 
 endfunction
