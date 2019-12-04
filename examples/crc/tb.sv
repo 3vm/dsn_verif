@@ -1,6 +1,6 @@
 
 module tb ;
-parameter WIDTH=8;
+parameter WIDTH=3;
 
 logic result ;
 logic [WIDTH-1:0] data,crc,crc_expected,polynomial;
@@ -8,12 +8,12 @@ logic [WIDTH-1:0] data_vector[] ;
 
 initial begin
 	result = 1;
-	polynomial = 'h 73;
-	data_vector = '{'h42,'h32};
-	crc_expected = 'hxx;
-	crc = '1;
+	polynomial = 'b 110;
+	data_vector = '{'b100,'b100};
+	crc_expected = 'b001;
+	crc = 0;//'1;
 	for ( int i = 0 ; i < data_vector.size(); i++) begin
-		crc = generic_crc ( .data(data_vector[i]),.crc(crc),.polynomial(polynomial));
+		crc = generic_crc ( .data(data_vector[i]),.crc(crc),.polynomial(polynomial),.iterations(3),.data_lsb_first(0));
 	end
 	#0;
 	if ( crc !== crc_expected ) begin
@@ -40,10 +40,11 @@ input logic [WIDTH-1:0] polynomial
 );
 
 	if (data_lsb_first==0) begin
-		data = {>>{data}};
+		data = {<<{data}};
 	end
 
     for ( int i = 0 ; i < iterations ; i++ ) begin
+    		$display("crc %b, data %b",crc,data);
 	  crc = generic_crc_logic (.d(data[0]),.crc(crc),.polynomial(polynomial));
 	  data = data >> 1;
 	end
