@@ -32,7 +32,7 @@ always_comb
 generate
 	for ( genvar branch = 0 ; branch < LEAFS ; branch++ ) 
 	begin : genbranch
-		for ( genvar stage = 0 ; stage < LEAFS ; stage++ ) 
+		for ( genvar stage = 0 ; stage < PIPE_STAGES ; stage++ ) 
 		begin : genstage
 			always_ff @(posedge clk, negedge rstn_array[branch][stage])
 				if ( !rstn_array[branch][stage] )
