@@ -37,7 +37,9 @@ input int unsigned money
 );
 	const int unsigned MAX_VALUE=-1;
 	int unsigned num_coins;
-	change_t chg[$],this_chg;
+	change_t chg[]=new[money+1];
+	change_t this_chg;
+
 	chg[0]='{default:0};
 	$display(MAX_VALUE);
 	for (int i=1;i<=money;i++) begin
