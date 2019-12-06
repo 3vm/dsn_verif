@@ -6,12 +6,13 @@ localparam int DENOMINATIONS[NUM_DENOM]='{10,5,2,1};
 
 typedef int unsigned change_t  [NUM_DENOM] ;
 change_t bf_chg, recurs_chg, dp_chg;
-localparam TRIALS = 100;
+localparam TRIALS = 1;
 
 initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
-		money = $urandom_range(1,1024);
+//		money = $urandom_range(1,1024);
+		money = 716;
 		$display("Money %d",money);
 		$display("Brute force change");
 		bf_chg = bf_change(money);
@@ -56,18 +57,13 @@ input int unsigned money
 			$display("money %d, deno %d",i,this_deno);
 			if ( i>=this_deno ) begin
 				$display("enter deno try");
-			disp_change(chg[i-this_deno]);
-					prev_coins = chg[i-this_deno].sum();
-					$display("1");
-					if ( prev_coins+1 < num_coins ) begin
-					$display("2");
-						num_coins = prev_coins+1 ;
-					$display("3");
-						chg[i] = chg[i-this_deno];
-					$display("4");
-						chg[i][d] = chg[i][d] +1;
-					$display("5");
-						$display("update");
+				disp_change(chg[i-this_deno]);
+				prev_coins = chg[i-this_deno].sum();
+				if ( prev_coins+1 < num_coins ) begin
+					num_coins = prev_coins+1 ;
+					chg[i] = chg[i-this_deno];
+					chg[i][d] = chg[i][d] +1;
+					$display("update");
 				end
 			end
 		end
