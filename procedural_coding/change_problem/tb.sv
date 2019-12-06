@@ -4,17 +4,16 @@ module tb ;
 localparam int DENOMINATIONS[]='{10,5,2,1}; 
 localparam NUM_DENOM = $size(DENOMINATIONS);
 initial begin
-int multiples[NUM_DENOM];
 
-bf_change(35,multiples);
+
+bf_change(35);
 $finish;
 end
 
 function automatic void  bf_change ( 
-input int money,
-ref int multiples[NUM_DENOM]
+input int money
 );
-
+int multiples[NUM_DENOM];
 foreach (multiples[i])
 	$write ( "%d x %d ", DENOMINATIONS[i],multiples[i]);
 $display();
