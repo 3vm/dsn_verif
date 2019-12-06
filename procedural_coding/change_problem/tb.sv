@@ -6,12 +6,13 @@ localparam NUM_DENOM = $size(DENOMINATIONS);
 initial begin
 int multiples[NUM_DENOM];
 
-multiples = bf_change(35);
+bf_change(35,multiples);
 $finish;
 end
 
-function automatic int [NUM_DENOM] bf_change ( 
-input int money
+function automatic void  bf_change ( 
+input int money,
+ref int multiples[NUM_DENOM]
 );
 
 foreach (multiples[i])
@@ -24,8 +25,6 @@ while ( money > 0 ) begin
 		money=money%DENOMINATIONS[i];
 	end
 end
-
-return multiples;
 
 endfunction
 
