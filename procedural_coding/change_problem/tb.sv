@@ -6,19 +6,23 @@ localparam int DENOMINATIONS[NUM_DENOM]='{10,5,2,1};
 
 typedef int unsigned change_t  [NUM_DENOM] ;
 change_t bf_chg, recurs_chg, dp_chg;
-localparam TRIALS = 1;
+localparam TRIALS = 100;
 
 initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
-		money = $urandom_range(1,15);
+		money = $urandom_range(1,1024);
 		$display("Money %d",money);
-//		$display("Brute force change");
-//		bf_chg = bf_change(money);
-//		disp_change(bf_chg);
+		$display("Brute force change");
+		bf_chg = bf_change(money);
+		disp_change(bf_chg);
 		$display("Dynamic Programming change");
 		dp_chg = dp_change(money);
 		disp_change(dp_chg);
+		if(dp_chg!=bf_chg) begin
+			$display("Different change");
+			break;
+		end
 	end
 	$finish;
 end
@@ -40,7 +44,7 @@ input int unsigned money
 	const int unsigned MAX_VALUE=-1;
 	int unsigned num_coins,this_deno,prev_coins;
 //	change_t chg[]=new[money+1];
-	change_t chg[100];
+	change_t chg[1024];
 	change_t this_chg;
 
 	chg[0]='{default:0};
