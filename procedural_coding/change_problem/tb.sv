@@ -11,12 +11,14 @@ localparam TRIALS = 1;
 initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
-		money = $urandom_range(2);
+		money = $urandom_range(1,2);
 		$display("Money %d",money);
-		$display("Brute force change");
+//		$display("Brute force change");
 //		bf_chg = bf_change(money);
-		bf_chg = dp_change(money);
-		disp_change(bf_chg);
+//		disp_change(bf_chg);
+		$display("Dynamic Programming change");
+		dp_chg = dp_change(money);
+		disp_change(dp_chg);
 	end
 	$finish;
 end
@@ -36,7 +38,7 @@ function automatic change_t  dp_change (
 input int unsigned money
 );
 	const int unsigned MAX_VALUE=-1;
-	int unsigned num_coins,this_deno;
+	int unsigned num_coins,this_deno,prev_coins;
 	change_t chg[]=new[money+1];
 	change_t this_chg;
 
@@ -48,16 +50,19 @@ input int unsigned money
 			this_deno = DENOMINATIONS[d];
 			$display("money %d, deno %d",i,this_deno);
 			disp_change(chg[i-this_deno]);
-			if ( i-this_deno>=0 ) begin
+			if ( i>=this_deno ) begin
 				$display("enter deno try");
-				if (total_change(chg[i-this_deno])+this_deno==money) begin
-					$display("reached");
-					if ( chg[i-this_deno].sum()+1 < num_coins ) begin
-						num_coins = chg[i-this_deno].sum()+1 ;
+					prev_coins = chg[i-this_deno].sum();
+					$display("1");
+					if ( prev_coins+1 < num_coins ) begin
+					$display("2");
+						num_coins = prev_coins+1 ;
+					$display("3");
 						chg[i] = chg[i-this_deno];
-						chg[i][d]++;
+					$display("4");
+						chg[i][d] = chg[i][d] +1;
+					$display("5");
 						$display("update");
-					end
 				end
 			end
 		end
