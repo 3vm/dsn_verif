@@ -11,7 +11,7 @@ localparam TRIALS = 1;
 initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
-		money = $urandom_range(15);
+		money = $urandom_range(2);
 		$display("Money %d",money);
 		$display("Brute force change");
 //		bf_chg = bf_change(money);
@@ -47,13 +47,16 @@ input int unsigned money
 		foreach ( DENOMINATIONS[d]) begin
 			this_deno = DENOMINATIONS[d];
 			$display("money %d, deno %d",i,this_deno);
-			disp_change(chg[i-1]);
+			disp_change(chg[i-this_deno]);
 			if ( i-this_deno>=0 ) begin
+				$display("enter deno try");
 				if (total_change(chg[i-this_deno])+this_deno==money) begin
+					$display("reached");
 					if ( chg[i-this_deno].sum()+1 < num_coins ) begin
 						num_coins = chg[i-this_deno].sum()+1 ;
 						chg[i] = chg[i-this_deno];
 						chg[i][d]++;
+						$display("update");
 					end
 				end
 			end
