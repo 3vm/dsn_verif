@@ -1,8 +1,8 @@
 
 module tb ;
 
-localparam int DENOMINATIONS[]='{10,5,2,1}; 
-localparam NUM_DENOM = $size(DENOMINATIONS);
+localparam NUM_DENOM = 4;
+localparam int DENOMINATIONS[NUM_DENOM]='{10,5,2,1}; 
 initial begin
 
 
@@ -14,17 +14,15 @@ function automatic void  bf_change (
 input int money
 );
 int multiples[NUM_DENOM];
-foreach (multiples[i])
-	$write ( "%d x %d ", DENOMINATIONS[i],multiples[i]);
 $display();
 
-while ( money > 0 ) begin
+	$display("Money %d",money);
 	foreach ( DENOMINATIONS[i]) begin
 		multiples[i] = money/DENOMINATIONS[i];
 		money=money%DENOMINATIONS[i];
 	end
-end
-
+	foreach (multiples[i])
+		$write ( "%3d x %1d \t", DENOMINATIONS[i],multiples[i]);
 endfunction
 
 endmodule
