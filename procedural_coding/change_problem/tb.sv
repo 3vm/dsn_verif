@@ -46,6 +46,7 @@ input int unsigned money
 	int unsigned num_coins,this_deno,prev_coins;
 //	change_t chg[]=new[money+1];
 	change_t chg[1024];
+	change_t prev_chg;
 
 	chg[0]='{default:0};
 //	$display(MAX_VALUE);
@@ -57,7 +58,8 @@ input int unsigned money
 			if ( i>=this_deno ) begin
 				$display("enter deno try");
 				disp_change(chg[i-this_deno]);
-				prev_coins = chg[i-this_deno].sum();
+				prev_chg = chg[i-this_deno];
+				prev_coins = prev_chg.sum();
 				$display("Previous coins %d",prev_coins);
 				if ( prev_coins+1 < num_coins ) begin
 					num_coins = prev_coins+1 ;
