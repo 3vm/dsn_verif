@@ -12,7 +12,7 @@ initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
 //		money = $urandom_range(1,1024);
-		money = 716;
+		money = 510;
 		$display("Money %d",money);
 		$display("Brute force change");
 		bf_chg = bf_change(money);
@@ -46,24 +46,25 @@ input int unsigned money
 	int unsigned num_coins,this_deno,prev_coins;
 //	change_t chg[]=new[money+1];
 	change_t chg[1024];
-	change_t this_chg;
 
 	chg[0]='{default:0};
-	$display(MAX_VALUE);
+//	$display(MAX_VALUE);
 	for (int i=1;i<=money;i++) begin
 		num_coins=MAX_VALUE;
 		foreach ( DENOMINATIONS[d]) begin
 			this_deno = DENOMINATIONS[d];
-			$display("money %d, deno %d",i,this_deno);
+			$display("money %d, deno %d num_coins %d",i,this_deno,num_coins);
 			if ( i>=this_deno ) begin
 				$display("enter deno try");
 				disp_change(chg[i-this_deno]);
 				prev_coins = chg[i-this_deno].sum();
+				$display("Previous coins %d",prev_coins);
 				if ( prev_coins+1 < num_coins ) begin
 					num_coins = prev_coins+1 ;
 					chg[i] = chg[i-this_deno];
 					chg[i][d] = chg[i][d] +1;
-					$display("update");
+					$display("Update, Using denomination %d",DENOMINATIONS[d]);
+					disp_change(chg[i]);
 				end
 			end
 		end
