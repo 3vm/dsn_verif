@@ -12,7 +12,7 @@ initial begin
 	int unsigned money;
 	for (int i =0; i<TRIALS;i++) begin
 //		money = $urandom_range(1,1024);
-		money = 510;
+		money = 13;
 		$display("Money %d",money);
 		$display("Brute force change");
 		bf_chg = bf_change(money);
