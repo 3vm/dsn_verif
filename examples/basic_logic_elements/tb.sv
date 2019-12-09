@@ -1,34 +1,35 @@
 module tb ;
 
-logic [3:0] abus, bbus,ybus,or_out_bus,and_out_bus;
+logic [3:0] abus, bbus,yabus,yobus,or_out_bus,and_out_bus;
 logic clk, rst;
 logic a,b;
-logic y;
+logic ya,yo;
+logic y1a,y1o;
 
 //OR gate
 initial begin
 
 
-y = a|b;
-ybus = abus | bbus;
-y = |{a,b};
-y = |{abus};
+yo = a|b;
+yobus = abus | bbus;
+yo = |{a,b};
+yo = |{abus};
 
 if ( a )
-	y = 1 ;
+	yo = 1 ;
 else if ( b )
-	y = 1;
+	yo = 1;
 else
-	y=0;
+	yo=0;
 end
 
 always_comb
 	case ({a,b})
-		'b00: y = 0;
-		'b01: y = 1;
-		'b10: y = 1;
-		'b11: y = 1;
-		default: y=0;
+		'b00: y1o = 0;
+		'b01: y1o = 1;
+		'b10: y1o = 1;
+		'b11: y1o = 1;
+		default: y1o=0;
 	endcase	
 
 
@@ -42,32 +43,29 @@ end
 //AND gate
 initial begin
 
-logic a,b;
-logic y;
-
-
 abus = 'b1010;
 bbus = 'b0110;
 
-y = a&b;
-ybus = abus & bbus;
-y = &{a,b};
-y = &{abus};
+ya = a&b;
+yabus = abus & bbus;
+ya = &{a,b};
+ya = &{abus};
 
-y=0;
+ya=0;
 if ( a )
 	if ( b )
-		y = 1;
-$display("and_out_bus");
+		ya = 1;
+#0;
+$display("and bus output %b",and_out_bus);
 end
 
 always_comb
 	case ({a,b})
-		'b00: y = 0;
-		'b01: y = 0;
-		'b10: y = 0;
-		'b11: y = 1;
-		default: y=0;
+		'b00: y1a = 0;
+		'b01: y1a = 0;
+		'b10: y1a = 0;
+		'b11: y1a = 1;
+		default: y1a=0;
 	endcase	
 
 and i2 (yand1,a,b);
