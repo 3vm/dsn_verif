@@ -71,7 +71,7 @@ always_comb
 	endcase	
 
 and i2 (yand1,a,b);
-and i3 (and_out_bus,abus,bbus);
+and i3[3:0] (and_out_bus,abus,bbus);
 
 
 endmodule
