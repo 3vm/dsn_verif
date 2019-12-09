@@ -71,5 +71,55 @@ always_comb
 and i2 (yand1,a,b);
 and i3[3:0] (and_out_bus,abus,bbus);
 
+//Mux-demux
+always_comb begin
+	logic y1bmux,sel,muxin,demuxa,demuxb;
+	y1bmux = sel ? a : b;
+
+	case (sel) 
+		'b0: y1bmux = b;
+		'b1: y1bmux = a;
+		default: y1bmux = b;
+	endcase
+
+	if ( sel )
+		y1bmux = b;
+	else
+		y1bmux = b;
+
+	if(sel) begin
+		demuxa=muxin;
+		demuxb=0;
+	end else begin
+		demuxa=0;
+		demuxb=muxin;
+	end
+
+	case (sel) 
+		'b0: begin demuxa = 0 ; demuxb = muxin ; end
+		'b1: begin demuxa = muxin ; demuxb = 0 ; end
+		default: begin demuxa = 0 ; demuxb = 0 ; end
+	endcase
+
+end
+
+//encoder-decoder
+always_comb begin
+	logic [2:0]  encoded_out;
+	logic [7:0] decode_in, decoded_out;
+
+	decode_in = 'b00100000;
+
+	encoded_out = 0 ;
+	for ( int i = 0 ; i < 8 ; i++ ) begin
+ 		if ( decode_in[i]) begin
+ 			encoded_out = i;
+ 			break;
+ 		end
+ 	end
+
+	decoded_out = 0 ;
+ 	decoded_out[encoded_out] = 1'b1;
+end
 
 endmodule
