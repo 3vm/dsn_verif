@@ -18,6 +18,7 @@ initial begin
 	import thee_utils_pkg::check_approx_equality;
 	bit result;
 	sig_in = 0.32; dig_gain=3;
+	#0;
 	check_approx_equality (.inp(sig_out),.expected(exp),.result(result));
 	if ( result ) 
 		$display ("PASS");
@@ -28,6 +29,6 @@ initial begin
 
 end
 
-assign exp = sig_in * (1+dig_gain) * GS / (2**GB);
+assign exp = sig_in * (1+dig_gain) * GS ;
 
 endmodule
