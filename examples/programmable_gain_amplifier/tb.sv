@@ -15,12 +15,14 @@ thee_pg_amp #(.GAIN_BITS(GB), .GAIN_STEP(GS) ) pga
 );
 
 initial begin
-	#0;
+	import thee_utils_pkg::check_approx_equality;
+	bit result;
 	sig_in = 0.32; dig_gain=3;
-	if ( exp == sig_out ) 
+	check_approx_equality (.inp(sig_out),.expected(exp),.result(result));
+	if ( result ) 
 		$display ("PASS");
 	else
-		$display ("PASS");
+		$display ("FAIL");
 
 	$display ("Signal output %f, Expected %f",sig_out, exp);
 
