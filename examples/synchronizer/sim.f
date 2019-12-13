@@ -8,7 +8,7 @@ timescale.sv
 ../../ehgu/ehgu_fedge.sv
 ../../ehgu/ehgu_redge.sv
 ../../ehgu/ehgu_rst_sync.sv
-../../ehgu/ehgu_rst_tree_piped.sv
+../../ehgu/ehgu_synqzx.sv
 
 ../../thee/thee_mathsci_consts_pkg.sv
 ../../thee/thee_utils_pkg.sv
