@@ -13,12 +13,14 @@ module thee_rand_busdly
 
   T this_delay;
 
+  generate 
+  for ( genvar i =0 ; i < WIDTH ;i++) begin : perbitdly
   always @(*) begin
-  	foreach(bus_in[i]) begin
   		this_delay = MAX_DELAY * $urandom_range(2**31) / (2**31) ;
   		#(this_delay);
   		bus_out[i] = bus_in[i];
   	end
   end
+  endgenerate
 
 endmodule
