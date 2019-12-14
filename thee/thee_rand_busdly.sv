@@ -6,14 +6,14 @@ module thee_rand_busdly
   ) 
   (
     input logic [WIDTH-1:0] bus_in,
-    input logic [WIDTH-1:0] bus_out
+    output logic [WIDTH-1:0] bus_out
   );
   timeunit 1ns;
   timeprecision 1ps;
 
   T this_delay;
 
-  always_comb begin
+  always @(*) begin
   	foreach(bus_in[i]) begin
   		this_delay = MAX_DELAY * $urandom_range(2**31) / (2**31) ;
   		#(this_delay);
