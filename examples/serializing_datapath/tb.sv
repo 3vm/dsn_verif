@@ -24,7 +24,6 @@ initial begin
 	for(int i = 0 ; i<4;i++) begin
 		a=i[0];
 		b=i[1];
-		repeat (1) @(posedge clk);
 		@(posedge ready);
 		$display("Inputs a %b b %b a^b %b",a,b,xo);
 		if ( xo !== a^b )
@@ -40,7 +39,8 @@ initial begin
 end
 
 initial
-	$monitor("State of scheduler %s, inputs %b,%b output xor %b, memory %b , %b", dut.state.name(), a,b,xo,dut.mem[0],dut.mem[1]);
+	forever @(posedge clk)
+		$display("State of scheduler %s, inputs %b,%b output xor %b, memory %b , %b", dut.state.name(), a,b,xo,dut.mem[0],dut.mem[1]);
 
 
 endmodule
