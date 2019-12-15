@@ -1,11 +1,11 @@
 Sad Stories
 ------------
 
-Mark Troccino is a  Director of Design, Heartronics Inc in San Diego, USA. His team is designing the next generation of heart pacemakers with inbuilt machine learning heart attack prediction. He is looking for a skilled digital hardware designer. Unfortunately, the candidates applying for the job either do not meet the skills needed or are demanding very high salary that his small startup cannot provide.
+Mark Troccino is a  Director of Design, Hartronics Inc in San Diego, USA. His team is designing the next generation of heart pacemakers with inbuilt machine learning heart attack prediction. He is looking for a skilled digital hardware designer. Unfortunately, the candidates applying for the job either do not meet the skills needed or are demanding very high salary that his small startup cannot provide.
 
 Srinivas Gupta is a Design Manager in AppCores Limited, Bangalore, India trying to hire skilled junior digital designers. His team is building the next generation of smartphone application processors. He needs ten designers with good hands on skills. Unfortunately, he can only get smart engineers with masters degree but not with immediately usable job skills. Again the demand for salary is much higher than his budget.
 
-Scott Divito is an Executive Director in  CarNerves Inc, Colorado Springs, USA. He is the chief of a division building an advanced version of automotive Ethernet targeted for self driving vehicles. The increase in bandwidth capacity is expected to be provided by the next generation of auto Ethernet is touted to drastically reduce the accident rate in self driving vehicles. The occasional accidents in self driving vehicles had by then caused the public to lose confidence in Robocars. This had resulted in increased human fatalities caused by drivers talking and texting while driving.
+Tony Fong is an Executive Director in CarNerves Inc, Fort Collins, USA. He is the chief of a division building an advanced version of automotive Ethernet targeted for self driving vehicles. The increase in bandwidth capacity is expected to be provided by the next generation of auto Ethernet is touted to drastically reduce the accident rate in self driving vehicles. The occasional accidents in self driving vehicles had by then caused the public to lose confidence in Robocars. This had resulted in increased human fatalities caused by drivers talking and texting while driving. He is hard pressed to find designers with good grasp of automatic safety requirements.
 
 Jim Butler is a truck driver in Tennessee, USA. He has been driving for 20 years. But, recently is worried about his future in the age of self driving trucks. He is also passionate about trucks and the transportation industry. He is keen to upgrade his skills and be part of companies that design self driving trucks. But his friends tell him that he needs to get an engineering degree in any of electrical, electronics or computer engineering. He has a family of five people and he cannot afford a full time or even a part time engineering degree program fees.
 
@@ -13,7 +13,7 @@ Viet Nguyen is the son of a fruit seller in Ho Chi Minh City, Vietnam. He is a c
 
 Cathy Jones is a young teenager in rural Wyoming. She is obsessed with anything electronic. By age 14, she created reverse camera gadget for her father’s 15 year old car. Her parents are from a middle class family with only very little money left to spend for her education. Cathy is keen on joining an electrical engineering program in a reputed university in California. But her parents cannot afford the tuition and dorm fees for four years. Undaunted by the lack of funds, Cathy starts working in a nearby fast food restaurant for minimum wage to accumulate enough funds to go to college.
 
-Steve Peterson is a senior principal engineer in Dallas Instruments. His company did a reorganization recently and shutdown his business of creating server processors. His entire team is now assigned to developing secure Internet of Things products. He is desperately looking for reference designs in elliptic curve cryptography and multiple input multiple output beam forming. But he is unable to find any easily usable material. The expectations from this Senior PE is high, so he is under a huge stress.
+Olav Johnson is a senior principal engineer in Dallas Instruments. His company did a reorganization recently and shutdown his business of creating server processors. His entire team is now assigned to developing secure Internet of Things products. He is desperately looking for reference designs in elliptic curve cryptography and multiple input multiple output beam forming. But he is unable to find any easily usable material. The expectations from this Senior PE is high, so he is under a huge stress.
 
 Kevin Fukushima is an aspiring new employee in Sandsemi. He is assigned the role of designing a small FSM for analog circuit calibration. He completes that well but is overwhelmed by the sheer number of jargon used in his team – AES, DES, CSI, MPHY, DPHY, CPHY, PCIe, NVMe, IP-XACT, DC, PT, Wreal, HLS, Chisel, RISC-V, FPD-link, DPA attack, DDoS attack. He is not sure what to learn to develop in his career.
 
@@ -30,7 +30,7 @@ Bala Daggula is an executive at Egde Logic Inc. He needs a design IP to preproce
 
 Greg Razavi is a design manager at Saitel looking for talented digital design engineers. He reforms his hiring process by removing the requirement for advanced degrees. Soon, he gets many highly talented applicants from various backgrounds and extremely eager to start work in their new roles. 
 
-Ana Cortez is a professor in San Carlos university Argentina. She has limited access to actual job related material, she uses the educational material from Ehgu design ecosystem to expand and make her class more practically applicable. Some of her students team up and start a small design IP development startup.
+Ana Gonzalez is a professor in San Carlos university Argentina. She has limited access to actual job related material, she uses the educational material from Ehgu design ecosystem to expand and make her class more practically applicable. Some of her students team up and start a small design IP development startup.
 
 Preface
 --------
@@ -105,13 +105,13 @@ Chipper Neo
 FAQ
 ----
 How can we support the Ehgu ecosystem?
-You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. Try developing a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your software?
+You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. You can develop a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your 5-10 year older version of your software? Or even provide a feature reduced version of education.
 
 Details
 --------
 Additional details about how to achieve a more efficient ecosystem is in the book -
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem
-https://www.amazon.com/dp/B07TZGPKC8/ref=rdr_kindle_ext_tmb
+https://www.amazon.com/dp/B07TZGPKC8
 
 About me
 
