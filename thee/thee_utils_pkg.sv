@@ -107,10 +107,9 @@ timeprecision 100ps;
     input real low,
     input real high
   );
-
+    const int unsigned MAX_VALUE = '1;
     int unsigned tmp;
     real out;
-    static int unsigned MAX_VALUE = '1;
     tmp=$urandom();
     out = ( low + (tmp*1.0/MAX_VALUE)*(high-low));
     return out;

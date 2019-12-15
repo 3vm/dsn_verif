@@ -10,13 +10,17 @@ module thee_rand_busdly
   );
   timeunit 10ps;
   timeprecision 1ps;
+  parameter int unsigned MAX_VALUE = '1;
 
   T this_delay;
-
+  int unsigned randval;
+  
   generate 
     for ( genvar i =0 ; i < WIDTH ;i++) begin : perbitdly
       always @(*) begin
-  		  this_delay = MAX_DELAY * $urandom_range(2**31) / (2**31) ;
+        randval = $urandom();
+        this_delay = T' ( (1.0 * MAX_DELAY ) * (1.0 * randval) / MAX_VALUE );
+        $display("index %d rand val %d rand dly %8t Max delay %8t", i, randval, this_delay,MAX_DELAY);
   		  #(this_delay);
   		  bus_out[i] = bus_in[i];
       end
