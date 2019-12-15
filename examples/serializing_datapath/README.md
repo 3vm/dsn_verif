@@ -1,4 +1,4 @@
-Clock Domain Crossing Synchronizer with model for cycle uncertainty
+Example for the concept of serializing a datapath also known as scheduling
 
 For further description refer to this book
 
