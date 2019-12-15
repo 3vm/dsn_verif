@@ -36,6 +36,6 @@ end
 initial 
 	$monitor("Data changed %b at %t",dut.d_jittered,$realtime());
 
-ehgu_synqzx #(.T(int), .MAX_DELAY(80), .STAGES(STG), .WIDTH(WIDTH)) dut ( .clk , .rstn , .d_presync(din) , .d_sync(dout));
+ehgu_synqzx #(.T(time), .MAX_DELAY(80), .STAGES(STG), .WIDTH(WIDTH)) dut ( .clk , .rstn , .d_presync(din) , .d_sync(dout));
 
 endmodule
