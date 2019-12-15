@@ -23,9 +23,9 @@ always_comb begin
 	xo = 0;
 	case(state)
 		C0: memnext[0] = ~b;
-		C1: memnext[0] = mem[0] | a;
+		C1: memnext[0] = mem[0] & a;
 		C2: memnext[1] = ~a;
-		C3: memnext[1] = mem[1] | b;
+		C3: memnext[1] = mem[1] & b;
 		C4: begin
 				xo = mem[0] | mem[1];
 				ready = 1;

@@ -19,15 +19,21 @@ serial_xor dut (
 initial begin
 	import thee_utils_pkg::toggle_rstn;
 	toggle_rstn(.rstn(rstn));
-	repeat (1) @(posedge clk);
+	a=0;b=0;
+	repeat (5) @(posedge clk);
 	result = 1;
+	@(posedge ready);
 	for(int i = 0 ; i<4;i++) begin
-		a=i[0];
-		b=i[1];
-		@(posedge ready);
-		$display("Inputs a %b b %b a^b %b",a,b,xo);
-		if ( xo !== a^b )
-			result = 0;
+		{a,b}=i;
+		while (1) begin
+			@(posedge clk);
+			if ( ready) begin
+				$display("Inputs a %b b %b output a^b %b",a,b,xo);
+				if ( xo !== a^b )
+					result = 0;
+				break;
+			end
+		end
 	end
 
 	if ( result ) 
