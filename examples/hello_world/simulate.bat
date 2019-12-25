@@ -1,1 +1,0 @@
-C:\Xilinx\Vivado\2019.1\bin\xsim -R work.tb
