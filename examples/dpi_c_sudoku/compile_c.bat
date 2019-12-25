@@ -1,1 +1,1 @@
-C:\Xilinx\Vivado\2019.1\bin\xsc sudoku.c
+C:\Xilinx\Vivado\2019.1\bin\xsc hello.c
