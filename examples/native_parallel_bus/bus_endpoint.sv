@@ -19,7 +19,7 @@ logic access_here;
 
 assign access_here = (addr inside {[BASE_ADDR:+RANGE]});
 
-always_latch @(r_wn)
+always_latch
 	if ( r_wn == 0 )
 		if ( access_here )
 			mem[addr] <= wdata; //CHECK ME blocking = or non block <= for latch
