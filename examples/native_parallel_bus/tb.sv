@@ -4,9 +4,12 @@ module tb ;
 parameter ADDR_WIDTH = 8;
 parameter DATA_WIDTH = 8;
 
+parameter BASE0 = 0, BASE1 = 32;
+parameter R0 = 8, R1 = 128;
+
 logic r_wn;
 logic [ADDR_WIDTH-1:0] addr;
-logic [ADDR_WIDTH-1:0] data;
+logic [ADDR_WIDTH-1:0] rdata0, rdata1, rdata, wdata;
 logic rstn;
 bit result;
 
@@ -16,23 +19,7 @@ initial begin
 	addr = 0;
 	#20ns;
 	rstn = 0;
-
-		a=0;b=0;
-	repeat (5) @(posedge clk);
 	result = 1;
-	@(posedge ready);
-	for(int i = 0 ; i<4;i++) begin
-		{a,b}=i;
-		while (1) begin
-			@(posedge clk);
-			if ( ready) begin
-				$display("Inputs a %b b %b output a^b %b",a,b,xo);
-				if ( xo !== a^b )
-					result = 0;
-				break;
-			end
-		end
-	end
 
 	if ( result ) 
   		$display ("All Vectors passed");
@@ -42,10 +29,31 @@ initial begin
 	$finish;
 end
 
-initial
-	forever @(posedge clk)
-		$display("State of scheduler %s, inputs %b,%b output xor %b, memory %b , %b", dut.state.name(), a,b,xo,dut.mem[0],dut.mem[1]);
+bus_endpoint 
+#(
+.BASE_ADDR(BASE0),
+.RANGE(R0)
+) ep0 (
+.r_wn ,
+.addr ,
+.wdata ,
+.rstn ,
+.rdata(rdata0) 
+);
 
+bus_endpoint 
+#(
+.BASE_ADDR(BASE0),
+.RANGE(R0)
+) ep1 (
+.r_wn ,
+.addr ,
+.wdata ,
+.rstn ,
+.rdata(rdata1) 
+);
+
+assign rdata = rdata0 | rdata1;
 
 endmodule
 
