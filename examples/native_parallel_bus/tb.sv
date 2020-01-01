@@ -28,7 +28,8 @@ bus_host #(
 .r_wn ,
 .addr ,
 .wdata ,
-.rdata(rdata0) 
+.busy ,
+.rdata
 );
 
 bus_endpoint 
