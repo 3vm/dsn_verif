@@ -14,8 +14,8 @@ output logic [DATA_WIDTH-1:0] rdata
 
 localparam MEM_ADDR_WIDTH = $clog2(RANGE);
 
-logic [MEM_ADDR_WIDTH-1:0] mem [RANGE];
-logic maddr;
+logic [DATA_WIDTH-1:0] mem [RANGE];
+logic [MEM_ADDR_WIDTH-1:0] maddr;
 logic access_here;
 
 assign access_here = (maddr inside {[BASE_ADDR:+RANGE]});

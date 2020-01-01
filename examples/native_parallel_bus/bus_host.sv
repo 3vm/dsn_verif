@@ -40,9 +40,11 @@ input logic [ADDR_WIDTH-1:0] w
 
 addr = a;
 wdata = w;
+#0;
 r_wn = 0 ;
-#1ns;
+#0;
 r_wn = 1;
+#0;
 endtask
 
 task bus_read (
@@ -51,9 +53,11 @@ output logic [ADDR_WIDTH-1:0] r
 );
 
 addr = a;
+#0;
 r_wn = 1 ;
-#1ns;
+#0;
 r = rdata;
+#0;
 endtask
 
 endmodule
