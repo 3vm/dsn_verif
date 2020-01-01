@@ -18,8 +18,7 @@ logic access_here;
 
 assign access_here = (addr inside {[BASE_ADDR:+RANGE]});
 
-always_latch
-	if ( r_wn == 0 )
+always @( r_wn == 0 )
 		if ( access_here ) begin
 			mem[addr] <= wdata; //CHECK ME blocking = or non block <= for latch
 			$display ( "Write to location %d data %d in file %s line %d instance %m" , addr, wdata, `__FILE__ , `__LINE__ );
