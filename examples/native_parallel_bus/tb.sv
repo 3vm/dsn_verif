@@ -9,7 +9,7 @@ parameter R0 = 8, R1 = 128;
 logic busy;
 logic r_wn;
 logic [ADDR_WIDTH-1:0] addr;
-logic [ADDR_WIDTH-1:0] rdata0, rdata1, rdata, wdata;
+logic [DATA_WIDTH-1:0] rdata0, rdata1, rdata, wdata;
 bit result;
 
 initial begin

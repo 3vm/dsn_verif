@@ -7,8 +7,8 @@ parameter int VALID_RANGES[2][2]
 ) (
 output logic r_wn,
 output logic [ADDR_WIDTH-1:0] addr,
-output logic [ADDR_WIDTH-1:0] wdata,
-input logic [ADDR_WIDTH-1:0] rdata,
+output logic [DATA_WIDTH-1:0] wdata,
+input logic [DATA_WIDTH-1:0] rdata,
 output logic busy
 );
 
@@ -18,7 +18,7 @@ bit result;
 initial begin
 	busy = 1 ;
 	result = 1;
-	
+
 	for ( int i = 0 ; i < VALID_RANGES[1][1] ; i++) begin
 		if (	(i >= VALID_RANGES[0][0] && i < VALID_RANGES[0][1] )	|| 
 				(i >= VALID_RANGES[1][0] && i < VALID_RANGES[1][1] ) 		) begin

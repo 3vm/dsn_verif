@@ -8,8 +8,8 @@ parameter RANGE=16
 ) (
 input logic r_wn,
 input logic [ADDR_WIDTH-1:0] addr,
-input logic [ADDR_WIDTH-1:0] wdata,
-output logic [ADDR_WIDTH-1:0] rdata
+input logic [DATA_WIDTH-1:0] wdata,
+output logic [DATA_WIDTH-1:0] rdata
 );
 
 logic [ADDR_WIDTH-1:0] mem [RANGE];
@@ -21,14 +21,14 @@ assign access_here = (addr inside {[BASE_ADDR:+RANGE]});
 always @( r_wn )
 		if ( access_here && !r_wn) begin
 			mem[addr] <= wdata; //CHECK ME blocking = or non block <= for latch
-			$display ( "Write to location %d data %d in file %s line %d instance %m" , addr, wdata, `__FILE__ , `__LINE__ );
+			$display ( "Write to location %d data %d in instance %m" , addr, wdata);
 		end else
 			mem[addr] <= mem[addr]; //CHECK ME blocking or non blocking
 
 always_comb
 	if ( r_wn == 1 && access_here ) begin
 		rdata = mem[addr];
-		$display ( "Read from location %d data %d in file %s line %d instance %m" , addr, rdata,`__FILE__ , `__LINE__ );			
+		$display ( "Read from location %d data %d in instance %m" , addr, rdata );			
 	end else
 		rdata = 0;
 
