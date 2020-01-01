@@ -18,21 +18,18 @@ logic access_here;
 
 assign access_here = (addr inside {[BASE_ADDR:+RANGE]});
 
-always @( r_wn == 0 )
-		if ( access_here ) begin
+always @( r_wn )
+		if ( access_here && !r_wn) begin
 			mem[addr] <= wdata; //CHECK ME blocking = or non block <= for latch
 			$display ( "Write to location %d data %d in file %s line %d instance %m" , addr, wdata, `__FILE__ , `__LINE__ );
 		end else
 			mem[addr] <= mem[addr]; //CHECK ME blocking or non blocking
 
 always_comb
-	if ( r_wn == 1 )
-		if ( access_here ) begin
-			rdata = mem[addr];
-			$display ( "Read from location %d data %d in file %s line %d instance %m" , addr, rdata,`__FILE__ , `__LINE__ );			
-		end else
-			rdata = 0;
-	else
+	if ( r_wn == 1 && access_here ) begin
+		rdata = mem[addr];
+		$display ( "Read from location %d data %d in file %s line %d instance %m" , addr, rdata,`__FILE__ , `__LINE__ );			
+	end else
 		rdata = 0;
 
 endmodule

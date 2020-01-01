@@ -3,7 +3,7 @@ module bus_host
 #(
 parameter ADDR_WIDTH = 8,
 parameter DATA_WIDTH = 8,
-parameter int VALID_RANGES[2][2] = '{'{0,8},'{32,32+128}}
+parameter int VALID_RANGES[2][2]
 ) (
 output logic r_wn,
 output logic [ADDR_WIDTH-1:0] addr,
@@ -18,6 +18,7 @@ bit result;
 initial begin
 	busy = 1 ;
 	result = 1;
+	
 	for ( int i = 0 ; i < VALID_RANGES[1][1] ; i++) begin
 		if (	(i >= VALID_RANGES[0][0] && i < VALID_RANGES[0][1] )	|| 
 				(i >= VALID_RANGES[1][0] && i < VALID_RANGES[1][1] ) 		) begin

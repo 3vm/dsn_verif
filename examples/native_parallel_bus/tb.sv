@@ -45,8 +45,8 @@ bus_endpoint
 
 bus_endpoint 
 #(
-.BASE_ADDR(BASE0),
-.RANGE(R0)
+.BASE_ADDR(BASE1),
+.RANGE(R1)
 ) ep1 (
 .r_wn ,
 .addr ,
