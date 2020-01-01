@@ -9,8 +9,7 @@ parameter RANGE=16
 input logic r_wn,
 input logic [ADDR_WIDTH-1:0] addr,
 input logic [ADDR_WIDTH-1:0] wdata,
-input logic rstn,
-output logic rdata
+output logic [ADDR_WIDTH-1:0] rdata
 );
 
 logic [ADDR_WIDTH-1:0] mem [RANGE];

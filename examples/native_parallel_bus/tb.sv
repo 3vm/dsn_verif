@@ -10,15 +10,12 @@ parameter R0 = 8, R1 = 128;
 logic r_wn;
 logic [ADDR_WIDTH-1:0] addr;
 logic [ADDR_WIDTH-1:0] rdata0, rdata1, rdata, wdata;
-logic rstn;
 bit result;
 
 initial begin
-	rstn = 0;
 	r_wn = 1;
 	addr = 0;
 	#20ns;
-	rstn = 0;
 	result = 1;
 
 	if ( result ) 
@@ -29,6 +26,15 @@ initial begin
 	$finish;
 end
 
+bus_host #(
+.VALID_RANGES('{'{BASE0,BASE0+R0}, '{BASE1,BASE1+R1}})
+) host (
+.r_wn ,
+.addr ,
+.wdata ,
+.rdata(rdata0) 
+);
+
 bus_endpoint 
 #(
 .BASE_ADDR(BASE0),
@@ -37,7 +43,6 @@ bus_endpoint
 .r_wn ,
 .addr ,
 .wdata ,
-.rstn ,
 .rdata(rdata0) 
 );
 
@@ -49,7 +54,6 @@ bus_endpoint
 .r_wn ,
 .addr ,
 .wdata ,
-.rstn ,
 .rdata(rdata1) 
 );
 

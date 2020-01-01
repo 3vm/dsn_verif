@@ -15,4 +15,5 @@ timescale.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
 bus_endpoint.sv
+bus_host.sv
 tb.sv
