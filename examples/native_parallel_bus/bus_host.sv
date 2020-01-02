@@ -41,9 +41,9 @@ input logic [ADDR_WIDTH-1:0] w
 $display ("Writing %d to address %d",w,a);
 addr = a;
 wdata = w;
-#0;
+#1ns;
 r_wn = 0 ;
-#0;
+#1ns;
 r_wn = 1;
 #0;
 endtask
@@ -54,9 +54,9 @@ output logic [ADDR_WIDTH-1:0] r
 );
 
 addr = a;
-#0;
+#1ns;
 r_wn = 1 ;
-#0;
+#1ns;
 r = rdata;
 #0;
 $display ("Read %d from address %d",r,a);
