@@ -1,11 +1,11 @@
 
 module tb ;
 
-parameter ADDR_WIDTH = 8;
-parameter DATA_WIDTH = 8;
+parameter ADDR_WIDTH = 5;
+parameter DATA_WIDTH = 4;
 
-parameter BASE0 = 0, BASE1 = 32;
-parameter R0 = 8, R1 = 128;
+parameter BASE0 = 0, BASE1 = 16;
+parameter R0 = 4, R1 = 8;
 logic busy;
 logic r_wn;
 logic [ADDR_WIDTH-1:0] addr;
@@ -23,6 +23,8 @@ initial begin
 end
 
 bus_host #(
+.DATA_WIDTH(DATA_WIDTH),
+.ADDR_WIDTH(ADDR_WIDTH),
 .VALID_RANGES('{'{BASE0,BASE0+R0}, '{BASE1,BASE1+R1}})
 ) host (
 .r_wn ,
@@ -34,6 +36,8 @@ bus_host #(
 
 bus_endpoint 
 #(
+.DATA_WIDTH(DATA_WIDTH),
+.ADDR_WIDTH(ADDR_WIDTH),
 .BASE_ADDR(BASE0),
 .RANGE(R0)
 ) ep0 (
@@ -45,6 +49,8 @@ bus_endpoint
 
 bus_endpoint 
 #(
+.DATA_WIDTH(DATA_WIDTH),
+.ADDR_WIDTH(ADDR_WIDTH),
 .BASE_ADDR(BASE1),
 .RANGE(R1)
 ) ep1 (

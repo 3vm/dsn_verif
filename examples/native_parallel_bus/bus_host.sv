@@ -23,6 +23,7 @@ initial begin
 		if (	(i >= VALID_RANGES[0][0] && i < VALID_RANGES[0][1] )	|| 
 				(i >= VALID_RANGES[1][0] && i < VALID_RANGES[1][1] ) 		) begin
 			bus_write (.a(i), .w(i+1));
+
 			bus_read (.a(i),.r(tmp));
 			if ( tmp !== wdata ) begin
 				result = 0;
@@ -37,7 +38,7 @@ task bus_write (
 input logic [ADDR_WIDTH-1:0] a,
 input logic [ADDR_WIDTH-1:0] w
 );
-
+$display ("Writing %d to address %d",w,a);
 addr = a;
 wdata = w;
 #0;
@@ -58,6 +59,7 @@ r_wn = 1 ;
 #0;
 r = rdata;
 #0;
+$display ("Read %d from address %d",r,a);
 endtask
 
 endmodule
