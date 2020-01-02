@@ -21,6 +21,9 @@ logic access_here;
 assign access_here = (addr inside {[BASE_ADDR:+RANGE]});
 assign maddr = addr - BASE_ADDR;
 
+initial
+	$display ("Base %d Range %d", BASE_ADDR,RANGE);
+
 always @( r_wn )
 	if ( access_here && !r_wn) begin
 		mem[maddr] = wdata; //CHECK ME blocking = or non block <= for latch
