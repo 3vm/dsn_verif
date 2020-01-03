@@ -21,17 +21,13 @@ logic access_here;
 assign access_here = (addr inside {[BASE_ADDR:BASE_ADDR+RANGE-1]});
 assign maddr = addr - BASE_ADDR;
 
-always @( r_wn )
-	if ( access_here && !r_wn) begin
-		mem[maddr] = wdata; //CHECK ME blocking = or non block <= for latch
+always @( negedge r_wn )
+	if ( access_here ) begin
+		mem[maddr] = wdata;
+		$display ( "Write to location %d local address %d data %d in instance %m" , addr, maddr, wdata);
 	end
 
-always @(negedge r_wn)
-	if ( access_here && !r_wn)
-		$display ( "Write to location %d local address %d data %d in instance %m" , addr, maddr, wdata);
-
-
-always_comb
+always @(posedge r_wn)
 	if ( r_wn == 1 && access_here ) begin
 		rdata = mem[maddr];
 		$display ( "Read from location %d data %d in instance %m" , addr, rdata );			
