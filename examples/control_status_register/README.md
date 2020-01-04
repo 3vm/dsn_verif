@@ -1,4 +1,4 @@
-Example for the concept of native parallel bus
+Example for the concept of control status register inside chip
 
 For further description refer to this book
 

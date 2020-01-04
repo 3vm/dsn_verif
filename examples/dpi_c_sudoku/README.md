@@ -1,4 +1,4 @@
-Example for using Direct Programming Interface with C code -- NOT WORKING YET
+Example for using Direct Programming Interface with C code -- NOT WORKING YET -- Simulator throws fatal error
 For further description refer to this book
 
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem
