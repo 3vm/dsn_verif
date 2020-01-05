@@ -13,18 +13,30 @@ logic clk, rstn;
 
 thee_clk_gen_module #(.FREQ(10)) clk_gen (.clk(clk));
 
+task my_print ;
+	$display ( "Data input %b, data output %b, enable %b, activity detect %b at %t ", datain, dataout, device, actdet, $time());
+endtask
+
 initial begin
-	device = $urandom_range(0,NUMBUF);
-	datain = 0;
+	device = 1'b1 << $urandom_range(0,NUMBUF-1);
+	csr_write(BUFEN_ADDR_0,device[7:0]); 
+	csr_write(BUFEN_ADDR_1,device[15:8]); 
+	
+	my_print ;
+
+	datain = 'z;
+	datain[device] = 0;
 	repeat (4) begin
-		datain = ~datain;
+		datain[device] = ~datain[device];
 		#1ns;
 	end
 	repeat (10) @(posedge clk);
 	csr_read(ACTDET_ADDR_0,rd); 
-	actdet = rdata;
+	actdet = rd;
 	csr_read(ACTDET_ADDR_1,rd); 
-	actdet = (actdet << 8) | rdata ;
+	actdet = (actdet << 8) | rd ;
+	
+	my_print ;
 
 	if ( actdet[device] == 1 ) 
   		$display ("All Vectors passed");
