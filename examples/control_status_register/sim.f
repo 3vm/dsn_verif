@@ -8,13 +8,16 @@ timescale.sv
 ../../ehgu/ehgu_fedge.sv
 ../../ehgu/ehgu_redge.sv
 ../../ehgu/ehgu_rst_sync.sv
+../../ehgu/ehgu_synqzx.sv
 ../../ehgu/ehgu_rst_tree_piped.sv
 
 ../../thee/thee_mathsci_consts_pkg.sv
 ../../thee/thee_utils_pkg.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
+../../thee/thee_rand_busdly.sv
+chip_config_pkg.sv
 csr.sv
-pinv.sv
-pinv_top.sv
+prog_buf.sv
+chip_top.sv
 tb.sv

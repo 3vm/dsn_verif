@@ -1,30 +1,30 @@
 
 module tb ;
 
-parameter ADDR_WIDTH = 5;
-parameter DATA_WIDTH = 4;
-parameter DEVICES=16;
+import chip_config_pkg::*;
+
 logic r_wn;
-logic [ADDR_WIDTH-1:0] addr;
+logic [8-1:0] addr;
 bit result;
 int device;
-logic [DEVICES-1:0] sig_in, sig_out,sig_det;
-logic [DATA_WIDTH-1:0] rdata;
+logic [NUMBUF-1:0] datain, dataout, actdet;
+logic [8-1:0] rdata,wdata,rd;
 logic clk, rstn;
 
 initial begin
-	device = $urandom_range(0,15);
-	sig_in = 0;
+	device = $urandom_range(0,NUMBUF);
+	datain = 0;
 	repeat (4) begin
-		sig_in = ~sig_in;
+		datain = ~datain;
+		#1ns;
 	end
-	
-	csr_read(2,rdata); 
-	sig_det = rdata;
-	csr_read(2,rdata); 
-	sig_det = (sig_det << 8) | rdata ;
+	repeat (10) @(posedge clk);
+	csr_read(ACTDET_ADDR_0,rd); 
+	actdet = rdata;
+	csr_read(ACTDET_ADDR_1,rd); 
+	actdet = (actdet << 8) | rdata ;
 
-	if ( sig_det[device] == 1 ) 
+	if ( actdet[device] == 1 ) 
   		$display ("All Vectors passed");
 	else
 		$display ("Some Vectors failed");
@@ -32,13 +32,39 @@ initial begin
 	$finish;
 end
 
-device
-
-task csr_write ();
+task csr_write (
+input logic[7:0] a,
+output logic [7:0]d 
+);
+  @(posedge clk);
+  addr = a;
+  wdata = d;
+  r_wn = 0;
+  @(posedge clk);
 endtask
 
-task csr_read();
+task csr_read(
+input logic[7:0] a,
+output logic [7:0]d 
+);
+  @(posedge clk);
+  addr = a;
+  r_wn = 1;
+  @(posedge clk);
+  d = rdata;
 endtask
+
+
+chip_top dut (
+.clk ,
+.rstn ,
+.addr ,
+.r_wn ,
+.wdata ,
+.rdata ,
+.datain (datain) ,
+.dataout (dataout) 
+);
 
 endmodule
 
