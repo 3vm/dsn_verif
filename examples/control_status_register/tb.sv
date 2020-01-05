@@ -11,6 +11,8 @@ logic [NUMBUF-1:0] datain, dataout, actdet;
 logic [8-1:0] rdata,wdata,rd;
 logic clk, rstn;
 
+thee_clk_gen_module #(.FREQ(10)) clk_gen (.clk(clk));
+
 initial begin
 	device = $urandom_range(0,NUMBUF);
 	datain = 0;
