@@ -37,6 +37,8 @@ assign csr_reg[ACTDET_ADDR_1] = actdet_synced[15:8];
 always_comb
 	if ( r_wn )
 		rdata = csr_reg[addr];
+	else
+		rdata = 0;
 
 assign bufen[7:0] = csr_reg[BUFEN_ADDR_0];
 assign bufen[15:8] = csr_reg[BUFEN_ADDR_1];

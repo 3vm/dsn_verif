@@ -14,11 +14,13 @@ logic clk, rstn;
 thee_clk_gen_module #(.FREQ(10)) clk_gen (.clk(clk));
 
 task my_print ;
-	$display ( "Data input %b, data output %b, enable %b, activity detect %b at %t ", datain, dataout, device, actdet, $time());
+	$display ( "Data input %b, data output %b, device index %d, activity detect %b at %t ", datain, dataout, device, actdet, $time());
 endtask
 
 initial begin
-	device = 1'b1 << $urandom_range(0,NUMBUF-1);
+	thee_utils_pkg::toggle_rstn(.rstn(rstn),.rst_low(300ns));
+
+	device = $urandom_range(0,NUMBUF-1);
 	csr_write(BUFEN_ADDR_0,device[7:0]); 
 	csr_write(BUFEN_ADDR_1,device[15:8]); 
 	
@@ -26,6 +28,7 @@ initial begin
 
 	datain = 'z;
 	datain[device] = 0;
+	my_print ;
 	repeat (4) begin
 		datain[device] = ~datain[device];
 		#1ns;
@@ -48,8 +51,9 @@ end
 
 task csr_write (
 input logic[7:0] a,
-output logic [7:0]d 
+input logic [7:0] d 
 );
+  $display("Writing address %d with value %b", a, d);
   @(posedge clk);
   addr = a;
   wdata = d;
@@ -59,13 +63,14 @@ endtask
 
 task csr_read(
 input logic[7:0] a,
-output logic [7:0]d 
+output logic [7:0] d 
 );
   @(posedge clk);
   addr = a;
   r_wn = 1;
   @(posedge clk);
   d = rdata;
+  $display("Read address %d got value %b", a, d);
 endtask
 
 
