@@ -7,7 +7,7 @@ logic r_wn;
 logic [8-1:0] addr;
 bit result;
 int device;
-logic [NUMBUF-1:0] datain, dataout, actdet;
+logic [NUMBUF-1:0] datain, dataout, actdet, bufen;
 logic [8-1:0] rdata,wdata,rd;
 logic clk, rstn;
 
@@ -21,27 +21,31 @@ initial begin
 	thee_utils_pkg::toggle_rstn(.rstn(rstn),.rst_low(300ns));
 
 	device = $urandom_range(0,NUMBUF-1);
-	csr_write(BUFEN_ADDR_0,device[7:0]); 
-	csr_write(BUFEN_ADDR_1,device[15:8]); 
-	
-	my_print ;
+	bufen = 2**device;
+	csr_write(BUFEN_ADDR_0,bufen[7:0]); 
+	csr_write(BUFEN_ADDR_1,bufen[15:8]); 
+	my_print;
 
 	datain = 'z;
 	datain[device] = 0;
-	my_print ;
-	repeat (4) begin
-		datain[device] = ~datain[device];
-		#1ns;
-	end
+	
+	fork
+		forever begin
+			datain[device] = ~datain[device];
+			#1ns;
+		end
+	join_none
+
+	@(datain[device]);
 	repeat (10) @(posedge clk);
 	csr_read(ACTDET_ADDR_0,rd); 
 	actdet = rd;
 	csr_read(ACTDET_ADDR_1,rd); 
-	actdet = (actdet << 8) | rd ;
+	actdet = (rd << 8) | actdet ;
 	
 	my_print ;
 
-	if ( actdet[device] == 1 ) 
+	if ( actdet[device] === 1 ) 
   		$display ("All Vectors passed");
 	else
 		$display ("Some Vectors failed");
