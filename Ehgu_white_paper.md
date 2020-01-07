@@ -67,10 +67,15 @@ Chipping has evolved into two natural specializations,  one for ASIC design and 
 Chipper Basics
 
 Circuits: Kirchoff’s laws, Ohm’s law, power consumption in electrical circuits.
+
 CMOS : NAND, NOR, NOT, AND, OR gate transistor circuits, power dissipation in CMOS – switching, short circuit and leakage power
+
 Behavioral model for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
+
 Algorithms and Data Structures in C++
+
 Digital logic theory,  SystemVerilog 2013 language,  Concepts from logic synthesis,  Concepts from static timing analysis, Low power design, Version control – Git or Subversion
+
 RTL simulation with Vivado/Modelsim/Incisive/Xcellium/VCS, Waveform debugging with Vivado/Modelsim/Simvision/Verdi/DVE, Gate Level Simulation – handling synchronizers, initializing unintialized flip flops and combinational loops, Performing design ECOs
 
 Chipper ASIC
@@ -105,7 +110,7 @@ Chipper Neo
 FAQ
 ----
 How can we support the Ehgu ecosystem?
-You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. You can develop a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your 5-10 year older version of your software? Or even provide a feature reduced version of education.
+You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. You can develop a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your 5-10 year older version of your software? Or even provide a feature reduced version for education.
 
 Details
 --------
