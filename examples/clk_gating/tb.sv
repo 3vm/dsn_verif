@@ -62,7 +62,7 @@ input string cmd="gate"
 	else
 		clken = 1 ;
 
-	$display("Operating clock gate, Command %s Clock enable %b",cmd, clken);
+	$display("Operating clock gate, Command %s, Clock enable %b",cmd, clken);
 
 	repeat (2) @(posedge clkin);
 endtask
@@ -82,7 +82,7 @@ fork
 		cnt_gated++;
 	end
 join_any
-$display("Clock edge count ungated %d, gated %d",cnt_ungated, cnt_gated);
+$display("Clock edge count ungated %3d, gated %3d",cnt_ungated, cnt_gated);
 
 if ( cnt_gated > 0 ) 
 	detected = 1;
