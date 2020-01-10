@@ -25,14 +25,14 @@ initial begin
   operate_clk_gate("ungate");
   clock_detect (clk_det) ;
   if ( clk_det ) 
-  	result = 1;
+  	result &= 1;
   else
   	result = 0 ;
   
   operate_clk_gate("gate");
   clock_detect (clk_det) ;
   if ( clk_det == 0 ) 
-  	result = 1;
+  	result &= 1;
   else
   	result = 0 ;
 
@@ -40,7 +40,7 @@ initial begin
   operate_clk_gate("ungate");
   clock_detect (clk_det) ;
   if ( clk_det ) 
-  	result = 1;
+  	result &= 1;
   else
   	result = 0 ;
 
@@ -57,11 +57,13 @@ task operate_clk_gate (
 input string cmd="gate"
 );
 	@(posedge clkin);
-	$display("Operating clock gate %s",cmd);
-	if ( cmd == "gate ")
+	if ( cmd == "gate")
 		clken = 0 ;
 	else
 		clken = 1 ;
+
+	$display("Operating clock gate, Command %s Clock enable %b",cmd, clken);
+
 	repeat (2) @(posedge clkin);
 endtask
 
@@ -84,6 +86,9 @@ $display("Clock edge count ungated %d, gated %d",cnt_ungated, cnt_gated);
 
 if ( cnt_gated > 0 ) 
 	detected = 1;
+
+$display("Clock detection result: %b",detected);
+
 endtask
 
 endmodule
