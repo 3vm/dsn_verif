@@ -5,7 +5,7 @@ logic clkin0, clkin1;
 logic clksel;
 logic clkout;
 bit result;
-parameter int CLKFREQ[] = '{10,100};
+parameter int CLKFREQ[2] = '{10,100};
 real fout;
 
 thee_clk_gen_module #(.FREQ(CLKFREQ[0])) clk_gen0 (.clk(clkin0));
@@ -57,6 +57,7 @@ input logic sel,
 output bit cmp
 );
   import thee_utils_pkg::check_approx_equality;
+  $display("Clock freq result %1.3e", fout);
   check_approx_equality (.inp(fout),.expected(CLKFREQ[sel]*1e6),.result(cmp));
 endtask
 
