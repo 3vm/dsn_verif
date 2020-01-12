@@ -1,46 +1,36 @@
 
 module tb ;
 
-logic clkin;
+logic clkin0, clkin1;
+logic clksel;
 logic clkout;
 bit result;
-logic clken;
-bit clk_det;
+parameter int CLKFREQ[] = '{10,100};
+real fout;
 
-thee_clk_gen_module clk_gen (.clk(clkin));
+thee_clk_gen_module #(.FREQ(CLKFREQ[0])) clk_gen0 (.clk(clkin0));
+thee_clk_gen_module #(.FREQ(CLKFREQ[1])) clk_gen1 (.clk(clkin1));
 
-ehgu_clkgate clkgate
+thee_clk_freq_meter fmeter0  (.clk(clkout),.freq_in_hertz(fout));
+
+ehgu_clkmux clkmux
 (
- .clkin ,
+ .clkin0 ,
+ .clkin1 ,
  .clkout ,
- .en(clken)
+ .sel(clksel)
 );
 
 initial begin
   result = 1 ;
-  repeat (2) @(posedge clkin);
-  
-  operate_clk_gate("ungate");
-  clock_detect (clk_det) ;
-  if ( clk_det ) 
-  	result &= 1;
-  else
-  	result = 0 ;
-  
-  operate_clk_gate("gate");
-  clock_detect (clk_det) ;
-  if ( clk_det == 0 ) 
-  	result &= 1;
-  else
-  	result = 0 ;
 
-  
-  operate_clk_gate("ungate");
-  clock_detect (clk_det) ;
-  if ( clk_det ) 
-  	result &= 1;
-  else
-  	result = 0 ;
+  for ( int i = 0 ; i < 3 ; i++ ) begin
+    bit tmp;
+    clksel = $random;
+    switch_clk (clksel);
+    check_clkfreq (clksel,tmp);
+    result &= tmp;
+  end
 
   if ( result ) begin
     repeat (3) $display ( "PASS");
@@ -51,42 +41,23 @@ initial begin
 	$finish;
 end
 
-task operate_clk_gate (
-input string cmd="gate"
+task switch_clk (
+input logic sel
 );
-	@(posedge clkin);
-	if ( cmd == "gate")
-		clken = 0 ;
-	else
-		clken = 1 ;
+  clksel = sel;
+  repeat (2+1) @(posedge clkin0);
+  repeat (2+1) @(posedge clkin1);
 
-	$display("Operating clock gate, Command %s, Clock enable %b",cmd, clken);
+	$display("Selecting clock %b", sel);
 
-	repeat (2) @(posedge clkin);
 endtask
 
-task automatic clock_detect (
-output bit detected
+task automatic check_clkfreq (
+input logic sel,
+output bit cmp
 );
-
-int cnt_ungated, cnt_gated;
-fork
-	repeat (3) begin
-		@(posedge clkin);
-		cnt_ungated++;
-	end
-	repeat (3) begin
-		@(posedge clkout);
-		cnt_gated++;
-	end
-join_any
-$display("Clock edge count ungated %3d, gated %3d",cnt_ungated, cnt_gated);
-
-if ( cnt_gated > 0 ) 
-	detected = 1;
-
-$display("Clock detection result: %b",detected);
-
+  import thee_utils_pkg::check_approx_equality;
+  check_approx_equality (.inp(fout),.expected(CLKFREQ[sel]*1e6),.result(cmp));
 endtask
 
 endmodule
