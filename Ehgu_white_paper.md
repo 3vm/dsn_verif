@@ -5,7 +5,7 @@ Mark Troccino is a  Director of Design, Hartronics Inc in San Diego, USA. His te
 
 Srinivas Gupta is a Design Manager in AppCores Limited, Bangalore, India trying to hire skilled junior digital designers. His team is building the next generation of smartphone application processors. He needs ten designers with good hands on skills. Unfortunately, he can only get smart engineers with masters degree but not with immediately usable job skills. Again the demand for salary is much higher than his budget.
 
-Tony Fong is an Executive Director in CarNerves Inc, Fort Collins, USA. He is the chief of a division building an advanced version of automotive Ethernet targeted for self driving vehicles. The increase in bandwidth capacity is expected to be provided by the next generation of auto Ethernet is touted to drastically reduce the accident rate in self driving vehicles. The occasional accidents in self driving vehicles had by then caused the public to lose confidence in Robocars. This had resulted in increased human fatalities caused by drivers talking and texting while driving. He is hard pressed to find designers with good grasp of automatic safety requirements.
+Tony Fong is an Executive Director in CarNerves Inc, Fort Collins, USA. He is the chief of a division building an advanced version of automotive Ethernet targeted for self driving vehicles. The increase in bandwidth capacity is expected to be provided by the next generation of auto Ethernet is touted to drastically reduce the accident rate in self driving vehicles. The occasional accidents in self driving vehicles had by then caused the public to lose confidence in Robocars. This had resulted in increased human fatalities caused by drivers talking and texting while driving. He is hard pressed to find designers with good grasp of automotive safety requirements.
 
 Jim Butler is a truck driver in Tennessee, USA. He has been driving for 20 years. But, recently is worried about his future in the age of self driving trucks. He is also passionate about trucks and the transportation industry. He is keen to upgrade his skills and be part of companies that design self driving trucks. But his friends tell him that he needs to get an engineering degree in any of electrical, electronics or computer engineering. He has a family of five people and he cannot afford a full time or even a part time engineering degree program fees.
 
@@ -36,7 +36,7 @@ Preface
 --------
 
 Electronic chips are now everywhere. There are chips deep in the Sahara desert, there are chips in space, there are chips inside the human body, there are chips deep in the ocean, there are chips inside cars, there are chips in rockets and there are chips in unimaginable places. But chip designers are only a tiny fraction of the world population and are also located only in a few selected pockets of the world. The headcount of chip designers is so small, it is a miracle they are able to make an out-sized impact on the world. Every piece of modern machine contains chips in one form or another. Our life in the information age is underpinned by chips.  Even at the current level of technology the value added by chips is immense. So immense that most of the world population depends on it for healthy, happy and prosperous living.
-Suppose, I tell you the number of chip designers can be increased by a factor of 100x and the number of electronics systems designed by a factor of 1000x, what wonders would come to pass? Is it even possible? Oh, Yes! I think so.
+Suppose, I tell you the number of chip designers can be increased by a factor of 100x and the number of electronics systems designed by a factor of 1000x, what wonders would come to pass? Is it even possible? Oh, Yes! We can.
 Sadly, when older professions are fading away into history newer professions like chip design has a significant shortage of skilled people. Chip design is accessible to only a few people in the world. The design process is also far less efficient than what it can be. In this whitepaper,  I describe my ideas related to a hardware design ecosystem that is more efficient at producing useful hardware and also reward more people across the whole world. It is quite cumbersome to refer to hardware design engineers or ASIC design engineers or digital designers or RTL designers or IC designers or FPGA designers. It is also rather useless to add the term engineer to every job title. So,  I am naming this particular trade as chipping and the practitioner as a chipper.
 
 Vikram
@@ -67,10 +67,15 @@ Chipping has evolved into two natural specializations,  one for ASIC design and 
 Chipper Basics
 
 Circuits: Kirchoff’s laws, Ohm’s law, power consumption in electrical circuits.
+
 CMOS : NAND, NOR, NOT, AND, OR gate transistor circuits, power dissipation in CMOS – switching, short circuit and leakage power
+
 Behavioral model for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
+
 Algorithms and Data Structures in C++
+
 Digital logic theory,  SystemVerilog 2013 language,  Concepts from logic synthesis,  Concepts from static timing analysis, Low power design, Version control – Git or Subversion
+
 RTL simulation with Vivado/Modelsim/Incisive/Xcellium/VCS, Waveform debugging with Vivado/Modelsim/Simvision/Verdi/DVE, Gate Level Simulation – handling synchronizers, initializing unintialized flip flops and combinational loops, Performing design ECOs
 
 Chipper ASIC
@@ -105,7 +110,7 @@ Chipper Neo
 FAQ
 ----
 How can we support the Ehgu ecosystem?
-You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. You can develop a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your 5-10 year older version of your software? Or even provide a feature reduced version of education.
+You could start using open source code for your designs. You can donate code and documentation of your discontinued products. You can even open source your most important product to gain greater market credibility. You can remove the requirement for degree from your job postings. You can develop a curriculum for your company specific jobs that general public can self learn and then apply for your jobs. Chipping relies heavily on software tools. Some of the tools are prohibitively expensive. If you are a software developer creating Electronic Design Automation tools for design, try changing the model from a one time fully paid licensing to a Software as a Service model. Or better still, how about open sourcing your 5-10 year older version of your software? Or even provide a feature reduced version for education.
 
 Details
 --------
