@@ -27,7 +27,7 @@ thee_clk_freq_meter #(.MEAS_WINDOW(MEAS_WINDOW)) fmeter  (.clk(clkout),.freq_in_
 initial begin
   ref_div = 5;
   fb_div = 32;
-  exp_fout = REF_FREQ * (fb_div/ref_div);
+  exp_fout = REF_FREQ * (real'(fb_div)/ref_div);
   $display("Choosing input division %3d, feedback division %3d",ref_div, fb_div);
   wait(pll_lock);
   repeat (MEAS_WINDOW+10) @(posedge clkout);  
