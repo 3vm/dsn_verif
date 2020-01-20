@@ -1,0 +1,53 @@
+module thee_pll
+#(
+parameter string MODEL_TYPE="basic",
+parameter MEAS_CYCLES=1
+)
+(
+input logic refclk,
+input integer ref_div,
+input integer fb_div,
+output logic clkout,
+output logic pll_lock
+);
+
+timeunit 10ps;
+timeprecision 1ps;
+
+    realtime clkout_half_period, period, avg_period;
+
+    real freq_in_Hz;
+
+    generate
+      if ( MODEL_TYPE == "basic" ) begin
+        : basic_model
+        initial begin
+          clkout = 0;
+
+          repeat (10) @(posedge refclk);
+          sum_of_periods = 0 ;
+          @(posedge clk);
+          first_rise_edge = $realtime();
+          repeat (MEAS_WINDOW) @(posedge clk) begin
+            second_rise_edge = $realtime();
+            period = second_rise_edge - first_rise_edge;
+            sum_of_periods += period;
+            first_rise_edge = second_rise_edge;
+          end
+          avg_period = ( sum_of_periods / MEAS_CYCLES );
+          clkout_half_period = avg_period * ( ref_div / fb_div ) /2.0;
+          
+          clk = 0;
+          forever begin
+            #(half_period);
+            clk=0;
+            #(half_period);
+            clk=1;
+          end
+        end
+      end // else if ( CLK_GEN_TYPE == "jitter_only" ) begin
+//        : ckgen_jitter_only
+  
+    endgenerate
+
+endmodule
