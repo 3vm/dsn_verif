@@ -1,1 +1,0 @@
-rm -rf *.log *.jou
