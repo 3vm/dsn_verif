@@ -3,6 +3,7 @@ module tb ;
 import thee_utils_pkg::check_approx_equality;
 
 localparam real REF_FREQ = 100e6;
+localparam MEAS_WINDOW = 10;
 logic refclk,clkout;
 
 real fout,exp_fout;
@@ -21,14 +22,15 @@ thee_pll pll
  .lock (pll_lock)
 );
 
-thee_clk_req_meter #(.MEAS_WINDOW(50)) fmeter  (.clk(clkout),.freq_in_hertz(fout));
+thee_clk_freq_meter #(.MEAS_WINDOW(MEAS_WINDOW)) fmeter  (.clk(clkout),.freq_in_hertz(fout));
 
 initial begin
   ref_div = 5;
   fb_div = 32;
   exp_fout = REF_FREQ * (fb_div/ref_div);
   $display("Choosing input division %d, feedback division %d",ref_div, fb_div);
-  @(posedge pll_lock);
+  wait(pll_lock);
+  repeat (MEAS_WINDOW) @(posedge clkout);  
   $display ( " Clkout frequencies 0 %e , expected %e", fout, exp_fout);
   check_approx_equality (.inp(fout),.expected(exp_fout),.result(result));
   if ( result==1) begin
