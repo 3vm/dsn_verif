@@ -37,7 +37,7 @@ timeprecision 1ps;
           end
           avg_period = ( sum_of_periods / MEAS_CYCLES );
           clkout_half_period = avg_period * ( ref_div / fb_div ) /2.0;
-          
+          $display("Half p %1.3e, avg p %1.3e, ref div %d fb div %d ", clkout_half_period, avg_period, ref_div, fb_div);
           clkout = 0;
           forever begin
             #(clkout_half_period);
