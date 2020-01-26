@@ -1,4 +1,4 @@
-Scripts for Windows and Linux to rest periodically
+Collection of useful scripts and commands frequently used in chipping
 
 For further description refer to this book
 
