@@ -65,7 +65,7 @@ ehgu_cntr #(.WIDTH(CNT_WIDTH)) cntr (
 .cnt (sample_cnt)
 );
 
-initial $monitor ("sc %d %t",sample_cnt, $time);
+initial $monitor ("sc %d %d %t",sum,avg_out, $time);
 
 generate
 	if ( DIV_CYCLES==1 ) begin
@@ -94,6 +94,8 @@ always_comb begin
 		sum_next = 0;
 	else if ( state == ACCUMULATING )
 		sum_next = sum + data_in;
+	else
+		sum_next = sum;
 end
 
 always @(posedge clk, negedge rstn) begin

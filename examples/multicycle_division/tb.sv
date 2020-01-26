@@ -20,7 +20,7 @@ int unsigned sum_golden,samp_cnt;
 
 thee_clk_gen_module clk_gen (.clk(clk));
 
-sample_avg #(.DIV_CYCLES(1)) avg_1cyc 
+sample_avg #(.DIV_CYCLES(1), .WIDTH(WIDTH)) avg_1cyc 
 (
 .clk ,
 .rstn ,
@@ -28,6 +28,16 @@ sample_avg #(.DIV_CYCLES(1)) avg_1cyc
 .dvalid ,
 .avg_out ( avg_out_1c ) ,
 .avg_valid ( avg_valid_1c ) 
+);
+
+sample_avg #(.DIV_CYCLES(1), .WIDTH(WIDTH)) avg_manycyc 
+(
+.clk ,
+.rstn ,
+.data_in ,
+.dvalid ,
+.avg_out ( avg_out_manyc ) ,
+.avg_valid ( avg_valid_manyc ) 
 );
 
 initial begin
@@ -53,7 +63,7 @@ initial begin
 	end	
 
 	avg_out_golden = sum_golden / samp_cnt;
-
+	$display(sum_golden);
 	$display ( "Avg 1c %d, avg many c %d , avg golden %d", avg_out_1c, avg_out_manyc, avg_out_golden);
 
 	if ( (avg_out_1c == avg_out_manyc) && (avg_out_1c == avg_out_golden ) ) begin
