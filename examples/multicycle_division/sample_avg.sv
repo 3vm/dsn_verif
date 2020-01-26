@@ -10,7 +10,7 @@ input logic rstn,
 input logic [WIDTH-1:0] data_in,
 input logic dvalid,
 output logic [WIDTH-1:0] avg_out,
-output logic [WIDTH-1:0] avg_valid
+output logic avg_valid
 );
 
 localparam SUM_WIDTH=$clog2({ WIDTH {1'b1}} * MAX_SAMPLES);

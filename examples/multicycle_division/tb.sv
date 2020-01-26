@@ -10,10 +10,10 @@ logic result ;
 logic [WIDTH-1:0] data_in;
 logic dvalid;
 logic [WIDTH-1:0] avg_out_1c;
-logic [WIDTH-1:0] avg_valid_1c;
+logic avg_valid_1c;
 
 logic [WIDTH-1:0] avg_out_manyc;
-logic [WIDTH-1:0] avg_valid_manyc;
+logic avg_valid_manyc;
 
 logic [WIDTH-1:0] avg_out_golden;
 int unsigned sum_golden,samp_cnt;
@@ -64,6 +64,7 @@ initial begin
 
 	avg_out_golden = sum_golden / samp_cnt;
 	$display(sum_golden);
+	wait (avg_valid_1c && avg_valid_manyc);
 	$display ( "Avg 1c %d, avg many c %d , avg golden %d", avg_out_1c, avg_out_manyc, avg_out_golden);
 
 	if ( (avg_out_1c == avg_out_manyc) && (avg_out_1c == avg_out_golden ) ) begin
