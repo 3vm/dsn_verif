@@ -30,7 +30,7 @@ sample_avg #(.DIV_CYCLES(1), .WIDTH(WIDTH)) avg_1cyc
 .avg_valid ( avg_valid_1c ) 
 );
 
-sample_avg #(.DIV_CYCLES(1), .WIDTH(WIDTH)) avg_manycyc 
+sample_avg #(.DIV_CYCLES(10), .WIDTH(WIDTH)) avg_manycyc 
 (
 .clk ,
 .rstn ,

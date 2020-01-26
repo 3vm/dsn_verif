@@ -77,7 +77,8 @@ generate
       logic [$clog2(DIV_CYCLES)-1:0] div_cyc_cnt;
       logic div_cnt_en;
 
-      assign div_cnt_en = state == DIVIDING;
+      assign last_div_cyc = (state== DIVIDING) && (div_cyc_cnt==DIV_CYCLES-1);
+      assign div_cnt_en = state == DIVIDING ;
 
       ehgu_cntr #(.WIDTH(CNT_WIDTH)) cntr_div_cyc (
          .clk,
@@ -86,7 +87,7 @@ generate
          .en(div_cnt_en),
          .cnt (div_cyc_cnt)
       );
-      initial $monitor ("sc %s %d %d %t",state.name, sum,avg_out, $time);
+     // initial $monitor ("sc %s %d %d %d %t",state.name, div_cyc_cnt, sum,avg_out, $time);
 
    end
 endgenerate
