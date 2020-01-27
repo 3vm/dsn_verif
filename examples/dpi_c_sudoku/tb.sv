@@ -1,16 +1,12 @@
 
 module tb ;
 
-timeunit 1ns;
-timeprecision 1ps;
+import "DPI-C" function int myfn;
 
-import "DPI-C" pure function int main ;
-	int a;
-
+int a;
 
 initial begin
-	#0;
-	a=main();
+	a=myfn();
 	$finish();
 end
 

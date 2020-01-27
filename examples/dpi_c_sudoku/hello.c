@@ -1,6 +1,6 @@
 #include <stdio.h>
-int main (void) 
+int myfn (void) 
 {
-	//printf("Hello Worlds\n");
+	printf("Hello Worlds\n");
 	return 0;
 }
