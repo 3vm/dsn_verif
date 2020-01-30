@@ -42,7 +42,7 @@ close $fp
 close $fpw
 close $fp_dotf
 
-file rename -force $tempoutfile $filename
+file rename -force $tempoutfile "last_dollar_unit_scope_lines.sv"
 cd ..
 
 #3vm, start Jan 2020
