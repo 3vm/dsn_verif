@@ -1,1 +1,179 @@
+module padc_ana_stage (
+input real vin,
+input logic clk,
+input logic rstn,
+output logic signed [1:0] dig_raw,
+output real residue
+);
 
+real sampled_value ;
+
+always @(posedge clk, negedge rstn) begin
+  if ( !rstn ) begin
+    sampled_value <= 0;
+  end else begin
+    sampled_value <= vin;
+  end
+end
+
+always_comb begin
+  if ( sampled_value < -0.25 ) begin
+    dig_raw = -1;
+  end else if ( sampled_value < 0.25 ) begin
+    dig_raw = 0 ;
+  end else begin
+    dig_raw = +1;
+  end
+
+  residue = 2 * sampled_value - 1.0 *dig_raw;
+end
+
+
+
+
+endmodule
+module padc_ana (
+input real ana_in,
+input logic clk,
+input logic rstn,
+output logic [1:0] dig_raw [7]
+);
+
+real vin_vec[7];
+real residue_vec[7];
+genvar i;
+
+generate
+  for ( i= 0 ; i < 7 ; i++) begin
+  :stages
+    padc_ana_stage padc_ana_stage (
+      .vin(vin_vec[i]),
+      .clk,
+      .rstn,
+      .dig_raw(dig_raw[i]),
+      .residue(residue_vec[i])
+    );
+  end
+endgenerate
+
+always_comb begin
+ vin_vec[0]=ana_in;
+ vin_vec[1:7]=residue_vec[0:6];
+end
+
+endmodule
+module padc_dig (
+  input logic clk,
+  input logic rstn,
+  input logic [1:0] dig_raw [7],
+  output logic signed [7:0] dig_out
+);
+
+logic [1:0] dig_raw_delayed [7][7];
+logic [1:0] dig_raw_aligned [7];
+
+always_ff @(posedge clk, negedge rstn) begin
+  if ( !rstn ) begin
+    dig_raw_delayed <= '{default:0};
+  end else begin
+    dig_raw_delayed[0] <= dig_raw;
+    for ( int i = 1 ; i<7;i++) begin
+      dig_raw_delayed[i] <= dig_raw_delayed[i-1];
+    end
+  end
+end
+
+always_comb begin
+  foreach ( dig_raw_aligned[i] ) begin
+    dig_raw_aligned [i] = dig_raw_delayed[6-i][i];
+  end
+end
+
+always_comb begin
+  dig_out = 0 ;
+  foreach ( dig_raw_aligned[i] ) begin
+    if (dig_raw_aligned[i] ==1 ) begin
+      dig_out += (2**(6-i));
+    end else if (dig_raw_aligned[i] ==2'b11 ) begin
+      dig_out -= (2**(6-i));
+    end else begin
+      dig_out += 0;
+    end
+//    dig_out += (2**(6-i)) * $signed(dig_raw_aligned[i]) ;
+  end
+end
+
+endmodule
+module padc (
+input real ana_in,
+input logic clk,
+input logic rstn,
+output logic signed [7:0] dig_out
+);
+
+logic [1:0] dig_raw [7];
+
+padc_ana  padc_ana (
+.ana_in,
+.clk,
+.rstn,
+.dig_raw
+);
+
+padc_dig  padc_dig (
+.dig_raw,
+.clk,
+.rstn,
+.dig_out
+);
+
+endmodule
+module tb ();
+
+timeunit 1ns;
+timeprecision 1ps;
+
+logic clk;
+logic rstn;
+real ana_in;
+logic signed [7:0] dig_out;
+real dig_out_real;
+
+assign dig_out_real = dig_out / 127.0 ;
+
+padc dut 
+(
+.clk,
+.rstn,
+.ana_in,
+.dig_out
+);
+
+initial begin
+clk=0;
+rstn=0;
+#1;
+clk=0;
+rstn=1;
+#1;
+forever begin
+  clk = ~clk;
+  #5;
+end
+end
+
+initial begin  
+  repeat (5) @(posedge clk);
+  ana_in = 0.6;
+  repeat (1) @(posedge clk);
+  ana_in = -0.6;
+  repeat (1) @(posedge clk);
+  ana_in = 0.9;
+  repeat (1) @(posedge clk);
+  ana_in = 0.81;
+
+  repeat (10) @(posedge clk);
+  $finish;
+end
+
+endmodule
