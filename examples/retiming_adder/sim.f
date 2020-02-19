@@ -13,5 +13,6 @@ timescale.sv
 ../../thee/thee_utils_pkg.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
-adder_speedtest.sv
+adder_pipd.sv
+adder_rtmd.sv
 tb.sv
