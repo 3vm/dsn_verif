@@ -19,9 +19,9 @@ always @ ( posedge clk ) begin
    add_pipd_op0_reg <= add_pipd_op0 ;
    add_pipd_op1_reg <= add_pipd_op1 ;
    {carry , add_pipd_out_reg_low} <= add_pipd_op0_reg [ 16-1 : 0 ] + add_pipd_op1_reg [ 16-1 : 0 ] ;
-   add_pipd_out_reg_high <= add_pipd_op0_reg [ WIDTH-16-1 : 16 ] + add_pipd_op1_reg [ WIDTH-16-1 : 16 ] ;
+   add_pipd_out_reg_high <= add_pipd_op0_reg [ WIDTH-1 : 16 ] + add_pipd_op1_reg [ WIDTH-1 : 16 ] ;
    add_pipd_out_reg [ 16-1 : 0 ] <= add_pipd_out_reg_low ;
-   add_pipd_out_reg [ WIDTH-16-1 : 16 ] <= add_pipd_out_reg_high + carry ;
+   add_pipd_out_reg [ WIDTH-1 : 16 ] <= add_pipd_out_reg_high + carry ;
 end
 
 assign add_pipd_out = add_pipd_out_reg ;
