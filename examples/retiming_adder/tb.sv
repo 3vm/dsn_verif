@@ -38,15 +38,17 @@ add_pipd_op0 = add_rtmd_op0 ;
 add_pipd_op1 = add_rtmd_op1 ;
 expected = add_rtmd_op0 + add_rtmd_op1;
 repeat (4) @(posedge clk);
-if ( add_rtmd_out == expected && add_pipd_out == expected ) begin
+if ( add_rtmd_out === expected && add_pipd_out === expected ) begin
   $display ("Vector Passed");
 end else begin
   $display ("Vector Failed");
   result = 0 ;
 end
 
-$display ("Test Vector Unpipelined inputs %d + %d , output %d" , add_rtmd_op0, add_rtmd_op1, add_rtmd_out );
-$display ("Test Vector   Pipelined inputs %d + %d , output %d" , add_pipd_op0, add_pipd_op1, add_pipd_out );
+$display ("Test inputs %d + %d , expected output %d" , 
+	add_pipd_op0, add_pipd_op1, expected );
+$display ("Test output non retimed %d" , add_pipd_out );
+$display ("Test output     retimed %d" , add_rtmd_out );
 
 end
 

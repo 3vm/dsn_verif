@@ -1,5 +1,5 @@
 
-module adder_speedtest
+module adder_pipd
 #(
 parameter WIDTH=32
 )(
