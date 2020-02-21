@@ -1,0 +1,1 @@
+create_generated_clock -name slowclk -divide_by 2 -source clk [get_pins clkdiv/clkout_reg/Q]
