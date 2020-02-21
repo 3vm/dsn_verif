@@ -1,6 +1,7 @@
 timescale.sv
 ../../ehgu/ehgu_config_pkg.sv
 ../../ehgu/ehgu_basic_pkg.sv
+../../ehgu/ehgu_clkdiv.sv
 ../../ehgu/ehgu_clkdiv_fractional.sv
 ../../ehgu/ehgu_cntr.sv
 ../../ehgu/ehgu_dly.sv

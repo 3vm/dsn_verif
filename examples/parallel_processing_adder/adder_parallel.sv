@@ -11,40 +11,72 @@ output logic [ WIDTH-1 : 0 ] add_out
  ) ;
 
 logic clkbyn ;
-logic rstn ;
 
 logic [ WIDTH-1 : 0 ] add_op0_0 , add_op1_0 ;
 logic [ WIDTH-1 : 0 ] add_out_0 ;
 
 logic [ WIDTH-1 : 0 ] add_op0_1 , add_op1_1 ;
 logic [ WIDTH-1 : 0 ] add_out_1 ;
+logic cnt;
 
-counter counts upto ENGINES
+ehgu_cntr #(.WIDTH($clog2(ENGINES))) cntr (
+.clk,
+.rstn,
+.sync_clr (0),
+.en(1'b1),
+.cnt
+);
 
-demux to supply every engine with unique inputs
+always_ff @(posedge clk or negedge rstn) begin
+	if(~rstn) begin
+		add_op0_0 <= 0;
+		add_op1_0 <= 0;
+	end else if (cnt==0) begin
+		add_op0_0 <=  add_op0;
+		add_op1_0 <=  add_op1;
+	end
+end
+
+always_ff @(posedge clk or negedge rstn) begin
+	if(~rstn) begin
+		add_op0_1 <= 0;
+		add_op1_1 <= 0;
+	end else if (cnt==1) begin
+		add_op0_1 <=  add_op0;
+		add_op1_1 <=  add_op1;
+	end
+end
 
 adder_engine # ( .WIDTH ( WIDTH ) ) add_0 (
-.clk ( clkbyn ) ,
+.clk ( slowclk ) ,
 .add_op0 ( add_op0_0 ) ,
 .add_op1 ( add_op1_0 ) ,
 .add_out ( add_out_0 )
  ) ;
 
 adder_engine # ( .WIDTH ( WIDTH ) ) add_1 (
-.clk ( clkby2 ) ,
+.clk ( slowclk ) ,
 .add_op0 ( add_op0_1 ) ,
 .add_op1 ( add_op1_1 ) ,
 .add_out ( add_out_1 )
  ) ;
 
-mux to combine engine outputs into correct full speed outputs
+always_ff @(posedge clk or negedge rstn) begin
+	if(~rstn) begin
+		add_out <= 0;
+	end else if (cnt==0) begin
+		add_out <= add_out_0;
+	end else if (cnt==1) begin
+		add_out <= add_out_1;
+	end
+end
 
 ehgu_clkdiv # ( .DIVISION ( ENGINES ) ) clkdiv
  (
 .clkin ( clk ) ,
 .rstn ,
 .en ( 1'b1 ) ,
-.clkout ( clkbyn )
+.clkout ( slowclk )
  ) ;
  
 logic h2h_3vm ;
