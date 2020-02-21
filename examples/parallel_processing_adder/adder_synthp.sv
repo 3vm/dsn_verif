@@ -20,7 +20,7 @@ always_ff @(posedge srcclk or negedge rstn) begin
   end
 end
 
-adder_parallel # ( .WIDTH ( WIDTH ) ) addp
+adder_parallel # ( .WIDTH ( WIDTH ), .ENGINES(ENGINES) ) addp
  (
 .clk ,
 .rstn ,

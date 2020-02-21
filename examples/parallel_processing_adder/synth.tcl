@@ -1,5 +1,5 @@
 
-foreach iter {single parallel} {
+foreach iter {parallel} {
   set dirname synth_${iter}.log
   file mkdir $dirname
   cd $dirname
@@ -25,6 +25,11 @@ foreach iter {single parallel} {
 
   set_property top $top [current_fileset]
   set_property generic WIDTH=64 [current_fileset]
+
+  #synth_design -rtl
+  #if { $iter == "parallel" } {
+  #  set_property CLOCK_DELAY_GROUP clk_dom [get_nets {clk slowclk}]
+  #}
 
   synth_design
   place_design
