@@ -21,6 +21,8 @@ while { [gets $fp line ] != -1 } {
 	regsub -all {=} $line { = } line
 	regsub -all {=\s*=\s*=} $line {===} line
 	regsub -all {=\s*=} $line {==} line
+	regsub -all {!\s*=} $line {!=} line
+	regsub -all {~\s*=} $line {~=} line
 	regsub -all {<} $line { < } line
 	regsub -all {<\s+<} $line {<<} line
 	regsub -all {<\s+=} $line {<=} line
