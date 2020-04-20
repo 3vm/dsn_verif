@@ -1,5 +1,5 @@
 
-module tb ;
+program tb ;
 
 import "DPI-C" function int myfn;
 
@@ -10,4 +10,4 @@ initial begin
 	$finish();
 end
 
-endmodule
+endprogram
