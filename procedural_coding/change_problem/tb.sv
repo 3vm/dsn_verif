@@ -15,12 +15,12 @@ initial begin
      // money = $urandom_range ( 1 , 1024 ) ;
      money = 13 ;
      $display ( "Money %5d" , money ) ;
-     $display ( "Brute force change" ) ;
-     bf_chg = bf_change ( money ) ;
+     $display ( "Greedy change" ) ;
+     bf_chg = greedy_change ( money ) ;
      disp_change ( bf_chg ) ;
      $display ( "Dynamic Programming change" ) ;
      dp_chg = dp_change ( money ) ;
-     disp_change ( dp_chg ) ;
+     //disp_change ( dp_chg ) ;
      if ( dp_chg!= bf_chg ) begin
        $display ( "Different change" ) ;
        break ;
@@ -29,7 +29,7 @@ initial begin
    $finish ;
 end
 
-function automatic change_t bf_change (
+function automatic change_t greedy_change (
 input int unsigned money
  ) ;
  change_t chg ;
@@ -52,27 +52,36 @@ input int unsigned money
  chg [ 0 ] = '{default : 0} ;
  // $display ( MAX_VALUE ) ;
  for ( int i = 1 ; i <= money ; i ++ ) begin
- num_coins = MAX_VALUE ;
- foreach ( DENOMINATIONS [ d ] ) begin
-   this_deno = DENOMINATIONS [ d ] ;
-   $display ( "money %5d , deno %5d num_coins %5d" , i , this_deno , num_coins ) ;
-   if ( i >= this_deno ) begin
-     $display ( "enter deno try" ) ;
-     disp_change ( chg [ i-this_deno ] ) ;
-     prev_chg = chg [ i-this_deno ] ;
-     prev_coins = prev_chg.sum ( ) ;
-     $display ( "Previous coins %5d" , prev_coins ) ;
-     if ( prev_coins + 1 < num_coins ) begin
-       num_coins = prev_coins + 1 ;
-       chg [ i ] = chg [ i-this_deno ] ;
-       chg [ i ] [ d ] = chg [ i ] [ d ] + 1 ;
-       $display ( "Update , Using denomination %5d" , DENOMINATIONS [ d ] ) ;
-       disp_change ( chg [ i ] ) ;
+   num_coins = MAX_VALUE ;
+   $display ( "Calculating best change for money %5d" , i ) ;
+
+   foreach ( DENOMINATIONS [ d ] ) begin
+     this_deno = DENOMINATIONS [ d ] ;
+     if ( i >= this_deno ) begin
+       $display ( "Attempting to find best change for money %5d using best change for %5d", i, i-this_deno ) ;
+       $display ( "Change for %5d" , i-this_deno ) ;
+       disp_change ( chg [ i-this_deno ] ) ;
+
+       prev_chg = chg [ i-this_deno ] ;
+       prev_coins = prev_chg.sum ( ) ;
+       if ( prev_coins + 1 < num_coins ) begin
+         num_coins = prev_coins + 1 ;
+         chg [ i ] = chg [ i-this_deno ] ;
+         chg [ i ] [ d ] = chg [ i ] [ d ] + 1 ;
+         $display ( "Improvement found using denomination %5d" , DENOMINATIONS [ d ] ) ;
+         disp_change ( chg [ i ] ) ;
+       end else begin
+         $display ( "No improvement found using denomination %5d" , DENOMINATIONS [ d ] ) ;
+       end 
+      end else begin
+      $display ( "Ignoring denomination %5d for money %5d" , this_deno , i ) ;
      end
    end
- end
- $display ( "Change for money %5d is" , i ) ;
- disp_change ( chg [ i ] ) ;
+   $display ( "--------------------------------") ;
+   $display ( "Best change for money %5d is" , i ) ;
+   $display ( "--------------------------------") ;
+   disp_change ( chg [ i ] ) ;
+   $display ( "________________________________________________________");
  end
  return chg [ money ] ;
 endfunction
@@ -105,7 +114,7 @@ function automatic void disp_change (
 input change_t chg
  ) ;
  foreach ( chg [ i ] )
- $write ( "%3d x %1d \t" , DENOMINATIONS [ i ] , chg [ i ] ) ;
+    $write ( "%3d x %1d \t" , DENOMINATIONS [ i ] , chg [ i ] ) ;
  $display ( ) ;
 
  $display ( "Total Coins %5d\n" , chg.sum ( ) ) ;
