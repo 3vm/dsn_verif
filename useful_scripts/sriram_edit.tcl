@@ -50,6 +50,8 @@ while { [gets $fp line ] != -1 } {
 	regsub -all {\]} $line { ] } line
 	regsub -all {\(} $line { ( } line
 	regsub -all {\)} $line { ) } line
+	regsub -all {\{} $line "\{ " line
+	regsub -all {\}} $line " \}" line
 	regsub -all {;} $line { ; } line
 	regsub -all {[ ]+} $line { } line
 	regsub -all {\t} $line {  } line
