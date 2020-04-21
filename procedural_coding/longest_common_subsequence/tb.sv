@@ -30,16 +30,15 @@ initial begin
    $finish ;
 end
 
-function void trace_back ( int i , int j ) ;
- $display ( "index" , i , j ) ;
+function void trace_back ( input int i , input int j ) ;
+ $display ( "index %2d %2d Trace %3s" , i , j, trace[i][j] ) ;
  if ( i == 0 || j == 0 ) begin
    return ;
  end
  if ( trace [ i ] [ j ] == "D" ) begin
-   int tmp ;
-   tmp = i ;
+   $display("Match, seq0 letter %d %d %s", i, j, seq0[i-1]);
    trace_back ( i-1 , j-1 ) ;
-   $display ( seq0 [ tmp ] ) ;
+   $display ( "index %2d sequence letter %s", i-1, seq0 [ i-1 ] ) ;
  end else begin
    if ( trace [ i ] [ j ] == "U" ) begin
      trace_back ( i-1 , j ) ;
