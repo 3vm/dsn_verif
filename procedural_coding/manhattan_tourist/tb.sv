@@ -40,7 +40,7 @@ initial begin
    $finish ;
 end
 
-function int max ( int a , int b ) ;
+function automatic int max ( int a , int b ) ;
  max = a > b ? a : b ;
 endfunction
 
