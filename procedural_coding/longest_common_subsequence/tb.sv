@@ -1,8 +1,8 @@
 
 program tb ;
 
-localparam string gene0 = "ATCTGAT" , gene1 = "TGCATA" ;
-localparam N = gene0.len ( ) , M = gene1.len ( ) ;
+localparam string seq0 = "ATCTGAT" , seq1 = "TGCATA" ;
+localparam N = seq0.len ( ) , M = seq1.len ( ) ;
 
 int alnmat [ 0 : N ] [ 0 : M ] ;
 byte trace [ 1 : N ] [ 1 : M ] ;
@@ -12,7 +12,7 @@ initial begin
    for ( int i = 1 ; i <= N ; i ++ ) begin
      for ( int j = 1 ; j <= M ; j ++ ) begin
        alnmat [ i ] [ j ] = max ( alnmat [ i-1 ] [ j ] , alnmat [ i ] [ j-1 ] ) ;
-       if ( gene0 [ i ] === gene1 [ j ] ) begin
+       if ( seq0 [ i-1 ] == seq1 [ j-1 ] ) begin
          alnmat [ i ] [ j ] = max ( alnmat [ i ] [ j ] , alnmat [ i-1 ] [ j-1 ] + 1 ) ;
        end
        $display ( "alnmat [ %2d ] [ %2d ] = " , i , j , alnmat [ i ] [ j ] ) ;
@@ -39,7 +39,7 @@ function void trace_back ( int i , int j ) ;
    int tmp ;
    tmp = i ;
    trace_back ( i-1 , j-1 ) ;
-   $display ( gene0 [ tmp ] ) ;
+   $display ( seq0 [ tmp ] ) ;
  end else begin
    if ( trace [ i ] [ j ] == "U" ) begin
      trace_back ( i-1 , j ) ;
