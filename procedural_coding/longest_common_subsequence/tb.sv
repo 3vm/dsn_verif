@@ -54,7 +54,7 @@ function automatic void trace_back ( input int i , input int j ) ;
  end
 endfunction
 
-function int max ( int a , int b ) ;
+function automatic int max ( int a , int b ) ;
  max = a > b ? a : b ;
 endfunction
 
