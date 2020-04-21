@@ -9,9 +9,10 @@ byte trace [ 1 : N ] [ 1 : M ] ;
 
 initial begin
    alnmat = '{ default : 0 } ;
-   for ( int i = 0 ; i <= N ; i ++ ) begin
-     for ( int j = 0 ; j <= M ; j ++ ) begin
+   for ( int i = 1 ; i <= N ; i ++ ) begin
+     for ( int j = 1 ; j <= M ; j ++ ) begin
        alnmat [ i ] [ j ] = max ( max ( alnmat [ i-1 ] [ j ] , alnmat [ i ] [ j-1 ] ) , alnmat [ i-1 ] [ j-1 ] + 1 ) ;
+       $display("alnmat[%2d][%2d]=",i,j,alnmat[i][j]);
        if ( alnmat [ i ] [ j ] == alnmat [ i-1 ] [ j ] ) begin
          trace [ i ] [ j ] = "U" ;
        end else if ( alnmat [ i ] [ j ] == alnmat [ i ] [ j-1 ] ) begin
@@ -27,12 +28,15 @@ initial begin
 end
 
 function void trace_back ( int i , int j ) ;
+   $display("index",i,j);
  if ( i == 0 || j == 0 ) begin
    return ;
  end
  if ( trace [ i ] [ j ] == "D" ) begin
+   int tmp;
+   tmp = i;
    trace_back ( i-1 , j-1 ) ;
-   $display ( gene0 [ i ] ) ;
+   $display ( gene0 [ tmp ] ) ;
  end else begin
    if ( trace [ i ] [ j ] == "U" ) begin
      trace_back ( i-1 , j ) ;
