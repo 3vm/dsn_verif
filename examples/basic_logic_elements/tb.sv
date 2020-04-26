@@ -83,7 +83,7 @@ always_comb begin
 	endcase
 
 	if ( sel )
-		y1bmux = b;
+		y1bmux = a;
 	else
 		y1bmux = b;
 
