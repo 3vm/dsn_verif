@@ -265,6 +265,7 @@ for ( int i = 0 ; i < rotation_amount_unsigned ; i ++ ) begin
    out [ signal_width-1 ] = saved_bit ;
  end
 end
+out = out [ signal_width-1 : 0 ] ;
 
 endfunction
 

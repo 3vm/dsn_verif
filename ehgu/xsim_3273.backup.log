@@ -1,0 +1,45 @@
+#-----------------------------------------------------------
+# xsim v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Thu Jun  4 17:33:45 2020
+# Process ID: 3273
+# Current directory: /home/po/RTL_design/dsn_verif/ehgu
+# Command line: xsim -mode tcl -source {xsim.dir/work/xsim_script.tcl}
+# Log file: /home/po/RTL_design/dsn_verif/ehgu/xsim.log
+# Journal file: /home/po/RTL_design/dsn_verif/ehgu/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/work/xsim_script.tcl
+# xsim {work} -autoloadwcfg -runall
+Vivado Simulator 2019.2
+Time resolution is 1 ps
+run -all
+Max value          31, Saturate add          10 +          20 =          30, saturation           0
+Max value          31, Saturate add          14 +          20 =          31, saturation           1
+Max value          31, Saturate add          10 +          30 =          31, saturation           0
+Max value          31, Saturate add          14 +          31 =          31, saturation           1
+modulo          31, modulo add          10 +          20 =          30, wrap 0
+modulo          31, modulo add          14 +          20 =           3, wrap 1
+modulo          31, modulo add          30 + 1 =           0, wrap 1
+modulo          31, modulo add          12 + 1 =          13, wrap 0
+Min value           5, Saturate sub          10 -           2 =           8, saturation           0
+Min value           7, Saturate sub          14 -          12 =           7, saturation           1
+Min value          10, Saturate dec          10 - 1 =          10, saturation           1
+Min value           5, Saturate dec          14 - 1 =          13, saturation           0
+modulo          31, modulo add          21 -          20 =           1, wrap 0
+modulo          31, modulo add          14 -          20 =          25, wrap 1
+modulo          31, modulo add           0 - 1 =          30, wrap 1
+modulo          31, modulo add          12 - 1 =          11, wrap 0
+clip minimum           3 input    14 max           8 output           8 cliped           1
+clip minimum           3 input     6 max           8 output           6 cliped           0
+clip minimum           3 input     1 max           8 output           3 cliped          -1
+rotate left input 00000000000000000000000000000011 output 00000000000000000000000000000110
+rotate left input 00000000000000000000000110110011 rotation           3 width           7 output 00000000000000000000110110011011
+rotate right input 00000000000000000000000000000011 output 00000000000000001000000000000001
+rotate right input 00000000000000000000000110110011 rotation          -6 width           7 output 00000000000000000000000001100110
+Rounding last     4 bits of input 0000000011101010 = 00000000011110000
+Rounding last     3 bits of input 0000000011101100 = 00000000011110000
+Rounding last     3 bits of input 0000000011101100 towards 0 = 00000000011101000
+$finish called at time : 0 fs : File "/home/po/RTL_design/dsn_verif/ehgu/tb.sv" Line 150
+exit
+INFO: [Common 17-206] Exiting xsim at Thu Jun  4 17:34:14 2020...

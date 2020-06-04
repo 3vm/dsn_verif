@@ -1,0 +1,8 @@
+0.6
+2019.2
+Nov  6 2019
+21:42:20
+/home/po/RTL_design/dsn_verif/ehgu/ehgu_basic_pkg.sv,1591265516,systemVerilog,/home/po/RTL_design/dsn_verif/ehgu/tb.sv,/home/po/RTL_design/dsn_verif/ehgu/tb.sv,,ehgu_basic_pkg,,,,,,,,
+/home/po/RTL_design/dsn_verif/ehgu/ehgu_config_pkg.sv,1578142799,systemVerilog,/home/po/RTL_design/dsn_verif/ehgu/ehgu_basic_pkg.sv;/home/po/RTL_design/dsn_verif/ehgu/tb.sv,/home/po/RTL_design/dsn_verif/ehgu/ehgu_basic_pkg.sv,,ehgu_config_pkg,,,,,,,,
+/home/po/RTL_design/dsn_verif/ehgu/tb.sv,1591272776,systemVerilog,,,,tb,,,,,,,,
+/home/po/RTL_design/dsn_verif/ehgu/timescale.sv,1578142799,systemVerilog,,/home/po/RTL_design/dsn_verif/ehgu/ehgu_config_pkg.sv,,,,,,,,,,

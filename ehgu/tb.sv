@@ -179,16 +179,16 @@ $display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 
 // Subtraction
 inp0 = 10; inp1=2; min_value=5;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(min_value),.diff(outp),.saturated(saturated));
-$display ( "Min value %d, Saturate sub %d - %d = %d, saturation %d", min_value, inp0,inp1,outp,saturated);
+$display ( "Min value %4d, Saturate sub %4d - %4d = %4d, saturation %4d", min_value, inp0,inp1,outp,saturated);
 
 inp0 = 14; inp1=12; min_value=7;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(min_value),.diff(outp),.saturated(saturated));
-$display ( "Min value %d, Saturate sub %d - %d = %d, saturation %d", min_value, inp0,inp1,outp,saturated);
+$display ( "Min value %4d, Saturate sub %4d - %4d = %4d, saturation %4d", min_value, inp0,inp1,outp,saturated);
 
-inp0 = 10; inp1=30; min_value=10;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
-$display ( "Min value %d, Saturate dec %d - 1 = %d, saturation %d", min_value, inp0,outp,saturated);
+inp0 = 10; min_value=10;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
+$display ( "Min value %4d, Saturate dec %4d - 1 = %4d, saturation %4d", min_value, inp0,outp,saturated);
 
-inp0 = 14; inp1=31; min_value=5;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
-$display ( "Min value %d, Saturate dec %d - 1 = %d, saturation %d", min_value, inp0,outp,saturated);
+inp0 = 14; min_value=5;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
+$display ( "Min value %4d, Saturate dec %4d - 1 = %4d, saturation %4d", min_value, inp0,outp,saturated);
 
 inp0 = 21; inp1=20; modulo=31;   sub_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.diff(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d - %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
@@ -206,14 +206,13 @@ $display ( "modulo %d, modulo add %d - 1 = %d, wrap %d", modulo, inp1,outp,wrapp
 begin
 int mnm,mxm,cliped, dummy;
 inp = 14; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
-$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+$display ( "clip minimum %3d input %3d max %3d output %3d cliped %3d", mnm, inp, mxm, outp,cliped);
 inp = 6; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
-$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+$display ( "clip minimum %3d input %3d max %3d output %3d cliped %3d", mnm, inp, mxm, outp,cliped);
 inp = 1; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(cliped));
-$display ( "clip minimum %d input %d max %d output %d cliped %d", mnm, inp, mxm, outp,cliped);
+$display ( "clip minimum %3d input %3d max %3d output %3d cliped %3d", mnm, inp, mxm, outp,cliped);
 inp = 1; mnm=3; mxm=8;  clip_unsigned ( .minimum(mnm), .inp(inp), .maximum(mxm), .out(outp),.cliped(dummy));
 end
-
 
 begin
 int inp, rotation, out, signal_width;

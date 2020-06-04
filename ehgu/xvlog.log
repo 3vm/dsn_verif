@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/po/RTL_design/dsn_verif/ehgu/timescale.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/po/RTL_design/dsn_verif/ehgu/ehgu_config_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/po/RTL_design/dsn_verif/ehgu/ehgu_basic_pkg.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/po/RTL_design/dsn_verif/ehgu/tb.sv" into library work
