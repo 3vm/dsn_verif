@@ -107,9 +107,10 @@ end
 always_comb begin
 	logic [2:0]  encoded_out;
 	logic [7:0] decode_in, decoded_out;
-
+	//test input
 	decode_in = 'b00100000;
 
+	// enocoder part
 	encoded_out = 0 ;
 	for ( int i = 0 ; i < 8 ; i++ ) begin
  		if ( decode_in[i]) begin
@@ -117,7 +118,8 @@ always_comb begin
  			break;
  		end
  	end
-
+ 	
+ 	// decoder part
 	decoded_out = 0 ;
  	decoded_out[encoded_out] = 1'b1;
 end
