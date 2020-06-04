@@ -1,5 +1,5 @@
 
-module tb ;
+program tb ;
 
 timeunit 1ns;
 timeprecision 1ps;
@@ -148,7 +148,7 @@ end
 */
 
 initial begin
-int inp0,inp1,max_value,outp, saturated, modulo;
+int inp0,inp1,max_value,min_value,outp, saturated, modulo;
 logic wrapped;
 
 inp0 = 10; inp1=20; max_value=31;   add_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.maximum(max_value),.sum(outp),.saturated(saturated));
@@ -178,18 +178,17 @@ inp0 = 14; inp1=12; modulo=31;   increment_modulo_unsigned ( .inp(inp1),.modulo(
 $display ( "modulo %d, modulo add %d + 1 = %d, wrap %d", modulo, inp1,outp,wrapped);
 
 // Subtraction
-inp0 = 10; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(max_value),.diff(outp),.saturated(saturated));
-$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+inp0 = 10; inp1=2; min_value=5;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(min_value),.diff(outp),.saturated(saturated));
+$display ( "Min value %d, Saturate sub %d - %d = %d, saturation %d", min_value, inp0,inp1,outp,saturated);
 
-inp0 = 14; inp1=20; max_value=31;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(max_value),.diff(outp),.saturated(saturated));
-$display ( "Max value %d, Saturate add %d + %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+inp0 = 14; inp1=12; min_value=7;   sub_saturate_unsigned ( .inp0(inp0),.inp1(inp1),.minimum(min_value),.diff(outp),.saturated(saturated));
+$display ( "Min value %d, Saturate sub %d - %d = %d, saturation %d", min_value, inp0,inp1,outp,saturated);
 
+inp0 = 10; inp1=30; min_value=10;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
+$display ( "Min value %d, Saturate dec %d - 1 = %d, saturation %d", min_value, inp0,outp,saturated);
 
-inp0 = 10; inp1=30; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.minimum(max_value),.out(outp),.saturated(saturated));
-$display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
-
-inp0 = 14; inp1=31; max_value=31;   decrement_saturate_unsigned ( .inp(inp1),.minimum(max_value),.out(outp),.saturated(saturated));
-$display ( "Max value %d, Saturate add %d - %d = %d, saturation %d", max_value, inp0,inp1,outp,saturated);
+inp0 = 14; inp1=31; min_value=5;   decrement_saturate_unsigned ( .inp(inp0),.minimum(min_value),.out(outp),.saturated(saturated));
+$display ( "Min value %d, Saturate dec %d - 1 = %d, saturation %d", min_value, inp0,outp,saturated);
 
 inp0 = 21; inp1=20; modulo=31;   sub_modulo_unsigned ( .inp0(inp0),.inp1(inp1),.modulo(modulo),.diff(outp),.wrapped(wrapped));
 $display ( "modulo %d, modulo add %d - %d = %d, wrap %d", modulo, inp0,inp1,outp,wrapped);
@@ -242,4 +241,4 @@ end
 
 end //initial block
 
-endmodule
+endprogram

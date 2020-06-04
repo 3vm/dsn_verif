@@ -1,299 +1,299 @@
-package ehgu_basic_pkg;
+package ehgu_basic_pkg ;
 
-import ehgu_config_pkg::DP_WIDTH;
+import ehgu_config_pkg :: DP_WIDTH ;
 
-localparam BINARY_OF_THERM_SIZE=8;
-localparam THERM_SIZE = 2**BINARY_OF_THERM_SIZE-1;
+localparam BINARY_OF_THERM_SIZE = 8 ;
+localparam THERM_SIZE = 2 ** BINARY_OF_THERM_SIZE-1 ;
 
 function automatic void bin2therm (
-input logic [BINARY_OF_THERM_SIZE-1:0] binary_in,
-output logic [THERM_SIZE-1:0] therm_out
-);
-  therm_out = 0 ;
-  for (int i=0;i<THERM_SIZE;i++) begin
-    if ( i < binary_in ) begin
-       therm_out[i] = 1 ;
-    end
-  end
-endfunction 
+input logic [ BINARY_OF_THERM_SIZE-1 : 0 ] binary_in ,
+output logic [ THERM_SIZE-1 : 0 ] therm_out
+ ) ;
+ therm_out = 0 ;
+ for ( int i = 0 ; i < THERM_SIZE ; i ++ ) begin
+   if ( i < binary_in ) begin
+     therm_out [ i ] = 1 ;
+   end
+ end
+endfunction
 
 function automatic void therm2bin (
-output logic [BINARY_OF_THERM_SIZE-1:0] binary_out,
-input logic [THERM_SIZE-2:0] therm_in
-);
-  binary_out = 0;
-  for (int i=THERM_SIZE-1;i>=0;i--) begin
-    if ( therm_in[i]) begin
-       binary_out = i+1 ;
-       break;
-    end
-  end
-endfunction 
+output logic [ BINARY_OF_THERM_SIZE-1 : 0 ] binary_out ,
+input logic [ THERM_SIZE-2 : 0 ] therm_in
+ ) ;
+ binary_out = 0 ;
+ for ( int i = THERM_SIZE-1 ; i >= 0 ; i-- ) begin
+   if ( therm_in [ i ] ) begin
+     binary_out = i + 1 ;
+     break ;
+   end
+ end
+endfunction
 
 function automatic void bin2gray (
-input logic [DP_WIDTH-1:0] binary_in,
-output logic [DP_WIDTH-1:0] gray_out
-);
-  gray_out = binary_in ^ ( binary_in>>1);
-endfunction 
+input logic [ DP_WIDTH-1 : 0 ] binary_in ,
+output logic [ DP_WIDTH-1 : 0 ] gray_out
+ ) ;
+ gray_out = binary_in ^ ( binary_in >> 1 ) ;
+endfunction
 
 function automatic void gray2bin (
-output logic [DP_WIDTH-1:0] binary_out,
-input logic [DP_WIDTH-1:0] gray_in
-);
-  logic xor_residue;
-  xor_residue=0;
-  for ( int i = DP_WIDTH-1;i>=0;i--) begin
-    binary_out[i]=xor_residue^gray_in[i];
-    xor_residue^=gray_in[i];
-  end
-endfunction 
+output logic [ DP_WIDTH-1 : 0 ] binary_out ,
+input logic [ DP_WIDTH-1 : 0 ] gray_in
+) ;
+ logic xor_residue ;
+ xor_residue = 0 ;
+ for ( int i = DP_WIDTH-1 ; i >= 0 ; i-- ) begin
+   binary_out [ i ] = xor_residue^gray_in [ i ] ;
+   xor_residue ^= gray_in [ i ] ;
+ end
+endfunction
 
 function automatic void sum_of_ones (
-output logic [$clog2(DP_WIDTH):0] sum ,
-input logic [DP_WIDTH-1:0] inp
-);
-  sum=0;
-  foreach (inp[i]) begin
-    sum+=inp[i];
-  end
+output logic [ $clog2 ( DP_WIDTH ) : 0 ] sum ,
+input logic [ DP_WIDTH-1 : 0 ] inp
+ ) ;
+ sum = 0 ;
+ foreach ( inp [ i ] ) begin
+   sum += inp [ i ] ;
+ end
 endfunction
 
 function automatic void majority_fn (
 output logic ones_majority ,
-input logic [DP_WIDTH-1:0] inp,
-input logic [$clog2(DP_WIDTH)-1:0] majority_check_size
-);
-  logic [DP_WIDTH-1:0] tmp;
-  logic [$clog2(DP_WIDTH):0] sum;
-  tmp=inp;
-  sum=0;
-  for (int i=0;i<DP_WIDTH ;i++) begin
-    if ( i < majority_check_size ) begin
-      sum+=tmp[i];
-    end
-  end
-  if ( sum > majority_check_size / 2 ) begin
-    ones_majority = 1;
-  end else begin
-    ones_majority = 0 ;
-  end
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] majority_check_size
+) ;
+ logic [ DP_WIDTH-1 : 0 ] tmp ;
+ logic [ $clog2 ( DP_WIDTH ) : 0 ] sum ;
+ tmp = inp ;
+ sum = 0 ;
+ for ( int i = 0 ; i < DP_WIDTH ; i ++ ) begin
+   if ( i < majority_check_size ) begin
+     sum += tmp [ i ] ;
+   end
+ end
+ if ( sum > majority_check_size / 2 ) begin
+   ones_majority = 1 ;
+ end else begin
+   ones_majority = 0 ;
+ end
 endfunction
 
 function automatic void hamming_dist (
-input logic [DP_WIDTH-1:0] inp0,
-input logic [DP_WIDTH-1:0] inp1,
-output logic [$clog2(DP_WIDTH)-1:0] distance
-);
-  sum_of_ones (.sum(distance), .inp(inp0^inp1));  
+input logic [ DP_WIDTH-1 : 0 ] inp0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp1 ,
+output logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] distance
+) ;
+ sum_of_ones ( .sum ( distance ) , .inp ( inp0^inp1 ) ) ;
 endfunction
 
 function automatic void add_modulo_unsigned (
-input logic [DP_WIDTH-1:0] inp0,
-input logic [DP_WIDTH-1:0] inp1,
-input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
-output logic wrapped,
-output logic [DP_WIDTH-1:0] sum
-);
+input logic [ DP_WIDTH-1 : 0 ] inp0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp1 ,
+input logic [ DP_WIDTH-1 + 1 : 0 ] modulo = ( 1'b1 << DP_WIDTH ) ,
+output logic wrapped ,
+output logic [ DP_WIDTH-1 : 0 ] sum
+) ;
 
-logic [DP_WIDTH-1+1:0] sum_full;
-sum_full = inp0 + inp1;
+logic [ DP_WIDTH-1 + 1 : 0 ] sum_full ;
+sum_full = inp0 + inp1 ;
 if ( sum_full >= modulo ) begin
-  sum = sum_full - modulo ;
-  wrapped = 1;
+ sum = sum_full - modulo ;
+ wrapped = 1 ;
 end else begin
-  sum = sum_full;
-  wrapped =0;
+ sum = sum_full ;
+ wrapped = 0 ;
 end
 
 endfunction
 
 function automatic void increment_modulo_unsigned (
-input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
-output logic wrapped,
-output logic [DP_WIDTH-1:0] out
-);
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ DP_WIDTH-1 + 1 : 0 ] modulo = ( 1'b1 << DP_WIDTH ) ,
+output logic wrapped ,
+output logic [ DP_WIDTH-1 : 0 ] out
+) ;
 
-add_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.sum(out),.wrapped(wrapped));
+add_modulo_unsigned ( .inp0 ( inp ) , .inp1 ( 1'b1 ) , .modulo ( modulo ) , .sum ( out ) , .wrapped ( wrapped ) ) ;
 
 endfunction
 
 function automatic void add_saturate_unsigned (
-input logic [DP_WIDTH-1:0] inp0,
-input logic [DP_WIDTH-1:0] inp1,
-input logic [DP_WIDTH-1:0] maximum='1,
-output logic saturated,
-output logic [DP_WIDTH-1:0] sum
-);
+input logic [ DP_WIDTH-1 : 0 ] inp0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp1 ,
+input logic [ DP_WIDTH-1 : 0 ] maximum = '1 ,
+output logic saturated ,
+output logic [ DP_WIDTH-1 : 0 ] sum
+) ;
 
-logic [DP_WIDTH-1+1:0] sum_full;
-sum_full = inp0 + inp1;
+logic [ DP_WIDTH-1 + 1 : 0 ] sum_full ;
+sum_full = inp0 + inp1 ;
 if ( sum_full > maximum ) begin
-  sum = maximum ;
-  saturated = 1;
+ sum = maximum ;
+ saturated = 1 ;
 end else begin
-  sum = sum_full;
-  saturated =0;
+ sum = sum_full ;
+ saturated = 0 ;
 end
 
 endfunction
 
 function automatic void increment_saturate_unsigned (
-input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1:0] maximum='1,
-output logic saturated,
-output logic [DP_WIDTH-1:0] out
-);
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ DP_WIDTH-1 : 0 ] maximum = '1 ,
+output logic saturated ,
+output logic [ DP_WIDTH-1 : 0 ] out
+ ) ;
 
-add_saturate_unsigned (.inp0(inp),.inp1(1'b1),.maximum(maximum),.sum(out),.saturated(saturated));
+add_saturate_unsigned ( .inp0 ( inp ) , .inp1 ( 1'b1 ) , .maximum ( maximum ) , .sum ( out ) , .saturated ( saturated ) ) ;
 
 endfunction
 
 function automatic void sub_modulo_unsigned (
-input logic [DP_WIDTH-1:0] inp0,
-input logic [DP_WIDTH-1:0] inp1,
-input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
-output logic wrapped,
-output logic [DP_WIDTH-1:0] diff
-);
+input logic [ DP_WIDTH-1 : 0 ] inp0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp1 ,
+input logic [ DP_WIDTH-1 + 1 : 0 ] modulo = ( 1'b1 << DP_WIDTH ) ,
+output logic wrapped ,
+output logic [ DP_WIDTH-1 : 0 ] diff
+ ) ;
 
 if ( inp0 < inp1 ) begin
-  diff = inp0 + modulo - inp1;
-  wrapped = 1;
+ diff = inp0 + modulo - inp1 ;
+ wrapped = 1 ;
 end else begin
-  diff = inp0 - inp1;
-  wrapped =0;
+ diff = inp0 - inp1 ;
+ wrapped = 0 ;
 end
 
 endfunction
 
 function automatic void decrement_modulo_unsigned (
-input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1+1:0] modulo=(1'b1<<DP_WIDTH),
-output logic wrapped,
-output logic [DP_WIDTH-1:0] out
-);
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ DP_WIDTH-1 + 1 : 0 ] modulo = ( 1'b1 << DP_WIDTH ) ,
+output logic wrapped ,
+output logic [ DP_WIDTH-1 : 0 ] out
+ ) ;
 
-sub_modulo_unsigned (.inp0(inp),.inp1(1'b1),.modulo(modulo),.diff(out),.wrapped(wrapped));
+sub_modulo_unsigned ( .inp0 ( inp ) , .inp1 ( 1'b1 ) , .modulo ( modulo ) , .diff ( out ) , .wrapped ( wrapped ) ) ;
 
 endfunction
 
 function automatic void sub_saturate_unsigned (
-input logic [DP_WIDTH-1:0] inp0,
-input logic [DP_WIDTH-1:0] inp1,
-input logic [DP_WIDTH-1:0] minimum=0,
-output logic saturated,
-output logic [DP_WIDTH-1:0] diff
-);
+input logic [ DP_WIDTH-1 : 0 ] inp0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp1 ,
+input logic [ DP_WIDTH-1 : 0 ] minimum = 0 ,
+output logic saturated ,
+output logic [ DP_WIDTH-1 : 0 ] diff
+ ) ;
 
-if ( inp0 < inp1 ) begin
-  diff = 0;
-  saturated = 1;
+if ( inp0 <= inp1 + minimum ) begin
+ diff = minimum ;
+ saturated = 1 ;
 end else begin
-  diff = inp0 - inp1;
-  saturated =0;
+ diff = inp0 - inp1 ;
+ saturated = 0 ;
 end
 
 endfunction
 
 function automatic void decrement_saturate_unsigned (
-input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1:0] minimum=0,
-output logic saturated,
-output logic [DP_WIDTH-1:0] out
-);
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ DP_WIDTH-1 : 0 ] minimum = 0 ,
+output logic saturated ,
+output logic [ DP_WIDTH-1 : 0 ] out
+ ) ;
 
-sub_saturate_unsigned (.inp0(inp),.inp1(1'b1),.minimum(minimum),.diff(out),.saturated(saturated));
+sub_saturate_unsigned ( .inp0 ( inp ) , .inp1 ( 1'b1 ) , .minimum ( minimum ) , .diff ( out ) , .saturated ( saturated ) ) ;
 
 endfunction
 
 function automatic void clip_unsigned (
-input logic [DP_WIDTH-1:0] minimum=0,
-input logic [DP_WIDTH-1:0] inp,
-input logic [DP_WIDTH-1:0] maximum='1,
-output logic [DP_WIDTH-1:0] out,
-output logic signed [1:0] cliped
-);
+input logic [ DP_WIDTH-1 : 0 ] minimum = 0 ,
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ DP_WIDTH-1 : 0 ] maximum = '1 ,
+output logic [ DP_WIDTH-1 : 0 ] out ,
+output logic signed [ 1 : 0 ] cliped
+ ) ;
 
 if ( inp < minimum ) begin
-  out = minimum;
-  cliped = -1;
+ out = minimum ;
+ cliped = -1 ;
 end else if ( inp > maximum ) begin
-  out = maximum;
-  cliped = +1;
+ out = maximum ;
+ cliped = + 1 ;
 end else begin
-  out = inp;
-  cliped = 0;
+ out = inp ;
+ cliped = 0 ;
 end
 
 endfunction
 
-function automatic logic signed [1:0] get_sign (
-input logic signed [DP_WIDTH-1:0] inp
-);
-return ((inp>0)?+2'd1:-2'd1);
+function automatic logic signed [ 1 : 0 ] get_sign (
+input logic signed [ DP_WIDTH-1 : 0 ] inp
+ ) ;
+return ( ( inp > 0 ) ? + 2'd1 : -2'd1 ) ;
 endfunction
 
 function automatic logic is_positive (
-input logic signed [DP_WIDTH-1:0] inp
-);
-return (get_sign(inp)==+2'b1);
+input logic signed [ DP_WIDTH-1 : 0 ] inp
+ ) ;
+return ( get_sign ( inp ) == + 2'b1 ) ;
 endfunction
 
 function automatic void rotate (
-input logic [DP_WIDTH-1:0] inp,
-input logic [$clog2(DP_WIDTH)-1+1:0] signal_width=DP_WIDTH,
-input logic signed [$clog2(DP_WIDTH)-1+1:0] rotation=1,
-output logic [DP_WIDTH-1:0] out
-);
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ $clog2 ( DP_WIDTH ) -1 + 1 : 0 ] signal_width = DP_WIDTH ,
+input logic signed [ $clog2 ( DP_WIDTH ) -1 + 1 : 0 ] rotation = 1 ,
+output logic [ DP_WIDTH-1 : 0 ] out
+ ) ;
 
-logic dir_left;
-logic saved_bit;
-logic [$clog2(DP_WIDTH)-1:0] rotation_amount_unsigned ;
-out = inp;
-dir_left = is_positive(rotation);
-rotation_amount_unsigned = dir_left ? rotation : -rotation;
-for ( int i = 0 ; i < rotation_amount_unsigned ; i++ ) begin
-  if ( dir_left) begin
-    saved_bit = out[signal_width-1];
-    out = out << 1'b1 ;
-    out[0] = saved_bit;
-  end else begin
-    saved_bit = out[0];
-    out = out >> 1'b1 ;
-    out[signal_width-1] = saved_bit;
-  end
+logic dir_left ;
+logic saved_bit ;
+logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] rotation_amount_unsigned ;
+out = inp ;
+dir_left = is_positive ( rotation ) ;
+rotation_amount_unsigned = dir_left ? rotation : -rotation ;
+for ( int i = 0 ; i < rotation_amount_unsigned ; i ++ ) begin
+ if ( dir_left ) begin
+   saved_bit = out [ signal_width-1 ] ;
+   out = out << 1'b1 ;
+   out [ 0 ] = saved_bit ;
+ end else begin
+   saved_bit = out [ 0 ] ;
+   out = out >> 1'b1 ;
+   out [ signal_width-1 ] = saved_bit ;
+ end
 end
 
 endfunction
 
 function automatic void round_lsb_unsigned (
-input logic [DP_WIDTH-1:0] inp,
-input logic [$clog2(DP_WIDTH)-1:0] lsb_width=3,
-input logic towards=1,
-output logic [DP_WIDTH-1+1:0] out
-);
-  logic [DP_WIDTH-3:0] ls_bits,mid_value,inc_value;
-  
-  ls_bits = 0 ;
-  mid_value=0;
-  mid_value[lsb_width-1]=1'b1;
-  inc_value = mid_value << 1'b1;
-  out = inp;
+input logic [ DP_WIDTH-1 : 0 ] inp ,
+input logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] lsb_width = 3 ,
+input logic towards = 1 ,
+output logic [ DP_WIDTH-1 + 1 : 0 ] out
+ ) ;
+ logic [ DP_WIDTH-3 : 0 ] ls_bits , mid_value , inc_value ;
 
-  for(int i=0;i<lsb_width;i++) begin
-   ls_bits[i]=inp[i];
-   out[i] = 0 ;
-  end
-  
-  if ( ls_bits > mid_value) begin
-     out+=inc_value;
-  end else if ( ls_bits == mid_value ) begin
-    if ( towards == 1 ) begin
-      out+=inc_value;
-    end
-  end
+ ls_bits = 0 ;
+ mid_value = 0 ;
+ mid_value [ lsb_width-1 ] = 1'b1 ;
+ inc_value = mid_value << 1'b1 ;
+ out = inp ;
+
+ for ( int i = 0 ; i < lsb_width ; i ++ ) begin
+   ls_bits [ i ] = inp [ i ] ;
+   out [ i ] = 0 ;
+ end
+
+ if ( ls_bits > mid_value ) begin
+   out += inc_value ;
+ end else if ( ls_bits == mid_value ) begin
+   if ( towards == 1 ) begin
+     out += inc_value ;
+   end
+ end
 
 endfunction
 
