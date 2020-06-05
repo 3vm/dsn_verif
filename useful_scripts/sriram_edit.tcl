@@ -19,6 +19,7 @@ set ind_lvl 0
 while { [gets $fp line ] != -1 } {
 	regsub -all {\s+} $line { } line
 	regsub -all {=} $line { = } line
+	regsub -all {>} $line { > } line
 	regsub -all {=\s*=\s*=} $line {===} line
 	regsub -all {=\s*=} $line {==} line
 	regsub -all {!\s*=} $line {!=} line
@@ -28,7 +29,6 @@ while { [gets $fp line ] != -1 } {
 	regsub -all {<\s+<} $line {<<} line
 	regsub -all {<\s*=} $line {<=} line
 	regsub -all {>\s*=} $line {>=} line
-	regsub -all {>} $line { > } line
 	regsub -all {>\s+>} $line {>>} line
 	regsub -all {!==} $line { !== } line
 	regsub -all {,} $line { , } line
