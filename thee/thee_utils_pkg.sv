@@ -76,13 +76,13 @@ timeprecision 100ps;
     period_in_local_units = period_in_seconds / 1e-9 ; 
     half_period = period_in_local_units /2.0;
 
-        clk = 0;
-        forever begin
-	        #(half_period);
-          clk=0;
-	        #(half_period);
-          clk=1;
-        end
+    clk = 0;
+    forever begin
+      #(half_period);
+      clk=0;
+	    #(half_period);
+      clk=1;
+    end
 
   endtask
 
