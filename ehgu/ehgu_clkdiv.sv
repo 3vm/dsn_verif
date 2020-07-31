@@ -33,4 +33,5 @@ always_ff @ ( posedge clkin , negedge rstn ) begin
    end
 end
 
+logic vikram;
 endmodule
