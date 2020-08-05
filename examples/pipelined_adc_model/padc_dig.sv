@@ -28,7 +28,8 @@ end
 always_comb begin
    dig_out = 0 ;
    foreach ( dig_raw_aligned [ i ] ) begin
-     if ( dig_raw_aligned [ i ] == 1 ) begin
+     $display ( "Dig raw aligned %b index %d" , dig_raw_aligned [ i ] , i ) ;
+     if ( dig_raw_aligned [ i ] == 2'b01 ) begin
        dig_out += ( 2 ** ( 6-i ) ) ;
      end else if ( dig_raw_aligned [ i ] == 2'b11 ) begin
        dig_out -= ( 2 ** ( 6-i ) ) ;
@@ -37,6 +38,8 @@ always_comb begin
      end
      // dig_out += ( 2 ** ( 6-i ) ) * $signed ( dig_raw_aligned [ i ] ) ;
    end
+   $display ( "Dig output %d" , dig_out ) ;
+  
 end
 
 endmodule

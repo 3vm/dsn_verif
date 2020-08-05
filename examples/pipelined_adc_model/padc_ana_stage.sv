@@ -14,7 +14,7 @@ always @ ( posedge clk , negedge rstn ) begin
    end else begin
      sampled_value <= vin ;
    end
-   $display("%m Smpled Value %f", vin);
+   $display ( "%m Sampled Value %f" , vin ) ;
 end
 
 always_comb begin

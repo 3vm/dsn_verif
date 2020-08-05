@@ -38,11 +38,11 @@ initial begin
    repeat ( 5 ) @ ( posedge clk ) ;
   
    for ( int i = 0 ; i < 1 ; i ++ ) begin
-     ana_in = urand_range_real ( -1.0 , 1.0 ) ;
+     ana_in = 0.5 ; // urand_range_real ( -1.0 , 1.0 ) ;
      repeat ( 1 ) @ ( posedge clk ) ;
      check_result ;
    end
- 
+  
    repeat ( 10 ) @ ( posedge clk ) ;
    $finish ;
 end
@@ -51,15 +51,16 @@ end
 task automatic check_result ;
  import thee_utils_pkg :: check_approx_equality ;
  fork
- repeat ( 7 ) @ ( posedge clk ) ;
-
- $display ( "Analog input %f , Digital output %d , Output reconverted to analog %f" , ana_in , dig_out , dig_out_real ) ;
- check_approx_equality ( .inp ( dig_out_real ) , .expected ( ana_in ) , .result ( result ) , .tolerance ( 100 * 1.001 * 1.0 / 127 ) ) ;
- if ( result )
- $display ( "PASS" ) ;
- else begin
-   $display ( "FAIL" ) ;
-  // $finish ;
+ begin
+   repeat ( 8 ) @ ( posedge clk ) ;
+   $display ( "Analog input %f , Digital output %d , Output reconverted to analog %f" , ana_in , dig_out , dig_out_real ) ;
+   check_approx_equality ( .inp ( dig_out_real ) , .expected ( ana_in ) , .result ( result ) , .tolerance ( 100 * 1.001 * 1.0 / 127 ) ) ;
+   if ( result )
+   $display ( "PASS" ) ;
+   else begin
+     $display ( "FAIL" ) ;
+     // $finish ;
+   end
  end
  join_none
  endtask
