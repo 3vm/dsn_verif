@@ -37,8 +37,8 @@ initial begin
    import thee_utils_pkg :: urand_range_real ;
    repeat ( 5 ) @ ( posedge clk ) ;
   
-   for ( int i = 0 ; i < 1 ; i ++ ) begin
-     ana_in = 0.5 ; // urand_range_real ( -1.0 , 1.0 ) ;
+   for ( int i = 0 ; i < 5 ; i ++ ) begin
+     ana_in = urand_range_real ( -1.0 , 1.0 ) ;
      repeat ( 1 ) @ ( posedge clk ) ;
      check_result ;
    end
