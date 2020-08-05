@@ -1,5 +1,5 @@
 #!/usr/bin/tclsh
-#editing format in honor of Software Engineer Ram
+#editing format in honor of Software Engineer Sriram
 #
 
 proc format_one_file { fl } {
@@ -37,6 +37,7 @@ proc format_one_file { fl } {
 		regsub -all {\+} $line { + } line
 		regsub -all {\+\s+\+} $line {++} line
 		regsub -all {\+\s+\=} $line {+=} line
+		regsub -all {\-\s+\=} $line {-=} line
 
 		regsub -all {\*} $line { * } line
 		regsub -all {\*\s*\*} $line {**} line
