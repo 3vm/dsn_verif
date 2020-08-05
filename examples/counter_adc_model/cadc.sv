@@ -12,7 +12,7 @@ logic [ 8-1 : 0 ] cnt ;
 
 cadc_ana cadc_ana (
 .ana_in ,
-.clk ,
+.start ,
 .rstn ,
 .cmp_out ,
 .cnt
