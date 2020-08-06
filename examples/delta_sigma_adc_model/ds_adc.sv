@@ -1,8 +1,8 @@
 
 module ds_adc
 # (
- parameter WIDTH = 8,
- parameter OVERSAMP_RATIO=256
+ parameter WIDTH = 8 ,
+ parameter OVERSAMP_RATIO = 256
  )
  (
  input logic clk_oversamp ,
@@ -25,7 +25,7 @@ ds_adc_ana ds_adc_ana
  .comp_out
  ) ;
 
-ds_adc_dig # ( .WIDTH ( WIDTH ), .OVERSAMP_RATIO(OVERSAMP_RATIO) ) ds_adc_dig
+ds_adc_dig # ( .WIDTH ( WIDTH ) , .OVERSAMP_RATIO ( OVERSAMP_RATIO ) ) ds_adc_dig
  (
  .comp_out ,
  .clk ,
