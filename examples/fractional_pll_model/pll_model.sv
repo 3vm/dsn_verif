@@ -33,7 +33,7 @@ thee_charge_pump cp (
 .vout ( cp_out )
  ) ;
 
-thee_low_pass_filter # ( .TAPS ( 10 ) , .STEP_SIZE_IN_NS ( 50 ) ) lpf (
+thee_low_pass_filter # ( .TAPS ( 100 ) , .STEP_SIZE_IN_NS ( 50 ) ) lpf (
  .sig_in ( cp_out ) ,
  .filtered_out ( lpf_out )
  ) ;
@@ -53,9 +53,13 @@ ehgu_clkdiv_fractional # ( .INT_WIDTH ( INT_WIDTH ) , .FRAC_WIDTH ( FRAC_WIDTH )
  .clkout ( clk_fb )
  ) ;
  
+ assign clkout = clk_vco;
+ /*
  initial 
   $monitor ("Toggling feedback clock %b %t", clk_fb, $realtime);
 
  initial 
   $monitor ("Toggling VCO clock %b %t", clk_vco, $realtime);
+  */
+  
 endmodule
