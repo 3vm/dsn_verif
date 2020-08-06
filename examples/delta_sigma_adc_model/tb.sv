@@ -11,25 +11,17 @@ logic rstn ;
 logic clk_oversamp ;
 logic clk ;
 logic signed [ WIDTH-1 : 0 ] dig_out ;
-real ana_recreated ;
+real dig_out_real ;
+bit result;
 
-thee_clk_gen_module # ( .FREQ ( 10 ) ) clk_gen ( .clk ( clk ) ) ;
-thee_clk_gen_module clk_gen_oversamp ( .clk ( clk_oversamp ) ) ;
-assign ana_recreated = dig_out / 50.0 ;
-initial begin
-   rstn = 0 ; #100ns ; rstn = 1 ;
-   ana_in = 0.3 ;
-   repeat ( 10 ) @ ( posedge clk ) ;
-   ana_in = 1 ;
-   repeat ( 10 ) @ ( posedge clk ) ;
-   ana_in = -1 ;
-   repeat ( 10 ) @ ( posedge clk ) ;
-   ana_in = -0.3 ;
-   repeat ( 10 ) @ ( posedge clk ) ;
-   $finish ;
-end
+parameter OVERSAMP_RATIO=256;
+parameter real FREQ_CLK_OVERSAMP=256;
 
-delta_sigma_adc_model # ( .WIDTH ( WIDTH ) ) ds_adc
+thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP / OVERSAMP_RATIO ) ) clk_gen ( .clk ( clk ) ) ;
+thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP ) )clk_gen_oversamp ( .clk ( clk_oversamp ) ) ;
+assign dig_out_real = dig_out / OVERSAMP_RATIO ;
+
+ds_adc # ( .WIDTH ( WIDTH ), .OVERSAMP_RATIO(OVERSAMP_RATIO) ) ds_adc
  (
  .clk_oversamp ,
  .rstn ,
@@ -37,5 +29,33 @@ delta_sigma_adc_model # ( .WIDTH ( WIDTH ) ) ds_adc
  .clk ,
  .dig_out
  ) ;
+
+
+initial begin
+   import thee_utils_pkg :: urand_range_real ;
+   rstn = 0 ; repeat (2) @(posedge clk) ; rstn = 1 ;
+
+   repeat ( 10 ) @ ( posedge clk ) ;
+   
+   for ( int i = 0 ; i < 5 ; i ++ ) begin
+     ana_in = urand_range_real ( 0 , 1.0 ) ;
+     repeat (10) @ ( posedge clk ) ;
+     check_result ;
+  end
+
+   $finish ;
+end
+
+task check_result ;
+ import thee_utils_pkg :: compare_real_fixed_err ;
+ $display ( "Analog input %f , Digital output %d , Output reconverted to analog %f" , ana_in , dig_out , dig_out_real ) ;
+ compare_real_fixed_err ( .expected ( ana_in ) ,  .actual ( dig_out_real ) , .result ( result ) , .max_err ( 1.001 * 1.0 / 256  ) ) ;
+ if ( result )
+ $display ( "PASS" ) ;
+ else begin
+   $display ( "FAIL" ) ;
+   //$finish ;
+ end
+ endtask
 
 endmodule

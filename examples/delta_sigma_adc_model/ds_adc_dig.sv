@@ -1,6 +1,9 @@
 
 module ds_adc_dig
- # ( parameter WIDTH = 8 )
+ # ( 
+  parameter WIDTH = 8,
+ parameter OVERSAMP_RATIO=256
+  )
  (
  input logic clk_oversamp ,
  input logic rstn ,
@@ -46,7 +49,7 @@ ehgu_dly # ( .DELAY ( 3 ) ) delready ( .clk ( clk ) , .rstn ( rstn_synced ) , .d
 ehgu_edges gen_load ( .clk ( clk ) , .rstn ( rstn_synced ) , .din ( data_ready_slow ) , .toggle ( load ) , .redge ( ) , .fedge ( ) ) ;
 
 logic signed [ WIDTH-1 : 0 ] dig_scale_adjusted ;
-assign dig_scale_adjusted = cnt_copied - 50 ;
+assign dig_scale_adjusted = cnt_copied - OVERSAMP_RATIO/2 ;
 
 always_ff @ ( posedge clk or negedge rstn_synced ) begin
    if ( ~rstn_synced ) begin

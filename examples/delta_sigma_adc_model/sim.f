@@ -15,5 +15,5 @@ timescale.sv
 ../../thee/thee_integrator.sv
 ds_adc_ana.sv
 ds_adc_dig.sv
-delta_sigma_adc_model.sv
+ds_adc.sv
 tb.sv
