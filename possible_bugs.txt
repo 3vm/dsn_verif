@@ -1,9 +1,3 @@
-Bugs
-
 Possible bugs
 
-
 cdc problems in analog to digital transfer - sample and hold
-
-bug in SADC,FLASH COUNTER, the real compare uses raw tolerance without percent
-check approx equality has a bug - not applicable to ADC compare , adc compare needs constant k*LSB error check
