@@ -39,7 +39,7 @@ initial begin
   
    for ( int i = 0 ; i < 5 ; i ++ ) begin
      ana_in = urand_range_real ( 0 , 2.0 ) - 1.0 ;
-     repeat ( 10 ) @ ( posedge clk ) ;
+     repeat ( 20 ) @ ( posedge clk ) ;
      check_result ;
    end
   
