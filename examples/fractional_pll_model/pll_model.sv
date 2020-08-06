@@ -33,7 +33,7 @@ thee_charge_pump cp (
 .vout ( cp_out )
  ) ;
 
-thee_low_pass_filter # ( .TAPS ( 100 ) , .STEP_SIZE_IN_NS ( 1 ) ) lpf (
+thee_low_pass_filter # ( .TAPS ( 10 ) , .STEP_SIZE_IN_NS ( 0.1 ) ) lpf (
  .sig_in ( cp_out ) ,
  .filtered_out ( lpf_out )
  ) ;
