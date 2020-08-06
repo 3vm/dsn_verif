@@ -38,7 +38,7 @@ initial begin
    repeat ( 10 ) @ ( posedge clk_ref ) ;
    rstn = 1 ;
    $display ( "Reset released" ) ;
-   repeat ( 20000 ) begin
+   repeat ( 40000 ) begin
      if ( cnt%10 == 0 ) $display ( "%d cycles of output clock completed , output frequency %f" , cnt , fout0 ) ;
      @ ( posedge clk_vco ) ;
 	 cnt++;
