@@ -1,9 +1,9 @@
-module tb;
-  logic signed [3:0] p,q;
-  initial begin
-  	p =-4;
-  	q=-7;
-  	q=q+p;
-    $display("p=%d,q=%d",p,q);
-  end
+module tb ;
+real p = 0.00513 ;
+initial begin
+   $display ( "%d" , p ) ;
+   $display ( "%f" , p ) ;
+   $display ( "%1.2f" , p ) ;
+   $display ( "%1.2e" , p ) ;
+ end
 endmodule
