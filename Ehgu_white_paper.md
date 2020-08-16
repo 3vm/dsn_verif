@@ -68,44 +68,68 @@ Chipper Basics
 
 Circuits: Kirchoff’s laws, Ohm’s law, power consumption in electrical circuits.
 
-CMOS : NAND, NOR, NOT, AND, OR gate transistor circuits, power dissipation in CMOS – switching, short circuit and leakage power
+CMOS : NAND, NOR, NOT, AND, OR, XOR, MUX, Tristate inverter transistor circuits, power dissipation in CMOS – switching, short circuit and leakage power
 
-Behavioral model for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
+Basic algorithms and data structures in C++: linear and binary search, bubble sort, merge sort, big-O notation, linked lists
 
-Algorithms and Data Structures in C++
+Digital logic theory,  SystemVerilog 2013 language,  concepts from logic synthesis,  concepts from static timing analysis, low power design, pipelining, retiming, scheduling, version control – Git or Subversion
 
-Digital logic theory,  SystemVerilog 2013 language,  Concepts from logic synthesis,  Concepts from static timing analysis, Low power design, Version control – Git or Subversion
+RTL simulation with Vivado/Modelsim/Incisive/Xcellium/VCS, Waveform debugging with Vivado/Modelsim/Simvision/Verdi/DVE, Gate Level Simulation – handling synchronizers, initializing unintialized flip flops and combinational loops
 
-RTL simulation with Vivado/Modelsim/Incisive/Xcellium/VCS, Waveform debugging with Vivado/Modelsim/Simvision/Verdi/DVE, Gate Level Simulation – handling synchronizers, initializing unintialized flip flops and combinational loops, Performing design ECOs
+Design and verification
+FSM, counter/timer, data and reset synchronizers, FIFO with CDC modeling, arbiter, SPI, I2C, control registers, low power design, pipelining, retiming, scheduling
+Verification concepts - coverage, randomization, regression
 
 Chipper ASIC
 
-Concepts from DFT, Standard cells, ROM, RAM
+Concepts from DFT, Standard cells, ROM and RAM compilation and usage in designs, anyone SerDes data packetization and depacketization logic, performing design ECOs,  basics of RISC-V ISA and one RV32I processor core, UVM basics
+Behavioral models for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
 
 Chipper FPGA
 
-FPGA resources – LUT, DSP, BRAMS, clocking. IP integration, RISC-V, interfacing with SPI, I2C, UART, AXI, APB, AHB, Tilelink, Synthesis and physical design for FPGA – pin assignment
+FPGA resources – LUT, DSP, BRAMS, clocking. IP integration, basics of RISC-V ISA and one RV32I processor core, anyone SerDes integration – MIPI/HDMI/DDR, interfacing with UART, AXI, APB, AHB, Tilelink, Synthesis and physical design for FPGA – pin assignment
 
 Advanced Specializations
 
 Chipper Algorithms 
 
+Sorting – radix sort, quick sort, trees, graphs, depth first search, breadth first search. Creating C++ models for 10 algorithms targeted for chips
+
 Chipper Mixed Signal
+
+Circuit theory - superposition theorem, Thevenin and Norton’s theorem, maximum power transfer theorem, small signal model of analog circuits
+Semiconductor device physics, P-N junction diode, Zener diode, BJT, MOS capacitor, MOSFET, JFET, LED, photodiode and solar cell, CMOS process technology
+Continuous and discrete-time signals and systems theory: causality, stability, impulse response, convolution, poles and zeros, power and energy of signals.
+Transforms: Laplace transform, discrete-time Fourier transform (DTFT), DFT, FFT, Z-transform, interpolation of discrete-time signals; digital filter design techniques.
+Verilog AMS, SV wreal modeling
 
 Chipper SoC/Integration
 
+Study of one RISC-V RV64 SoC, knowledge of older HDL standards like VHDL and Verilog 2001 for integrating legacy design IP. Bus interfaces - AXI, APB, AHB, Tilelink, Memory interface – DDR4
+
 Chipper Networking
+
+Concept of OSI layering, TCP/IP protocol stack, switches, routers and routing algorithms, TCP/UDP sockets, congestion control, application layer protocols (DNS, SMTP, POP, FTP, HTTP), basics of Wi-Fi, network security: authentication, basics of public key and private key cryptography, firewalls, software tools – wireshark
 
 Chipper SerDes
 
+DC balance, line coding – 8b10b, manchester, NRZ, equalization, CDR, SSC, PLL, BER, Forward Error Correction, ARQ, multiprotocol tunneling, channels – PCB trace, Coax, Shielded Twisted Pair, Optical Fiber
+
 Chipper Cryptography
+
+Number theory, linear algebra, DES, AES, Eliptic Key Cryptography, Direct Sequence Spread Spectrum, Frequency Hop SS, RSA, Contemporary threats – DoS, DDoS, zero day exploits, bots, reverse engineering
 
 Chipper Processors
 
-Chipper Machine Learning
+Hardware-software co-design, RISC-V ISA and cores – 64 bit high performance and 32 bit small cores, computer architecture – ISA, cache, memory management, interrupts, compiler, loader, linker, Linux operating system
+
+Chipper ML
+
+CNN, deep learning, statistics for ML applications, basics of rule based AI, image recognition, anyone ML frameworks - Tensorflow or equivalent
 
 Chipper Neo
 
+A chipper with with all certifications!
 
 FAQ
 ----
