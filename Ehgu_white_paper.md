@@ -129,7 +129,7 @@ CNN, deep learning, statistics for ML applications, basics of rule based AI, ima
 
 Chipper Neo
 
-A chipper with with all certifications!
+A chipper with all certifications!
 
 FAQ
 ----
