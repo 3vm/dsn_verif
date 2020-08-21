@@ -15,8 +15,8 @@ endclass
 initial begin
    t var1=new();
    repeat (10) begin
-   	var1.randomize();
-   	$display("Randomization result i = %d",var1.i);
+   	 if ( var1.randomize()==1) 
+   	 	$display("Randomization result i = %d",var1.i);
    end
 end
 
