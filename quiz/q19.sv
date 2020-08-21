@@ -13,8 +13,8 @@ class automatic t;
 endclass
 
 initial begin
-   t var1;
-   var1.randomize(void);
+   t var1=new();
+   var1.randomize();
    repeat (10) $display("Randomization result i = %d",var1.i);
 end
 
