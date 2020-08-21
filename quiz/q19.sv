@@ -2,7 +2,7 @@ program tb;
 
 class automatic t;
   rand int unsigned i;
-  constraint mycon { myfn() == 0 && i > 1 && i < 16 ; };
+  constraint mycon { i > 1 && i < 16 && myfn() == 0 ; };
   function int myfn ();
     for ( int j=2;j<i;j++) begin
       if (i %j == 0) 
@@ -13,8 +13,8 @@ class automatic t;
 endclass
 
 initial begin
-   t var1=new();
-   repeat (10) begin
+   repeat (40) begin
+	   t var1=new();
    	 if ( var1.randomize()==1) 
    	 	$display("Randomization result i = %d",var1.i);
    end
