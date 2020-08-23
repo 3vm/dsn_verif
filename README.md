@@ -18,7 +18,9 @@ If you like the idea of efficient hardware design ecosystem, become a patron her
 https://www.patreon.com/3vm
 
 Contents
+
 .
+
 ├── ehgu : Simple RTL modules
 
 │   ├── ehgu_basic_pkg.sv : contains frequently used functions - modulo/saturating fixed point arithmentic
