@@ -5,7 +5,7 @@ localparam NUM_DENOM = 4 ;
 localparam int DENOMINATIONS [ NUM_DENOM ] = '{10 , 5 , 2 , 1} ;
 
 typedef int unsigned change_t [ NUM_DENOM ] ;
-change_t bf_chg , recurs_chg , dp_chg ;
+change_t greedy_chg , recurs_chg , dp_chg ;
 
 int TRIALS = 1 ;
 
@@ -16,12 +16,12 @@ initial begin
      money = 13 ;
      $display ( "Money %5d" , money ) ;
      $display ( "Greedy change" ) ;
-     bf_chg = greedy_change ( money ) ;
-     disp_change ( bf_chg ) ;
+     greedy_chg = greedy_change ( money ) ;
+     disp_change ( greedy_chg ) ;
      $display ( "Dynamic Programming change" ) ;
      dp_chg = dp_change ( money ) ;
      //disp_change ( dp_chg ) ;
-     if ( dp_chg!= bf_chg ) begin
+     if ( dp_chg!= greedy_chg ) begin
        $display ( "Different change" ) ;
        break ;
      end
