@@ -1,63 +1,31 @@
 #include "sudoku.h"
 
-int main( void )
-{
-    int i,j;
-    int in_num;
-    char *a;
-    char s[ssq][ssq]={     
-                {0,1,0,8,9,0,4,0,0},
-                {6,0,0,0,5,4,0,0,3},
-                {4,2,0,0,0,6,7,0,0},
-                {7,0,0,4,0,0,0,3,8},
-                {0,9,2,0,0,0,5,4,0},
-                {3,6,0,0,0,1,0,0,9},
-                {0,0,8,1,0,0,0,2,6},
-                {1,0,0,9,3,0,0,0,7},
-                {0,0,5,0,7,8,0,1,0}    
-            };
+void sud_init ( char *, char *) ;
+void sud_dfs  (char *, char *,char, char);
 
-    printf("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
+void sud ( char *a ) 
+{
+    char prob[ssq][ssq][ssq];
+    char s[ssq][ssq];
+    char i,j;
+
+    //copy into a new matrix
     for(i=0;i<=ssq-1;i++)
     {
         for(j=0;j<=ssq-1;j++)
         {
-            printf("%d ",s[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-/*
-    for(i=0;i<=ssq-1;i++)
-    {
-        for(j=0;j<=ssq-1;j++)
-        {
-            scanf("%d",&in_num);
-            s[i][j] = (char ) in_num ;
+            s[i][j]=*(a+i*ssq+j);
         }
     }
-    //clrscr();
-    printf("\nThis is the one you entered\n");
-    for(i=0;i<=ssq-1;i++)
-    {
-        for(j=0;j<=ssq-1;j++)
-        {
-            printf("%d ",s[i][j]);
-        }
-        printf("\n");
-    }
-*/
-    printf("\n\n");
-    sud_init ( a, &s[0][0]);
-    sud_dfs (a, &s[0][0], 0, 0);
-    return 0;
+
+    sud_init ( &prob[0][0][0], &s[0][0]);
+    sud_dfs (&prob[0][0][0], &s[0][0], 0, 0);
 }
 
 void sud_init ( char *a, char *b) 
 {
     char rp[ssq][ssq],cp[ssq][ssq],bp[ssq][ssq];
     char i,j,k,l,flag,rowstart,colstart,boxno;
-    char prob[ssq][ssq][ssq];
     char s[ssq][ssq];
 
     //copy into a new matrix
@@ -129,11 +97,11 @@ void sud_init ( char *a, char *b)
             }
             for(k=0;k<=ssq-1;k++)
             {
-                prob[k][i][j]=(rp[i][k])&&(cp[j][k])&&(bp[boxno][k])&&flag;
+                //prob[k][i][j]=(rp[i][k])&&(cp[j][k])&&(bp[boxno][k])&&flag;
+                *(a+i*ssq*ssq+j*ssq+k)=(rp[i][k])&&(cp[j][k])&&(bp[boxno][k])&&flag;
             }
         }
     }
-    a = &prob[0][0][0];
 }
 
 void sud_dfs(char *a,char *b, char c, char d)
@@ -147,10 +115,10 @@ void sud_dfs(char *a,char *b, char c, char d)
     {
         for(j=0;j<=ssq-1;j++)
         {
-            fns[i][j]=*(b+i*ssq+j); //b[i][j];
+            fns[i][j]=*(b+i*ssq+j);
             for(k=0;k<=ssq-1;k++)
             {
-                fnp[i][j][k]=*(a+i*ssq*ssq+j*ssq+k);//a[i][j][k];
+                fnp[i][j][k]=*(a+i*ssq*ssq+j*ssq+k);
             }
         }
     }
@@ -259,4 +227,3 @@ void sud_dfs(char *a,char *b, char c, char d)
         }
     }
 }
-

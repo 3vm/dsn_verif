@@ -3,6 +3,5 @@
 
 #include <stdio.h>
 //#include <conio.h>
-void sud_init ( char *, char *) ;
-void sud_dfs  (char *, char *,char, char);
+void sud ( char * ) ;
 
