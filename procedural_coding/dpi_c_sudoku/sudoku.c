@@ -2,12 +2,11 @@
 
 int main( void )
 {
-
-    char rp[ssq][ssq],cp[ssq][ssq],bp[ssq][ssq];
-    char i,j,k,l,flag,rowstart,colstart,boxno;
-    char prob[ssq][ssq][ssq];
+    int i,j;
     int in_num;
-    char s[ssq][ssq]={     {0,1,0,8,9,0,4,0,0},
+    char prob[ssq][ssq][ssq];
+    char s[ssq][ssq]={     
+                {0,1,0,8,9,0,4,0,0},
                 {6,0,0,0,5,4,0,0,3},
                 {4,2,0,0,0,6,7,0,0},
                 {7,0,0,4,0,0,0,3,8},
@@ -15,7 +14,8 @@ int main( void )
                 {3,6,0,0,0,1,0,0,9},
                 {0,0,8,1,0,0,0,2,6},
                 {1,0,0,9,3,0,0,0,7},
-                {0,0,5,0,7,8,0,1,0}    };
+                {0,0,5,0,7,8,0,1,0}    
+            };
 
     printf("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
     for(i=0;i<=ssq-1;i++)
@@ -27,7 +27,7 @@ int main( void )
         printf("\n");
     }
     printf("\n");
-
+/*
     for(i=0;i<=ssq-1;i++)
     {
         for(j=0;j<=ssq-1;j++)
@@ -46,7 +46,17 @@ int main( void )
         }
         printf("\n");
     }
+*/
     printf("\n\n");
+    sud_init ( prob, s);
+    sud_dfs (prob, s, 0, 0);
+    return 0;
+}
+
+void sud_init ( char *** prob, char ** s) 
+{
+    char rp[ssq][ssq],cp[ssq][ssq],bp[ssq][ssq];
+    char i,j,k,l,flag,rowstart,colstart,boxno;
 
     for(i=0;i<=ssq-1;i++)
     {
@@ -112,13 +122,9 @@ int main( void )
             }
         }
     }
-
-    sud(&prob[0][0][0], &s[0][0], 0, 0);
-    //getch();
-    return 0;
 }
 
-void sud(char *a,char *b, char c, char d)
+void sud_dfs(char ***a,char **b, char c, char d)
 {
     char i,j,k,i0,j0,rowstart,colstart,boxno;
     char fnp[ssq][ssq][ssq],temp[ssq][ssq];
@@ -129,10 +135,10 @@ void sud(char *a,char *b, char c, char d)
     {
         for(j=0;j<=ssq-1;j++)
         {
-            fns[i][j]=*(b+i*ssq+j);
+            fns[i][j]=b[i][j];
             for(k=0;k<=ssq-1;k++)
             {
-                fnp[i][j][k]=*(a+i*ssq*ssq+j*ssq+k);
+                fnp[i][j][k]=a[i][j][k];
             }
         }
     }
@@ -230,7 +236,7 @@ void sud(char *a,char *b, char c, char d)
                     d=0;
                 }
             }
-            sud(&fnp[0][0][0],&fns[0][0],c,d);
+            sud_dfs(fnp,fns,c,d);
             for(i=0;i<=ssq-1;i++)
             {
                 for(j=0;j<=ssq-1;j++)
