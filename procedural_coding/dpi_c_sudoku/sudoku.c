@@ -4,7 +4,7 @@ int main( void )
 {
     int i,j;
     int in_num;
-    char prob[ssq][ssq][ssq];
+    char *a;
     char s[ssq][ssq]={     
                 {0,1,0,8,9,0,4,0,0},
                 {6,0,0,0,5,4,0,0,3},
@@ -48,15 +48,26 @@ int main( void )
     }
 */
     printf("\n\n");
-    sud_init ( (char ***)prob, (char **)s);
-    sud_dfs ((char ***)prob, (char **)s, 0, 0);
+    sud_init ( a, &s[0][0]);
+    sud_dfs (a, &s[0][0], 0, 0);
     return 0;
 }
 
-void sud_init ( char *** prob, char ** s) 
+void sud_init ( char *a, char *b) 
 {
     char rp[ssq][ssq],cp[ssq][ssq],bp[ssq][ssq];
     char i,j,k,l,flag,rowstart,colstart,boxno;
+    char prob[ssq][ssq][ssq];
+    char s[ssq][ssq];
+
+    //copy into a new matrix
+    for(i=0;i<=ssq-1;i++)
+    {
+        for(j=0;j<=ssq-1;j++)
+        {
+            s[i][j]=*(b+i*ssq+j);
+        }
+    }
 
     for(i=0;i<=ssq-1;i++)
     {
@@ -122,9 +133,10 @@ void sud_init ( char *** prob, char ** s)
             }
         }
     }
+    a = &prob[0][0][0];
 }
 
-void sud_dfs(char ***a,char **b, char c, char d)
+void sud_dfs(char *a,char *b, char c, char d)
 {
     char i,j,k,i0,j0,rowstart,colstart,boxno;
     char fnp[ssq][ssq][ssq],temp[ssq][ssq];
@@ -135,10 +147,10 @@ void sud_dfs(char ***a,char **b, char c, char d)
     {
         for(j=0;j<=ssq-1;j++)
         {
-            fns[i][j]=b[i][j];
+            fns[i][j]=*(b+i*ssq+j); //b[i][j];
             for(k=0;k<=ssq-1;k++)
             {
-                fnp[i][j][k]=a[i][j][k];
+                fnp[i][j][k]=*(a+i*ssq*ssq+j*ssq+k);//a[i][j][k];
             }
         }
     }
@@ -236,7 +248,7 @@ void sud_dfs(char ***a,char **b, char c, char d)
                     d=0;
                 }
             }
-            sud_dfs((char ***)fnp,(char **)fns,c,d);
+            sud_dfs(&fnp[0][0][0],&fns[0][0],c,d);
             for(i=0;i<=ssq-1;i++)
             {
                 for(j=0;j<=ssq-1;j++)
