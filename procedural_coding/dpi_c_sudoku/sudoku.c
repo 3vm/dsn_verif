@@ -48,8 +48,8 @@ int main( void )
     }
 */
     printf("\n\n");
-    sud_init ( prob, s);
-    sud_dfs (prob, s, 0, 0);
+    sud_init ( (char ***)prob, (char **)s);
+    sud_dfs ((char ***)prob, (char **)s, 0, 0);
     return 0;
 }
 
@@ -236,7 +236,7 @@ void sud_dfs(char ***a,char **b, char c, char d)
                     d=0;
                 }
             }
-            sud_dfs(fnp,fns,c,d);
+            sud_dfs((char ***)fnp,(char **)fns,c,d);
             for(i=0;i<=ssq-1;i++)
             {
                 for(j=0;j<=ssq-1;j++)
