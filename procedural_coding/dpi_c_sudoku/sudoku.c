@@ -1,11 +1,5 @@
+#include "sudoku.h"
 
-
-#define size 3
-#define ssq size*size
-
-#include <stdio.h>
-#include <conio.h>
-void sud(char *,char *,char, char);
 int main( void )
 {
 
@@ -23,9 +17,6 @@ int main( void )
                 {1,0,0,9,3,0,0,0,7},
                 {0,0,5,0,7,8,0,1,0}    };
 
-
-
-    //clrscr();
     printf("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
     for(i=0;i<=ssq-1;i++)
     {
@@ -123,7 +114,7 @@ int main( void )
     }
 
     sud(&prob[0][0][0], &s[0][0], 0, 0);
-    getch();
+    //getch();
     return 0;
 }
 
