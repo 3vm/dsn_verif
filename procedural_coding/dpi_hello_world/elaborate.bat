@@ -1,0 +1,1 @@
+C:\Xilinx\Vivado\2019.1\bin\xelab --svlog tb.sv --sv_lib dpi
