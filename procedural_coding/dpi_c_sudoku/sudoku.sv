@@ -27,13 +27,13 @@ initial begin
     $write("\nThe 9 by 9 sudoku matrix to be solved\n");
     show_sud(s);
 
-    for(int i=0;i<=ssq-1;i++)
+    for(i=0;i<=ssq-1;i++)
     begin
-        for(int j=1;j<=ssq;j++)
+        for(j=1;j<=ssq;j++)
         begin
             //row probables
             rp[i][j-1]=1;
-            for(int k=0;k<=ssq-1;k++)
+            for(k=0;k<=ssq-1;k++)
             begin
                 if(s[i][k]==j)
                 begin
@@ -44,7 +44,7 @@ initial begin
 
             //column probables
             cp[i][j-1]=1;
-            for(int k=0;k<=ssq-1;k++)
+            for(k=0;k<=ssq-1;k++)
             begin
                 if(s[k][i]==j)
                 begin
@@ -57,12 +57,12 @@ initial begin
         //box probables
         rowstart=(i/size)*size;
         colstart=(i%size)*size;
-        for(int j=1;j<=ssq;j++)
+        for(j=1;j<=ssq;j++)
         begin
             bp[i][j-1]=1;
-            for(int k=0;k<=size-1;k++)
+            for(k=0;k<=size-1;k++)
             begin
-                for(int l=0;l<=size-1;l++)
+                for(l=0;l<=size-1;l++)
                 begin
                     if(s[rowstart+k][colstart+l]==j)
                     begin
@@ -75,9 +75,9 @@ initial begin
         end
     end
 
-    for(int i=0;i<=ssq-1;i++)
+    for(i=0;i<=ssq-1;i++)
     begin
-        for(int j=0;j<=ssq-1;j++)
+        for(j=0;j<=ssq-1;j++)
         begin
             boxno=(i/size)*size+(j/size);
             flag=1;
@@ -85,7 +85,7 @@ initial begin
             begin
                 flag=0;
             end
-            for(int k=0;k<=ssq-1;k++)
+            for(k=0;k<=ssq-1;k++)
             begin
                 prob[k][i][j]=(rp[i][k])&&(cp[j][k])&&(bp[boxno][k])&&flag;
             end
@@ -143,13 +143,13 @@ function automatic void sud(
     end
 
     //find the probable number to fill up the vacant square
-    for(int k=0;k<=ssq-1;k++)
+    for(k=0;k<=ssq-1;k++)
     begin
         if(fnp[k][i0][j0]==1)
         begin
-            for(int i=0;i<=ssq-1;i++)
+            for(i=0;i<=ssq-1;i++)
             begin
-                for(int j=0;j<=ssq-1;j++)
+                for(j=0;j<=ssq-1;j++)
                 begin
                     temp[i][j]=fnp[k][i][j];
                 end
@@ -158,14 +158,14 @@ function automatic void sud(
             boxno=(i0/size)*size+(j0/size);
             rowstart=(boxno/size)*size;
             colstart=(boxno%size)*size;
-            for(int i=0;i<=size-1;i++)
+            for(i=0;i<=size-1;i++)
             begin
-                for(int j=0;j<=size-1;j++)
+                for(j=0;j<=size-1;j++)
                 begin
                     fnp[k][rowstart+i][colstart+j]=0;
                 end
             end
-            for(int i=0;i<=ssq-1;i++)
+            for(i=0;i<=ssq-1;i++)
             begin
                 fnp[k][i][j0]=0;
                 fnp[k][i0][i]=0;
@@ -189,9 +189,9 @@ function automatic void sud(
             $display("Call next box [%d][%d]",c,d);
             sud(fnp,fns,c,d);
             $display("later");
-            for(int i=0;i<=ssq-1;i++)
+            for(i=0;i<=ssq-1;i++)
             begin
-                for(int j=0;j<=ssq-1;j++)
+                for(j=0;j<=ssq-1;j++)
                 begin
                     fnp[k][i][j]=temp[i][j];
                 end
