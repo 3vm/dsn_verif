@@ -24,36 +24,8 @@ program tb;
                 '{0,0,5,0,7,8,0,1,0}   
  };
 initial begin
-    $write("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
-    for(int i=0;i<=ssq-1;i++) begin
-    
-        for(int j=0;j<=ssq-1;j++) begin
-            $write("%d ",s[i][j]);
-        end
-        $write("\n");
-    end
-    $write("\n");
-/*
-    for(int i=0;i<=ssq-1;i++)
-    begin
-        for(int j=0;j<=ssq-1;j++)
-        begin
-            scanf("%d",&in_num);
-            s[i][j] = (byte ) in_num ;
-        end
-    end
-    //clrscr();
-    $write("\nThis is the one you entered\n");
-    for(int i=0;i<=ssq-1;i++)
-    begin
-        for(int j=0;j<=ssq-1;j++)
-        begin
-            $write("%d ",s[i][j]);
-        end
-        $write("\n");
-    end
-*/
-    $write("\n\n");
+    $write("\nThe 9 by 9 sudoku matrix to be solved\n");
+    show_sud(s);
 
     for(int i=0;i<=ssq-1;i++)
     begin
@@ -119,78 +91,54 @@ initial begin
             end
         end
     end
-
     sud(prob, s, 0, 0);
-    $write();
-    $finish();
 end
 endprogram
 
-function automatic void sud(sud_options_t fnp,sud_puzzle_t fns, byte c, byte d) ;
+function automatic void sud( 
+    input sud_options_t fnp,
+    input sud_puzzle_t fns, input byte c, input byte d) ;
     byte i,j,k,i0,j0,rowstart,colstart,boxno;
-//    byte fnp[ssq][ssq][ssq],temp[ssq][ssq];
-//    byte fns[ssq][ssq];
     sud_puzzle_t temp;
-/*
-    //copy into a new matrix
-    for(int i=0;i<=ssq-1;i++)
-    begin
-        for(int j=0;j<=ssq-1;j++)
-        begin
-            fns[i][j]=*(b+i*ssq+j);
-            for(int k=0;k<=ssq-1;k++)
-            begin
-                fnp[i][j][k]=*(a+i*ssq*ssq+j*ssq+k);
-            end
-        end
-    end
-*/
+    bit out2loops=0;
+
     if((c==ssq)&&(d==ssq))
     begin
+        $write("\n C %d and d %d\n",c,d);
         $write("\n The solution is\n");
-        for(int i=0;i<=ssq-1;i++)
-        begin
-            for(int j=0;j<=ssq-1;j++)
-            begin
-                $write("%d ",fns[i][j]);
-            end
-            $write("\n");
-        end
-        $write("\n");
-
+        show_sud(fns);
         return;
     end
+ 
+    $display("C %d and d %d\n",c,d);
+    
+    show_sud(fns);
 
     //find the vacant square
-    for(int i=c;i<=ssq-1;i++)
+    for(i=c;i<=ssq-1 && out2loops==0;i++)
     begin
         if(i!=c)
         begin
             d=0;
         end
-        for(int j=d;j<=ssq-1;j++)
+        for(j=d;j<=ssq-1 && out2loops==0;j++)
         begin
+            $display("Test [%d][%d]",i,j);
             if(fns[i][j]==0)
             begin
-                i=ssq; j=ssq ; //goto out;
+                out2loops=1 ; //goto out;
             end
         end
     end
     //out:
     i0=i;
     j0=j;
+
+    $display("Vacant square [%d][%d]",i,j);
     if((i0==ssq)&&(j0==ssq))
     begin
-        $write("\n The solution is\n");
-        for(int i=0;i<=ssq-1;i++)
-        begin
-            for(int j=0;j<=ssq-1;j++)
-            begin
-                $write("%d ",fns[i][j]);
-            end
-            $write("\n");
-        end
-        $write("\n");
+        $display("\nThe solution is");
+        show_sud(fns);
         return;
     end
 
@@ -238,8 +186,9 @@ function automatic void sud(sud_options_t fnp,sud_puzzle_t fns, byte c, byte d) 
                     d=0;
                 end
             end
-//            sud(&fnp[0][0][0],&fns[0][0],c,d);
+            $display("Call next box [%d][%d]",c,d);
             sud(fnp,fns,c,d);
+            $display("later");
             for(int i=0;i<=ssq-1;i++)
             begin
                 for(int j=0;j<=ssq-1;j++)
@@ -251,3 +200,14 @@ function automatic void sud(sud_options_t fnp,sud_puzzle_t fns, byte c, byte d) 
     end
 endfunction
 
+function automatic void show_sud (sud_puzzle_t s);
+    for(int i=0;i<=ssq-1;i++)
+    begin
+        for(int j=0;j<=ssq-1;j++)
+        begin
+            $write("%1d ",s[i][j]);
+        end
+        $write("\n");
+    end
+    $write("\n");
+endfunction
