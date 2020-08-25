@@ -121,18 +121,24 @@ function automatic void sud(
         begin
             d=0;
         end
-        for(j=d;j<=ssq-1 && out2loops==0;j++)
+        for(j=d;j<=ssq-1;j++)
         begin
             $display("Test [%d][%d]",i,j);
             if(fns[i][j]==0)
             begin
+                $display("Found vacant [%d][%d]",i,j);
                 out2loops=1 ; //goto out;
+                i0=i;
+                j0=j;
+                break;
             end
         end
     end
     //out:
-    i0=i;
-    j0=j;
+    if(out2loops==0) begin
+        i0=i;
+        j0=j;
+    end
 
     $display("Vacant square [%d][%d]",i,j);
     if((i0==ssq)&&(j0==ssq))
