@@ -1,5 +1,3 @@
-
-
 parameter size= 3;
 parameter ssq =size*size;
 
@@ -107,6 +105,7 @@ function automatic void sud(
         $write("\n C %d and d %d\n",c,d);
         $write("\n The solution is\n");
         show_sud(fns);
+        $finish;
         return;
     end
  
