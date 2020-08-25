@@ -1,2 +1,1 @@
-sudoku.c
-tb.sv
+sudoku.sv

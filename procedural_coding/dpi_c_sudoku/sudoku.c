@@ -3,7 +3,7 @@
 void sud_init ( char *, char *) ;
 void sud_dfs  (char *, char *,char, char);
 
-void sud ( char *a ) 
+void sud ( char *b ) 
 {
     char prob[ssq][ssq][ssq];
     char s[ssq][ssq];
@@ -14,7 +14,7 @@ void sud ( char *a )
     {
         for(j=0;j<=ssq-1;j++)
         {
-            s[i][j]=*(a+i*ssq+j);
+            s[i][j]=*(b+i*ssq+j);
         }
     }
 

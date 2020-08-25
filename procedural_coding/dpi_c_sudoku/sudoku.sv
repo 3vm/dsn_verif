@@ -1,7 +1,10 @@
 
 
-`define size 3
-`define ssq size*size
+parameter size= 3;
+parameter ssq =size*size;
+
+typedef byte sud_options_t [ssq][ssq][ssq];
+typedef byte sud_puzzle_t [ssq][ssq];
 
 program tb;
 
@@ -20,17 +23,17 @@ program tb;
                 '{1,0,0,9,3,0,0,0,7},
                 '{0,0,5,0,7,8,0,1,0}   
  };
-
-    $display("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
-    for(int int i=0;i<=ssq-1;i++) begin
+initial begin
+    $write("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
+    for(int i=0;i<=ssq-1;i++) begin
     
-        for(int int j=0;j<=ssq-1;j++) begin
-            $display("%d ",s[i][j]);
+        for(int j=0;j<=ssq-1;j++) begin
+            $write("%d ",s[i][j]);
         end
-        $display("\n");
+        $write("\n");
     end
-    $display("\n");
-
+    $write("\n");
+/*
     for(int i=0;i<=ssq-1;i++)
     begin
         for(int j=0;j<=ssq-1;j++)
@@ -40,16 +43,17 @@ program tb;
         end
     end
     //clrscr();
-    $display("\nThis is the one you entered\n");
+    $write("\nThis is the one you entered\n");
     for(int i=0;i<=ssq-1;i++)
     begin
         for(int j=0;j<=ssq-1;j++)
         begin
-            $display("%d ",s[i][j]);
+            $write("%d ",s[i][j]);
         end
-        $display("\n");
+        $write("\n");
     end
-    $display("\n\n");
+*/
+    $write("\n\n");
 
     for(int i=0;i<=ssq-1;i++)
     begin
@@ -91,11 +95,11 @@ program tb;
                     if(s[rowstart+k][colstart+l]==j)
                     begin
                         bp[i][j-1]=0;
-                        goto out2loops;
+                        l=size;k=size;//goto out2loops;
                     end
                 end
             end
-            out2loops: ;
+            //out2loops: ;
         end
     end
 
@@ -117,15 +121,17 @@ program tb;
     end
 
     sud(prob, s, 0, 0);
-    $display();
+    $write();
     $finish();
+end
 endprogram
 
-function automatic void sud(byte *a,byte *b, byte c, byte d) ;
+function automatic void sud(sud_options_t fnp,sud_puzzle_t fns, byte c, byte d) ;
     byte i,j,k,i0,j0,rowstart,colstart,boxno;
-    byte fnp[ssq][ssq][ssq],temp[ssq][ssq];
-    byte fns[ssq][ssq];
-
+//    byte fnp[ssq][ssq][ssq],temp[ssq][ssq];
+//    byte fns[ssq][ssq];
+    sud_puzzle_t temp;
+/*
     //copy into a new matrix
     for(int i=0;i<=ssq-1;i++)
     begin
@@ -138,19 +144,19 @@ function automatic void sud(byte *a,byte *b, byte c, byte d) ;
             end
         end
     end
-
+*/
     if((c==ssq)&&(d==ssq))
     begin
-        $display("\n The solution is\n");
+        $write("\n The solution is\n");
         for(int i=0;i<=ssq-1;i++)
         begin
             for(int j=0;j<=ssq-1;j++)
             begin
-                $display("%d ",fns[i][j]);
+                $write("%d ",fns[i][j]);
             end
-            $display("\n");
+            $write("\n");
         end
-        $display("\n");
+        $write("\n");
 
         return;
     end
@@ -166,25 +172,25 @@ function automatic void sud(byte *a,byte *b, byte c, byte d) ;
         begin
             if(fns[i][j]==0)
             begin
-                goto out;
+                i=ssq; j=ssq ; //goto out;
             end
         end
     end
-    out:
+    //out:
     i0=i;
     j0=j;
     if((i0==ssq)&&(j0==ssq))
     begin
-        $display("\n The solution is\n");
+        $write("\n The solution is\n");
         for(int i=0;i<=ssq-1;i++)
         begin
             for(int j=0;j<=ssq-1;j++)
             begin
-                $display("%d ",fns[i][j]);
+                $write("%d ",fns[i][j]);
             end
-            $display("\n");
+            $write("\n");
         end
-        $display("\n");
+        $write("\n");
         return;
     end
 
@@ -232,7 +238,8 @@ function automatic void sud(byte *a,byte *b, byte c, byte d) ;
                     d=0;
                 end
             end
-            sud(&fnp[0][0][0],&fns[0][0],c,d);
+//            sud(&fnp[0][0][0],&fns[0][0],c,d);
+            sud(fnp,fns,c,d);
             for(int i=0;i<=ssq-1;i++)
             begin
                 for(int j=0;j<=ssq-1;j++)

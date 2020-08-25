@@ -17,7 +17,8 @@ int main( void )
                 {0,0,5,0,7,8,0,1,0}    
             };
 
-    printf("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
+//    printf("\nenter the numbers in the 9 by 9 sudoku matrix as shown in the following example\n");
+    printf("Input sudoku problem\n");
     for(i=0;i<=ssq-1;i++)
     {
         for(j=0;j<=ssq-1;j++)
