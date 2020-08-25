@@ -115,7 +115,7 @@ function automatic void sud(
     show_sud(fns);
 
     //find the vacant square
-    for(i=c;i<=ssq-1 && out2loops==0;i++)
+    for(i=c;i<=ssq-1;i++)
     begin
         if(i!=c)
         begin
@@ -133,6 +133,7 @@ function automatic void sud(
                 break;
             end
         end
+        if(out2loops) break;
     end
     //out:
     if(out2loops==0) begin
