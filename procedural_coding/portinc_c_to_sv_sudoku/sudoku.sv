@@ -194,7 +194,7 @@ function automatic void sud(
             end
             $display("Call next box [%d][%d]",c,d);
             sud(fnp,fns,c,d);
-            $display("later");
+            $display("Backtracking");
             for(i=0;i<=ssq-1;i++)
             begin
                 for(j=0;j<=ssq-1;j++)
