@@ -1,9 +1,8 @@
 program tb;
 
 class automatic myc;
-  const int t[] = '{ 5, 9, 12, 3 } ;
-  randc int s;
-  constraint s_in_t { s inside {t} ;};
+  randc byte s;
+  constraint s_in { s inside {5,9,3,12} ;};
 endclass
 
 initial begin
