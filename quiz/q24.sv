@@ -6,11 +6,11 @@ class automatic myc;
 endclass
 
 initial begin
-   repeat (100) begin
-     automatic myc c=new();
-   	 if ( c.randomize()==1) 
-   	 	$display("Randomization result i = %d",c.s);
-   end
+  automatic myc c=new();
+  repeat (4) begin
+ 	  if ( c.randomize()==1) 
+ 	 	  $write("%3d",c.s);
+  end
 end
 
 endprogram
