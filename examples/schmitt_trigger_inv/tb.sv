@@ -43,7 +43,8 @@ initial begin
   end
 end
 
-schmitt_trigger_inv #(.LT(LT), .UT(UT+0.1)) sinv (.in(ana_in) , .out(dig_out) ) ;
+//schmitt_trigger_inv #(.LT(LT), .UT(UT+0.1)) sinv (.in(ana_in) , .out(dig_out) ) ;
+schmitt_trigger_inv #(.LT(LT), .UT(UT)) sinv (.in(ana_in) , .out(dig_out) ) ;
 
 always @(ana_in)
   if (ana_in< LT)
