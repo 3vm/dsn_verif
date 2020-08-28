@@ -1,6 +1,6 @@
 program tb;
 
-bit [7:0] k;
+bit [10:0] k;
 bit [4:0] m;
 initial begin
   k = 'b1010_1100;
@@ -9,3 +9,6 @@ initial begin
 end
 
 endprogram
+
+//strange output 00111
+//WARNING: [VRFC 10-3283] element index -3 into 'k' is out of bounds
