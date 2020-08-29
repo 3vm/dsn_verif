@@ -34,8 +34,3 @@ function automatic bit myfn ( input byte unsigned i );
 endfunction
 
 endmodule
-
-//coverage possibly not well supported in Vivado
-//another coverpoint for numbers ending in 7
-//another cross coverpoint for bins(n1) intersect bins(n2)
-//then use get_instance_coverage

@@ -9,6 +9,3 @@ initial begin
 end
 
 endprogram
-
-//strange output 00111
-//WARNING: [VRFC 10-3283] element index -3 into 'k' is out of bounds
