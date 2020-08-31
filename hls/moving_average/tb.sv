@@ -1,14 +1,9 @@
 
 module tb ;
-
-timeunit 1ns ;
-timeprecision 1ps ;
-
 import thee_utils_pkg :: * ;
 
 parameter DWIDTH = 32 ;
 parameter TAPS = 4;
-parameter real FREQ = 100 ;
 
 logic clk , rstn ;
 logic [ DWIDTH-1 : 0 ] data_in ;
@@ -17,7 +12,7 @@ logic result ;
 logic [ DWIDTH-1 : 0 ] filter [ TAPS ] ;
 logic start, done, idle, ready;
 
-thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk ) ) ;
+thee_clk_gen_module #(.FREQ(100)) clk_gen_i0 ( .clk ( clk ) ) ;
 
 always_ff @(posedge clk or negedge rstn) begin : proc_filter
   if(~rstn) begin
@@ -35,16 +30,24 @@ always_comb
 initial begin
   result = 1 ;
   toggle_rstn ( .rstn ( rstn ) ) ;
-    for ( int i = 0 ; i < 2*TAPS ; i ++ ) begin
-      repeat ( 1 ) @ ( posedge clk ) ;
-      data_in = $urandom ( ) ;
-      if ( data_out === expected_data ) begin
-        $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
-      end else begin
-        $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
-        result = 0 ;
-      end
+  repeat(1) @(posedge clk);
+  $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
+  start = 1 ;
+  repeat(10) @(posedge clk);
+  $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
+  wait(ready);
+  $display("MA filter ready");
+
+  for ( int i = 0 ; i < 2*TAPS ; i ++ ) begin
+    repeat ( 1 ) @ ( posedge clk ) ;
+    data_in = $urandom ( ) ;
+    if ( data_out === expected_data ) begin
+      $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
+    end else begin
+      $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
+      result = 0 ;
     end
+  end
   
   print_test_result ( result ) ;
   $finish ;
