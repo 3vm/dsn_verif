@@ -10,13 +10,8 @@ config_sdx -optimization_level none -target none
 config_export -vivado_optimization_level 2
 set_clock_uncertainty 12.5%
 #source "./moving_average/solution1/directives.tcl"
-puts "Done1"
-csim_design
-puts "Done2"
+#csim_design
 csynth_design
-puts "Done3"
-cosim_design
-puts "Done4"
-export_design -format ip_catalog
-puts "Done5"
+#cosim_design
+#export_design -format ip_catalog
 
