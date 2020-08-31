@@ -10,38 +10,39 @@ logic rstn ;
 logic [ DWIDTH-1 : 0 ] data_in ;
 logic [ DWIDTH-1 : 0 ] data_out , expected_data ;
 logic result ;
-logic [ DWIDTH-1 : 0 ] filter [ TAPS ] ;
+logic [ DWIDTH-1 : 0 ] filter [ $ ] ;
 logic start, done, idle, ready;
 
 thee_clk_gen_module #(.FREQ(100)) clk_gen_i0 ( .clk ( clk ) ) ;
 
-always_ff @(posedge clk) begin
-    for(int i = TAPS-1;i>0; i-- )
-      filter[i]<=filter[i-1];
-    filter[0] <= data_in;
-end
-
 initial begin
-  $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
-  result = 1 ;
-  //toggle_rstn ( .rstn ( rstn ) ) ; 
-  rstn=0;   repeat(4) @(posedge clk); rstn=1;  repeat(4) @(posedge clk); 
+  repeat (TAPS) filter.push_front(data_in);
+  result = 1 ;   data_in=100;
+  toggle_rstn ( .rstn ( rstn ) ) ; 
   $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
   start = 1 ;
   wait(ready);
+  $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
+  data_in=100;
   repeat(10) @(posedge clk);
   $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);  
   $display("MA filter ready");
 
   for ( int i = 0 ; i < 2*TAPS ; i ++ ) begin
     repeat ( 1 ) @ ( posedge clk ) ;
-    data_in = $urandom ( ) ;
-    expected_data = filter.sum()/TAPS;
-    if ( data_out === expected_data ) begin
-      $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
-    end else begin
-      $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
-      result = 0 ;
+    if ( ready ) begin
+      data_in = 100;//$urandom ( ) ;
+      filter.push_front(data_in); filter.pop_back();
+    end 
+    if ( done ) begin
+      $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);
+      expected_data = filter.sum()/TAPS;
+      if ( data_out === expected_data ) begin
+        $display ( "P - output data %d expected data %d" , data_out , expected_data ) ;
+      end else begin
+        $display ( "F - output data %d expected data %d" , data_out , expected_data ) ;
+        result = 0 ;
+      end
     end
   end
   
