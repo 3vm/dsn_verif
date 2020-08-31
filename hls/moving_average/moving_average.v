@@ -80,11 +80,6 @@ wire   [30:0] zext_ln14_1_fu_274_p1;
 wire   [30:0] select_ln14_fu_278_p3;
 reg   [3:0] ap_NS_fsm;
 
-// power-on initialization
-initial begin
-#0 ap_CS_fsm = 4'd1;
-end
-
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
         ap_CS_fsm <= ap_ST_fsm_state1;
