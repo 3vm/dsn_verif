@@ -16,20 +16,21 @@ int cnt=0;
 
 thee_clk_gen_module #(.FREQ(100)) clk_gen_i0 ( .clk ( clk ) ) ;
 
+always @(posedge clk )
+    if ( !idle && !ready ) begin
+      data_in = $urandom ( ) ;
+      filter.push_front(data_in); filter.pop_back();
+    end
+
 initial begin
   repeat (TAPS) filter.push_front(data_in);
   result = 1 ;
   toggle_rstn ( .rstn ( rstn ) ) ; 
   start = 1 ;
-  wait(ready);
-  $display("MA filter ready");
+  wait(!idle);
 
   for ( int i = 0 ; i < 40*TAPS ; i ++ ) begin
     repeat ( 1 ) @ ( posedge clk ) ;
-    if ( ready ) begin
-      data_in = 100;//$urandom ( ) ;
-      filter.push_front(data_in); filter.pop_back();
-    end 
     if ( done ) begin
       if ( cnt < TAPS ) begin
         cnt++;
