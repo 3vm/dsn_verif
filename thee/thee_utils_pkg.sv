@@ -158,10 +158,11 @@ endtask
  logic result
  ) ;
  if ( result === 1 )
- repeat ( 4 ) $display ( "Test Pass" ) ;
+   repeat ( 4 ) $display ( "Test Pass" ) ;
+ else if ( result === 1'bx )
+   repeat ( 4 ) $display ( "Test Incomplete" ) ;
  else
- repeat ( 4 ) $display ( "Test Fail" ) ;
+   repeat ( 4 ) $display ( "Test Fail" ) ;
  endtask
-
 
 endpackage
