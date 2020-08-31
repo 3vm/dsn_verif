@@ -5,7 +5,7 @@
 // 
 // ===========================================================
 
-`timescale 1 ns / 1 ps 
+//`timescale 1 ns / 1 ps 
 
 (* CORE_GENERATION_INFO="moving_average,hls_ip_2019_2,{HLS_INPUT_TYPE=c,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xc7a75ti-ftg256-1L,HLS_INPUT_CLOCK=10.000000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=6.278250,HLS_SYN_LAT=12,HLS_SYN_TPT=none,HLS_SYN_MEM=0,HLS_SYN_DSP=0,HLS_SYN_FF=331,HLS_SYN_LUT=378,HLS_VERSION=2019_2}" *)
 
@@ -83,10 +83,6 @@ reg   [3:0] ap_NS_fsm;
 // power-on initialization
 initial begin
 #0 ap_CS_fsm = 4'd1;
-#0 data_buf_0 = 32'd0;
-#0 data_buf_3 = 32'd0;
-#0 data_buf_1 = 32'd0;
-#0 data_buf_2 = 32'd0;
 end
 
 always @ (posedge ap_clk) begin
