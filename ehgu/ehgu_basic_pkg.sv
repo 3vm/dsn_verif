@@ -303,4 +303,19 @@ output logic [ DP_WIDTH-1 + 1 : 0 ] out
 
 endfunction
 
+function automatic logic [ DP_WIDTH-1 : 0 ]  lfsr_logic (
+input logic [ DP_WIDTH-1 : 0 ] polynomial ,  
+input logic [ DP_WIDTH-1 : 0 ] lfsr_reg ,
+input logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] lfsr_width = 3
+) ;
+ logic shift_in;
+ logic [ DP_WIDTH-1 : 0 ]  lfsr_next;
+
+ shift_in = ^(lfsr_reg & polynomial);
+ lfsr_next = lfsr_reg>>1;
+ lfsr_next[lfsr_width-1]=shift_in;
+ return lfsr_next;
+ 
+endfunction
+
 endpackage
