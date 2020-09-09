@@ -24,9 +24,14 @@ initial begin
      sq1[i]=lfsr1 ; sq2[i]=lfsr2 ; sq3[i]=lfsr3 ; 
    end
 
-  result &= is_lfsr_maximal(polynomial1,WIDTH);
-  result &= is_lfsr_maximal(polynomial2,WIDTH);
-  result &= is_lfsr_maximal(polynomial3,WIDTH);
+  result &= is_lfsr_maximal(polynomial1);
+  result &= is_lfsr_maximal(polynomial2);
+  if ( result )
+   $display ( "Vectors passed" ) ;
+  else
+   $display ( "Some Vectors failed" ) ;
+
+  result &= !is_lfsr_maximal(polynomial3);
 
   if ( result )
    $display ( "All Vectors passed" ) ;
@@ -37,8 +42,7 @@ initial begin
 end
 
 function automatic bit is_lfsr_maximal (
-input logic [WIDTH-1:0] polynomial,
-input logic [$clog2(WIDTH)-1:0] lfsr_width
+input logic [WIDTH-1:0] polynomial
   );
 
 logic [ WIDTH-1 : 0 ] lfsr;
@@ -47,13 +51,13 @@ logic [ WIDTH-1 : 0 ] lfsr_list [2**WIDTH];
 lfsr_list = '{default:0};
 lfsr = 1;
 for ( int i = 0 ; i < 2**WIDTH ; i ++ ) begin
-  lfsr = lfsr_logic ( .lfsr_reg ( lfsr ) , .polynomial ( polynomial ), .lfsr_width(lfsr_width) ) ;
-  $display ( "SNo.%3d LFSR" , i, lfsr ) ;
+  lfsr = lfsr_logic ( .lfsr_reg ( lfsr ) , .polynomial ( polynomial ), .lfsr_width($bits(polynomial)) ) ;
   lfsr_list[lfsr] = 1;
 end
 
 for ( int i = 1 ; i < 2**WIDTH ; i ++ ) begin
   if (lfsr_list[i]==0) begin
+    $display("NOT MAXIMAL");
     $display("LFSR sequence generated with polynomial %h missing %d",polynomial, i);
     return 0 ;
   end
