@@ -45,8 +45,10 @@ logic [ WIDTH-1 : 0 ] lfsr;
 logic [ WIDTH-1 : 0 ] lfsr_list [2**WIDTH];
 
 lfsr_list = '{default:0};
+lfsr = 1;
 for ( int i = 0 ; i < 2**WIDTH ; i ++ ) begin
   lfsr = lfsr_logic ( .lfsr_reg ( lfsr ) , .polynomial ( polynomial ), .lfsr_width(lfsr_width) ) ;
+  $display ( "SNo.%3d LFSR" , i, lfsr ) ;
   lfsr_list[lfsr] = 1;
 end
 
