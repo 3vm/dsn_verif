@@ -42,27 +42,26 @@ class short_gray ;
  constraint no_repeat { my_unique ( ) == 1 ; } ;
  constraint unit_dist { hamming_dist ( ) == 1 ; } ;
 
- function void show ( ) ;
-   $display ( "Gray code that was created" ) ;
-   for ( int i = 0 ; i < len ; i ++ ) begin
-     $write ( "%b " , gcode [ i ] ) ;
-   end
-   $display ( "" ) ;
- endfunction : show
-
 endclass : short_gray
 
+static short_gray sg,sg_bak;
+
 initial begin
- automatic short_gray sg;
  result = 1 ;
 
- repeat (10) begin
+ repeat (100) begin
   sg=new();
+//  sg.set_len ( .l(10),.w(4) ) ;
+//  sg.set_len ( .l(6),.w(4) ) ;
   sg.set_len ( .l(6),.w(3) ) ;
   if ( sg.randomize ( ) ) begin
     $display ( "Randomize passed , Gray code created" ) ;
     result = 1 ;
-    sg.show ( ) ;
+    //sg_bak = sg;
+    //sg.show ( ) ;
+    //#0;
+    show(sg);
+    //show(sg_bak);
     break;
   end else begin
     $display ( "Randomize failed , Gray code not created" ) ;
@@ -73,5 +72,14 @@ initial begin
  create_test_result_file ( result ) ;
  $finish ;
 end
+
+function void show ( short_gray obj ) ;
+   $display ( "Gray code that was created" ) ;
+   for ( int i = 0 ; i < obj.len ; i ++ ) begin
+     $write ( "%b " , obj.gcode [ i ] ) ;
+   end
+   $display ( "" ) ;
+endfunction
+
 
 endprogram
