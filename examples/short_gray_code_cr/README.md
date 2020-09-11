@@ -1,4 +1,4 @@
-Can you create Gray codes for any length and not just powers of 2?
+Using constrained random, can you create Gray codes for any length and not just powers of 2? 
 
 For further description refer to this book
 
