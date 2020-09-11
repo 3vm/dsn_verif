@@ -58,7 +58,7 @@ initial begin
 
  repeat (10) begin
   sg=new();
-  sg.set_len ( .l(2),.w(3) ) ;
+  sg.set_len ( .l(6),.w(3) ) ;
   if ( sg.randomize ( ) ) begin
     $display ( "Randomize passed , Gray code created" ) ;
     result = 1 ;
