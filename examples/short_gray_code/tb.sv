@@ -36,9 +36,7 @@ class short_gray ;
 
  function bit hamming_dist ( ) ;
    for ( int i = 0 ; i < len ; i ++ ) begin
-     dist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ];
-     $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],dist);
-     if ( dist != 1 )
+     if ( $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ] != 1 )
        return 0 ;
    end
    return 1 ;
@@ -67,5 +65,15 @@ initial begin
  create_test_result_file ( result ) ;
  $finish ;
 end
+
+function bit debug_hamming_dist ( ) ;
+   for ( int i = 0 ; i < len ; i ++ ) begin
+     dist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ];
+     $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],dist);
+     if ( dist != 1 )
+       return 0 ;
+   end
+   return 1 ;
+ endfunction
 
 endprogram
