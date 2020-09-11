@@ -3,7 +3,7 @@ program tb ;
 logic result ;
 import thee_utils_pkg :: print_test_result ;
 import thee_utils_pkg :: create_test_result_file ;
-localparam MAX_CODE_LEN = 1024 ;
+localparam MAX_CODE_LEN = 16 ;
 typedef logic [ $clog2 ( MAX_CODE_LEN ) -1 : 0 ] code_t ;
 
 class short_gray ;
@@ -45,7 +45,7 @@ endclass : short_gray
 
 initial begin
  automatic short_gray sg = new ( ) ;
- sg.set_len ( 6 ) ;
+ sg.set_len ( 2 ) ;
  result = 1 ;
 
   repeat (10) begin
