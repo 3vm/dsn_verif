@@ -53,21 +53,22 @@ class short_gray ;
 endclass : short_gray
 
 initial begin
- automatic short_gray sg = new ( ) ;
- sg.set_len ( .l(2),.w(3) ) ;
+ automatic short_gray sg;
  result = 1 ;
 
-  repeat (10) begin
-    if ( sg.randomize ( ) ) begin
-      $display ( "Randomize passed , Gray code created" ) ;
-      result = 1 ;
-      break;
-    end else begin
-      $display ( "Randomize failed , Gray code not created" ) ;
-      result = 0 ;
-    end
+ repeat (10) begin
+  sg=new();
+  sg.set_len ( .l(2),.w(3) ) ;
+  if ( sg.randomize ( ) ) begin
+    $display ( "Randomize passed , Gray code created" ) ;
+    result = 1 ;
+    sg.show ( ) ;
+    break;
+  end else begin
+    $display ( "Randomize failed , Gray code not created" ) ;
+    result = 0 ;
   end
- sg.show ( ) ;
+ end
  print_test_result ( result ) ;
  create_test_result_file ( result ) ;
  $finish ;
