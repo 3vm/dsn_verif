@@ -8,10 +8,12 @@ typedef bit [ $clog2 ( MAX_CODE_LEN ) -1 : 0 ] code_t ;
 
 class short_gray ;
  int len ;
+ int width;
  rand code_t gcode [ MAX_CODE_LEN ] ;
 
- function void set_len ( input int l ) ;
+ function void set_len ( input int l , int w) ;
    len = l ;
+   width = w;
  endfunction
 
  function bit my_unique ( ) ;
@@ -23,18 +25,9 @@ class short_gray ;
    return 1 ;
  endfunction
 
- function void show ( ) ;
-   $display ( "Gray code that was created" ) ;
-   for ( int i = 0 ; i < len ; i ++ ) begin
-     $write ( "%b " , gcode [ i ] ) ;
-   end
-   $display ( "" ) ;
- endfunction : show
- // constraint no_repeat { unique { gcode [ 0 : MAX_CODE_LEN-1 ] } ; } ;
- constraint no_repeat { my_unique ( ) == 1 ; } ;
-
  function bit hamming_dist ( ) ;
-  int hdist;
+   int hdist;
+   $display("New call");
    for ( int i = 0 ; i < len ; i ++ ) begin
      hdist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ]);
      $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],hdist);
@@ -43,12 +36,25 @@ class short_gray ;
    end
    return 1 ;
  endfunction
+
+ // constraint no_repeat { unique { gcode [ 0 : MAX_CODE_LEN-1 ] } ; } ;
+ constraint size_limit { foreach (gcode[i]) gcode[i]<2**width; };
+ constraint no_repeat { my_unique ( ) == 1 ; } ;
  constraint unit_dist { hamming_dist ( ) == 1 ; } ;
+
+ function void show ( ) ;
+   $display ( "Gray code that was created" ) ;
+   for ( int i = 0 ; i < len ; i ++ ) begin
+     $write ( "%b " , gcode [ i ] ) ;
+   end
+   $display ( "" ) ;
+ endfunction : show
+
 endclass : short_gray
 
 initial begin
  automatic short_gray sg = new ( ) ;
- sg.set_len ( 2 ) ;
+ sg.set_len ( .l(2),.w(3) ) ;
  result = 1 ;
 
   repeat (10) begin
