@@ -165,4 +165,20 @@ endtask
    repeat ( 4 ) $display ( "Test Fail" ) ;
  endtask
 
+task automatic create_test_result_file
+(
+ logic result
+ ) ;
+string fn;
+int fp;
+ if ( result === 1 )
+   fn="touch_pass.txt";
+ else if ( result === 1'bx )
+   fn="touch_incomplete.txt";
+ else
+   fn="touch_fail.txt";
+fp=$fopen(fn,"w"); 
+$fclose(fp);
+endtask
+
 endpackage
