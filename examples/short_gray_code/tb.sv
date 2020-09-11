@@ -4,11 +4,10 @@ logic result ;
 import thee_utils_pkg :: print_test_result ;
 import thee_utils_pkg :: create_test_result_file ;
 localparam MAX_CODE_LEN = 16 ;
-typedef logic [ $clog2 ( MAX_CODE_LEN ) -1 : 0 ] code_t ;
+typedef bit [ $clog2 ( MAX_CODE_LEN ) -1 : 0 ] code_t ;
 
 class short_gray ;
  int len ;
- int dist;
  rand code_t gcode [ MAX_CODE_LEN ] ;
 
  function void set_len ( input int l ) ;
@@ -35,8 +34,11 @@ class short_gray ;
  constraint no_repeat { my_unique ( ) == 1 ; } ;
 
  function bit hamming_dist ( ) ;
+  int hdist;
    for ( int i = 0 ; i < len ; i ++ ) begin
-     if ( $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ] != 1 )
+     hdist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ]);
+     $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],hdist);
+     if ( hdist != 1 )
        return 0 ;
    end
    return 1 ;
@@ -60,20 +62,9 @@ initial begin
     end
   end
  sg.show ( ) ;
- sg.hamming_dist();
  print_test_result ( result ) ;
  create_test_result_file ( result ) ;
  $finish ;
 end
-
-function bit debug_hamming_dist ( ) ;
-   for ( int i = 0 ; i < len ; i ++ ) begin
-     dist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ];
-     $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],dist);
-     if ( dist != 1 )
-       return 0 ;
-   end
-   return 1 ;
- endfunction
 
 endprogram
