@@ -8,6 +8,7 @@ typedef logic [ $clog2 ( MAX_CODE_LEN ) -1 : 0 ] code_t ;
 
 class short_gray ;
  int len ;
+ int dist;
  rand code_t gcode [ MAX_CODE_LEN ] ;
 
  function void set_len ( input int l ) ;
@@ -35,7 +36,9 @@ class short_gray ;
 
  function bit hamming_dist ( ) ;
    for ( int i = 0 ; i < len ; i ++ ) begin
-     if ( $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ] ) != 1 )
+     dist = $countones ( gcode [ i ] ^gcode [ ( i + 1 ) %len ];
+     $display("hamming_dist between %b and %b is %d",gcode[i],gcode [ ( i + 1 ) %len ],dist);
+     if ( dist != 1 )
        return 0 ;
    end
    return 1 ;
@@ -59,6 +62,7 @@ initial begin
     end
   end
  sg.show ( ) ;
+ sg.hamming_dist();
  print_test_result ( result ) ;
  create_test_result_file ( result ) ;
  $finish ;
