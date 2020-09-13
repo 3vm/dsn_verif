@@ -1,8 +1,5 @@
 `timescale 1ns/100ps
 module tb;
-  //which assertion never fails? 
-  //ans: i don't know . Vivado is possibly not supporting all syntax of assertions
-
 bit [9:0] km='b0000111000,kn='b000001100;
 bit m,n,clk;
 
