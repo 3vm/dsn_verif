@@ -1,2 +1,2 @@
-gcc main.c mean_std_deviation.c
+gcc main.c mean_variance.c
 ./a.out
