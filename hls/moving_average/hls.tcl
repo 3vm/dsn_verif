@@ -9,7 +9,7 @@ create_clock -period 10 -name default
 config_sdx -optimization_level none -target none
 config_export -vivado_optimization_level 2
 set_clock_uncertainty 12.5%
-#source "./moving_average/solution1/directives.tcl"
+source ./directives.tcl
 #csim_design
 csynth_design
 #cosim_design
