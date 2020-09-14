@@ -74,15 +74,12 @@ initial begin
     if ( done ) begin
        i ++ ;
       expected_data[0] = data_buf.sum()/TAPS;
-      $display("E0 %d",expected_data[0]);
       show_buf();
       foreach(data_buf[i]) begin
         data_buf[i] = (data_buf[i] -expected_data[0])**2;
       end
       show_buf();
       expected_data[1] = data_buf.sum()/TAPS;
-      $display("E1 %d",expected_data[1]);
-      //$display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);
       cnt++;
       if ( (data_out_d0 === expected_data[0]) && (data_out_d1 === expected_data[1]) ) begin
         $display ( "P - output data %d output data %d expected data %d expected data %d" , data_out_d0, data_out_d1 , expected_data[0], expected_data[1]) ;
