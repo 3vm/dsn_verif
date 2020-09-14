@@ -1,4 +1,4 @@
-HLS - Create a mean and std deviation outputing core, demo multi input multi output passing
+HLS - Create a mean and variance outputing core, demo multi input multi output passing
 For further description refer to this book
 
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem

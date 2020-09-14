@@ -1,5 +1,5 @@
 #include "mean_variance.h"
-void mean_variance ( int * data_in, int *data_out ) {
+void mean_variance ( int  data_in[AVG_LENGTH], int data_out[2] ) {
 	int i,sum,mean,std_dev;
 	int data_buf[AVG_LENGTH];
 
