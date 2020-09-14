@@ -16,6 +16,18 @@ int cnt=0;
 int data_cnt=0;
 logic result;
 
+logic  [1:0] data_in_address0;
+logic   data_in_ce0;
+logic  [31:0] data_in_q0;
+logic  [0:0] data_out_address0;
+logic   data_out_ce0;
+logic   data_out_we0;
+logic  [31:0] data_out_d0;
+logic  [0:0] data_out_address1;
+logic   data_out_ce1;
+logic   data_out_we1;
+logic  [31:0] data_out_d1;
+
 thee_clk_gen_module #(.FREQ(100)) clk_gen_i0 ( .clk ( clk ) ) ;
 bit first_cycle;
 initial begin
@@ -76,15 +88,24 @@ initial begin
   $finish ;
 end
 
-moving_average ma (
+mean_variance mv (
  .ap_clk(clk),
  .ap_rst(~rstn),
  .ap_start(start),
  .ap_done(done),
  .ap_idle(idle),
  .ap_ready(ready),
- .data_in,
- .ap_return(data_out)
+ .data_in_address0,
+ .data_in_ce0,
+ .data_in_q0,
+ .data_out_address0,
+ .data_out_ce0,
+ .data_out_we0,
+ .data_out_d0,
+ .data_out_address1,
+ .data_out_ce1,
+ .data_out_we1,
+ .data_out_d1
 );
 
 endmodule

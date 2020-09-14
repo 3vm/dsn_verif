@@ -6,5 +6,6 @@ timescale.sv
 ../../thee/thee_mathsci_consts_pkg.sv
 ../../thee/thee_utils_pkg.sv
 ../../thee/thee_clk_gen_module.sv
-moving_average.v
+mean_variance_muxbkb.v
+mean_variance.v
 tb.sv
