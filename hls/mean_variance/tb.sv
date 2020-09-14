@@ -4,11 +4,12 @@ import thee_utils_pkg :: * ;
 
 parameter DWIDTH = 32 ;
 parameter TAPS = 4;
+parameter NUM_VECTORS=3;
 
 bit clk ;
 logic rstn ;
 logic [ DWIDTH-1 : 0 ] data_in,data_in_dly ;
-logic [ DWIDTH-1 : 0 ] data_out , expected_data;
+logic [ DWIDTH-1 : 0 ] expected_data[2];
 logic [ DWIDTH-1 : 0 ] data_buf [TAPS];
 logic start, done, idle, ready;
 int cnt=0;
@@ -68,7 +69,7 @@ initial begin
   repeat ( 1 ) @ ( posedge clk ) ;
   start = 1 ;
 
-  for ( int i = 0 ; i < 1 ;) begin
+  for ( int i = 0 ; i < NUM_VECTORS ;) begin
     repeat ( 1 ) @ ( posedge clk ) ;
     if ( done ) begin
        i ++ ;
