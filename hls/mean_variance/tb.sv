@@ -68,25 +68,26 @@ initial begin
   repeat ( 1 ) @ ( posedge clk ) ;
   start = 1 ;
 
-  for ( int i = 0 ; i < 9*TAPS ; i ++ ) begin
+  for ( int i = 0 ; i < 1 ;) begin
     repeat ( 1 ) @ ( posedge clk ) ;
     if ( done ) begin
+       i ++ ;
       expected_data[0] = data_buf.sum()/TAPS;
+      $display("E0 %d",expected_data[0]);
+      show_buf();
       foreach(data_buf[i]) begin
         data_buf[i] = (data_buf[i] -expected_data[0])**2;
       end
+      show_buf();
       expected_data[1] = data_buf.sum()/TAPS;
-      $display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);
+      $display("E1 %d",expected_data[1]);
+      //$display("Start %b, ready %b, idle %b, done %b", start, ready, idle, done);
       cnt++;
       if ( (data_out_d0 === expected_data[0]) && (data_out_d1 === expected_data[1]) ) begin
         $display ( "P - output data %d output data %d expected data %d expected data %d" , data_out_d0, data_out_d1 , expected_data[0], expected_data[1]) ;
         if ( result !== 0 ) result = 1;
       end else begin
         $display ( "F - output data %d output data %d expected data %d expected data %d" , data_out_d0 , data_out_d1, expected_data[0], expected_data[1] ) ;
-        foreach(data_buf[i]) begin
-          $write("Buf data %d ",data_buf[i]);
-        end
-        $display();
         result = 0 ;
       end
     end
@@ -115,5 +116,13 @@ mean_variance mv (
  .data_out_we1,
  .data_out_d1
 );
+
+task automatic show_buf;
+  $display("Buffer data");
+  foreach(data_buf[i]) begin
+    $write("%d ",data_buf[i]);
+  end
+  $display();
+endtask : show_buf
 
 endmodule
