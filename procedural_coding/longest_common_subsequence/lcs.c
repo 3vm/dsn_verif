@@ -5,18 +5,19 @@
 
 int max ( int a , int b ) ;
 void trace_back ( int i , int j ) ;
-char trace [ N ] [ M ] ;
+char trace [ N+1 ] [ M+1 ] ;
 char seq0[10] = "ATCTGAT" , seq1[10] = "TGCATA" ;
 void main (void) {
 
 int i,j;
-int alnmat [ N ] [ M ] ;
+int alnmat [ N+1 ] [ M+1 ] ;
 int n,m;
 n= strlen(seq0) ;
 m = strlen(seq1);
 for ( i = 0 ; i <= n ; i ++ ) {
-  alnmat[i][0] = 0 ;
-  alnmat[0][j] = 0 ;
+for ( j = 0 ; j <= n ; j ++ ) {
+  alnmat[i][j] = 0 ;
+}
 }
 
 for ( i = 1 ; i <= n ; i ++ ) {
@@ -36,6 +37,7 @@ for ( i = 1 ; i <= n ; i ++ ) {
   }
 }  
 trace_back ( n , m ) ;
+   printf("\n");
 }
 
 void trace_back ( int i , int j ) {
@@ -47,7 +49,7 @@ void trace_back ( int i , int j ) {
    // printf ( "Match , seq0 letter %d %d %s" , i , j , seq0 [ i-1 ] ) ;
    trace_back ( i-1 , j-1 ) ;
    // printf ( "index %2d sequence letter %s" , i-1 , seq0 [ i-1 ] ) ;
-   printf ("%d ", seq0 [ i-1 ] ) ;
+   printf ("%c", seq0 [ i-1 ] ) ;
  } else {
    if ( trace [ i ] [ j ] == 'U' ) {
      trace_back ( i-1 , j ) ;
