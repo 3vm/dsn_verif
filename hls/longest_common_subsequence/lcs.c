@@ -36,7 +36,7 @@ len = trace_back ( n , m, seq0, subseq) ;
 printf("Done trace_back, Length is %d\n",len);
 printf("subseq %s\n", subseq );
 ptr = data_out;
-for(i = len ; i >=0 ;i--) {
+for(i = len-1 ; i >=0 ;i--) {
   *data_out=*(subseq+i);
   printf("%c",*data_out );
   data_out++;
