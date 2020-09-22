@@ -15,7 +15,7 @@ int n,m;
 n= strlen(seq0) ;
 m = strlen(seq1);
 for ( i = 0 ; i <= n ; i ++ ) {
-for ( j = 0 ; j <= n ; j ++ ) {
+for ( j = 0 ; j <= m ; j ++ ) {
   alnmat[i][j] = 0 ;
 }
 }
