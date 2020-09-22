@@ -36,33 +36,30 @@ trace_back ( n , m, seq0, subseq) ;
 printf("Done trace_back\n");
 printf("subseq %s\n", subseq );
 for(i = 0 ; i < n ;i++) {
-  if( (*subseq+i) != '\0')
-    *(data_out+i)=*subseq;
+  if( (*subseq+i) != '\0') {
+    *(data_out+i)=*(subseq+i);
+    printf("%c",*(data_out+i) );
+  } 
   else
     break;
 }
+printf("\n");
 
 }
 
 void trace_back ( int n , int m, char *seq0, char *subseq ) {
-  int cnt;
-  int i,j;
-  char *save;
-  char subseq_rev[N+1];
-  save = subseq;
+  int i,j,cnt;
   i = n; j=m;
   for(cnt = n+m+1 ; cnt > 0 ; cnt--) {
     printf("trace[%d][%d] = %c \n",i,j,trace[i][j]);
     if ( i == 0 || j == 0 ) {
       *subseq++ = '\0';
-      cnt++;
       break;
     }
     if ( trace [ i ] [ j ] == 'D' ) {
       *subseq++ = seq0[i-1];
       printf ("%c\n", seq0 [ i-1 ] ) ;
       i--;j--;
-      cnt++;
     } else {
       if ( trace [ i ] [ j ] == 'U' ) {
         i--;
@@ -71,12 +68,6 @@ void trace_back ( int n , int m, char *seq0, char *subseq ) {
       }
     }
   }
-
-  for ( i = cnt ; i >0;i--) {
-    subseq_rev[cnt-i] = subseq[i];
-  }
-  subseq = subseq_rev;
-
 }
 
 int max ( int a , int b ) {
