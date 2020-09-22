@@ -6,8 +6,18 @@ char *ptr;
 int i,j,len;
 int alnmat [ N+1 ] [ M+1 ] ;
 
-strcpy(seq0,data_in);
-strcpy(seq1,data_in+n);
+for(i=0;i<n;i++) {
+  seq0[i]=*data_in;
+  data_in++;
+}
+
+for(i=n+1,j=0;i<n+1+m;i++,j++) {
+  seq1[j]=*data_in;
+  data_in++;
+}
+
+//strcpy(seq0,data_in);
+//strcpy(seq1,data_in+n);
 
 for ( i = 0 ; i <= n ; i ++ ) {
   for ( j = 0 ; j <= m ; j ++ ) {
@@ -42,9 +52,6 @@ for(i = len-1 ; i >=0 ;i--) {
   data_out++;
 }
 *data_out='\0';
-
-printf("Reversed traced sequence %s\n", ptr);
-
 
 printf("\n");
 
