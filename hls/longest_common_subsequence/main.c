@@ -2,9 +2,9 @@
 int main (void) {
 	int result=0;
 	char buf[N+M+2];
-	char exp[N+M+1],comm_seq[N+M+1];
+	char exp[N+1],comm_seq[N+1];
 	int i,j,n,m ;
-    char seq0[10] = "ATCTGAT" , seq1[10] = "TGCATA" ;
+    char seq0[N] = "ATCTGAT" , seq1[M] = "TGCATA" ;
     n= strlen(seq0) ;
     m = strlen(seq1);
 	strcpy(buf,seq0);

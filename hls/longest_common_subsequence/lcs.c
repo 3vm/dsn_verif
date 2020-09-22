@@ -1,5 +1,5 @@
 #include "lcs.h"
-void lcs (char *data_in, char *data_out, int n, int m) {
+void lcs (char data_in[N+M+2], char data_out[N+1], int n, int m) {
 
 char seq0[N+1], seq1[M+1], subseq[N+1];
 char *ptr;
@@ -11,7 +11,7 @@ for(i=0;i<n;i++) {
   data_in++;
 }
 
-for(i=n+1,j=0;i<n+1+m;i++,j++) {
+for(i=n,j=0;i<n+1+m;i++,j++) {
   seq1[j]=*data_in;
   data_in++;
 }
@@ -47,11 +47,11 @@ printf("Done trace_back, Length is %d\n",len);
 printf("subseq %s\n", subseq );
 ptr = data_out;
 for(i = len-1 ; i >=0 ;i--) {
-  *data_out=*(subseq+i);
+  data_out[i-len=*(subseq+i);
   printf("%c",*data_out );
   data_out++;
 }
-*data_out='\0';
+data_out[i]='\0';
 
 printf("\n");
 
