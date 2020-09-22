@@ -7,7 +7,7 @@ char seq0[N+1], seq1[M+1], subseq[N+1];
 strcpy(seq0,data_in);
 strcpy(seq1,data_in+n);
 
-int i,j;
+int i,j,cnt;
 int alnmat [ N+1 ] [ M+1 ] ;
 for ( i = 0 ; i <= n ; i ++ ) {
 for ( j = 0 ; j <= n ; j ++ ) {
@@ -31,7 +31,9 @@ for ( i = 1 ; i <= n ; i ++ ) {
     }
   }
 }  
-trace_back ( n , m, seq0, subseq, 0 ) ;
+
+cnt=0;
+trace_back ( n , m, seq0, subseq, cnt ) ;
 printf("\n");
 for(i = 0 ; i < n ;i++) {
   if( (*subseq+i) != '\0')
@@ -43,6 +45,8 @@ for(i = 0 ; i < n ;i++) {
 }
 
 void trace_back ( int i , int j, char *seq0, char *subseq, int index ) {
+  int next_index;
+  printf("Traceback char cnt %d", index);
  if ( i == 0 || j == 0 ) {
    *(subseq+index) = '\0';
    index++;
