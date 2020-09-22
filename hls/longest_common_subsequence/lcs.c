@@ -1,18 +1,17 @@
 #include "lcs.h"
 void lcs (char *data_in, char *data_out, int n, int m) {
 
-
 char seq0[N+1], seq1[M+1], subseq[N+1];
+int i,j,cnt;
+int alnmat [ N+1 ] [ M+1 ] ;
 
 strcpy(seq0,data_in);
 strcpy(seq1,data_in+n);
 
-int i,j,cnt;
-int alnmat [ N+1 ] [ M+1 ] ;
 for ( i = 0 ; i <= n ; i ++ ) {
-for ( j = 0 ; j <= n ; j ++ ) {
-  alnmat[i][j] = 0 ;
-}
+  for ( j = 0 ; j <= m ; j ++ ) {
+    alnmat[i][j] = 0 ;
+  }
 }
 
 for ( i = 1 ; i <= n ; i ++ ) {
@@ -33,8 +32,9 @@ for ( i = 1 ; i <= n ; i ++ ) {
 }  
 
 cnt=0;
-trace_back ( n , m, seq0, subseq, cnt ) ;
-printf("\n");
+trace_back ( n , m, seq0, subseq) ;
+printf("Done trace_back\n");
+printf("subseq %s\n", subseq );
 for(i = 0 ; i < n ;i++) {
   if( (*subseq+i) != '\0')
     *(data_out+i)=*subseq;
@@ -44,26 +44,39 @@ for(i = 0 ; i < n ;i++) {
 
 }
 
-void trace_back ( int i , int j, char *seq0, char *subseq, int index ) {
-  int next_index;
-  printf("Traceback char cnt %d", index);
- if ( i == 0 || j == 0 ) {
-   *(subseq+index) = '\0';
-   index++;
-   return ;
- }
- if ( trace [ i ] [ j ] == 'D' ) {
-   trace_back ( i-1 , j-1, seq0, subseq, index ) ;
-   *(subseq+index) = seq0[i-1];
-   index++;
-   printf ("%c", seq0 [ i-1 ] ) ;
- } else {
-   if ( trace [ i ] [ j ] == 'U' ) {
-     trace_back ( i-1 , j, seq0, subseq, index ) ;
-   } else {
-     trace_back ( i , j-1, seq0, subseq, index ) ;
-   }
- }
+void trace_back ( int n , int m, char *seq0, char *subseq ) {
+  int cnt;
+  int i,j;
+  char *save;
+  char subseq_rev[N+1];
+  save = subseq;
+  i = n; j=m;
+  for(cnt = n+m+1 ; cnt > 0 ; cnt--) {
+    printf("trace[%d][%d] = %c \n",i,j,trace[i][j]);
+    if ( i == 0 || j == 0 ) {
+      *subseq++ = '\0';
+      cnt++;
+      break;
+    }
+    if ( trace [ i ] [ j ] == 'D' ) {
+      *subseq++ = seq0[i-1];
+      printf ("%c\n", seq0 [ i-1 ] ) ;
+      i--;j--;
+      cnt++;
+    } else {
+      if ( trace [ i ] [ j ] == 'U' ) {
+        i--;
+      } else {
+        j--;
+      }
+    }
+  }
+
+  for ( i = cnt ; i >0;i--) {
+    subseq_rev[cnt-i] = subseq[i];
+  }
+  subseq = subseq_rev;
+
 }
 
 int max ( int a , int b ) {

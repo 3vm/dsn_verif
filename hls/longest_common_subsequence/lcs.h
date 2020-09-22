@@ -6,4 +6,4 @@
 char trace [ N+1 ] [ M+1 ] ;
 void lcs (char *data_in, char *data_out, int n, int m) ;
 int max ( int a , int b ) ;
-void trace_back ( int i , int j, char *seq0, char *subseq, int index ) ;
+void trace_back ( int n , int m, char *seq0, char *subseq ) ;
