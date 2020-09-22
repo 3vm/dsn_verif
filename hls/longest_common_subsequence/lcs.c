@@ -2,7 +2,8 @@
 void lcs (char *data_in, char *data_out, int n, int m) {
 
 char seq0[N+1], seq1[M+1], subseq[N+1];
-int i,j,cnt;
+char *ptr;
+int i,j,len;
 int alnmat [ N+1 ] [ M+1 ] ;
 
 strcpy(seq0,data_in);
@@ -31,25 +32,28 @@ for ( i = 1 ; i <= n ; i ++ ) {
   }
 }  
 
-cnt=0;
-trace_back ( n , m, seq0, subseq) ;
-printf("Done trace_back\n");
+len = trace_back ( n , m, seq0, subseq) ;
+printf("Done trace_back, Length is %d\n",len);
 printf("subseq %s\n", subseq );
-for(i = 0 ; i < n ;i++) {
-  if( (*subseq+i) != '\0') {
-    *(data_out+i)=*(subseq+i);
-    printf("%c",*(data_out+i) );
-  } 
-  else
-    break;
+ptr = data_out;
+for(i = len ; i >=0 ;i--) {
+  *data_out=*(subseq+i);
+  printf("%c",*data_out );
+  data_out++;
 }
+*data_out='\0';
+
+printf("Reversed traced sequence %s\n", ptr);
+
+
 printf("\n");
 
 }
 
-void trace_back ( int n , int m, char *seq0, char *subseq ) {
-  int i,j,cnt;
+int trace_back ( int n , int m, char *seq0, char *subseq ) {
+  int i,j,cnt,len;
   i = n; j=m;
+  len = 0;
   for(cnt = n+m+1 ; cnt > 0 ; cnt--) {
     printf("trace[%d][%d] = %c \n",i,j,trace[i][j]);
     if ( i == 0 || j == 0 ) {
@@ -58,6 +62,7 @@ void trace_back ( int n , int m, char *seq0, char *subseq ) {
     }
     if ( trace [ i ] [ j ] == 'D' ) {
       *subseq++ = seq0[i-1];
+      len++;
       printf ("%c\n", seq0 [ i-1 ] ) ;
       i--;j--;
     } else {
@@ -68,6 +73,7 @@ void trace_back ( int n , int m, char *seq0, char *subseq ) {
       }
     }
   }
+  return len;
 }
 
 int max ( int a , int b ) {
