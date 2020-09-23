@@ -6,17 +6,10 @@ int main (void) {
 	int i,j,n,m ;
     char seq0[N+1] ="ATCTGAT" ;
     char seq1[M+1] ="TGCATA" ;
-    //strcpy(seq0,"ATCTGAT");
-    //strcpy(seq1,"TGCATA");
     n= strlen(seq0) ;
     m = strlen(seq1);
-    printf("Length of seq0,1 %d %d\n",n,m );
-    for(i=0;i<N+M+2;i++) buf[i] = '\0';
-	printf("seq0,1 %s %s data buffer %s\n",seq0,seq1,buf );
 	strcpy(buf,seq0);
-	printf("seq0,1 %s %s data buffer %s\n",seq0,seq1,buf );
 	strcat(buf,seq1);
-	printf("seq0,1 %s %s data buffer %s\n",seq0,seq1,buf );
 
 	lcs ( buf, comm_seq, n, m );
 	strcpy(exp,"TCTA");
