@@ -3,33 +3,29 @@ module tb ;
 import thee_utils_pkg :: * ;
 
 parameter DWIDTH = 32 ;
-parameter TAPS = 4;
+parameter N = 7, M=6;
 parameter NUM_VECTORS=3;
 
 bit clk ;
 logic rstn ;
 logic [ DWIDTH-1 : 0 ] data_in,data_in_dly ;
 logic [ DWIDTH-1 : 0 ] expected_data[2];
-logic [ DWIDTH-1 : 0 ] data_buf [TAPS];
+logic [ DWIDTH-1 : 0 ] data_buf [N+M+1];
 logic start, done, idle, ready;
 int cnt=0;
 int data_cnt=0;
+integer n,m;
 logic result;
 
-logic  [1:0] data_in_address0;
+logic  [3:0] data_in_address0;
 logic   data_in_ce0, data_in_ce0_d;
-logic  [31:0] data_in_q0;
-logic  [0:0] data_out_address0;
+logic  [7:0] data_in_q0;
+logic  [3:0] data_out_address0;
 logic   data_out_ce0;
 logic   data_out_we0;
-logic  [31:0] data_out_d0;
-logic  [0:0] data_out_address1;
-logic   data_out_ce1;
-logic   data_out_we1;
-logic  [31:0] data_out_d1;
+logic  [7:0] data_out_d0;
 
 thee_clk_gen_module #(.FREQ(100)) clk_gen_i0 ( .clk ( clk ) ) ;
-bit first_cycle;
 
 initial begin
   data_in=0;
@@ -60,7 +56,7 @@ initial begin
 end
 
 always @(posedge clk )
-  $display("Wave : Strt %b, rdy %b, idle %b, done %b, din %4d, din CE %b, dout0 %4d, dout0ce %b, dout0we %b, dout0adr %d, dout1 %d, dout1ce %b d1we %b, d1addr %d ", start, ready, idle, done, data_in,data_in_ce0, data_out_d0, data_out_ce0, data_out_we0, data_out_address0, data_out_d1, data_out_ce1,data_out_we1, data_out_address1); 
+  $display("Wave : Strt %b, rdy %b, idle %b, done %b, din %4d, din CE %b, dout0 %2c, dout0ce %b, dout0we %b, dout0adr %d ", start, ready, idle, done, data_in,data_in_ce0, data_out_d0, data_out_ce0, data_out_we0, data_out_address0 ); 
 
 initial begin
   result = 1'bx ;
@@ -73,19 +69,19 @@ initial begin
     repeat ( 1 ) @ ( posedge clk ) ;
     if ( done ) begin
        i ++ ;
-      expected_data[0] = data_buf.sum()/TAPS;
+      expected_data[0] = data_buf.sum()/N;
       show_buf();
       foreach(data_buf[i]) begin
         data_buf[i] = (data_buf[i] -expected_data[0])**2;
       end
       show_buf();
-      expected_data[1] = data_buf.sum()/TAPS;
+      expected_data[1] = data_buf.sum()/N;
       cnt++;
-      if ( (data_out_d0 === expected_data[0]) && (data_out_d1 === expected_data[1]) ) begin
-        $display ( "P - output data %d output data %d expected data %d expected data %d" , data_out_d0, data_out_d1 , expected_data[0], expected_data[1]) ;
+      if ( data_out_d0 === expected_data[0] ) begin
+        $display ( "P - output data %d expected data %d expected data %d" , data_out_d0, expected_data[0], expected_data[1]) ;
         if ( result !== 0 ) result = 1;
       end else begin
-        $display ( "F - output data %d output data %d expected data %d expected data %d" , data_out_d0 , data_out_d1, expected_data[0], expected_data[1] ) ;
+        $display ( "F - output data %d expected data %d expected data %d" , data_out_d0 , expected_data[0], expected_data[1] ) ;
         result = 0 ;
       end
     end
@@ -109,10 +105,8 @@ lcs mv (
  .data_out_ce0,
  .data_out_we0,
  .data_out_d0,
- .data_out_address1,
- .data_out_ce1,
- .data_out_we1,
- .data_out_d1
+ .n,
+ .m
 );
 
 task automatic show_buf;
