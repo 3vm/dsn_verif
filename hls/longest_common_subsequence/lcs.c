@@ -6,15 +6,15 @@ char *ptr;
 int i,j,len;
 int alnmat [ N+1 ] [ M+1 ] ;
 
-for(i=0;i<n;i++) {
-  seq0[i]=*data_in;
-  data_in++;
+for(i=0;i<=n;i++) {
+  seq0[i]=data_in[i];
 }
 
 for(i=n,j=0;i<n+1+m;i++,j++) {
-  seq1[j]=*data_in;
-  data_in++;
+  seq1[j]=data_in[i];
 }
+
+printf("seq0,1 %s %s data buffer %s\n",seq0,seq1,data_in );
 
 //strcpy(seq0,data_in);
 //strcpy(seq1,data_in+n);
@@ -47,9 +47,10 @@ printf("Done trace_back, Length is %d\n",len);
 printf("subseq %s\n", subseq );
 ptr = data_out;
 for(i = len-1 ; i >=0 ;i--) {
-  data_out[i-len=*(subseq+i);
-  printf("%c",*data_out );
-  data_out++;
+  j = len-1-i;
+  data_out[j]=*(subseq+i);
+  printf("%c",data_out[j] );
+  //data_out++;
 }
 data_out[i]='\0';
 
