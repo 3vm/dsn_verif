@@ -4,8 +4,10 @@ int main (void) {
 	char buf[N+M+2];
 	char exp[N+1],comm_seq[N+1];
 	int i,j,n,m ;
-    char seq0[N] = "ATCTGAT" ;
-    char seq1[M] = "TGCATA" ;
+    char seq0[N+1] ="ATCTGAT" ;
+    char seq1[M+1] ="TGCATA" ;
+    //strcpy(seq0,"ATCTGAT");
+    //strcpy(seq1,"TGCATA");
     n= strlen(seq0) ;
     m = strlen(seq1);
     printf("Length of seq0,1 %d %d\n",n,m );
