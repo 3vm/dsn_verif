@@ -8,6 +8,7 @@ timescale.sv
 ../../thee/thee_clk_gen_module.sv
 trace_back.v
 lcs_alnmat.v
+lcs_subseq.v
 lcs_seq0.v
 lcs_seq1.v
 lcs_trace.v

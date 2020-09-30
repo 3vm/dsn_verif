@@ -7,7 +7,7 @@ module lcs_seq0_ram (addr0, ce0, d0, we0, q0,  clk);
 
 parameter DWIDTH = 8;
 parameter AWIDTH = 3;
-parameter MEM_SIZE = 8;
+parameter MEM_SIZE = 7;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -44,7 +44,7 @@ module lcs_seq0(
     q0);
 
 parameter DataWidth = 32'd8;
-parameter AddressRange = 32'd8;
+parameter AddressRange = 32'd7;
 parameter AddressWidth = 32'd3;
 input reset;
 input clk;

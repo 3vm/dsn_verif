@@ -3,11 +3,11 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // ==============================================================
 `timescale 1 ns / 1 ps
-module lcs_seq1_ram (addr0, ce0, d0, we0, q0,  clk);
+module lcs_subseq_ram (addr0, ce0, d0, we0, q0,  clk);
 
 parameter DWIDTH = 8;
 parameter AWIDTH = 3;
-parameter MEM_SIZE = 6;
+parameter MEM_SIZE = 8;
 
 input[AWIDTH-1:0] addr0;
 input ce0;
@@ -34,7 +34,7 @@ end
 endmodule
 
 `timescale 1 ns / 1 ps
-module lcs_seq1(
+module lcs_subseq(
     reset,
     clk,
     address0,
@@ -44,7 +44,7 @@ module lcs_seq1(
     q0);
 
 parameter DataWidth = 32'd8;
-parameter AddressRange = 32'd6;
+parameter AddressRange = 32'd8;
 parameter AddressWidth = 32'd3;
 input reset;
 input clk;
@@ -56,7 +56,7 @@ output[DataWidth - 1:0] q0;
 
 
 
-lcs_seq1_ram lcs_seq1_ram_U(
+lcs_subseq_ram lcs_subseq_ram_U(
     .clk( clk ),
     .addr0( address0 ),
     .ce0( ce0 ),
