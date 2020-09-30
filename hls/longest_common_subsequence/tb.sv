@@ -10,11 +10,11 @@ parameter FLUSH_CYCLES = 1;
 bit clk ;
 logic rstn ;
 byte data_in ;
-string expected_data  = "AAA"; //"TA"; //"TCTA";
+string expected_data  = "TCTA";
 string data_buf;
 string out_buf="000000000000000"; //byte data_buf [N+M+2];
-string seq0 = "ATA"; //"ATCTGAT" ;//byte seq0[N+1] ="ATCTGAT" ;
-string seq1 = "TAG";//"TGCATA" ; //byte seq1[M+1] ="TGCATA" ;
+string seq0 = "ATCTGAT" ;//byte seq0[N+1] ="ATCTGAT" ;
+string seq1 = "TGCATA" ; //byte seq1[M+1] ="TGCATA" ;
 logic start, done, idle, ready;
 int cnt=0;
 int data_cnt=0;
@@ -43,8 +43,9 @@ assign temp = data_buf.getc(data_in_address0);
 initial begin
   forever @(posedge clk ) begin
     //temp = 
-    //if ( data_in_ce0 )
-      data_in="A";//data_buf.getc(data_in_address0);
+    if ( data_in_ce0 )
+    //  data_in=data_in=="T"? "A": "T";//
+    data_in=data_buf.getc(data_in_address0);
   end
 end
 
