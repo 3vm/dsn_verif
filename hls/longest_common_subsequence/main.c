@@ -4,8 +4,8 @@ int main (void) {
 	char buf[N+M+2];
 	char exp[N+1],comm_seq[N+1];
 	int i,j,n,m ;
-    char seq0[N+1] ="ATCTGAT" ;
-    char seq1[M+1] ="TGCATA" ;
+    char seq0[N+1] = "ATA" ;//"ATCTGAT" ;
+    char seq1[M+1] = "TAG" ;//"TGCATA" ;
     n= strlen(seq0) ;
     m = strlen(seq1);
 	strcpy(buf,seq0);

@@ -5,11 +5,12 @@ import thee_utils_pkg :: * ;
 parameter DWIDTH = 32 ;
 parameter N = 7, M=6;
 parameter NUM_VECTORS=1;
+parameter FLUSH_CYCLES = 1;
 
 bit clk ;
 logic rstn ;
 byte data_in ;
-string expected_data  = "TA"; //"TCTA";
+string expected_data  = "AAA"; //"TA"; //"TCTA";
 string data_buf;
 string out_buf="000000000000000"; //byte data_buf [N+M+2];
 string seq0 = "ATA"; //"ATCTGAT" ;//byte seq0[N+1] ="ATCTGAT" ;
@@ -37,17 +38,21 @@ initial begin
   $display("%s",data_buf);
 end
 
+byte temp;
+assign temp = data_buf.getc(data_in_address0);
 initial begin
-  forever @(posedge clk )
-    if ( data_in_ce0 )
-      data_in=data_buf.getc(data_in_address0);
+  forever @(posedge clk ) begin
+    //temp = 
+    //if ( data_in_ce0 )
+      data_in="A";//data_buf.getc(data_in_address0);
+  end
 end
 
-always_ff @(posedge clk or negedge rstn) begin : proc_out_buf
-  if(~rstn) begin
-    out_buf <= "";
-  end else if ( data_out_ce0 && data_out_we0 ) begin
-    out_buf.putc(data_out_address0,data_out_d0);
+initial begin
+  out_buf=expected_data.tolower();
+  forever @(posedge clk ) begin
+    if ( data_out_ce0 && data_out_we0 )
+      out_buf.putc(data_out_address0,data_out_d0);
   end
 end
 
@@ -70,17 +75,20 @@ initial begin
   for ( int i = 0 ; i < NUM_VECTORS ; ) begin
     repeat ( 1 ) @ ( posedge clk ) ;
     if ( ready ) begin
-      if ( out_buf === expected_data ) begin
-        $display("Pass: Got %s expected %s",out_buf,expected_data); 
+      if ( out_buf == expected_data ) begin
+        $display("Pass: Got \"%s\" expected \"%s\"",out_buf,expected_data); 
         if ( result !== 0 ) result = 1;
       end else begin
-        $display("Fail: Got %s expected %s",out_buf,expected_data);
+        $display("Fail: Got \"%s\" expected \"%s\"",out_buf,expected_data);
         result = 0;
       end
       i++;
-    end
+      start=1;
+    end else
+      start = 0 ;
   end
-  
+  repeat ( FLUSH_CYCLES ) @ ( posedge clk ) ;
+
   print_test_result ( result ) ;
   $finish ;
 end
