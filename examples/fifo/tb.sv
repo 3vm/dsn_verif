@@ -56,7 +56,7 @@ initial begin
    $finish ;
 end
 
-ehgu_fifo # ( .SHIFT ( SHIFT ) , .MEM_DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) sr_mem (
+ehgu_fifo # ( .SHIFT ( SHIFT ) , .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
 .clk0 (clk) ,
 .clk1 (clk) ,
 .rstn ,

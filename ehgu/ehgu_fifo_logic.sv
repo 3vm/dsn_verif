@@ -24,7 +24,7 @@ always_ff @ ( posedge wclk , negedge rstn ) begin
    if ( !rstn ) begin
      waddr <= 0 ;
      raddr <= DEPTH - SHIFT ;
-   end else if ( renable ) begin
+   end else if ( wenable ) begin
      waddr <= ( waddr + 1 ) % DEPTH ;
      raddr <= ( raddr + 1 ) % DEPTH ;
    end

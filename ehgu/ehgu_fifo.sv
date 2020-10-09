@@ -8,7 +8,7 @@ parameter SYNC_STAGES_CLK0_TO_CLK1 = 2,
 parameter SYNC_STAGES_CLK1_TO_CLK0 = 2,
 parameter SHIFT = 20 ,
 parameter WIDTH = 8 ,
-parameter MEM_DEPTH = 128
+parameter DEPTH = 128
  ) (
 input logic clk0 ,
 input logic clk1 ,
@@ -18,14 +18,15 @@ input logic [ WIDTH-1 : 0 ] data_in ,
 output logic [ WIDTH-1 : 0 ] data_out
  ) ;
 
-localparam AWIDTH = $clog2 ( MEM_DEPTH ) ;
+localparam AWIDTH = $clog2 ( DEPTH ) ;
 
 logic [ AWIDTH-1 : 0 ] waddr ;
 logic [ AWIDTH-1 : 0 ] raddr ;
 
-ehgu_fifo_logic # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
+ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
  (
 .wclk ( clk0 ) ,
+.rstn ,
 .wenable ( en ) ,
 .waddr ,
 .rclk ( clk1 ) ,
@@ -33,7 +34,7 @@ ehgu_fifo_logic # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) 
 .raddr 
  ) ;
 
-ehgu_fifo_mem # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehgu_fifo_mem_i
+ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehgu_fifo_mem_i
  (
 .wclk ( clk0 ) ,
 .wenable ( en ) ,
