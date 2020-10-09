@@ -44,8 +44,7 @@ initial begin
    repeat (100) @(posedge clk) ;
    for ( int i = 0 ; i < 3 * DEPTH ; i ++ ) begin
      repeat ( 1 ) @ ( posedge clk ) ;
-//     if ( data_out === expected_data && !$isunknown(data_out)) begin
-     if ( data_out === expected_data ) begin
+     if ( data_out === expected_data && !$isunknown(data_out)) begin
        $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
      end else begin
        $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;

@@ -1,3 +1,5 @@
 Possible bugs
 
 cdc problems in analog to digital transfer - sample and hold
+
+data === expected_data will pass when both data and expd are x. Need to add !$isunknown(data) to the check
