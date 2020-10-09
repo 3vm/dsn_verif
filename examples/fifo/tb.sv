@@ -44,6 +44,7 @@ initial begin
    repeat (100) @(posedge clk) ;
    for ( int i = 0 ; i < 3 * DEPTH ; i ++ ) begin
      repeat ( 1 ) @ ( posedge clk ) ;
+//     if ( data_out === expected_data && !$isunknown(data_out)) begin
      if ( data_out === expected_data ) begin
        $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
      end else begin
@@ -57,8 +58,8 @@ initial begin
 end
 
 ehgu_fifo # ( .SHIFT ( SHIFT ) , .MEM_DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) sr_mem (
-.clk0 (clk) ,
-.clk1 (clk) ,
+.clk0 (clk0) ,
+.clk1 (clk1) ,
 .rstn ,
 .en ,
 .data_in ,
