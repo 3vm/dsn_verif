@@ -23,17 +23,17 @@ localparam AWIDTH = $clog2 ( MEM_DEPTH ) ;
 logic [ AWIDTH-1 : 0 ] waddr ;
 logic [ AWIDTH-1 : 0 ] raddr ;
 
-always_ff @ ( posedge clk0 , negedge rstn ) begin
-   if ( !rstn ) begin
-     waddr <= 0 ;
-     raddr <= MEM_DEPTH - SHIFT ;
-   end else if ( en ) begin
-     waddr <= ( waddr + 1 ) %MEM_DEPTH ;
-     raddr <= ( raddr + 1 ) %MEM_DEPTH ;
-   end
-end
+ehgu_fifo_logic # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
+ (
+.wclk ( clk0 ) ,
+.wenable ( en ) ,
+.waddr ,
+.rclk ( clk1 ) ,
+.renable ( en ) ,
+.raddr 
+ ) ;
 
-ehgu_ram_dual_port # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ) ) dmem_i
+ehgu_fifo_mem # ( .DEPTH ( MEM_DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehgu_fifo_mem_i
  (
 .wclk ( clk0 ) ,
 .wenable ( en ) ,

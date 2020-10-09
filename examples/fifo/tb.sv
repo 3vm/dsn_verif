@@ -57,8 +57,8 @@ initial begin
 end
 
 ehgu_fifo # ( .SHIFT ( SHIFT ) , .MEM_DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) sr_mem (
-.clk0 (clk0) ,
-.clk1 (clk1) ,
+.clk0 (clk) ,
+.clk1 (clk) ,
 .rstn ,
 .en ,
 .data_in ,

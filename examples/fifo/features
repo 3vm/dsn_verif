@@ -1,3 +1,3 @@
-asynch fifo - separate memory and control into diff modules - REFER recording
-fifo mem - wrapper for memory or flops and fifo logic - pointer calc, max delay or multicycle path for cdc. for sync connect clk0 to clk1 or define another wrapper module. 
+asynch fifo ReFER recording
+pointer calc, max delay or multicycle path for cdc.
 
