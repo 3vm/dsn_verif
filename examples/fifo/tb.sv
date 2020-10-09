@@ -21,46 +21,48 @@ logic result ;
 
 logic [ DWIDTH-1 : 0 ] mem_mirror [ DEPTH ] ;
 
- // rom_comb rom (
-ehgu_sr_mem # ( .SHIFT ( SHIFT ) , .MEM_DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) sr_mem (
-.clk ,
-.rstn ,
-.en ,
-.data_in ,
-.data_out
- ) ;
-
 parameter real FREQ = 100 ;
 thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk ) ) ;
+
+initial begin
+  data_in = 0 ;
+  forever @(posedge clk) begin
+    data_in <= data_in + 3;
+  end
+end
+ 
+initial begin
+  forever @(posedge clk) begin
+    expected_data = $past ( data_out , 1 , 1 , @ ( posedge clk ) ) + 3 ;
+  end
+end
 
 initial begin
    result = 1 ;
    en = 1 ;
    toggle_rstn ( .rstn ( rstn ) ) ;
-   fork
+   repeat (20) @(posedge clk) ;
    for ( int i = 0 ; i < 3 * DEPTH ; i ++ ) begin
      repeat ( 1 ) @ ( posedge clk ) ;
-    
-     data_in = $urandom ( ) ;
-   end
-   begin
-     repeat ( SHIFT ) @ ( posedge clk ) ;
-     while ( 1 ) begin
-       repeat ( 1 ) @ ( posedge clk ) ;
-       expected_data = $past ( data_in , SHIFT , 1 , @ ( posedge clk ) ) ;
-       if ( data_out === expected_data ) begin
-         $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
-       end else begin
-         $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
-         result = 0 ;
-       end
+     if ( data_out === expected_data ) begin
+       $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
+     end else begin
+       $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
+       result = 0 ;
      end
    end
-  
-   join_any
   
    print_test_result ( result ) ;
    $finish ;
 end
+
+ehgu_fifo # ( .SHIFT ( SHIFT ) , .MEM_DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) sr_mem (
+.clk0 (clk) ,
+.clk1 (clk) ,
+.rstn ,
+.en ,
+.data_in ,
+.data_out
+ ) ;
 
 endmodule
