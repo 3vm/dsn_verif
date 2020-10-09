@@ -41,7 +41,7 @@ initial begin
    result = 1 ;
    en = 1 ;
    toggle_rstn ( .rstn ( rstn ) ) ;
-   repeat (20) @(posedge clk) ;
+   repeat (100) @(posedge clk) ;
    for ( int i = 0 ; i < 3 * DEPTH ; i ++ ) begin
      repeat ( 1 ) @ ( posedge clk ) ;
      if ( data_out === expected_data ) begin
