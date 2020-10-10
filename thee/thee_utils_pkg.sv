@@ -165,6 +165,17 @@ endtask
    repeat ( 4 ) $display ( "Test Fail" ) ;
  endtask
 
+ task automatic update_test_status
+ (
+ input logic this_result,
+ inout logic result
+ ) ;
+ if ( this_result === 1 && result === 'x )
+   result = 1 ;
+ else if ( this_result != 1 )
+   result = 0 ;
+ endtask
+
 task automatic create_test_result_file
 (
  logic result

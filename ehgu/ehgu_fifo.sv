@@ -22,8 +22,6 @@ output logic [ WIDTH-1 : 0 ] dout
  ) ;
 
 // TBD 
-// synchronous fifo check
-// bursty inputs
 // overflow, underflow results
 // async fifo features - gray code, sync
 // bursty inputs

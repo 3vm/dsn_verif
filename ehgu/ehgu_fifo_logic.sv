@@ -69,9 +69,14 @@ always_ff @(posedge rclk or negedge rrstn) begin
 	end else begin
 		if (raddr != waddr)
 		renable <= 1;
+    else
+      renable <= 0;
 	end
 end
 
 assign dout_valid = renable ;
+
+//always @(posedge wclk)
+//  $display("WA %d RA %d",waddr,raddr);
 
 endmodule
