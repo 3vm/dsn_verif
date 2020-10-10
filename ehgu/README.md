@@ -7,6 +7,7 @@ ehgu_edges.sv - rise fall or any edge
 ehgu_fedge.sv - fall edge
 ehgu_redge.sv - rise edge
 ehgu_rst_sync.sv - reset synchronizer with parameterized stage count
+ehgu_fifo - incomplete
 
 For further description refer to this book
 

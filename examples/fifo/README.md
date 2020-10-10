@@ -1,4 +1,4 @@
-Synchronous and Asynchronous First In First Out FIFO
+incomplete dont use yet Synchronous and Asynchronous First In First Out FIFO
 
 For further description refer to this book
 

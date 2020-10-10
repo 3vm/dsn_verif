@@ -22,6 +22,7 @@ localparam AWIDTH = $clog2 ( DEPTH ) ;
 
 logic [ AWIDTH-1 : 0 ] waddr ;
 logic [ AWIDTH-1 : 0 ] raddr ;
+logic renable ;
 
 ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
  (
@@ -30,7 +31,7 @@ ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) eh
 .wenable ( en ) ,
 .waddr ,
 .rclk ( clk1 ) ,
-.renable ( en ) ,
+.renable ,
 .raddr 
  ) ;
 
@@ -41,7 +42,7 @@ ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehg
 .waddr ,
 .wdata ( data_in ) ,
 .rclk ( clk1 ) ,
-.renable ( en ) ,
+.renable ,
 .raddr ,
 .rdata ( data_out )
  ) ;
