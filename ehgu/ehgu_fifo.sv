@@ -30,12 +30,14 @@ output logic [ WIDTH-1 : 0 ] dout
 // async clock
 // short gray code support
 // sync stage parameter support for async fifo - pass to syncs from instantiation
+// en for enabled operation for clock gating and power saving purpose
 // Ex: req - ack support on output side and then on input side
 
 localparam AWIDTH = $clog2 ( DEPTH ) ;
 
 logic [ AWIDTH-1 : 0 ] waddr ;
 logic [ AWIDTH-1 : 0 ] raddr ;
+logic wenable ;
 logic renable ;
 
 ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
@@ -43,7 +45,8 @@ ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) eh
 .wclk ( clk0 ) ,
 .wrstn ,
 .rrstn ,
-.wenable ( en ) ,
+.en ( en ) ,
+.wenable ,
 .waddr ,
 .rclk ( clk1 ) ,
 .renable ,
@@ -53,7 +56,7 @@ ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) eh
 ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehgu_fifo_mem_i
  (
 .wclk ( clk0 ) ,
-.wenable ( en ) ,
+.wenable ,
 .waddr ,
 .wdata ( din ) ,
 .rclk ( clk1 ) ,

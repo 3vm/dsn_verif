@@ -14,10 +14,13 @@ input logic wclk ,
 input logic rclk ,
 input logic wrstn ,
 input logic rrstn ,
+input logic en,
+input logic din_valid ,
+
+output logic wenable ,
+output logic [ AWIDTH-1 : 0 ] waddr ,
 output logic renable ,
-input logic wenable ,
-output logic [ AWIDTH-1 : 0 ] raddr ,
-output logic [ AWIDTH-1 : 0 ] waddr 
+output logic [ AWIDTH-1 : 0 ] raddr 
  ) ;
 
 logic [ AWIDTH-1 : 0 ] raddr_next ;
@@ -25,8 +28,9 @@ logic [ AWIDTH-1 : 0 ] waddr_next ;
 
 //Checkme -- reset synchronized to appropriate domain
 //two reset inputs or internal reset synchronizer?
+assign wenable= en ; 
 always_comb begin
-  if ( wenable ) begin
+  if ( en ) begin
     waddr_next = ( waddr + 1 ) % DEPTH ;
   end else begin
     waddr_next = waddr ;

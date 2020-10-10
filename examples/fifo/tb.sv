@@ -23,10 +23,17 @@ logic [ DWIDTH-1 : 0 ] mem_mirror [ DEPTH ] ;
 parameter real FREQ = 100 ;
 thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk ) ) ;
 
+int cnt ;
 initial begin
   din = 0 ;
+  din_valid = 0;
+  cnt = 0 ;
   forever @(posedge clk) begin
     din <= din + 3;
+    if (cnt == 0) begin
+      cnt <= $urandom_range(10,20);
+      din_valid = !din_valid;
+    end
   end
 end
  
