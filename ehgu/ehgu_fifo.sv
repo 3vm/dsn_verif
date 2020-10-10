@@ -46,10 +46,12 @@ ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) eh
 .wrstn ,
 .rrstn ,
 .en ( en ) ,
+.din_valid ,
 .wenable ,
 .waddr ,
 .rclk ( clk1 ) ,
 .renable ,
+.dout_valid ,
 .raddr 
  ) ;
 

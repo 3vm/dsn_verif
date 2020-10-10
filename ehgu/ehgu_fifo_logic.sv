@@ -20,17 +20,19 @@ input logic din_valid ,
 output logic wenable ,
 output logic [ AWIDTH-1 : 0 ] waddr ,
 output logic renable ,
-output logic [ AWIDTH-1 : 0 ] raddr 
+output logic [ AWIDTH-1 : 0 ] raddr ,
+output logic dout_valid
  ) ;
 
 logic [ AWIDTH-1 : 0 ] raddr_next ;
 logic [ AWIDTH-1 : 0 ] waddr_next ;
 
-//Checkme -- reset synchronized to appropriate domain
-//two reset inputs or internal reset synchronizer?
-assign wenable= en ; 
 always_comb begin
-  if ( en ) begin
+  wenable = din_valid ;
+end
+
+always_comb begin
+  if ( wenable ) begin
     waddr_next = ( waddr + 1 ) % DEPTH ;
   end else begin
     waddr_next = waddr ;
@@ -69,5 +71,7 @@ always_ff @(posedge rclk or negedge rrstn) begin
 		renable <= 1;
 	end
 end
+
+assign dout_valid = renable ;
 
 endmodule
