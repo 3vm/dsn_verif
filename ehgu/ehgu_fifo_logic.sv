@@ -23,9 +23,10 @@ output logic renable ,
 output logic [ AWIDTH-1 : 0 ] raddr ,
 output logic dout_valid
  ) ;
-
+import ehgu_basic_pkg::sub_modulo_unsigned;
 logic [ AWIDTH-1 : 0 ] raddr_next ;
 logic [ AWIDTH-1 : 0 ] waddr_next ;
+logic renable_next ;
 
 always_comb begin
   wenable = din_valid ;
@@ -69,11 +70,19 @@ always_ff @(posedge rclk or negedge rrstn) begin
     dout_valid <= 0 ;
 	end else begin
     dout_valid <= renable ;
-		if (raddr != waddr)
-		renable <= 1;
-    else
-      renable <= 0;
+      renable <= renable_next;
 	end
+end
+
+logic nc;
+logic [AWIDTH-1:0] diff ;
+always_comb begin
+  sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+  if ( diff > 1 ) begin
+    renable_next = 1;
+  end else begin
+    renable_next = 0;
+  end
 end
 
 endmodule
