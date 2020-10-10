@@ -33,7 +33,7 @@ initial begin
       cnt <= $urandom_range(10,20);
       din_valid <= ~din_valid;
     end else begin
-      cnt <= cnt -1;
+      cnt <= cnt--;
     end 
   end
 end
