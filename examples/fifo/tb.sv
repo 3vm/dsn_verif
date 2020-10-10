@@ -11,10 +11,10 @@ parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
 
 logic clk , rstn ;
-logic [ DWIDTH-1 : 0 ] data_in ;
-logic [ DWIDTH-1 : 0 ] data_out , expected_data ;
+logic [ DWIDTH-1 : 0 ] din ;
+logic [ DWIDTH-1 : 0 ] dout , expected_data ;
 logic en ;
-logic data_out_valid ;
+logic din_valid, dout_valid ;
 
 logic result ;
 
@@ -24,15 +24,15 @@ parameter real FREQ = 100 ;
 thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk ) ) ;
 
 initial begin
-  data_in = 0 ;
+  din = 0 ;
   forever @(posedge clk) begin
-    data_in <= data_in + 3;
+    din <= din + 3;
   end
 end
  
 initial begin
   forever @(posedge clk) begin
-    expected_data = $past ( data_out , 1 , 1 , @ ( posedge clk ) ) + 3 ;
+    expected_data = $past ( dout , 1 , 1 , @ ( posedge clk ) ) + 3 ;
   end
 end
 
@@ -43,10 +43,10 @@ initial begin
    repeat (100) @(posedge clk) ;
    for ( int i = 0 ; i < 3 * DEPTH ; i ++ ) begin
      repeat ( 1 ) @ ( posedge clk ) ;
-     if ( data_out === expected_data && !$isunknown(data_out)) begin
-       $display ( "P - output data %h expected data %h" , data_out , expected_data ) ;
+     if ( dout === expected_data && !$isunknown(dout)) begin
+       $display ( "P - output data %h expected data %h" , dout , expected_data ) ;
      end else begin
-       $display ( "F - output data %h expected data %h" , data_out , expected_data ) ;
+       $display ( "F - output data %h expected data %h" , dout , expected_data ) ;
        result = 0 ;
      end
    end
@@ -61,9 +61,10 @@ ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
 .wrstn (rstn),
 .rrstn (rstn),
 .en ,
-.data_in ,
-.data_out ,
-.data_out_valid 
+.din_valid ,
+.din ,
+.dout ,
+.dout_valid 
  ) ;
 
 endmodule

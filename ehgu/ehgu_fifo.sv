@@ -12,22 +12,25 @@ parameter DEPTH = 128
 input logic clk0 ,
 input logic wrstn ,
 input logic en ,
-input logic [ WIDTH-1 : 0 ] data_in ,
+input logic din_valid ,
+input logic [ WIDTH-1 : 0 ] din ,
 
 input logic clk1 ,
 input logic rrstn ,
-output logic data_out_valid ,
-output logic [ WIDTH-1 : 0 ] data_out
+output logic dout_valid ,
+output logic [ WIDTH-1 : 0 ] dout
  ) ;
 
-//TBD 
-//synchronous fifo check
+// TBD 
+// synchronous fifo check
 // bursty inputs
-//overflow, underflow results
+// overflow, underflow results
 // async fifo features - gray code, sync
 // bursty inputs
 // async clock
 // short gray code support
+// sync stage parameter support for async fifo - pass to syncs from instantiation
+// Ex: req - ack support on output side and then on input side
 
 localparam AWIDTH = $clog2 ( DEPTH ) ;
 
@@ -52,11 +55,11 @@ ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehg
 .wclk ( clk0 ) ,
 .wenable ( en ) ,
 .waddr ,
-.wdata ( data_in ) ,
+.wdata ( din ) ,
 .rclk ( clk1 ) ,
 .renable ,
 .raddr ,
-.rdata ( data_out )
+.rdata ( dout )
  ) ;
 
 endmodule
