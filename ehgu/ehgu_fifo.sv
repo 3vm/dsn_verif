@@ -3,20 +3,31 @@
  // First In First Out FIFO
 module ehgu_fifo
 # (
-parameter SYNC_TYPE = 1,
-parameter SYNC_STAGES_CLK0_TO_CLK1 = 2,
-parameter SYNC_STAGES_CLK1_TO_CLK0 = 2,
+parameter SYNC_TYPE = 0,
+parameter SYNC_STG_W2R = 2,
+parameter SYNC_STG_R2W = 2,
 parameter WIDTH = 8 ,
 parameter DEPTH = 128
  ) (
 input logic clk0 ,
-input logic clk1 ,
-input logic rstn ,
+input logic wrstn ,
 input logic en ,
 input logic [ WIDTH-1 : 0 ] data_in ,
-output logic [ WIDTH-1 : 0 ] data_out,
-output logic data_out_valid
+
+input logic clk1 ,
+input logic rrstn ,
+output logic data_out_valid ,
+output logic [ WIDTH-1 : 0 ] data_out
  ) ;
+
+//TBD 
+//synchronous fifo check
+// bursty inputs
+//overflow, underflow results
+// async fifo features - gray code, sync
+// bursty inputs
+// async clock
+// short gray code support
 
 localparam AWIDTH = $clog2 ( DEPTH ) ;
 
@@ -27,7 +38,8 @@ logic renable ;
 ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
  (
 .wclk ( clk0 ) ,
-.rstn ,
+.wrstn ,
+.rrstn ,
 .wenable ( en ) ,
 .waddr ,
 .rclk ( clk1 ) ,

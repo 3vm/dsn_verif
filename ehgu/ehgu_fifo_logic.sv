@@ -12,7 +12,8 @@ parameter DEPTH = 128
  ) (
 input logic wclk ,
 input logic rclk ,
-input logic rstn ,
+input logic wrstn ,
+input logic rrstn ,
 output logic renable ,
 input logic wenable ,
 output logic [ AWIDTH-1 : 0 ] raddr ,
@@ -32,8 +33,8 @@ always_comb begin
   end
 end
 
-always_ff @ ( posedge wclk , negedge rstn ) begin
-   if ( !rstn ) begin
+always_ff @ ( posedge wclk , negedge wrstn ) begin
+   if ( !wrstn ) begin
      waddr <= 0 ;
    end else begin
      waddr <= waddr_next ;
@@ -48,16 +49,16 @@ always_comb begin
   end
 end
 
-always_ff @ ( posedge rclk , negedge rstn ) begin
-   if ( !rstn ) begin
+always_ff @ ( posedge rclk , negedge rrstn ) begin
+   if ( !rrstn ) begin
      raddr <= 0;
    end else begin
      raddr <= raddr_next ;
    end
 end
 
-always_ff @(posedge rclk or negedge rstn) begin
-	if(~rstn) begin
+always_ff @(posedge rclk or negedge rrstn) begin
+	if(~rrstn) begin
 		renable <= 0;
 	end else begin
 		if (raddr != waddr)

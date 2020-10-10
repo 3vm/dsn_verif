@@ -58,7 +58,8 @@ end
 ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
 .clk0 (clk) ,
 .clk1 (clk) ,
-.rstn ,
+.wrstn (rstn),
+.rrstn (rstn),
 .en ,
 .data_in ,
 .data_out ,
