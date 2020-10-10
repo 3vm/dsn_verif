@@ -1,12 +1,9 @@
  // Free - this code is copywrite free , Do Whatever You Want DWYW
  // 3vm , 2020 Oct
  // First In First Out FIFO memory wrapper
+
 module ehgu_fifo_mem
 # (
-parameter SYNC_TYPE = 1,
-parameter SYNC_STAGES_CLK0_TO_1 = 2,
-parameter SYNC_STAGES_CLK1_TO_0 = 2,
-parameter SHIFT = 20 ,
 parameter WIDTH = 8 ,
 parameter AWIDTH = 8 ,
 parameter DEPTH = 128

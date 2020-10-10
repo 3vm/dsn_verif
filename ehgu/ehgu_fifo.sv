@@ -6,7 +6,6 @@ module ehgu_fifo
 parameter SYNC_TYPE = 1,
 parameter SYNC_STAGES_CLK0_TO_CLK1 = 2,
 parameter SYNC_STAGES_CLK1_TO_CLK0 = 2,
-parameter SHIFT = 20 ,
 parameter WIDTH = 8 ,
 parameter DEPTH = 128
  ) (
@@ -15,7 +14,8 @@ input logic clk1 ,
 input logic rstn ,
 input logic en ,
 input logic [ WIDTH-1 : 0 ] data_in ,
-output logic [ WIDTH-1 : 0 ] data_out
+output logic [ WIDTH-1 : 0 ] data_out,
+output logic data_out_valid
  ) ;
 
 localparam AWIDTH = $clog2 ( DEPTH ) ;

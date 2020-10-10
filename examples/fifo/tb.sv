@@ -10,12 +10,11 @@ parameter DEPTH = 32 ;
 parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
 
-parameter SHIFT = 3 ;
-
 logic clk , rstn ;
 logic [ DWIDTH-1 : 0 ] data_in ;
 logic [ DWIDTH-1 : 0 ] data_out , expected_data ;
 logic en ;
+logic data_out_valid ;
 
 logic result ;
 
@@ -56,13 +55,14 @@ initial begin
    $finish ;
 end
 
-ehgu_fifo # ( .SHIFT ( SHIFT ) , .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
+ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
 .clk0 (clk) ,
 .clk1 (clk) ,
 .rstn ,
 .en ,
 .data_in ,
-.data_out
+.data_out ,
+.data_out_valid 
  ) ;
 
 endmodule
