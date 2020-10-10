@@ -9,7 +9,7 @@ import thee_utils_pkg :: * ;
 parameter DEPTH = 32 ;
 parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
-parameter VEC_CNT = 20;
+parameter VEC_CNT = 200;
 
 logic clk , rstn ;
 logic [ DWIDTH-1 : 0 ] din ;
@@ -30,7 +30,7 @@ initial begin
   cnt = 10 ;
   forever @(posedge clk) begin
     if (cnt == 0) begin
-      cnt <= 4; //$urandom_range(10,20);
+      cnt <= $urandom_range(10,20);
       din_valid <= ~din_valid;
     end else begin
       cnt <= cnt -1 ;
