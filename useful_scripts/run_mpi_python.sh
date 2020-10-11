@@ -1,1 +1,1 @@
-mpirun -n 2 python3 $1
+mpirun -n 4 python3 $1
