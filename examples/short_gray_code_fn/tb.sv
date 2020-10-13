@@ -23,7 +23,7 @@ offset = mid_point - diff/2 - 1;
 endfunction
 
 function automatic logic [AWIDTH-1:0] get_skipped_bin (
-	input regular_bin,
+	input byte regular_bin,
 	input byte offset,
 	input byte diff
 );
@@ -49,7 +49,8 @@ initial begin
  	bin_skipped_next = get_skipped_bin(bin_next,offset,diff);
     bin2gray (.binary_in(bin_skipped_next),.gray_out(gray_next));
     hamming_dist (.inp0(gray),.inp1(gray_next),.distance(hdist));
-    $display("bin %3d, bin next %3d, bskip %3d, bskip next %3d, gray %b, gray next %b",i, bin_next,bin_skipped, bin_skipped_next, gray, gray_next);
+    $display("bin %3d, bin next %3d, bskip %3d, bskip next %3d, gray %b, gray next %b, Ham D %3d",
+    	            i, bin_next,bin_skipped, bin_skipped_next, gray, gray_next,hdist);
     if ( hdist != 1) result = 0;
  end
 
