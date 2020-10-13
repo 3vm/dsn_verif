@@ -82,8 +82,8 @@ generate
   if ( SYNC_TYPE == 0 ) begin
     : async_fifo
     import ehgu_basic_pkg::bin2gray;
-    logic [ AWIDTH-1 : 0 ] raddr_gray ;
-    logic [ AWIDTH-1 : 0 ] waddr_gray ;    
+    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_post_cdc ;
+    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_post_cdc ;    
   end else begin
     : sync_fifo
     always_comb begin

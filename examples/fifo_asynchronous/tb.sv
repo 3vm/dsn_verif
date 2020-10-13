@@ -8,7 +8,7 @@ import thee_utils_pkg :: * ;
 parameter DEPTH = 34 ;
 parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
-parameter VEC_CNT = 2000;
+parameter VEC_CNT = 200;
 
 logic clk, clk0,clk1 , rstn ;
 logic [ DWIDTH-1 : 0 ] din ;
@@ -22,7 +22,8 @@ logic [ DWIDTH-1 : 0 ] mem_mirror [ DEPTH ] ;
 
 parameter real FREQ = 100 ;
 thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk0 ) ) ;
-thee_clk_gen_module # ( .FREQ ( FREQ*1.1 ) ) clk_gen_i1 ( .clk ( clk1 ) ) ;
+//thee_clk_gen_module # ( .FREQ ( FREQ*1.1 ) ) clk_gen_i1 ( .clk ( clk1 ) ) ;
+thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i1 ( .clk ( clk1 ) ) ;
 assign clk = clk0;
 int cnt ;
 initial begin
@@ -42,13 +43,13 @@ initial begin
   din = 0 ;
   forever @(posedge clk) begin
     if (din_valid ) begin
-      din += 3;
+      din <= din + 3;
     end 
   end
 end
 
 initial begin
-  dout_d = 0 ;
+  dout_d = -3 ;
   forever @(posedge clk1) begin
     if (dout_valid) begin
       dout_d <= dout ;
@@ -64,7 +65,7 @@ initial begin
    toggle_rstn ( .rstn ( rstn ) ) ;
    repeat (10) @(posedge clk1) ;
    for ( int i = 0 ; i < VEC_CNT ; i ++ ) begin
-     repeat ( 1 ) @ ( posedge clk ) ;
+     repeat ( 1 ) @ ( posedge clk1 ) ;
      if ( dout_valid ) begin
      if ( dout === expected_data && !$isunknown(dout)) begin
        $display ( "P - output data %h expected data %h" , dout , expected_data ) ;
