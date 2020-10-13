@@ -4,36 +4,53 @@ logic result ;
 import thee_utils_pkg :: print_test_result ;
 import thee_utils_pkg :: create_test_result_file ;
 import ehgu_basic_pkg :: bin2gray ;
-localparam CODE_LEN = 10;
+import ehgu_basic_pkg :: hamming_dist ;
+localparam MAX_CODE_LEN = 256;
 
-localparam AWIDTH = $clog2(CODE_LEN);
+localparam AWIDTH = $clog2(MAX_CODE_LEN);
 
 function automatic void get_short_gray_offset (
-input int code_length,
-output int offset ,
-output int diff
+input byte code_length,
+output byte offset ,
+output byte diff
 );
-int pwr2_code_length = 2**$clog2(code_length) ;
-int mid_point = pwr2_code_length /2 ;
+byte pwr2_code_length = 2**$clog2(code_length) ;
+byte mid_point = pwr2_code_length /2 ;
 
 diff = pwr2_code_length - code_length;
 offset = mid_point - diff/2 - 1;
 
 endfunction
 
-initial begin
- int offset, bin_skipped , diff,gray;
- result = 1 ;
- get_short_gray_offset(.code_length(10),.offset(offset),.diff(diff)) ;
- $display ( "Code len %d, offset %d", 10, offset);
- for ( int i = 0 ; i < 10 ; i++ ) begin
-    if ( i > offset ) begin
-    	bin_skipped = i + diff;
+function automatic logic [AWIDTH-1:0] get_skipped_bin (
+	input regular_bin,
+	input byte offset,
+	input byte diff
+);
+    logic [AWIDTH-1:0] bin_skipped;
+    if ( regular_bin > offset ) begin
+    	bin_skipped = regular_bin + diff;
     end else begin
-    	bin_skipped = i;
+    	bin_skipped = regular_bin;
     end
+	return bin_skipped;
+endfunction 
+
+initial begin
+ byte offset, bin_next, bin_skipped, bin_skipped_next , diff,gray, gray_next, code_length, hdist;
+ result = 1 ;
+ code_length = 18;
+ get_short_gray_offset(.code_length(code_length),.offset(offset),.diff(diff)) ;
+ $display ( "Code len %d, offset %d", 10, offset);
+ for ( byte i = 0 ; i < code_length ; i++ ) begin
+ 	bin_skipped = get_skipped_bin(i,offset,diff);
     bin2gray (.binary_in(bin_skipped),.gray_out(gray));
-    $display("binary %b, skipped gray %b",i, gray);
+    bin_next = (i+1)%code_length ;
+ 	bin_skipped_next = get_skipped_bin(bin_next,offset,diff);
+    bin2gray (.binary_in(bin_skipped_next),.gray_out(gray_next));
+    hamming_dist (.inp0(gray),.inp1(gray_next),.distance(hdist));
+    $display("binary %b, binary next %b, gray %b, gray next %b",i, bin_next, gray, gray_next);
+    if ( hdist != 1) result = 0;
  end
 
  print_test_result ( result ) ;
