@@ -72,11 +72,9 @@ end
 
 always_ff @(posedge rclk or negedge rrstn) begin
 	if(~rrstn) begin
-		renable <= 0;
     dout_valid <= 0 ;
 	end else begin
     dout_valid <= renable ;
-    renable <= renable_next;
 	end
 end
 
@@ -115,7 +113,7 @@ generate
 
     always_comb begin
       sub_modulo_unsigned ( .inp0 (waddr_post_cdc) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
-      if ( diff > 1 ) begin
+      if ( diff > 0 ) begin
         renable_next = 1;
       end else begin
         renable_next = 0;
@@ -126,10 +124,10 @@ generate
     : sync_fifo
     always_comb begin
       sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
-      if ( diff > 1 ) begin
-        renable_next = 1;
+      if ( diff > 0 ) begin
+        renable = 1;
       end else begin
-        renable_next = 0;
+        renable = 0;
       end
     end
   end

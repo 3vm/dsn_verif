@@ -23,10 +23,7 @@ output logic [ WIDTH-1 : 0 ] dout
 
 // TBD 
 // overflow, underflow results - ehgu_hold_state
-// async fifo features - gray code, sync
-// async clock
 // short gray code support
-// sync stage parameter support for async fifo - pass to syncs from instantiation
 // en for enabled operation for clock gating and power saving purpose
 // Ex: req - ack support on output side and then on input side
 
@@ -64,9 +61,9 @@ ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehg
 .rdata ( dout )
  ) ;
 
-// always @(posedge clk1) begin
-//   $display("wa %d, we %b, wd %d, ra %d, re %b, rd %d", waddr, wenable, din, raddr, renable,dout);
-//   $display("do %d, dv %b", dout, dout_valid);
-// end
+always @(posedge clk1) begin
+  $display("wa %d, we %b, wd %h, ra %d, re %b, rd %h", waddr, wenable, din, raddr, renable,dout);
+  $display("do %h, dv %b", dout, dout_valid);
+end
 
 endmodule
