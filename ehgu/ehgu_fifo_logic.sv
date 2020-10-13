@@ -83,7 +83,16 @@ generate
     : async_fifo
     import ehgu_basic_pkg::bin2gray;
     logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_post_cdc ;
-    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_post_cdc ;    
+    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_post_cdc ; 
+    always_comb begin
+      sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+      if ( diff > 1 ) begin
+        renable_next = 1;
+      end else begin
+        renable_next = 0;
+      end
+    end
+   
   end else begin
     : sync_fifo
     always_comb begin
