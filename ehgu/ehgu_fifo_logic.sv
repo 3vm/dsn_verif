@@ -24,7 +24,9 @@ output logic [ AWIDTH-1 : 0 ] raddr ,
 output logic dout_valid
  ) ;
 
-import ehgu_basic_pkg::sub_modulo_unsigned;
+import ehgu_basic_pkg :: sub_modulo_unsigned;
+import ehgu_basic_pkg :: bin2gray ;
+import ehgu_basic_pkg :: gray2bin ;
 
 logic [ AWIDTH-1 : 0 ] raddr_next ;
 logic [ AWIDTH-1 : 0 ] waddr_next ;
@@ -82,10 +84,37 @@ generate
   if ( SYNC_TYPE == 0 ) begin
     : async_fifo
     import ehgu_basic_pkg::bin2gray;
-    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_post_cdc ;
-    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_post_cdc ; 
+    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc ;
+    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
+
+    always_comb
+      bin2gray (.binary_in(waddr),.gray_out(waddr_gray));
+    
+    ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_W2R), .WIDTH(AWIDTH)) sync_waddr 
+    ( 
+      .clk (rclk) , 
+      .rstn (rrstn) , 
+      .d_presync(waddr_gray) , 
+      .d_sync ( waddr_gray_post_cdc )
+    );
+
     always_comb begin
-      sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+      gray2bin (.gray_in(waddr_gray_post_cdc),.binary_out(waddr_post_cdc));
+    end
+
+    always_comb
+      bin2gray (.binary_in(raddr),.gray_out(raddr_gray));
+
+    ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_R2W), .WIDTH(AWIDTH)) sync_raddr 
+    ( 
+      .clk (rclk) , 
+      .rstn (wrstn), 
+      .d_presync(raddr_gray) , 
+      .d_sync ( raddr_gray_post_cdc )
+    );
+
+    always_comb begin
+      sub_modulo_unsigned ( .inp0 (waddr_post_cdc) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
       if ( diff > 1 ) begin
         renable_next = 1;
       end else begin
