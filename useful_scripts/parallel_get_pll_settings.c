@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<math.h>
+#include <pthread.h> 
+#define CORES 4
 // Variables, input
 float ref_freq=100e6;
 float req_out=120e6;
@@ -7,21 +9,27 @@ float vco_min=25e5;
 float vco_max=900e6;
 int N_MAX=32768;
 int M_MAX=8192;
-int cores=1;
+int cores=CORES;
 
-void search_mn (char core) ;
-
+void *search_mn (void * ) ;
 void main (void) {
+int i;
+	    pthread_t thread_id[CORES]; 
 //initial begin
 //	fork
-		for(int i=0;i<cores;i++) {
-			search_mn(i);
+		for(i=0;i<cores;i++) {
+			//search_mn(i);
+			pthread_create(&thread_id[i], NULL, search_mn, &i); 
+		}
+		for(i=0;i<cores;i++) {
+		    pthread_join(thread_id[i], NULL); 
 		}
 //	join
 //end
 }
 
-void search_mn (char core) {
+//void search_mn (char core) {
+void *search_mn (void  *arg) {
 
 float vco_f=0;
 float best_vco_f=0;
@@ -30,6 +38,7 @@ int best_M=0;
 float best_error=1e20;
 float error;
 int N,M;
+int core=*(int *)arg;
 
 for (int N=1+core;N<=N_MAX;N=N+cores) {
 //	N_local = N + rank;
