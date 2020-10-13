@@ -41,7 +41,7 @@ initial begin
  result = 1 ;
  code_length = 18;
  get_short_gray_offset(.code_length(code_length),.offset(offset),.diff(diff)) ;
- $display ( "Code len %d, offset %d", 10, offset);
+ $display ( "Code len %d, offset %d", code_length, offset);
  for ( byte i = 0 ; i < code_length ; i++ ) begin
  	bin_skipped = get_skipped_bin(i,offset,diff);
     bin2gray (.binary_in(bin_skipped),.gray_out(gray));
@@ -49,7 +49,7 @@ initial begin
  	bin_skipped_next = get_skipped_bin(bin_next,offset,diff);
     bin2gray (.binary_in(bin_skipped_next),.gray_out(gray_next));
     hamming_dist (.inp0(gray),.inp1(gray_next),.distance(hdist));
-    $display("binary %b, binary next %b, gray %b, gray next %b",i, bin_next, gray, gray_next);
+    $display("bin %3d, bin next %3d, bskip %3d, bskip next %3d, gray %b, gray next %b",i, bin_next,bin_skipped, bin_skipped_next, gray, gray_next);
     if ( hdist != 1) result = 0;
  end
 
