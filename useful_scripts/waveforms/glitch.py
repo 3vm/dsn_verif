@@ -20,7 +20,7 @@ daty[40]=0.1
 
 
 plt.plot(datx,daty)
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.title('Glitch')
 plt.show()

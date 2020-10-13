@@ -11,7 +11,7 @@ for i in range(N):
 		daty.append(0)
 
 plt.plot(datx,daty)
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.title('Pulse')
 plt.show()

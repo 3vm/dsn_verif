@@ -6,6 +6,6 @@ import matplotlib.pyplot as plt
 series = [0.03125,0.0625,0.125, 0.25,0.5,1,2,4,8,16]
 plt.plot(series)
 plt.title('Exponential Growth')
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.show()

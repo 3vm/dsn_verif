@@ -5,6 +5,6 @@
 import matplotlib.pyplot as plt
 plt.plot([16,8,4,2,1,0.5,0.25,0.125,0.0625,0.03125])
 plt.title('Exponential Decay')
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.show()

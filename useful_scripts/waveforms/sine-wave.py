@@ -12,6 +12,6 @@ for i in range(N):
 	print(series[i])
 plt.plot(series)
 plt.title('Sine')
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.show()

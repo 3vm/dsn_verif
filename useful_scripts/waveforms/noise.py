@@ -10,6 +10,6 @@ for i in range(50):
 	print(series[i])
 plt.plot(series)
 plt.title('Noise')
-plt.ylabel('Amplitude')
+plt.ylabel('Value')
 plt.xlabel('Time')
 plt.show()
