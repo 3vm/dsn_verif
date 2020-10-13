@@ -81,7 +81,7 @@ initial begin
    $finish ;
 end
 
-ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ) ) fifo (
+ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ), .SYNC_TYPE(1) ) fifo (
 .clk0 (clk) ,
 .clk1 (clk) ,
 .wrstn (rstn),

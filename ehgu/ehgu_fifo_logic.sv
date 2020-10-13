@@ -23,10 +23,14 @@ output logic renable ,
 output logic [ AWIDTH-1 : 0 ] raddr ,
 output logic dout_valid
  ) ;
+
 import ehgu_basic_pkg::sub_modulo_unsigned;
+
 logic [ AWIDTH-1 : 0 ] raddr_next ;
 logic [ AWIDTH-1 : 0 ] waddr_next ;
 logic renable_next ;
+logic nc;
+logic [AWIDTH-1:0] diff ;
 
 always_comb begin
   wenable = din_valid ;
@@ -74,15 +78,24 @@ always_ff @(posedge rclk or negedge rrstn) begin
 	end
 end
 
-logic nc;
-logic [AWIDTH-1:0] diff ;
-always_comb begin
-  sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
-  if ( diff > 1 ) begin
-    renable_next = 1;
+generate
+  if ( SYNC_TYPE == 0 ) begin
+    : async_fifo
+    import ehgu_basic_pkg::bin2gray;
+    logic [ AWIDTH-1 : 0 ] raddr_gray ;
+    logic [ AWIDTH-1 : 0 ] waddr_gray ;    
   end else begin
-    renable_next = 0;
+    : sync_fifo
+    always_comb begin
+      sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+      if ( diff > 1 ) begin
+        renable_next = 1;
+      end else begin
+        renable_next = 0;
+      end
+    end
   end
-end
+endgenerate
+
 
 endmodule

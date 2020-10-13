@@ -22,9 +22,8 @@ output logic [ WIDTH-1 : 0 ] dout
  ) ;
 
 // TBD 
-// overflow, underflow results
+// overflow, underflow results - ehgu_hold_state
 // async fifo features - gray code, sync
-// bursty inputs
 // async clock
 // short gray code support
 // sync stage parameter support for async fifo - pass to syncs from instantiation
@@ -38,7 +37,7 @@ logic [ AWIDTH-1 : 0 ] raddr ;
 logic wenable ;
 logic renable ;
 
-ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ) ) ehgu_fifo_logic_i
+ehgu_fifo_logic # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH ), .SYNC_TYPE(SYNC_TYPE), .SYNC_STG_R2W(SYNC_STG_R2W), .SYNC_STG_W2R(SYNC_STG_W2R) ) ehgu_fifo_logic_i
  (
 .wclk ( clk0 ) ,
 .wrstn ,
