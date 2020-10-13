@@ -1,4 +1,3 @@
-//incomplete -- dont use
 module tb ;
 
 timeunit 1ns ;
