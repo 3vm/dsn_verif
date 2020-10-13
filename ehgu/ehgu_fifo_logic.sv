@@ -74,7 +74,7 @@ always_ff @(posedge rclk or negedge rrstn) begin
     dout_valid <= 0 ;
 	end else begin
     dout_valid <= renable ;
-      renable <= renable_next;
+    renable <= renable_next;
 	end
 end
 
