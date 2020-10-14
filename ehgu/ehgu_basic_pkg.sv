@@ -49,6 +49,40 @@ input logic [ DP_WIDTH-1 : 0 ] gray_in
  end
 endfunction
 
+//--------------  Short Gray Code functions ----------
+
+typedef struct {
+logic [ DP_WIDTH-1 : 0 ] base ;
+logic [ DP_WIDTH-1 : 0 ] skip ;
+ } shortgray_constants_t ;
+
+function automatic shortgray_constants_t get_shortgray_constants (
+  input byte code_length
+) ;
+shortgray_constants_t sg_constants ;
+logic [ DP_WIDTH-1 : 0 ] pwr2_code_length = 2 ** $clog2 ( code_length ) ;
+logic [ DP_WIDTH-1 : 0 ] mid_point = pwr2_code_length / 2 ;
+
+sg_constants.skip = pwr2_code_length - code_length ;
+sg_constants.base = mid_point - sg_constants.skip / 2 - 1 ;
+return sg_constants ;
+endfunction
+
+function automatic logic [ DP_WIDTH-1 : 0 ] get_shortgray_skip (
+ input byte regular_bin ,
+ input shortgray_constants_t sg_constants
+) ;
+ logic [ DP_WIDTH-1 : 0 ] bin_skipped ;
+ if ( regular_bin > sg_constants.base ) begin
+   bin_skipped = regular_bin + sg_constants.skip ;
+ end else begin
+   bin_skipped = regular_bin ;
+ end
+ return bin_skipped ;
+endfunction
+
+//-----------------------------------------------------------
+
 function automatic void sum_of_ones (
 output logic [ $clog2 ( DP_WIDTH ) : 0 ] sum ,
 input logic [ DP_WIDTH-1 : 0 ] inp
