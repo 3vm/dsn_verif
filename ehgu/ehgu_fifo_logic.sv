@@ -78,13 +78,25 @@ always_ff @(posedge rclk or negedge rrstn) begin
 	end
 end
 
+logic [ AWIDTH-1 : 0 ] raddr_for_compare ;
+logic [ AWIDTH-1 : 0 ] waddr_for_compare ; 
+
 generate
   if ( SYNC_TYPE == 0 ) begin
     : async_fifo
     import ehgu_basic_pkg::bin2gray;
-    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc ;
-    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
+    import ehgu_basic_pkg :: shortgray_constants_t ;
+    import ehgu_basic_pkg :: get_shortgray_constants ;
+    import ehgu_basic_pkg :: get_shortgray_skip ;
 
+    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc, raddr_post_cdc ;
+    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
+    
+    if ( $onehot(DEPTH) == 0 ) begin
+      : shortgray
+      localparam shortgray_constants_t sg_constants = get_shortgray_constants ( .code_length ( DEPTH ) ) ;
+    end    
+    
     always_comb
       bin2gray (.binary_in(waddr),.gray_out(waddr_gray));
     
@@ -100,6 +112,8 @@ generate
       gray2bin (.gray_in(waddr_gray_post_cdc),.binary_out(waddr_post_cdc));
     end
 
+    assign waddr_for_compare = waddr_post_cdc ;
+
     always_comb
       bin2gray (.binary_in(raddr),.gray_out(raddr_gray));
 
@@ -110,28 +124,23 @@ generate
       .d_presync(raddr_gray) , 
       .d_sync ( raddr_gray_post_cdc )
     );
-
-    always_comb begin
-      sub_modulo_unsigned ( .inp0 (waddr_post_cdc) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
-      if ( diff > 0 ) begin
-        renable_next = 1;
-      end else begin
-        renable_next = 0;
-      end
-    end
    
+    assign raddr_for_compare = raddr_post_cdc ;
   end else begin
     : sync_fifo
+    assign raddr_for_compare = raddr ;
+    assign waddr_for_compare = waddr ;    
+  end
+endgenerate
+
     always_comb begin
-      sub_modulo_unsigned ( .inp0 (waddr) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+      sub_modulo_unsigned ( .inp0 (waddr_for_compare) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
       if ( diff > 0 ) begin
         renable = 1;
       end else begin
         renable = 0;
       end
     end
-  end
-endgenerate
 
 
 endmodule
