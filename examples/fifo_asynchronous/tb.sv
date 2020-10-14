@@ -21,17 +21,17 @@ logic result ;
 logic [ DWIDTH-1 : 0 ] mem_mirror [ DEPTH ] ;
 
 parameter real FREQ = 100 ;
-thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i0 ( .clk ( clk0 ) ) ;
-//thee_clk_gen_module # ( .FREQ ( FREQ*1.1 ) ) clk_gen_i1 ( .clk ( clk1 ) ) ;
+thee_clk_gen_module # ( .FREQ ( FREQ*1.1 ) ) clk_gen_i0 ( .clk ( clk0 ) ) ;
 thee_clk_gen_module # ( .FREQ ( FREQ ) ) clk_gen_i1 ( .clk ( clk1 ) ) ;
 assign clk = clk0;
+
 int cnt ;
 initial begin
   din_valid = 0;
   cnt = 10 ;
   forever @(posedge clk) begin
     if (cnt == 0) begin
-      cnt <= $urandom_range(10,20);
+      cnt <= din_valid ? $urandom_range(100,200): $urandom_range(20,30);
       din_valid <= ~din_valid;
     end else begin
       cnt <= cnt -1 ;

@@ -21,12 +21,6 @@ output logic dout_valid ,
 output logic [ WIDTH-1 : 0 ] dout
  ) ;
 
-// TBD 
-// overflow, underflow results - ehgu_hold_state
-// short gray code support
-// en for enabled operation for clock gating and power saving purpose
-// Ex: req - ack support on output side and then on input side
-
 localparam AWIDTH = $clog2 ( DEPTH ) ;
 
 logic [ AWIDTH-1 : 0 ] waddr ;
