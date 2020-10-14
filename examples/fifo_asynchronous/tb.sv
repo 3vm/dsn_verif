@@ -5,7 +5,7 @@ timeprecision 1ps ;
 
 import thee_utils_pkg :: * ;
 
-parameter DEPTH = 32 ;
+parameter DEPTH = 34 ;
 parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
 parameter VEC_CNT = 200;

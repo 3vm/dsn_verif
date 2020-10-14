@@ -88,6 +88,7 @@ generate
     import ehgu_basic_pkg :: shortgray_constants_t ;
     import ehgu_basic_pkg :: get_shortgray_constants ;
     import ehgu_basic_pkg :: get_shortgray_skip ;
+    import ehgu_basic_pkg :: get_shortgray_unskip ;
 
     logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc, raddr_post_cdc ;
     logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
