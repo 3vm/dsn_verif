@@ -81,6 +81,19 @@ function automatic logic [ DP_WIDTH-1 : 0 ] get_shortgray_skip (
  return bin_skipped ;
 endfunction
 
+function automatic logic [ DP_WIDTH-1 : 0 ] get_shortgray_unskip (
+ input byte bin_skipped ,
+ input shortgray_constants_t sg_constants
+) ;
+ logic [ DP_WIDTH-1 : 0 ] bin_unskipped ;
+ if ( bin_skipped > sg_constants.base ) begin
+   bin_unskipped = bin_skipped + sg_constants.skip ;
+ end else begin
+   bin_unskipped = bin_skipped ;
+ end
+ return bin_unskipped ;
+endfunction
+
 //-----------------------------------------------------------
 
 function automatic void sum_of_ones (

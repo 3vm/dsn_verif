@@ -91,14 +91,21 @@ generate
 
     logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc, raddr_post_cdc ;
     logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
+    logic [ AWIDTH-1 : 0 ] waddr_bin;
     
     if ( $onehot(DEPTH) == 0 ) begin
       : shortgray
       localparam shortgray_constants_t sg_constants = get_shortgray_constants ( .code_length ( DEPTH ) ) ;
-    end    
-    
+      assign waddr_bin = get_shortgray_skip ( waddr , sg_constants ) ;
+      assign waddr_for_compare = get_shortgray_unskip ( waddr_post_cdc , sg_constants ) ;
+    end else begin
+      : fullgray
+      assign waddr_bin = waddr ;
+      assign waddr_for_compare = waddr_post_cdc ;
+    end
+
     always_comb
-      bin2gray (.binary_in(waddr),.gray_out(waddr_gray));
+      bin2gray (.binary_in(waddr_bin),.gray_out(waddr_gray));
     
     ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_W2R), .WIDTH(AWIDTH)) sync_waddr 
     ( 
@@ -111,8 +118,6 @@ generate
     always_comb begin
       gray2bin (.gray_in(waddr_gray_post_cdc),.binary_out(waddr_post_cdc));
     end
-
-    assign waddr_for_compare = waddr_post_cdc ;
 
     always_comb
       bin2gray (.binary_in(raddr),.gray_out(raddr_gray));
