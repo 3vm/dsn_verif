@@ -55,9 +55,9 @@ ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehg
 .rdata ( dout )
  ) ;
 
-always @(posedge clk1) begin
-  $display("wa %d, we %b, wd %h, ra %d, re %b, rd %h", waddr, wenable, din, raddr, renable,dout);
-  $display("do %h, dv %b", dout, dout_valid);
-end
+// always @(posedge clk1) begin
+//   $display("wa %d, we %b, wd %h, ra %d, re %b, rd %h", waddr, wenable, din, raddr, renable,dout);
+//   $display("do %h, dv %b", dout, dout_valid);
+// end
 
 endmodule

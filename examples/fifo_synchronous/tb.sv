@@ -8,7 +8,7 @@ import thee_utils_pkg :: * ;
 parameter DEPTH = 32 ;
 parameter AWIDTH = $clog2 ( DEPTH ) ;
 parameter DWIDTH = 8 ;
-parameter VEC_CNT = 5;
+parameter VEC_CNT = 2000;
 
 logic clk , rstn ;
 logic [ DWIDTH-1 : 0 ] din ;
@@ -29,7 +29,7 @@ initial begin
   cnt = 10 ;
   forever @(posedge clk) begin
     if (cnt == 0) begin
-      cnt <= $urandom_range(1,1) ; //(10,20);
+      cnt <= din_valid ? $urandom_range(20,30): $urandom_range(100,120);
       din_valid <= ~din_valid;
     end else begin
       cnt <= cnt -1 ;
@@ -58,27 +58,27 @@ end
 assign expected_data = dout_d + 3;
 
 initial begin
-   result = 'x ;
-   en = 1 ;
-   toggle_rstn ( .rstn ( rstn ) ) ;
-   repeat (10) @(posedge clk) ;
-   for ( int i = 0 ; i < VEC_CNT ; i ++ ) begin
-     repeat ( 1 ) @ ( posedge clk ) ;
-     if ( dout_valid ) begin
-     if ( dout === expected_data && !$isunknown(dout)) begin
-       $display ( "P - output data %h expected data %h" , dout , expected_data ) ;
-       update_test_status (.result(result), .this_result(1));
-     end else begin
-       $display ( "F - output data %h expected data %h" , dout , expected_data ) ;
-       update_test_status (.result(result), .this_result(0));
-       //break;
-     end
-   end
-   end
-      repeat (10) @(posedge clk) ;
+  result = 'x ;
+  en = 1 ;
+  toggle_rstn ( .rstn ( rstn ) ) ;
+  repeat (10) @(posedge clk) ;
+  for ( int i = 0 ; i < VEC_CNT ; ) begin
+    repeat ( 1 ) @ ( posedge clk ) ;
+    if ( dout_valid ) begin
+      if ( dout === expected_data && !$isunknown(dout)) begin
+        $display ( "P - output data %h expected data %h" , dout , expected_data ) ;
+        update_test_status (.result(result), .this_result(1));
+      end else begin
+        $display ( "F - output data %h expected data %h" , dout , expected_data ) ;
+        update_test_status (.result(result), .this_result(0));
+      end
+      i ++ ;
+    end
+  end
+  repeat (10) @(posedge clk) ;
 
-   print_test_result ( result ) ;
-   $finish ;
+  print_test_result ( result ) ;
+  $finish ;
 end
 
 ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ), .SYNC_TYPE(1) ) fifo (
