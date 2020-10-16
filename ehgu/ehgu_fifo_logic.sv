@@ -90,8 +90,8 @@ generate
     import ehgu_basic_pkg :: get_shortgray_skip ;
     import ehgu_basic_pkg :: get_shortgray_unskip ;
 
-    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_post_cdc, raddr_post_cdc ;
-    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_post_cdc, waddr_post_cdc ; 
+    logic [ AWIDTH-1 : 0 ] raddr_gray, raddr_gray_registered, raddr_gray_post_cdc, raddr_post_cdc ;
+    logic [ AWIDTH-1 : 0 ] waddr_gray, waddr_gray_registered, waddr_gray_post_cdc, waddr_post_cdc ; 
     logic [ AWIDTH-1 : 0 ] waddr_bin;
     
     if ( $onehot(DEPTH) == 0 ) begin
@@ -107,12 +107,20 @@ generate
 
     always_comb
       bin2gray (.binary_in(waddr_bin),.gray_out(waddr_gray));
+
+    always_ff @ ( posedge wclk , negedge wrstn ) begin
+      if ( !wrstn ) begin
+        waddr_gray_registered <= 0 ;
+      end else begin
+        waddr_gray_registered <= waddr_gray ;
+      end
+    end
     
     ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_W2R), .WIDTH(AWIDTH)) sync_waddr 
     ( 
       .clk (rclk) , 
       .rstn (rrstn) , 
-      .d_presync(waddr_gray) , 
+      .d_presync(waddr_gray_registered) , 
       .d_sync ( waddr_gray_post_cdc )
     );
 
@@ -123,11 +131,19 @@ generate
     always_comb
       bin2gray (.binary_in(raddr),.gray_out(raddr_gray));
 
+    always_ff @ ( posedge rclk , negedge rrstn ) begin
+      if ( !rrstn ) begin
+        raddr_gray_registered <= 0 ;
+      end else begin
+        raddr_gray_registered <= raddr_gray ;
+      end
+    end
+
     ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_R2W), .WIDTH(AWIDTH)) sync_raddr 
     ( 
       .clk (rclk) , 
       .rstn (wrstn), 
-      .d_presync(raddr_gray) , 
+      .d_presync(raddr_gray_registered ) , 
       .d_sync ( raddr_gray_post_cdc )
     );
    
@@ -139,14 +155,14 @@ generate
   end
 endgenerate
 
-    always_comb begin
-      sub_modulo_unsigned ( .inp0 (waddr_for_compare) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
-      if ( diff > 0 ) begin
-        renable = 1;
-      end else begin
-        renable = 0;
-      end
-    end
+always_comb begin
+  sub_modulo_unsigned ( .inp0 (waddr_for_compare) , .inp1 (raddr), .modulo(DEPTH), .wrapped(nc), .diff(diff));
+  if ( diff > 0 ) begin
+    renable = 1;
+  end else begin
+    renable = 0;
+  end
+end
 
 
 endmodule
