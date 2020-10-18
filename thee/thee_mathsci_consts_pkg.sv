@@ -4,5 +4,5 @@ package thee_mathsci_consts_pkg;
 //gravitational constant
 //mu naught
 //epsilon naught
-
+  logic vikram ;
 endpackage

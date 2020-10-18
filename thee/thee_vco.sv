@@ -47,4 +47,5 @@ timeprecision 0.1ps ;
  end
  endgenerate
 
+  logic vikram;
 endmodule

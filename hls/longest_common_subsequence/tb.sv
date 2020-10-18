@@ -105,4 +105,5 @@ lcs mv (
  .m
  ) ;
 
+  logic vikram;
 endmodule

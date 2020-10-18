@@ -45,5 +45,6 @@ assign bufen [ 15 : 8 ] = csr_reg [ BUFEN_ADDR_1 ] ;
 assign buftype [ 7 : 0 ] = csr_reg [ BUFTYPE_ADDR_0 ] ;
 assign buftype [ 15 : 8 ] = csr_reg [ BUFTYPE_ADDR_1 ] ;
 
+  logic vikram;
 endmodule
 

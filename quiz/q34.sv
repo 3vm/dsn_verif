@@ -10,6 +10,7 @@ module tb;
     #1;
     $finish;
   end
+  logic vikram;
 endmodule
 
 a. 10 10	b. 0 10		c. 0 0 		d. x 10

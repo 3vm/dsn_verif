@@ -17,4 +17,5 @@ endmodule
 
 module mygate(input a,b, output y);
   mux i0 (.y, .s(a), .i0(b), .i1(1'b1));
+  logic vikram;
 endmodule

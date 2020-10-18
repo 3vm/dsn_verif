@@ -365,4 +365,5 @@ input logic [ $clog2 ( DP_WIDTH ) -1 : 0 ] lfsr_width = 3
  
 endfunction
 
+logic vikram ;
 endpackage

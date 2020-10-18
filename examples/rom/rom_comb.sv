@@ -21,4 +21,5 @@ always_comb
  default : dout = 'h 00 ;
  endcase
 
+  logic vikram;
 endmodule

@@ -42,4 +42,5 @@ always_comb begin
   
 end
 
+  logic vikram;
 endmodule

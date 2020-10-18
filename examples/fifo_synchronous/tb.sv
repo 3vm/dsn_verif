@@ -93,4 +93,5 @@ ehgu_fifo # ( .DEPTH ( DEPTH ) , .WIDTH ( DWIDTH ), .SYNC_TYPE(1) ) fifo (
 .dout_valid 
  ) ;
 
+  logic vikram;
 endmodule

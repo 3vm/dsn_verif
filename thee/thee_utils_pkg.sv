@@ -192,4 +192,5 @@ fp=$fopen(fn,"w");
 $fclose(fp);
 endtask
 
+  logic vikram ;
 endpackage

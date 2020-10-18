@@ -67,4 +67,5 @@ return 1;
   
 endfunction
 
+  logic vikram;
 endprogram

@@ -21,4 +21,5 @@ end
 
 assign dout = rom_data [ addr ] ;
 
+  logic vikram;
 endmodule

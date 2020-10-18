@@ -10,4 +10,5 @@ initial begin
 	$finish();
 end
 
+  logic vikram;
 endprogram

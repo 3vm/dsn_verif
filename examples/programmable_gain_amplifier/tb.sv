@@ -31,4 +31,5 @@ end
 
 assign exp = sig_in * ( 1 + dig_gain ) * GS ;
 
+  logic vikram;
 endmodule

@@ -31,4 +31,5 @@ a2: assert property (@(posedge clk) m ##1 n);
 a3: assert property (@(posedge clk) m ## [0:4] n); 
 a4: assert property (@(posedge clk) m ## [0:$] n); 
 
+  logic vikram;
 endmodule

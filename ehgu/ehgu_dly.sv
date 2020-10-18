@@ -25,4 +25,5 @@ end
 
 assign dout = dly_stages[DELAY-1];
 
+  logic vikram;
 endmodule

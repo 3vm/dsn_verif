@@ -58,4 +58,5 @@ function automatic int max ( int a , int b ) ;
  max = a > b ? a : b ;
 endfunction
 
+  logic vikram;
 endprogram

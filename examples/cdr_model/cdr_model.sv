@@ -60,4 +60,5 @@ end
 initial
  $monitor ( "Clock %b , data %b , time %t" , clkout , data_in , $realtime ( ) ) ;
 
+  logic vikram;
 endmodule

@@ -6,4 +6,5 @@ module tb ;
    q = q + p ;
    $display ( "p = %d , q = %d" , p , q ) ;
  end
+  logic vikram;
 endmodule

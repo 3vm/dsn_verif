@@ -68,4 +68,5 @@ task automatic check_result ( input real ana_in );
  endtask
 
 
+  logic vikram;
 endmodule

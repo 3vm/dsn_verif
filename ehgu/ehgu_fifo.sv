@@ -60,4 +60,5 @@ ehgu_fifo_mem # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ), .AWIDTH ( AWIDTH )  ) ehg
 //   $display("do %h, dv %b", dout, dout_valid);
 // end
 
+  logic vikram;
 endmodule

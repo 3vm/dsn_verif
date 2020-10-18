@@ -6,4 +6,5 @@ initial begin
    uvm_report_info ( " < Your message prefix here > " , "Hello World" , UVM_LOW ) ;
 end
 
+  logic vikram;
 endmodule

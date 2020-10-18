@@ -5,4 +5,5 @@ initial begin
     if ($onehot(a[i])) 
       $display("%d", a[i]);
 end
+  logic vikram;
 endmodule

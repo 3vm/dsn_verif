@@ -12,4 +12,5 @@ always_ff @( negedge clkin )
 
 assign clkout = en_negedge & clkin ;
 
+  logic vikram;
 endmodule

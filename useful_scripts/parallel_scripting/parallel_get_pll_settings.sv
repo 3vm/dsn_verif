@@ -46,6 +46,7 @@ $display("Final Result from core %2d: PLL N=%5d M=%5d gives %1.4e Hz with deviat
 
 endtask
 
+  logic vikram;
 endprogram
 
 //3vm

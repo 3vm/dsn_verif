@@ -112,4 +112,5 @@ always_ff @(posedge clk or negedge rstn or negedge setn) begin
 	end
 end
 
+  logic vikram;
 endmodule

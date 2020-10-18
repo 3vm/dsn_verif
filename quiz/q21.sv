@@ -25,5 +25,6 @@ initial begin
   $display("%3d\t%3d\n%3d\t%3d",k[0][0],k[0][1],k[1][0],k[1][1]);
 end
 
+  logic vikram;
 endmodule
 

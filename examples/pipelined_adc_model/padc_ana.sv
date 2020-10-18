@@ -26,4 +26,5 @@ always_comb begin
  vin_vec [ 1 : 7 ] = residue_vec [ 0 : 6 ] ;
 end
 
+  logic vikram;
 endmodule

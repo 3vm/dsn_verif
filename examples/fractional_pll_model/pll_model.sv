@@ -62,4 +62,5 @@ ehgu_clkdiv_fractional # ( .INT_WIDTH ( INT_WIDTH ) , .FRAC_WIDTH ( FRAC_WIDTH )
   $monitor ("Toggling VCO clock %b %t", clk_vco, $realtime);
   */
   
+  logic vikram;
 endmodule

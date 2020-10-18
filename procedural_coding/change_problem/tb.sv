@@ -130,4 +130,5 @@ input change_t chg
  return sum ;
 endfunction
 
+  logic vikram;
 endprogram

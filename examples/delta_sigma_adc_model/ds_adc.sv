@@ -34,4 +34,5 @@ ds_adc_dig # ( .WIDTH ( WIDTH ) , .OVERSAMP_RATIO ( OVERSAMP_RATIO ) ) ds_adc_di
  .dig_out
  ) ;
 
+  logic vikram;
 endmodule

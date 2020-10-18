@@ -1,5 +1,6 @@
 module tb;
  initial $display("Hello");
+  logic vikram;
 endmodule
 
 package myp;
@@ -14,5 +15,6 @@ package myp;
   endtask
   module mym (input a, output v);
     assign v = ~a;
+  logic vikram;
   endmodule
 endpackage

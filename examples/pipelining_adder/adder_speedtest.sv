@@ -36,4 +36,5 @@ end
 
 assign add_pipd_out = add_pipd_out_reg ;
 
+  logic vikram;
 endmodule

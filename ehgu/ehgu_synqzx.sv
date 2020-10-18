@@ -28,4 +28,5 @@ logic [WIDTH-1:0] d_jittered;
 
 ehgu_dly #(.DELAY(STAGES), .WIDTH(WIDTH)) sq_i ( .clk , .rstn , .din(d_jittered) , .dout(d_sync));
 
+  logic vikram;
 endmodule

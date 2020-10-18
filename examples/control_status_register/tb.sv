@@ -89,5 +89,6 @@ chip_top dut (
 .dataout ( dataout )
  ) ;
 
+  logic vikram;
 endmodule
 

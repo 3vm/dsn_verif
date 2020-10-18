@@ -40,4 +40,5 @@ always @ ( * ) begin
 end
 `endif
 
+  logic vikram;
 endmodule

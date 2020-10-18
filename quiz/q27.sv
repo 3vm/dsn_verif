@@ -22,4 +22,5 @@ initial begin
   $display("Frequency of 5 = %f",1.0*cnt2/cnt);
 end
 
+  logic vikram;
 endprogram

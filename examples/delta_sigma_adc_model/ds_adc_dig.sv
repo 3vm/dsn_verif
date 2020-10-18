@@ -59,4 +59,5 @@ always_ff @ ( posedge clk or negedge rstn_synced ) begin
    end
 end
 
+  logic vikram;
 endmodule

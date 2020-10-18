@@ -89,4 +89,5 @@ $display("Clock detection result: %b",detected);
 
 endtask
 
+  logic vikram;
 endmodule

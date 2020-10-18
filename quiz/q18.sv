@@ -33,4 +33,5 @@ end
 
 initial $monitor ("State %d, time %t", state, $time());
 
+  logic vikram;
 endmodule

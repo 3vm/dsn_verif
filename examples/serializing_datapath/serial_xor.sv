@@ -47,5 +47,6 @@ always_ff @ ( posedge clk , negedge rstn )
  state <= next ;
  end
 
+  logic vikram;
 endmodule
 

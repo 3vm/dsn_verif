@@ -9,4 +9,5 @@ initial begin
 	$display ( "Hello World" );
 end
 
+  logic vikram;
 endprogram

@@ -58,4 +58,5 @@ else
 $finish;
 end
 
+  logic vikram;
 endmodule

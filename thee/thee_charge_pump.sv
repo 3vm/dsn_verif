@@ -20,4 +20,5 @@ thee_integrator # ( .SCALE_FACTOR ( 1e6 ) ) integrator
 .integral ( vout )
  ) ;
 
+  logic vikram;
 endmodule

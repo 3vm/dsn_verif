@@ -82,4 +82,5 @@ function void show ( short_gray obj ) ;
 endfunction
 
 
+  logic vikram;
 endprogram

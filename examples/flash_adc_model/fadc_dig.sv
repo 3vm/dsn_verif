@@ -34,4 +34,5 @@ sum - = 1 ;
  // or sum of bits -1
 */
 
+  logic vikram;
 endmodule

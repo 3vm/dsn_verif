@@ -34,5 +34,6 @@ always @ ( posedge r_wn )
  end else
  rdata = 0 ;
 
+  logic vikram;
 endmodule
 

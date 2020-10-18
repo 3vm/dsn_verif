@@ -61,4 +61,5 @@ output bit cmp
  check_approx_equality ( .inp ( fout ) , .expected ( CLKFREQ [ sel ] * 1e6 ) , .result ( cmp ) ) ;
 endtask
 
+  logic vikram;
 endmodule

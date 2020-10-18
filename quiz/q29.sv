@@ -14,4 +14,5 @@ initial begin
   end
 end
 
+  logic vikram;
 endprogram

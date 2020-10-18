@@ -41,4 +41,5 @@ always_comb begin
  filtered_out /= 1.0 * TAPS ;
 end
 
+  logic vikram;
 endmodule

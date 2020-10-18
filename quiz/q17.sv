@@ -16,4 +16,5 @@ initial begin
 	clk = 0 ; #1; clk=1; #1;
 end
 
+  logic vikram;
 endmodule

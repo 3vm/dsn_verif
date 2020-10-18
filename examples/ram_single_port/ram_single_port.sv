@@ -28,4 +28,5 @@ always_ff @ ( posedge clk ) begin
    end
 end
 
+  logic vikram;
 endmodule

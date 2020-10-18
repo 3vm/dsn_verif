@@ -25,4 +25,5 @@ end
 
 assign add_rtmd_out = add_rtmd_out_reg ;
 
+  logic vikram;
 endmodule

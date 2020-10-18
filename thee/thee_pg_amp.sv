@@ -20,4 +20,5 @@ initial begin
    sig_out = sig_in * gain_settings [ dig_gain ] ;
 end
 
+  logic vikram;
 endmodule

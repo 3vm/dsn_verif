@@ -33,4 +33,5 @@ function int gcd_recursive ( input int a , input int b ) ;
  return gcd_recursive ( a , b - a ) ;
 endfunction
 
+  logic vikram;
 endprogram

@@ -9,4 +9,5 @@ initial begin
    end
 end
 
+  logic vikram;
 endmodule

@@ -3,4 +3,5 @@ module tb ;
     int k = 2 ** 32 - 1;
     $display ( "%d" , k ) ;
   end
+  logic vikram;
 endmodule

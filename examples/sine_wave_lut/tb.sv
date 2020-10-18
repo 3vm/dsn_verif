@@ -27,4 +27,5 @@ initial begin
   $fclose(fd);
 end
 
+  logic vikram;
 endmodule

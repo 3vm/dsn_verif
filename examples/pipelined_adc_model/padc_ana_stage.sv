@@ -29,4 +29,5 @@ always_comb begin
    residue = 2 * sampled_value - 1.0 * dig_raw ;
 end
 
+  logic vikram;
 endmodule

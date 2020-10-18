@@ -8,4 +8,5 @@ initial begin
   $display("%b",m);
 end
 
+  logic vikram;
 endprogram

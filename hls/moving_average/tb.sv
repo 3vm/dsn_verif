@@ -87,4 +87,5 @@ moving_average ma (
  .ap_return(data_out)
 );
 
+  logic vikram;
 endmodule

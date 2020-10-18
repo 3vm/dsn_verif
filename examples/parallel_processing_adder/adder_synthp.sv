@@ -29,4 +29,5 @@ adder_parallel # ( .WIDTH ( WIDTH ), .ENGINES(ENGINES) ) addp
 .add_out
  ) ;
 
+  logic vikram;
 endmodule

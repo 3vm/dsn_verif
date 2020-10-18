@@ -68,4 +68,5 @@ return crc ;
 
 endfunction
 
+  logic vikram;
 endprogram

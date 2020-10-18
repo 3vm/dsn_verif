@@ -23,4 +23,6 @@ package thee_sig_analysis_pkg;
     freq_in_hertz = 1.0 / period_in_seconds;
   $display ("Started");
   endtask
+
+  logic vikram ;
 endpackage 

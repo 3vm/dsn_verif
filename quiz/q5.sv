@@ -8,5 +8,6 @@ module tb;
 		k=myc::p;
 		$display("%d",k);
 	end
+  logic vikram;
 endmodule
 

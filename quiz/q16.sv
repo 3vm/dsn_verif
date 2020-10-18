@@ -8,6 +8,7 @@ screw
 :
 nail
 ;
+  logic vikram;
 endmodule
 
 module tb;
@@ -20,4 +21,5 @@ initial begin
 	$display("%b", d);
 end
 
+  logic vikram;
 endmodule

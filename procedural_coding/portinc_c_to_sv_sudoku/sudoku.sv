@@ -91,6 +91,7 @@ initial begin
     end
     sud(prob, s, 0, 0);
 end
+  logic vikram;
 endprogram
 
 function automatic void sud( 

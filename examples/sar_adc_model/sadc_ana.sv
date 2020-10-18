@@ -16,4 +16,5 @@ end
 assign dac_out = 1.0 * dig_out / ( 2 ** 8 ) ;
 assign cmp_out = ana_sampled > dac_out ;
 
+  logic vikram;
 endmodule

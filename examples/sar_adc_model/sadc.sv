@@ -27,4 +27,5 @@ sadc_dig sadc_dig (
 .eoc
  ) ;
 
+  logic vikram;
 endmodule

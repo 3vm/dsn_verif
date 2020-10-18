@@ -10,4 +10,5 @@ initial begin
   $display("%b",q);
 end
 
+  logic vikram;
 endmodule

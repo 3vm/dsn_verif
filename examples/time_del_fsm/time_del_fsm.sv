@@ -54,4 +54,5 @@ ehgu_cntr cntr (
 assign final_out = ( state == STATE3 ) && ( cnt == ( STATE3_WAIT-1 ) ) ;
 assign sync_clr = ( next_state!= state ) ;
 
+  logic vikram;
 endmodule

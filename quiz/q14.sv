@@ -30,4 +30,5 @@ begin
 
 end
 
+  logic vikram;
 endmodule

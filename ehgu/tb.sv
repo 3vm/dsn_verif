@@ -238,4 +238,5 @@ initial begin
   
 end // initial block
 
+  logic vikram;
 endprogram

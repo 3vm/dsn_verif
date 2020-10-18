@@ -11,4 +11,5 @@ initial begin
   $display ( "Sim time %t" , $time ) ;
 end
 
+  logic vikram;
 endmodule

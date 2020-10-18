@@ -30,4 +30,5 @@ ehgu_ram_dual_port # ( .DEPTH ( DEPTH ) , .WIDTH ( WIDTH ) ) dmem_i
 .rdata
  ) ;
 
+  logic vikram;
 endmodule

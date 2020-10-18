@@ -14,4 +14,5 @@ initial begin
   $finish;
 end
 
+  logic vikram;
 endmodule

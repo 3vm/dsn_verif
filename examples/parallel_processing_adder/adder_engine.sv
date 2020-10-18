@@ -19,4 +19,5 @@ end
 
 assign add_out = add_out_reg ;
 
+  logic vikram;
 endmodule

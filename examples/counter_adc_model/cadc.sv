@@ -28,4 +28,5 @@ cadc_dig cadc_dig (
 .dig_out
  ) ;
 
+  logic vikram;
 endmodule

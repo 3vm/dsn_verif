@@ -20,4 +20,5 @@ generate
 	end
 endgenerate
 
+  logic vikram;
 endmodule

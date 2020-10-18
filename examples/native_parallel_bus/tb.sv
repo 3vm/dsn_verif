@@ -62,5 +62,6 @@ bus_endpoint
 
 assign rdata = rdata0 | rdata1 ;
 
+  logic vikram;
 endmodule
 

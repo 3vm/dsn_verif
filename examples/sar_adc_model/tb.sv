@@ -63,4 +63,5 @@ task check_result ;
  end
  endtask
 
+  logic vikram;
 endmodule

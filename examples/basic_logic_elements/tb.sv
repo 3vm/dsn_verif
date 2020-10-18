@@ -124,4 +124,5 @@ always_comb begin
  	decoded_out[encoded_out] = 1'b1;
 end
 
+  logic vikram;
 endmodule

@@ -15,4 +15,5 @@ fadc_dig fadc_dig (
 .dig_out
  ) ;
 
+  logic vikram;
 endmodule

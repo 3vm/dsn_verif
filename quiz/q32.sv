@@ -33,4 +33,5 @@ function automatic bit myfn ( input byte unsigned i );
   return(1);
 endfunction
 
+  logic vikram;
 endmodule

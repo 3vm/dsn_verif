@@ -37,4 +37,5 @@ end
 
 endfunction
 
+  logic vikram;
 endprogram

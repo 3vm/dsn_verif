@@ -61,5 +61,6 @@ r = rdata ;
 $display ( "Read %d from address %d" , r , a ) ;
 endtask
 
+  logic vikram;
 endmodule
 

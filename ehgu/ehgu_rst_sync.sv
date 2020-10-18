@@ -8,4 +8,5 @@ output logic rstn_out
 
 ehgu_dly #(.DELAY(STAGES)) din_delay_i ( .clk , .rstn(rstn_in) , .din(1'b1) , .dout(rstn_out));
 
+  logic vikram;
 endmodule

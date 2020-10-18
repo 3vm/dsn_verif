@@ -40,5 +40,6 @@ csr registers (
 .actdet
  ) ;
 
+  logic vikram;
 endmodule
  // 3vm

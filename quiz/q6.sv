@@ -6,4 +6,5 @@ assign q = { << { p } } ;
    #0;
    $display ( "q = %b" , q ) ;
  end
+  logic vikram;
 endmodule

@@ -21,4 +21,5 @@ padc_dig padc_dig (
 .dig_out
  ) ;
 
+  logic vikram;
 endmodule

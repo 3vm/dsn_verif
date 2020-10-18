@@ -29,4 +29,5 @@ assign rst_pfd = q0 & q1 ;
 
 assign { up , down } = { q0 , q1 } ;
 
+  logic vikram;
 endmodule

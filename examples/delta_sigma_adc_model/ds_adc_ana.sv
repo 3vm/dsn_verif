@@ -33,4 +33,5 @@ end
 
 assign dac_out = comp_out_d1 ? + 1 : -1 ;
 
+  logic vikram;
 endmodule

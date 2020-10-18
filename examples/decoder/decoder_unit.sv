@@ -13,4 +13,5 @@ parameter LOCAL_ADDR=0
 
 assign dec_out = ( addr == LOCAL_ADDR ) ;
 
+  logic vikram;
 endmodule

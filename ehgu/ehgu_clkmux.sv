@@ -36,4 +36,5 @@ ehgu_synqzx # ( .MAX_DELAY ( 0 ) , .STAGES ( CLK1_SYNC_STAGES ) , .WIDTH ( 1 ) )
 
 assign clkout = ( selc0 & clkin0 ) | ( selc1 & clkin1 ) ;
 
+  logic vikram;
 endmodule

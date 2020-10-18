@@ -121,4 +121,5 @@ always_comb begin
    end
 end
 
+  logic vikram;
 endmodule

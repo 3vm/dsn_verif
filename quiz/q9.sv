@@ -4,4 +4,5 @@ module tb ;
     while ( i!='1) i++;
     $display("%h",i);
   end
+  logic vikram;
 endmodule

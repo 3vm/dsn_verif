@@ -19,4 +19,5 @@ always @(*)
 
 assign out = ~state;
 
+  logic vikram;
 endmodule

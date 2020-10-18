@@ -123,4 +123,5 @@ task automatic show_buf;
   $display();
 endtask : show_buf
 
+  logic vikram;
 endmodule

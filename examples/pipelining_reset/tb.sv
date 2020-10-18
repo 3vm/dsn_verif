@@ -45,4 +45,5 @@ ehgu_rst_tree_piped # ( .SYNC_STAGES(SYNC_STAGES) , .PIPE_STAGES(PIPE_STAGES) , 
 .rstn_out 
 );
 
+  logic vikram;
 endmodule

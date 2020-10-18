@@ -26,4 +26,5 @@ module thee_clk_freq_meter
       freq_in_hertz = 1.0 / ( sum_of_periods / MEAS_WINDOW );
     end
   end
+  logic vikram;
 endmodule

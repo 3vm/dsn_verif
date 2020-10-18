@@ -31,4 +31,5 @@ module thee_rand_busdly
     end
   endgenerate
 
+  logic vikram;
 endmodule

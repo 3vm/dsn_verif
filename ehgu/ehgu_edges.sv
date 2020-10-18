@@ -16,4 +16,5 @@ assign redge = ~din_delayed & din ;
 assign fedge = din_delayed & ~din ;
 assign toggle = fedge | redge ;
 
+  logic vikram;
 endmodule

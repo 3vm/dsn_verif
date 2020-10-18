@@ -44,4 +44,5 @@ ehgu_synqzx #(.T(time), .MAX_DELAY(1000ps), .STAGES(STG), .WIDTH(WIDTH)) dut
 .d_sync(dout)
 );
 
+  logic vikram;
 endmodule

@@ -23,4 +23,5 @@ always @ ( posedge clk ) begin
    end
 end
 
+  logic vikram;
 endmodule
