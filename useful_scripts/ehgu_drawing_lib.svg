@@ -17,7 +17,23 @@
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="ehgu_drawing_lib.svg">
   <defs
-     id="defs2" />
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4797"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,11 +42,11 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.66218572"
-     inkscape:cx="253.58295"
-     inkscape:cy="528.04902"
+     inkscape:cx="-17.914631"
+     inkscape:cy="709.26706"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
-     showgrid="true"
+     showgrid="false"
      inkscape:window-width="1299"
      inkscape:window-height="713"
      inkscape:window-x="67"
@@ -48,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,47 +72,18 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <g
-       id="g826"
-       style="stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#0000f6;stroke-opacity:1">
-      <path
-         inkscape:connector-curvature="0"
-         id="path817"
-         d="M 32.505951,52.071428 68.791666,82.309522 32.505951,107.25595 Z"
-         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path819"
-         d="M 68.791666,82.309522 92.22619,83.065476"
-         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path821"
-         d="M 30.994048,81.55357 9.8273808,82.309522"
-         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
-    </g>
     <path
        style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 32.505955,113.30358 68.791667,143.54167 32.505955,168.4881 Z"
-       id="path817-6"
-       inkscape:connector-curvature="0" />
+       d="m 31.75,64.166667 26.458333,15.875 -26.458333,15.875 z"
+       id="path817"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
     <path
        style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 80.886677,143.54167 10.58334,0.75596"
-       id="path819-7"
-       inkscape:connector-curvature="0" />
-    <path
-       style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 30.994052,142.78572 9.8273847,143.54167"
-       id="path821-5"
-       inkscape:connector-curvature="0" />
-    <ellipse
-       style="fill:none;fill-opacity:1;stroke:#0000f6;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path855"
-       cx="73.138275"
-       cy="143.34492"
-       rx="6.6144705"
-       ry="6.6068473" />
+       d="M 58.208333,80.041667 H 79.374999"
+       id="path819"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        d="m 127,53.583334 v 47.624996 c 11.56176,-7.224114 31.2198,-1.247131 31.75,-26.45833 0,-5.291667 -0.0377,-12.541367 -5.29167,-15.875 C 147.8442,55.312827 138.622,53.774898 127,53.583334 Z"
@@ -195,5 +182,180 @@
        d="M 42.333327,212.33334 H 21.166667"
        id="path4571-5-1-9-2"
        inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.96499997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -89.202385,86.089284 0.37798,17.386896 -11.916185,6.45904 20.638105,8.27707 -20.059395,9.15369 20.566456,5.76032 -21.259106,10.42687 21.046945,6.71917 -19.86283,7.83213 18.862451,7.54446 -9.018571,4.48286 v 24.81464"
+       id="path4752"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccc" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4768"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-217.71429,21.166665)"><flowRegion
+         id="flowRegion4770"><rect
+           id="rect4772"
+           width="94.285713"
+           height="217.14285"
+           x="391.42856"
+           y="405.37683" /></flowRegion><flowPara
+         id="flowPara4774">R</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.66500002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="M -71.059524,95.916666 V 184.3631"
+       id="path5058"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5138"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-231.32143,13.607141)"><flowRegion
+         id="flowRegion5140"><rect
+           id="rect5142"
+           width="161.32097"
+           height="168.59021"
+           x="618.67902"
+           y="436.78662" /></flowRegion><flowPara
+         id="flowPara5144">i</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 31.75,80.041667 H 9.8273836"
+       id="path821-5-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.96499997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 261.75276,107.26119 0.37798,17.3869 -11.91619,6.45904 20.63811,8.27707 -20.0594,9.15369 20.56646,5.76032 -21.25911,10.42687 21.04695,6.71917 -19.86283,7.83213 18.86245,7.54446 -9.01856,4.48286 v 24.81465"
+       id="path4752-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccc" />
+    <g
+       transform="translate(127,26.458332)"
+       id="g2416">
+      <flowRoot
+         transform="matrix(0.26458333,0,0,0.26458333,77.107143,1.5119048)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         id="flowRoot2344"
+         xml:space="preserve"><flowRegion
+           id="flowRegion2346"><rect
+             y="465.37683"
+             x="112.85714"
+             height="74.285713"
+             width="65.714287"
+             id="rect2348" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'"
+           id="flowPara2350">V1</flowPara></flowRoot>      <flowRoot
+         transform="matrix(0.26458333,0,0,0.26458333,79.246969,-11.475389)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         id="flowRoot2344-3"
+         xml:space="preserve"><flowRegion
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+           id="flowRegion2346-2"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="465.37683"
+             x="112.85714"
+             height="74.285713"
+             width="65.714287"
+             id="rect2348-5" /></flowRegion><flowPara
+           id="flowPara2376">+</flowPara></flowRoot>      <flowRoot
+         transform="matrix(0.26458333,0,0,0.26458333,79.218445,10.100248)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         id="flowRoot2344-3-0"
+         xml:space="preserve"><flowRegion
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+           id="flowRegion2346-2-6"><rect
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"
+             y="465.37683"
+             x="112.85714"
+             height="74.285713"
+             width="65.714287"
+             id="rect2348-5-2" /></flowRegion><flowPara
+           id="flowPara2402">_</flowPara></flowRoot>    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2344-8"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-120.60828,-115.04086)"><flowRegion
+         id="flowRegion2346-28"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"><rect
+           id="rect2348-7"
+           width="65.714287"
+           height="74.285713"
+           x="112.85714"
+           y="465.37683"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
+         id="flowPara2705"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'">VS</flowPara></flowRoot>    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.13309836;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path2693"
+       cx="-84.288696"
+       cy="14.46279"
+       rx="10.138808"
+       ry="13.351605" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2344-3-9"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.26458333,0,0,0.26458333,-117.70715,-125.21522)"><flowRegion
+         id="flowRegion2346-2-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"><rect
+           id="rect2348-5-7"
+           width="65.714287"
+           height="74.285713"
+           x="112.85714"
+           y="465.37683"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
+         id="flowPara2376-6"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'">+</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2344-3-0-8-9"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:1.25;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(-0.26458333,0,0,-0.64255952,-51.631474,348.41717)"><flowRegion
+         id="flowRegion2346-2-6-3-3"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start"><rect
+           id="rect2348-5-2-7-3"
+           width="65.714287"
+           height="74.285713"
+           x="112.85714"
+           y="465.37683"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
+         id="flowPara2402-0-6"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'TeX Gyre Cursor';-inkscape-font-specification:'TeX Gyre Cursor Bold'">_</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99469924;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-opacity:1"
+       d="m -84.666667,27.125005 0,10.583328"
+       id="path2879"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.99469924;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4.0999999;stroke-dasharray:none;stroke-opacity:1"
+       d="m -84.666667,-9.9166667 0,13.229161"
+       id="path2879-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g3521">
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path819-7"
+         d="M 63.5,143.54167 H 74.083333"
+         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         r="2.3242075"
+         cy="143.95616"
+         cx="60.932152"
+         id="path855"
+         style="fill:none;fill-opacity:1;stroke:#0000f6;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path817-6"
+         d="m 31.750004,127.66667 26.458329,15.875 -26.458329,15.875 z"
+         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path821-5-7-2"
+         d="M 31.750004,143.54167 H 9.8273873"
+         style="fill:none;stroke:#0000f6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
   </g>
 </svg>
