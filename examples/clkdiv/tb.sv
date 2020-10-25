@@ -26,7 +26,7 @@ ehgu_clkdiv clkdiv0
  .clkout ( clkout0 )
  ) ;
 
-ehgu_clkdiv # ( .DIVISION ( 5 ) ) clkdiv1
+ehgu_clkdiv # ( .DIVISION ( 5 ), .DUTY50(1) ) clkdiv1
  (
  .clkin ,
  .rstn ,
