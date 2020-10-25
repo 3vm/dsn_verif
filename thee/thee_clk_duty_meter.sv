@@ -16,15 +16,11 @@ module thee_clk_duty_meter
       sum_of_periods = 0 ;
       @(posedge clk);
       first_rise_edge = $realtime();
-      @(negedge clk);
-      fall_edge = $realtime();
       repeat (MEAS_WINDOW) begin
         @(negedge clk);
         fall_edge = $realtime();
         @(posedge clk);
         second_rise_edge = $realtime();
-
-        period_in_seconds = (second_rise_edge - first_rise_edge) * 1e-9;
      //   sum_of_periods += period_in_seconds;
         duty = (fall_edge - first_rise_edge) / (second_rise_edge - first_rise_edge ) ;
         first_rise_edge = second_rise_edge;
