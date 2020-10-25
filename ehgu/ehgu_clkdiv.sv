@@ -1,7 +1,7 @@
 module ehgu_clkdiv
 # (
 parameter DIVISION = 2 ,
-parameter bit DUTY50 = 1
+parameter bit DUTY50 = 0
  )
  (
 input logic clkin ,
@@ -15,6 +15,7 @@ localparam WIDTH = $clog2 ( DIVISION ) ;
 
 logic [ WIDTH-1 : 0 ] cnt , cnt_comb ;
 logic nc ;
+logic clkout_comb ;
 
 always_comb begin
    increment_modulo_unsigned ( .inp ( cnt ) , .modulo ( DIVISION ) , .out ( cnt_comb ) , .wrapped ( nc ) ) ;
@@ -28,27 +29,20 @@ always_ff @ ( posedge clkin , negedge rstn ) begin
    end
 end
 
+assign clkout_comb = cnt >= ( DIVISION / 2 ) ;
+
 generate
-if ( DUTY50 == 1 ) begin
+if ( DUTY50 == 1 && DIVISION%2==1 ) begin
    : d50pcnt
-  logic clkoutr , clkoutf ;
-  always_ff @ ( posedge clkin , negedge rstn ) begin
-     if ( !rstn ) begin
-       clkoutr <= 0 ;
-     end else begin
-       clkoutr <= cnt >= ( DIVISION / 2 ) ;
-     end
-  end
-  
-  always_ff @ ( negedge clkin , negedge rstn ) begin
-     if ( !rstn ) begin
-       clkoutf <= 0 ;
-     end else begin
-       clkoutf <= clkoutr ;
-     end
-  end
-  
-  assign clkout = ~ ( clkoutr & clkoutf ) ;
+
+  ehgu_clkdiv_duty50stage d50stg
+  (
+   .clkin ,
+   .rstn ,
+   .en ( 1'b1 ) ,
+   .clkout_comb ,
+   .clkout ( clkout )
+  ) ;
   
 end else begin
    : regular
@@ -56,7 +50,7 @@ end else begin
      if ( !rstn ) begin
        clkout <= 0 ;
      end else begin
-       clkout <= cnt >= ( DIVISION / 2 ) ;
+       clkout <= clkout_comb ;
      end
   end
 end
