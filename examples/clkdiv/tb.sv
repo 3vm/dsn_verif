@@ -5,6 +5,7 @@ logic clkin ;
 logic clkout0 ;
 logic clkout1 ;
 real fout0 , fout1 ;
+real dutyr, duty0, duty1 ;
 bit result0 , result1 ;
 logic rstn ;
 
@@ -12,6 +13,10 @@ thee_clk_gen_module clk_gen ( .clk ( clkin ) ) ;
 
 thee_clk_freq_meter fmeter0 ( .clk ( clkout0 ) , .freq_in_hertz ( fout0 ) ) ;
 thee_clk_freq_meter fmeter1 ( .clk ( clkout1 ) , .freq_in_hertz ( fout1 ) ) ;
+
+thee_clk_duty_meter dmeterr ( .clk ( clkin ) , .duty ( dutyr ) ) ;
+thee_clk_duty_meter dmeter0 ( .clk ( clkout0 ) , .duty ( duty0 ) ) ;
+thee_clk_duty_meter dmeter1 ( .clk ( clkout1 ) , .duty ( duty1 ) ) ;
 
 ehgu_clkdiv clkdiv0
  (
@@ -40,7 +45,7 @@ initial begin
    check_approx_equality ( .inp ( fout0 ) , .expected ( 0.5e9 ) , .result ( result0 ) ) ;
    check_approx_equality ( .inp ( fout1 ) , .expected ( 2e8 ) , .result ( result1 ) ) ;
    if ( result1 == 1 && result0 == 1 ) begin
-     repeat ( 3 ) $display ( "PASS" ) ;
+   $display ( " Duty Cycle - inp clk %3.2f, out clk0 %3.2f, out clk1 %3.2f ", dutyr, duty0, duty1 );
    end else begin
      repeat ( 3 ) $display ( "FAIL" ) ;
    end
