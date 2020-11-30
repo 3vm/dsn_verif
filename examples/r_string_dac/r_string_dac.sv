@@ -5,8 +5,8 @@ module r_string_dac
  parameter UNIT_R = 1000
  )
  (
- output real ana_in ,
- input logic [ WIDTH-1 : 0 ] dig_in
+ output real ana ,
+ input logic [ WIDTH-1 : 0 ] dig
  ) ;
 
 timeunit 1ns ;
@@ -18,7 +18,7 @@ real r_string [ 2**WIDTH-1 : 0 ] ;
 initial foreach (r_string[i]) r_string[i]=UNIT_R;
 
 always @(*) begin
-  
+end
  
 
 

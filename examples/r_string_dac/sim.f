@@ -13,7 +13,5 @@ timescale.sv
 ../../thee/thee_utils_pkg.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_integrator.sv
-ds_adc_ana.sv
-ds_adc_dig.sv
-ds_adc.sv
+r_string_dac.sv
 tb.sv

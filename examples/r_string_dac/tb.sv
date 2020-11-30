@@ -6,11 +6,11 @@ timeprecision 1ps ;
 
 parameter WIDTH = 8 ;
 
-real integral , ana_in , step ;
+real integral , ana , step ;
 logic rstn ;
 logic clk_oversamp ;
 logic clk ;
-logic signed [ WIDTH-1 : 0 ] dig_out ;
+logic signed [ WIDTH-1 : 0 ] dig ;
 real dig_out_real ;
 bit result ;
 
@@ -21,13 +21,10 @@ thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP / OVERSAMP_RATIO ) ) clk_gen (
 thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP ) ) clk_gen_oversamp ( .clk ( clk_oversamp ) ) ;
 assign dig_out_real = dig_out / ( OVERSAMP_RATIO / 2.0 ) ;
 
-ds_adc # ( .WIDTH ( WIDTH ) , .OVERSAMP_RATIO ( OVERSAMP_RATIO ) ) ds_adc
+r_string_dac # ( .WIDTH ( WIDTH ) ) r_string_dac
  (
- .clk_oversamp ,
- .rstn ,
- .ana_in ,
- .clk ,
- .dig_out
+ .ana ,
+ .dig
  ) ;
 
 
