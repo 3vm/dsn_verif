@@ -4,13 +4,13 @@ module tb ;
 timeunit 1ns ;
 timeprecision 1ps ;
 
-parameter WIDTH = 8 ;
-
-real integral , ana , step ;
+parameter WIDTH = 4 ;
+parameter real VREF = 1.0;
+real ana , expected;
+real fullscale;
 logic rstn ;
-logic clk_oversamp ;
 logic clk ;
-logic signed [ WIDTH-1 : 0 ] dig ;
+logic [ WIDTH-1 : 0 ] dig ;
 real dig_out_real ;
 bit result ;
 
@@ -19,7 +19,6 @@ parameter real FREQ_CLK_OVERSAMP = 256 ;
 
 thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP / OVERSAMP_RATIO ) ) clk_gen ( .clk ( clk ) ) ;
 thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP ) ) clk_gen_oversamp ( .clk ( clk_oversamp ) ) ;
-assign dig_out_real = dig_out / ( OVERSAMP_RATIO / 2.0 ) ;
 
 r_string_dac # ( .WIDTH ( WIDTH ) ) r_string_dac
  (
@@ -30,13 +29,15 @@ r_string_dac # ( .WIDTH ( WIDTH ) ) r_string_dac
 
 initial begin
    import thee_utils_pkg :: urand_range_real ;
+   fullscale = VREF*(2**WIDTH -1) / 2**WIDTH;
    rstn = 0 ; repeat ( 2 ) @ ( posedge clk ) ; rstn = 1 ;
   
    repeat ( 10 ) @ ( posedge clk ) ;
   
    for ( int i = 0 ; i < 5 ; i ++ ) begin
-     ana_in = urand_range_real ( 0 , 2.0 ) - 1.0 ;
-     repeat ( 20 ) @ ( posedge clk ) ;
+     dig = $urandom_range(2**WIDTH-1);
+     expected = fullscale * dig / (2**WIDTH-1) ;
+     repeat ( 1 ) @ ( posedge clk ) ;
      check_result ;
    end
   
@@ -45,8 +46,8 @@ end
 
 task check_result ;
  import thee_utils_pkg :: compare_real_fixed_err ;
- $display ( "Analog input %f , Digital output %d , Output reconverted to analog %f" , ana_in , dig_out , dig_out_real ) ;
- compare_real_fixed_err ( .expected ( ana_in ) , .actual ( dig_out_real ) , .result ( result ) , .max_err ( 1.001 * 1.0 * 2 / 256 ) ) ;
+ $display ( "Analog output %f , Digital input %d , expected analog %f" , ana , dig , expected ) ;
+ compare_real_fixed_err ( .expected ( expected ) , .actual ( ana ) , .result ( result ) , .max_err ( 1/(2**WIDTH) ) ) ;
  if ( result )
  $display ( "PASS" ) ;
  else begin
@@ -55,5 +56,5 @@ task check_result ;
  end
  endtask
 
-  logic vikram;
+ logic vikram ;
 endmodule
