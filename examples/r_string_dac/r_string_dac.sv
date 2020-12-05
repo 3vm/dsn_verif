@@ -27,6 +27,7 @@ initial begin
   	   r_string [ i ] = UNIT_R * ( 1 + urand_range_real(0,TOLERANCE_PCNT/100.0));
   	else
   	   r_string [ i ] = UNIT_R * ( 1 - urand_range_real(0,TOLERANCE_PCNT/100.0));
+  	$display("r_string %f",r_string[i]);
     r_total +=  r_string [ i ] ;
   end
 end
