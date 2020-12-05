@@ -3,7 +3,7 @@ module r_string_dac
 # (
  parameter WIDTH = 8 ,
  parameter UNIT_R = 1000,
- parameter real TOLERANCE_PCNT = 5.0
+ parameter real TOLERANCE_PCNT = 1.0
  )
  (
  output real ana ,
@@ -22,11 +22,9 @@ import thee_utils_pkg :: urand_range_real ;
 
 initial begin
   r_total = 0 ;
-  //foreach ( r_string [ i ] ) begin)
-  for ( int i = 0 ; i < RES_CNT; i++) begin
+  foreach ( r_string [ i ] ) begin
   	if ( $urandom_range(1) )
-//  	   r_string [ i ] = UNIT_R * ( 1 + urand_range_real(0,TOLERANCE_PCNT/100.0));
-  	   r_string [ i ] = UNIT_R * urand_range_real(1,1+TOLERANCE_PCNT/100.0);
+  	   r_string [ i ] = UNIT_R * ( 1 + urand_range_real(0,TOLERANCE_PCNT/100.0));
   	else
   	   r_string [ i ] = UNIT_R * ( 1 - urand_range_real(0,TOLERANCE_PCNT/100.0));
   	$display("r_string %f",r_string[i]);

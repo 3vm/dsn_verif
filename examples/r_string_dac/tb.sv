@@ -47,7 +47,7 @@ end
 task check_result ;
  import thee_utils_pkg :: compare_real_fixed_err ;
  $display ( "Analog output %f , Digital input %d , expected analog %f" , ana , dig , expected ) ;
- compare_real_fixed_err ( .expected ( expected ) , .actual ( ana ) , .result ( result ) , .max_err ( 1/(2**WIDTH) ) ) ;
+ compare_real_fixed_err ( .expected ( expected ) , .actual ( ana ) , .result ( result ) , .max_err ( 1.002/(2**WIDTH) ) ) ;
  if ( result )
  $display ( "PASS" ) ;
  else begin
