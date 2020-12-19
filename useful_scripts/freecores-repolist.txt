@@ -1,0 +1,768 @@
+1000base-x	Verilog	8800	2020-02-13	1000BASE-X IEEE 802.3-2008 Clause 36 - Physical Coding Sublayer (PCS)
+10_100m_ethernet-fifo_convertor	Verilog	1072	2019-01-15	10/100M Ethernet-FIFO convertor
+1664	C	204	2014-07-17	1664 microprocessor
+16x2_lcd_controller	VHDL	128	2014-07-17	16x2 LCD controller
+395_vgs	VHDL	2412	2014-07-17	G9 Impulse: Video Game System
+3des_vhdl	VHDL	244	2019-08-30	3DES (Triple DES) / DES (VHDL)
+6502vhdl	Shell	796	2014-07-17	6502VHDL
+6809_6309_compatible_core	Verilog	10920	2019-10-28	6809 and 6309 Compatible core
+68hc05	VHDL	128	2020-03-05	68hc05
+68hc08	VHDL	136	2019-11-02	68hc08
+802154crc		124	2014-07-16	IEEE 802.15.4 CRC Check
+802154phycore	VHDL	132	2019-08-08	IEEE 802.15.4 Core (physical layer)
+8051	Verilog	1920	2020-11-30	8051 core
+8b10b_encdec	VHDL	188	2019-06-22	8b10b Encoder/Decoder
+ac97	Verilog	352	2019-10-16	AC 97 Controller IP Core
+acxbrd	VHDL	744	2014-07-17	ACEX 1K50 board
+adaptive_lms_equalizer	VHDL	144	2020-05-07	Adaptive LMS equalizer
+adder	Verilog	128	2014-07-17	No description
+adv_debug_sys	C	10576	2017-02-27	Advanced Debug System
+ae18	Verilog	172	2014-07-17	ae18
+aemb	Verilog	844	2015-02-04	aeMB
+aes-128_pipelined_encryption	Verilog	376	2020-01-06	AES-128 Encryption
+aes-encryption	Verilog	152	2014-07-17	fast AES-128 Encryption only cores
+aes3rx	VHDL	136	2020-07-07	Simple AES3 / SPDIF receiver
+aes_all_keylength	VHDL	128	2014-07-17	AES encryption all keylength
+aes_beh_model	SystemVerilog	680	2019-12-31	AES SystemVerilog behavioral model
+aes_core	Verilog	244	2014-07-17	AES (Rijndael) IP Core
+aes_crypto_core	VHDL	992	2014-07-17	AES128
+aes_decrypt_fpga	SystemVerilog	1332	2020-02-19	AES Decryption Core for FPGA
+aes_highthroughput_lowarea	Verilog	680	2016-08-23	high throughput and low area aes core
+aes_pipe	VHDL	332	2015-07-07	Pipelined AES
+aesccm		132	2014-07-16	Compact AES-CCM Core
+ag_6502	Verilog	704	2017-05-26	ag_6502 soft core with phase-level accuracy
+agcnorm		3936	2014-07-16	Apollo Guidance Computer NOR eMulator
+ahb2wishbone	SystemVerilog	2740	2020-01-22	AHB to Wishbone Bridge
+ahb_arbiter	Verilog	1572	2019-12-31	No description
+ahb_master	Verilog	176	2020-03-13	Generic AHB master stub
+ahb_slave	Verilog	136	2020-11-13	Generic AHB slave stub
+ahb_system_generator	VHDL	388	2014-07-17	ahb system generator
+all-pole_filters	VHDL	132	2014-07-17	all-pole IIR filters
+all_digital_fm_receiver	VHDL	780	2018-03-07	Simple All Digital FM Receiver
+alternascope	Verilog	312	2020-09-30	An Alternative Oscilloscope
+altor32		821	2019-10-29	AltOr32 - Alternative Lightweight OpenRisc CPU
+alu_with_selectable_inputs_and_outputs	Verilog	2384	2014-07-17	No description
+amber	Verilog	12876	2019-08-24	Amber ARM-compatible core
+an-fpga-implementation-of-low-latency-noc-based-mpsoc	Verilog	1820	2020-11-12	NoC based MPSoC
+ao486	C++	560	2019-08-29	ao486
+ao68000	Verilog	2824	2019-08-24	ao68000 - Wishbone 68000 core
+aoocs	Verilog	2328	2014-07-17	aoOCS - Wishbone Amiga OCS SoC
+apb_mstr	Verilog	160	2020-12-09	Generic APB master stub
+apb_slave	Verilog	132	2019-05-07	Generic APB slave stub
+apbi2c	Verilog	812	2020-10-10	APB to I2C
+Aquarius	Verilog	10792	2014-07-17	No description
+arm4u	VHDL	216	2020-04-24	ARM4U
+artec_dongle_ii_fpga	VHDL	632	2014-07-17	LPC ROM, SPI ROM, 8bit ROM emulator on Artec Dongle II board
+artificial-intelligence-system		720	2014-07-16	AISystem
+async_8b10b_encoder_decoder	VHDL	144	2020-06-07	Async 8b/10b enc/dec
+async_sdm_noc	Verilog	7480	2014-07-17	Async-SDM-NoC
+ata	VHDL	1096	2020-10-22	OCIDEC (OpenCores IDE Controller)
+atlas_core	VHDL	15808	2015-09-01	Atlas Processor Core
+audio	VHDL	6084	2018-02-18	1 bit adpcm codec
+auto_baud	Verilog	196	2014-07-17	Automatic BAUD rate generator
+avr8	Verilog	124	2014-07-17	Reduced AVR Core for CPLD
+avr_core		256	2020-01-30	AVR Core
+avr_hp	VHDL	740	2019-08-04	AVR HP, Hyper Pipelined AVR Core
+avs_aes	VHDL	1140	2014-07-17	Avalon AES ECB-Core (128, 192, 256 Bit)
+avuc	Perl	464	2014-09-10	Assembler with VHDL User-defined Commands (AVUC)
+ax8	VHDL	208	2014-07-17	AX8 mcu
+axi4_tlm_bfm	VHDL	1792	2016-12-16	AXI4 Transactor and Bus Functional Model
+axi_master	Verilog	172	2020-11-02	Generic AXI master stub
+axi_slave	Verilog	152	2014-07-17	Generic AXI slave stub
+b163arith	VHDL	128	2014-07-17	B-163 EC Arithmetic
+BasicDES	VHDL	136	2014-07-17	No description
+BasicRSA	VHDL	128	2014-07-17	No description
+baudgen	VHDL	240	2014-07-17	baud generator
+bch_dec_enc_dcd		1144	2014-07-16	Double error correcting (DEC) BCH encoder / decoder
+big_counter	VHDL	152	2014-07-17	BigCounter
+bilinear_demosaic	Verilog	1952	2018-06-09	Demosaic (Bilinear)
+binary_to_bcd	Verilog	168	2014-07-17	Binary to BCD conversions, with LED display driver
+bit_gpio	Tcl	124	2016-08-10	Bitwise addressable GPIO
+blue	Verilog	1256	2019-10-29	16-bit CPU based loosely on Caxton Foster's Blue architecture
+bluespec-80211atransmitter	Bluespec	392	2020-05-11	Bluespec 802.11a Transmitter
+bluespec-h264	Bluespec	32748	2020-12-10	Bluespec H.264 Decoder
+bluespec-reedsolomon	Bluespec	164	2018-05-29	Bluespec SystemVerilog Reed Solomon Decoder
+bluespec_md6	Bluespec	1464	2014-08-08	Bluespec MD6
+bluetooth	VHDL	128	2017-05-26	Bluetooth baseband controller
+boundaries	Verilog	144	2014-07-17	boundaries
+bpsk_spread_spectrum_modulator_demodulator	VHDL	124	2019-08-23	Spread Spectrum modulator and demodulator using BPSK
+brisc	Verilog	128	2014-07-17	No description
+brsfmnce	Verilog	128	2014-07-17	BRSFmnCE
+btc_dsha256	VHDL	296	2014-07-17	Bitcoin Double SHA256
+btcfpgaminer	VHDL	132	2020-08-23	BTC-FPGA-MINER - Open Source FPGA Bitcoin Miner
+btcminer	Java	164	2020-07-09	BTCMiner - Open Source Bitcoin Miner
+bu_pacman		2392	2014-07-16	BU PACMAN
+bubblesortmodule	Verilog	332	2014-07-17	BubbleSortModule
+bustap-jtag	Verilog	1108	2020-04-27	Bus Transaction Monitor with JTAG
+butterflylight		308	2014-07-16	Butterfly Light
+bw_tiff_compression	VHDL	14376	2014-07-17	CCITT-G4(tiff) compression
+c0or1k	C	1400	2014-07-17	Codezero OpenRISC Port
+c16	Assembly	1684	2019-08-29	16 Bit Microcontroller
+ca_prng	Verilog	136	2014-07-17	Cellular Automata PRNG
+cachecontroller	Verilog	244	2014-07-17	DirectMappedCacheController
+camellia-vhdl	VHDL	180	2014-07-17	Camellia cores
+can	Verilog	400	2020-11-30	CAN Protocol Controller
+canny_edge_detector	VHDL	664	2014-07-17	Canny Edge Detector
+cavlc	Verilog	752	2014-07-17	cavlc decoder
+cdc_ufifo	SystemVerilog	124	2014-07-17	CDC micro FIFO
+cde	Verilog	1404	2015-06-13	Common Design Environment
+cf_cordic		124	2014-07-16	CF Cordic
+cfft	VHDL	224	2014-07-17	radix 4 complex fft
+cfi_ctrl	Verilog	164	2019-11-22	CFI flash controller
+cheap_ethernet	Verilog	628	2020-09-18	Cheap Ethernet interface
+cic	C++	216	2019-08-29	CIC Decimation Filter
+cic_core	SystemVerilog	208	2014-07-17	CIC-filter core
+claw	Verilog	888	2014-07-17	No description
+clefia-fpga		1444	2014-07-16	Compact CLEFIA for FPGA
+color_converter	VHDL	448	2014-07-17	Color Converter
+common	Verilog	2164	2018-11-11	No description
+complex-gaussian-pseudo-random-number-generator	VHDL	132	2015-10-28	Complex Gaussian Pseudo-random Number Generator
+complexarithmetic	C++	124	2019-08-29	Complex Arithmetic Operations
+complexise	VHDL	180	2014-07-17	Complex Operations ISE for NIOS II
+configurable_crc_core	Verilog	124	2014-07-17	configurable CRC core
+configurator	Python	132	2014-07-17	Configurator
+connect-6	C++	988	2014-07-17	Connect-6 Solver
+cop	Verilog	728	2014-07-17	Computer Operating Properly
+copyblaze	VHDL	22356	2014-07-17	copyBlaze
+cordic	VHDL	364	2014-07-17	CORDIC core
+core_arm	VHDL	836	2019-06-11	Arm core
+cortexi	VHDL	156	2017-05-15	CortexI
+cowgirl	VHDL	128	2014-07-17	Cowgirl
+cpu6502_true_cycle	VHDL	14432	2018-03-02	cpu6502_tc - R6502 Processor Soft Core with accurate timing
+cpu65c02_true_cycle	VHDL	9524	2020-07-26	cpu65c02_tc - R65C02 Processor Soft Core with accurate timing
+cpu8080	Verilog	33304	2018-10-30	8080 Compatible CPU
+cpu_lecture	VHDL	3080	2018-12-12	CPU Lecture
+cpugen		121456	2016-12-14	Cpu Generator
+cr_div	Verilog	164	2014-07-17	cr_div - Cached Reciprocal Divider
+crc802154	VHDL	124	2014-07-17	IEEE 802.15.4 CRC
+crtg		1000	2014-07-16	Constrained random test generator
+cryptography	VHDL	252	2014-07-17	rc6 cryptography
+cryptopan_core	VHDL	152	2014-07-17	Crypto-PAn
+cryptosorter	Bluespec	332	2019-02-21	Bluespec Cryptosorter
+csa	Verilog	204	2014-07-17	csa
+dallas_one-wire	VHDL	124	2017-05-27	No description
+datetime	Verilog	168	2014-07-17	Datetime
+dbg_interface	Verilog	3708	2014-07-17	SoC Debug Interface
+dct_idct	VHDL	208	2014-07-17	Pipelined DCT/IDCT
+ddr2_sdram	VHDL	3636	2019-07-17	DDR2 SDRAM Controller
+ddr3_sdram	Verilog	132	2020-10-29	DDR3 SDRAM controller
+ddr3_synthesizable_bfm	Verilog	132	2020-07-06	DDR3 Synthesizable BFM
+dds_synthesizer	VHDL	564	2018-12-12	DDS Synthesizer
+de1_olpcl2294_system	Verilog	3484	2014-07-17	de1_olpcl2294_system
+debouncer_vhdl	VHDL	200	2017-05-27	Multiple Switch Debouncer in VHDL
+deflatecore	VHDL	140	2014-07-17	DEFLATE
+des	Verilog	172	2016-06-04	DES/Triple DES IP Cores
+descore	VHDL	132	2014-07-17	DES Core
+deslcore	VHDL	132	2014-07-17	DESL Core
+deslxcore	VHDL	132	2014-07-17	DESLX Core
+desxcore	VHDL	132	2014-07-17	DESX Core
+digifilter	VHDL	1228	2014-07-17	No description
+diogenes	C	164	2014-07-17	Diogenes: Student RISC System
+dirac	Shell	27252	2020-10-27	No description
+distributed_intelligence	VHDL	144	2014-07-17	Distributed limited cores
+divider	Verilog	128	2019-10-10	Hardware Division Units
+djpeg	Verilog	5636	2020-09-12	No description
+dma_ahb	Verilog	756	2020-11-08	AHB DMA 32 / 64 bits
+dma_axi	Verilog	668	2020-10-29	AXI DMA 32 / 64 bits
+dmt_tx	Verilog	468	2014-07-17	DMT Transceiver
+dmx512		128	2014-07-16	DMX512 transceiver
+double_fpu	Verilog	264	2019-05-07	double_fpu_verilog
+dpsfmnce	Verilog	128	2014-07-17	DPSFmnCE
+dqpsk		128	2014-07-16	DQPSK Symbol Mapper
+dqpskmap	VHDL	128	2017-11-04	DQPSK Mapper
+dram		124	2014-07-16	Parameterisable DRAM model
+ds1621	SystemVerilog	140	2014-07-17	DS1621 model
+dvb_s2_ldpc_decoder	Verilog	22204	2020-10-28	DVB-S2 LDPC Decoder
+e1framer	VHDL	124	2018-07-30	E1-G.703,G.704,G.706 framer/deframer
+ecg	Verilog	964	2015-01-31	Elliptic Curve Group
+eco32	C	5128	2016-11-19	ECO32
+ecpu	C++	884	2019-08-29	ecpu
+ecpu_alu	C++	2176	2019-08-29	ecpu_alu
+edge	Verilog	352	2014-07-17	Edge Processor (MIPS)
+elm		328	2014-07-16	ELM Embedded Processor
+embedded_risc	Verilog	780	2020-11-08	Embedded 32-bit RISC uProcessor with SDRAM Controller
+encore	VHDL	352	2014-07-17	Encore
+ep2c35_board		1236	2014-07-16	EP2C35 Board
+epc_rfid_transponder	VHDL	160	2017-11-28	EPC RFID Transponder
+esoc		4584	2014-07-16	Ethernet Switch on Configurable Logic
+ether_arp_1g	VHDL	132	2014-07-17	1G Ethernet ARP
+etherlab	VHDL	364	2014-07-17	EtherLab - Spartan-3E StarterKit To C# To Bridge
+ethernet_tri_mode	Verilog	1308	2014-07-17	10_100_1000 Mbps tri-mode ethernet MAC
+ethmac	Verilog	949	2020-10-24	Ethernet MAC 10/100 Mbps
+ethmac10g	Verilog	1536	2018-03-19	10G Ethernet MAC
+eus100lx	VHDL	4820	2018-10-30	Linux & Xilinx FPGA Dev Board
+extension_pack		548	2014-07-16	extension_pack
+ezidebug	C++	28580	2019-08-29	EziDebug
+fac2222m		4316	2014-07-16	Audio DSP PCI Card
+fade_ether_protocol	Verilog	256	2020-09-18	Fade - Light L3 Ethernet protocol for transmission of data from FPGA to embedded PC
+fast-crc	VHDL	1524	2014-07-17	5x4Gbps CRC generator designed with standard cells
+fast_antilog	Verilog	124	2014-07-17	Anti-Logarithm (square-root), base-2, single-cycle
+fast_log	Verilog	128	2020-10-07	Logarithm function, base-2, single-cycle
+ffr16	VHDL	4188	2014-07-17	First File Reader FAT16
+fft_fir_filter	VHDL	304	2014-07-17	FFT-based FIR Filter
+fftprocessor	Verilog	1156	2014-07-17	No description
+fht	Verilog	124	2014-07-17	Fast Hadamhard Transforms
+fifo_srl_uni	VHDL	128	2014-07-17	Parametrized FIFO based on SRL16E
+fir_filter		128	2014-07-16	filtro_FIR
+fir_wishbone	VHDL	132	2014-07-17	Generic FIR Filter
+firewire	Verilog	288	2014-07-17	FireWire (IEEE 1394)
+firgen	VHDL	1940	2014-07-17	No description
+fixed_extensions	VHDL	252	2019-04-22	fixed_extensions
+fixed_point_arithmetic_parameterized	Verilog	128	2014-07-17	Fixed Point Arithmetic Modules
+flha	VHDL	140	2014-07-17	Fuzzy Logic Hardware Accelerator
+floppyif	Verilog	140	2018-02-13	No description
+fp_log	VHDL	1636	2014-07-17	Floating-Point Logarithm Unit
+fpga-cf	Verilog	27024	2014-07-17	FPGA Communication Framework
+fpga-median	Verilog	580	2020-12-02	FPGA-based Median Filter
+fpu	Verilog	252	2020-09-26	Floating Point Unit
+fpu100		460	2014-07-16	FPU
+fpu_double	VHDL	236	2020-11-22	FPU Double VHDL
+fpuvhdl	VHDL	248	2020-04-29	Floating Point Adder and Multiplier
+freecores.github.io	CSS	192	2020-04-29	Freecores website
+freq_div	Verilog	128	2014-07-17	Adjustable Frequency Divider
+fsl2serial	Verilog	132	2014-07-17	No description
+ft2232hcore	C	140	2018-03-28	FT2232H USB Avalon Core
+funbase_ip_library	VHDL	50716	2014-07-17	Funbase IP library
+g729a_codec	VHDL	1232	2020-11-20	G.729A Codec
+galois_lfsr	VHDL	132	2014-07-17	Generic Galois LFSR
+gamepads	VHDL	608	2014-07-17	Gamepads
+gbiteth	VHDL	164	2014-07-17	Ethernet 100/1000 Mbps
+gcm-aes	Verilog	396	2014-07-17	Galois Counter Mode Advanced Encryption Standard GCM-AES
+gecko3	VHDL	21288	2014-07-17	GECKO3 SoC co-design environment
+gecko4	VHDL	4036	2017-07-15	GECKO4 SoC co-design environment
+generic_fifos	Verilog	140	2020-04-02	Generic FIFOs
+genesys_ddr2	Verilog	244	2019-04-08	DDR2 mem controller for Digilent Genesys Board
+gfir	JavaScript	6768	2014-07-17	G-FIR TF/DF
+gnextrapolator	VHDL	2292	2014-07-17	GNExtrapolator
+gost28147	SystemVerilog	128	2014-07-17	GOST 28147-89
+gost28147-89	Verilog	252	2014-07-17	gost28147-89
+gpib_controller	VHDL	1196	2014-07-17	GPIB (IEEE-488) controller
+gpio	Verilog	1148	2019-12-31	General-Purpose I/O (GPIO) Core
+gppd	C	236	2014-07-17	Polyphase Decimation Filter
+grain	VHDL	136	2019-09-05	The Grain stream cipher
+graphicallcd	VHDL	128	2014-07-17	Graphical LCD interfaces
+graphicsaccelerator	C	2532	2014-07-17	Graphics Accelerator
+graphiti	VHDL	292	2018-03-14	MiniGA - High Quality PAL Encoder
+ha1588	Verilog	6412	2020-11-11	Hardware Assisted IEEE 1588 IP Core
+hamming	Verilog	168	2014-07-17	ham_7_4_enc
+hcsa_adder		524	2014-07-16	HCSA adder and Generic ALU based on HCSA
+hd44780_driver	VHDL	228	2014-07-17	Simple HD44780 Driver
+hd63701	Verilog	136	2018-12-22	HD63701 compatible core
+hdbn	VHDL	220	2014-07-17	HDB3/B3ZS Encoder+Decoder
+hdlc	VHDL	324	2018-11-04	HDLC controller
+heap_sorter	VHDL	136	2017-11-23	Heap sorter for FPGA
+help	CSS	172	2014-07-17	No description
+hicovec	Python	668	2014-07-17	HiCoVec - a configurable SIMD CPU
+hierarch_unit		212	2014-07-16	HIERARCHICAL Integer Multiplier unit
+highload	VHDL	128	2014-07-17	High Load configurable test project
+hilbert_transformer	VHDL	940	2014-07-17	Hilbert Transformer
+hive	C	392	2014-07-17	HIVE - a 32 bit, 8 thread, 4 register/stack hybrid, pipelined verilog soft processor core
+hmta		124	2014-07-16	HyperMTA
+hpc-16	VHDL	1080	2014-07-17	HPC-16
+hpdmc	Verilog	2000	2014-07-17	High Performance Dynamic Memory Controller
+hssdrc	Verilog	556	2014-07-17	High Speed SDRAM Controller With Adaptive Bank Management and Command Pipeline
+ht_tunnel	C++	624	2019-08-29	HyperTransport Tunnel
+huffmandecoder	VHDL	392	2014-07-17	Huffman Decoder
+hwlu	VHDL	588	2014-07-17	Hardware looping unit
+i2c	Verilog	1484	2020-08-15	I2C controller core
+i2c_master_slave_core	SystemVerilog	1096	2019-04-09	I2C master/slave Core
+i2c_to_wb	Verilog	964	2014-07-17	i2c_to_wb
+i2c_wb_wrapper	VHDL	136	2014-07-17	I2C Controller Wishbone Wrapper
+i2cgpio	Verilog	124	2014-07-17	i2cgpio
+i2clcd	Verilog	156	2014-07-17	i2clcd
+i2crepeater	Verilog	124	2014-07-17	I2C Repeater
+i2cslave	Verilog	1544	2014-07-17	I2C Slave
+i2s_interface	VHDL	484	2014-07-17	I2S Interface
+i2s_to_parallel	VHDL	124	2019-04-03	I2S to Parallel Interface
+i2s_to_wb	Verilog	192	2014-07-17	I2S to WishBone
+i2sparalell	VHDL	128	2018-12-13	I2S to Paralell ADC/DAC controller
+idea	Max	320	2014-07-17	IDEA core
+ieee_802_15_4_phy		132	2014-07-16	IEEE 802.15.4-PHY Core
+igor	VHDL	628	2020-04-12	IGOR - A microprogrammed LISP machine
+iiepci		308	2014-07-16	IIE-PCI Board
+ima_adpcm_enc_dec	Verilog	1608	2015-08-12	IMA ADPCM Encdoer & Decoder
+ima_adpcm_encoder	VHDL	160	2014-07-17	IMA ADPCM Sound Encoder
+instruction_list_pipelined_processor_with_peripherals	Verilog	804	2014-07-17	8-bit Piepelined Processor
+interrupt_controller	Stata	124	2014-07-17	Interrupt Controller 68k
+ion	VHDL	1624	2019-06-30	Ion - MIPS(tm) compatible CPU
+ipv4_packet_transmitter	VHDL	148	2014-07-17	IPv4 Ethernet Packet Creator and Transmitter
+iqcorrection	VHDL	1112	2014-07-17	IQ Phase and Gain Correction
+irda	Verilog	880	2014-07-17	IrDA
+iso7816_3_master	Verilog	200	2020-11-15	Iso7816_3_Master
+jart	VHDL	284	2014-07-17	Just Another Ray Tracer
+jpeg		3540	2014-07-16	JPEG Hardware Compressor
+jpegencode	Verilog	296	2020-12-10	JPEG Encoder Verilog
+jtag	Verilog	524	2020-10-13	JTAG Test Access Port (TAP)
+jtag_master	VHDL	140	2014-07-17	JTAG Master
+jtag_slave		128	2014-07-16	JTAG Slave / BoundaryScan Slave
+k68	Assembly	6220	2014-09-10	K68
+keyboardcontroller	VHDL	136	2014-07-17	keyboardcontroller
+keypad_scanner	Verilog	128	2014-07-17	Keypad Scanner
+kiss-board	Verilog	584	2014-07-17	kiss-board
+klc32	Verilog	220	2014-07-17	KLC32
+kvcordic	VHDL	1096	2014-07-17	Universal multi-function CORDIC
+layer2	VHDL	320	2014-07-17	layer[2]
+lcd1	VHDL	276	2014-07-17	Memory mapped LCD Controller (KS0073)
+lcd162b_behavior	VHDL	124	2014-07-17	LCD162B Behavior Model
+lcd_block	Verilog	8692	2014-07-17	LCD Block
+lem1_9min	VHDL	312	2014-07-17	LEM1_9
+leros	VHDL	4152	2014-07-17	Leros: A Tiny Microcontroller for FPGAs
+lfsr_randgen	VHDL	260	2015-10-28	LFSR-Random number generator
+lfsrcountergenerator		192	2014-07-16	LFSR Counter Generator
+light52	VHDL	3400	2018-05-04	Lightweight 8051 compatible CPU
+light8080	VHDL	976	2014-07-17	Lightweight 8080 compatible core
+line_codes	TeX	628	2014-07-17	AMI / HDB1 Line Codes
+loadbalancer	VHDL	4064	2014-07-17	Hardware Load Balancer for Multi-Stage Software Router
+log_anal	VHDL	244	2014-07-17	Internal Logic State Analyzer
+logicprobe	Verilog	144	2014-07-17	LogicProbe
+low_cost_pci_card		2420	2014-07-16	PCI card with Xilinx X3CS500E
+lp_iir_filter	VHDL	192	2014-07-17	Low-Pass IIR Filter
+lpc	Verilog	500	2014-07-17	No description
+lpd8806	VHDL	136	2014-07-17	LPD8806 RGB LED string driver
+lq057q3dc02	VHDL	3712	2014-07-17	Sharp LQ057Q3DC02 LCD Controller
+lwrisc	Verilog	356	2014-07-17	ClaiRISC - runs 12bit opcode PIC family.
+lzrw1-compressor-core	VHDL	2392	2020-10-15	LZRW1 Compressor Core
+m16c5x	Verilog	320	2014-07-17	M16C5x
+m1_core	Verilog	444	2014-07-17	M1 Core
+m65c02	Verilog	5748	2017-10-13	M65C02
+mac_layer_switch	Verilog	384	2020-06-26	100 MB/s Ethernet MAC Layer Switch
+macroblock_motion_detection	Verilog	352	2016-12-09	No description
+manchesterwireless	VHDL	160	2014-07-17	Manchester Decoder for Wireless
+marca	VHDL	1408	2014-07-17	McAdam's RISC Computer Architecture
+marcus_proj1		124	2014-07-16	No description
+matrix3x3	VHDL	464	2018-06-14	True matrix 3x3 multiplier
+mb-jpeg	C	1304	2019-01-28	JPEG codec library based on microblaze
+mblite	VHDL	1004	2020-08-20	MB-Lite
+mcs-4	Verilog	1536	2020-12-07	4004 CPU and MCS-4 family chips
+mcu8	VHDL	592	2014-07-17	8-bit microcontroller with extended peripheral set
+md5	Verilog	132	2014-07-17	No description
+mdct	VHDL	2024	2014-07-17	Discrete Cosine Transform core
+mem_ctrl	Verilog	1076	2019-01-15	Memory Controller IP Core
+memory_cores	VHDL	152	2014-07-17	Memory cores
+memory_sizer	Verilog	176	2014-07-17	Memory sizer
+mesi_isc	Verilog	11496	2014-07-17	MESI Coherency InterSection Controller
+mfpga		124	2014-07-16	Micro FPGA Board
+microprocessor	Verilog	244	2014-07-17	microprocessor za208
+microriscii	Verilog	128	2014-07-17	MicroRISC II
+mini-acex1k		344	2014-07-16	No description
+mini_aes	VHDL	480	2016-12-04	Mini AES
+minimac		132	2014-07-16	Minimac - the minimalist Ethernet MAC
+minimips	C	516	2018-11-22	miniMIPS
+minirisc	Verilog	89	2020-07-25	Mini-Risc core
+miniuart2	VHDL	1316	2014-07-17	Serial Uart
+minsoc	Verilog	5436	2014-07-17	minsoc
+mips32r1	Verilog	133848	2014-07-17	MIPS32 Release 1
+mips789	Verilog	6264	2017-11-27	mips789
+mips_16	Verilog	1680	2020-11-22	Educational 16-bit MIPS Processor
+mips_fault_tolerant	VHDL	1660	2014-07-17	Mips-FaultTolerant
+mipsr2000	VHDL	492	2014-07-17	mipsr2000
+mjpeg-decoder	VHDL	15500	2015-05-19	(M)JPEG Decoder
+mjpeg-decoder_new	VHDL	15500	2014-07-17	No description
+mlite	C	572	2014-07-17	No description
+mmac97		1632	2014-07-16	Simple AC'97 controller
+mmcfpgaconfig	Verilog	132	2014-07-17	FPGA MMC-Card Config.
+mmu180	Verilog	128	2018-11-27	MMU for Z80 and eZ80
+mmuart	Verilog	6	2020-03-06	Simple RS232 UART
+mod3_calc	Verilog	124	2014-07-17	mod3_calc
+mod_sim_exp	VHDL	7032	2014-07-17	Flexible Design of a Modular Simultaneous Exponentiation Core
+modbus	VHDL	160	2019-08-30	MODBUS Implementation in VHDL
+modular_oscilloscope	VHDL	1192	2019-11-30	Modular Oscilloscope
+most		588	2014-07-16	MOST Network Interface Controller
+most_core		568	2019-01-06	M2G - Media Oriented Systems Transport (MOST) IP core
+motion_estimation_processor	VHDL	2640	2019-05-14	Motion Estimation Processor
+mpdma	C	376	2016-08-27	Soft MultiProcessor on FPGA
+mpx		73160	2014-07-16	MPX 32-bit CPU
+mvp_starter_kit	VHDL	724	2014-07-17	Mitrion virtual processor starter kit
+myblaze	Python	2168	2014-07-17	myBlaze
+myforthprocessor	Java	165996	2014-07-17	FORTH processor with Java compiler
+mytwoqcache	VHDL	132	2014-07-17	2Q cache
+natalius_8bit_risc	Verilog	896	2014-07-17	Natalius 8 bit RISC
+navre	Verilog	128	2019-10-29	Navré AVR clone (8-bit RISC)
+nemo_emotion	Shell	124	2014-07-17	No description
+next186	Verilog	1032	2017-06-01	Next 80186 processor
+next186_soc_pc	Verilog	700	2014-07-17	Next186 SoC PC
+nextz80	Verilog	1948	2014-07-17	NextZ80
+nfcc	VHDL	184	2014-07-17	Nugroho Free Crypto Cores
+nfhc	VHDL	140	2014-07-17	Nugroho Free Hash Cores
+nios2ci	VHDL	136	2014-07-17	Nios II Custom Instructions
+noc	C++	124	2019-12-24	NoC(Network-on-Chip) Simulator
+nocem	VHDL	336	2014-07-17	NoCem -- Network on Chip emulator
+nocmodel	Python	216	2014-07-17	NoCmodel
+noekeoncore	VHDL	132	2014-07-17	NOEKEON Core (lightweight block cipher)
+nova	Verilog	924	2020-05-11	H.264/AVC Baseline Decoder
+npigrctrl	VHDL	476	2014-07-17	NPI graphics controller
+numbert_sort_device	Verilog	556	2014-07-17	Numbert sort device O(N)
+oc-h264-encoder		4516	2020-05-11	OC - H.264 Encoder SoC
+oc54x	Verilog	136	2019-12-06	OpenCores54x DSP
+ofdm	VHDL	1528	2020-02-28	OFDM modem
+oks8	Verilog	144	2014-07-17	oks8
+oops	Verilog	148	2019-05-02	OoOPs - Out-of-Order MIPS (TM) Processor
+op2p		6280	2014-07-16	OP2P (OpenPeerToPeer Interface)
+opb_onewire	VHDL	624	2014-07-17	OPB-compatible OneWire Master
+opb_psram_controller	VHDL	132	2014-07-17	OPB PSRAM Controller
+opb_usblite	VHDL	212	2014-07-17	opb_usblite
+opb_vga_char_display_nodac	Verilog	668	2014-07-17	OPB-compatible VGA character display, no DAC
+opb_wb_wrapper	Verilog	144	2018-11-13	WB/OPB & OPB/WB Interface Wrapper
+open_free_list	Verilog	132	2018-09-09	Open FreeList
+opencores	Verilog	176	2014-07-17	No description
+opencpu32	VHDL	4276	2014-07-17	OpenCPU32
+openfire2	C	332	2014-07-17	OpenFIRE
+openfire_core	Verilog	176	2014-07-17	OpenFire Processor Core
+openfpu64	VHDL	20436	2014-07-17	openFPU64
+openjtag-project	VHDL	944	2020-12-16	Open JTAG project
+openmsp430	Verilog	67644	2016-07-20	openMSP430
+openriscdevboard	Verilog	4876	2018-01-05	OpenRisc Development Board
+openverifla		1112	2014-07-16	openVeriFLA - FPGA logic analyzer
+or1200_hp	Verilog	1352	2014-07-17	OpenRisc 1200 HP, Hyper Pipelined OR1200 Core
+or1200_soc	Verilog	172	2018-08-13	or1200_soc
+or1200gct	Verilog	144	2014-07-17	OpenRisc 1200 Graphic Configuration Tool
+or1k-cf	C	144	2014-07-17	Confluence OpenRisc 1000
+or1k_soc_on_altera_embedded_dev_kit		124	2014-07-16	Or1k SoC on Altera Embedded Dev Kit
+orsoc_graphics_accelerator	C	2372	2017-10-07	ORSoC Graphics Accelerator
+oscilloscope	Verilog	168	2014-07-17	Oscilloscope
+osdvu	Verilog	128	2014-07-17	Documented Verilog UART
+othellogame	Verilog	160	2014-07-17	Game-Trees FPGA implementation (Othello Game)
+ourisc	VHDL	136	2017-01-02	16-bit Open uRISC core Processor
+p16c5x	Verilog	140	2014-07-17	P16C5x
+pairing	Verilog	776	2017-09-01	Tate Bilinear Pairing
+parallel_io_through_fiber	VHDL	128	2014-07-17	Serializer / Deserializer for audio fiber optic
+parallel_search_for_maximum_weight	VHDL	136	2014-07-17	Maximum/Minimum binary tree finder
+parallelcrcgen		240	2014-07-16	Parallel CRC Generator
+patterngen	VHDL	176	2014-07-17	Video Pattern Generator
+pavr	VHDL	1016	2019-07-29	pAVR
+pc_fpga_com	VHDL	304	2019-01-25	PC-FPGA Communication Platform
+pci	Verilog	19560	2020-11-09	PCI bridge
+pci_blue_interface	Verilog	656	2020-05-11	No description
+pci_core	VHDL	152	2014-07-17	No description
+pci_express_crc	Verilog	328	2017-08-31	PCI Express 16 bit CRC verilog file
+pci_to_wb	VHDL	128	2014-07-17	PCI slave to WB master
+pcie_ds_dma	VHDL	1888	2020-03-06	PCIe_DS_DMA
+pcie_mini	VHDL	5156	2020-03-06	PCIe_mini (PCI-Express to Wishbone Bridge for Xilinx FPGAs)
+pcie_sg_dma	VHDL	2504	2018-12-08	PCIe SG DMA controller
+pcie_vera_tb	Verilog	292	2014-07-17	PCI Express x1 16bit VERA testbench
+pcounter	VHDL	148	2015-08-08	Pipelined Synchronous Pulse Counter
+pdp1	VHDL	184	2014-07-17	PDP-1 reimplementation
+pdp8	VHDL	472	2019-01-11	PDP-8 Processor Core and System
+pdp8l		9976	2014-07-16	Minimal PDP8/L implementation with 4K disk monitor system
+pepelatz_misc	Verilog	124	2014-07-17	Pepelatz MISC
+phr	Erlang	109728	2014-07-17	Plataforma de Hardware Reconfigurable
+pic	VHDL	316	2014-07-17	Programmable Interrupt Controller
+pid_controler	VHDL	128	2014-07-17	PID Controler
+pid_controller	Verilog	1248	2020-10-26	PID controller
+pif2wb	VHDL	2336	2014-07-17	PIF2WB
+pipelined_fft_128	Verilog	340	2017-10-31	Pipelined FFT/IFFT 128 points processor
+pipelined_fft_256	Verilog	332	2018-06-23	Pipelined FFT/IFFT 256 points processor
+pipelined_fft_64	Verilog	216	2019-03-09	Pipelined FFT/IFFT 64 points processor
+pipelined_fixed_point_elementary_functions	SystemVerilog	204	2014-07-17	Pipelined fixed point elementary functions (div, sin, cos, exp, atan2, sqrt)
+pit	SystemVerilog	1540	2014-07-17	Programmable Interval Timer
+plasma	C	572	2019-06-06	Plasma - most MIPS I(TM) opcodes
+plb2wbbridge	VHDL	1792	2014-07-17	PLB-to-WB Bridge
+plbv46_to_wb_bridge	VHDL	384	2014-07-17	PLBv46 to Wishbone Bridge
+pltbutils	VHDL	4348	2014-07-17	PlTbUtils
+popcount_gen	C	128	2014-07-17	Population Counter Generator
+ppx16	VHDL	176	2014-07-17	PPX16 mcu
+present	VHDL	1620	2014-07-17	Present - a lightweight block cipher
+present_encryptor	Verilog	724	2014-07-17	Present Cipher Encryption Core
+product_code_iterative_decoder	VHDL	1512	2015-04-17	Product Code Iterative Decoder
+programmabledct	Shell	2688	2014-07-17	No description
+ps2	Verilog	389	2019-09-16	PS2 interface
+ps2_host_controller	Verilog	128	2014-07-17	PS/2 Host Controller
+ps2core	VHDL	140	2016-01-23	PS2 Core
+psg16	Verilog	232	2014-07-17	PSG16 - ADSR prog. sound gen.
+ptc	Verilog	436	2017-06-04	PWM/Timer/Counter (PTC) Core
+pwm	Verilog	500	2020-07-25	PWM
+pyramid_unit		212	2014-07-16	PYRAMID Integer Multiplier unit
+qo	VHDL	400	2014-07-17	Quadrature Oscillator
+qrisc32	SystemVerilog	224	2019-06-11	qrisc32 wishbone compatible risc core
+quad_decoder	VHDL	136	2014-07-17	Quadrature Decoder (for optical Encoders)
+quadratic_func	VHDL	244	2014-07-17	Fixed-point quadratic polynomial
+quadraturecount	VHDL	128	2014-07-17	Quadrature Decoder / Counter
+r2000		17244	2014-07-16	r2000 Soc
+raggedstone	VHDL	180	2014-07-17	Raggedstone PCI Spartan-3 board
+ram_wb	Verilog	960	2014-07-17	RAM_wb
+raptor64	Verilog	2100	2016-02-07	Raptor64
+ratpack	VHDL	204	2014-07-17	ratpack
+raytrac	VHDL	10696	2014-07-17	Ray Tracing Arithmetic Engine
+rc4-prbs	Verilog	136	2018-12-14	RC4 Pseudo-random stream generator
+reed_solomon_codec_generator	C++	2496	2020-06-08	Reed-Solomon Codec Generator
+reed_solomon_decoder	Verilog	508	2020-06-19	Reed Solomon Decoder (204,188)
+reedsolomon	Bluespec	164	2018-01-23	Reed-Solomon Decoder
+rhp	TeX	2712	2014-07-17	Reconfigurable Hardware Platform
+rio	VHDL	492	2014-07-17	RapidIO IP library
+risc16f84	Verilog	204	2014-07-17	risc16f84
+risc5x	VHDL	232	2014-07-17	RISC5x
+RISCMCU	VHDL	3012	2014-07-17	No description
+rise	VHDL	620	2014-07-17	RISE Microprocessor
+rng_lib	VHDL	216	2014-07-17	Random Number Generator Library
+robust_ahb_matrix	Verilog	132	2014-07-17	Generic AHB matrix
+robust_axi2ahb	Verilog	136	2020-04-23	Generic AXI to AHB bridge
+robust_axi2apb	Verilog	144	2019-09-23	Generic AXI to APB bridge
+robust_axi_fabric	Verilog	156	2020-10-31	Generic AXI interconnect fabric
+robust_fir	Verilog	148	2018-09-05	Generic FIR filter
+robust_reg	Verilog	208	2020-08-15	Generic APB register file
+rosetta		876	2014-07-16	ROSETTA Configurable Dot Matrix Display Controller
+round_robin_arbiter	Verilog	124	2020-11-30	round robin arbiter
+rs232_interface	VHDL	188	2014-07-17	RS232
+rs232_syscon	Verilog	212	2014-07-17	RS232 system controller
+rs232_with_buffer_and_wb	VHDL	168	2014-07-17	RS232
+rs_5_3_gf256	Verilog	348	2014-07-17	RS_5_3_GF256
+rs_dec_enc	VHDL	216	2019-09-29	Reed-Solomon Decoder/Encoder
+rs_decoder_31_19_6	Verilog	140	2020-12-16	Reed-Solomon Decoder (31, 19, 6)
+rsa	VHDL	128	2014-07-17	RSA Processor
+rsa_512	VHDL	496	2014-07-17	RSA
+rtc	Verilog	432	2020-04-19	No description
+rtea	VHDL	124	2014-07-17	RTEA 128/256
+rtf65002	Assembly	1116	2014-07-17	RTF65002
+rtf68ksys	Verilog	688	2014-07-17	rtf68kSys
+rtf8088	Verilog	176	2020-11-23	rtf8088
+rtf_sprite_controller	Verilog	160	2014-07-17	rtfSpriteController / Hardware cursors
+rtfbitmapcontroller	Verilog	216	2014-07-17	rtfBitmapController
+rtfsimpleuart	Verilog	156	2014-07-17	rtfSimpleUart
+rtftextcontroller	Verilog	288	2014-07-17	rtfTextController
+s1_core	Verilog	1644	2020-07-25	S1 Core
+salsa20	VHDL	144	2014-07-17	Salsa20StreamCipher
+sap		5712	2014-07-16	8-bit uP
+sardmips	C++	7280	2014-07-17	SardMIPS
+sARM7TM		380	2014-07-16	No description
+sasc	Verilog	128	2014-07-17	Simple Asynchronous Serial Controller
+sata_controller_core	XSLT	496	2018-12-01	Serial ATA Host Bus Adapter Core for Virtex 6
+sata_phy	Verilog	500	2019-09-11	SATA PHY
+sbd_sqrt_fp	Verilog	128	2014-07-17	No description
+sc2v	C	380	2020-06-26	SystemC to Verilog Synthesizable Subset Translator
+scalable_arbiter	Verilog	180	2020-11-30	Scalable Arbiter
+scan_based_serial_communication	Verilog	140	2014-07-17	Scan Based Serial Communication
+scarm	C++	748	2014-07-17	scARM - A SystemC ARM
+scarts	VHDL	284	2014-07-17	Scarts Processor
+sciir	C++	196	2014-07-17	IIR
+sd_card_controller	Verilog	2520	2019-01-16	Wishbone SD Card Controller
+sdcard_mass_storage_controller	Verilog	7700	2019-01-18	sd card controller
+sdhc-sc-core	VHDL	1248	2014-07-17	SDHC Self Configuring Core
+sdr_ctrl	Verilog	6160	2018-02-28	8/16/32 bit SDRAM Controller
+sdram	Verilog	260	2018-09-06	Synchronous-DRAM Controller
+sdram_controller	VHDL	264	2020-11-14	Scratch DDR SDRAM Controller
+sdram_ctrl	VHDL	212	2018-02-28	No description
+securehash256bits	VHDL	124	2018-09-06	Secure Hash Standard 256 bits
+seqalign	Verilog	128	2014-07-17	DNA Sequence Alignment Accelerator
+serial_div_uu	Verilog	128	2019-11-29	Unsigned serial divider
+sgmii	Verilog	20404	2020-06-11	SGMII
+sha1		144	2014-07-16	SHA1 Secure Hash Algorithm
+sha256		132	2014-07-16	SHA-256
+sha256core	VHDL	132	2014-07-17	SHA-256 Core
+sha3	Verilog	548	2020-12-13	SHA3 (KECCAK)
+sha_core	Verilog	184	2019-06-26	SHA cores
+sigma_delta_dac_dual_loop	VHDL	128	2019-02-13	2nd order Sigma-Delta DAC
+signed_integer_divider	Verilog	128	2014-07-17	Signed integer divider
+simpcon	VHDL	664	2014-07-17	SimpCon - a Simple SoC Interconnect
+simple_fm_receiver	VHDL	900	2020-07-25	Simple FM Receiver
+simple_gpio	Verilog	124	2014-07-17	Simple General Purpose IO
+simple_pic	Verilog	128	2014-07-17	Simple Programmable Interrupt Controller
+simple_spi	Verilog	696	2020-04-12	SPI core
+simpletousesha2	VHDL	6520	2014-07-17	Simple to use SHA-2 algorithm
+simu_mem	VHDL	144	2014-07-17	Functional simulation models for commercially available RAMs
+sincos	VHDL	512	2014-07-17	SineAndCosineTable
+single_clock_divider		240	2014-07-16	Single Clock Unsigned Division Algorithm
+single_port	VHDL	220	2014-07-17	Single Port ASRAM
+smii	Verilog	1140	2014-07-17	Ethernet SMII
+socgen	Verilog	3708	2020-11-05	socgen
+sockit_owm	C	752	2014-07-17	Small 1-wire (onewire) master, with Altera tools integration
+socwire	VHDL	2716	2020-01-05	System-on-Chip Wire (SoCWire)
+softusb		168	2014-07-16	OHCI Full/Low-Speed USB Host Controller
+som_arm9_cycloneivgx		1756	2014-07-16	SoM-ARM9-CycloneIVGX
+spacewire	Verilog	676	2018-12-13	SpaceWire
+spacewire_light	VHDL	2504	2020-11-30	SpaceWire Light
+sparc64soc	Verilog	2012	2020-09-18	OpenSPARC-based SoC
+spartan6_pcie		123584	2020-03-06	Spartan 6 PCIexpress card
+spdif_interface	VHDL	1208	2014-07-17	SPDIF Interface
+spi	Verilog	1716	2020-08-15	SPI controller core
+spi_boot	VHDL	1116	2020-05-29	SD/MMC Bootloader
+spi_core_dsp_s3ean_kits	Verilog	396	2019-12-12	SPI Controller for AD/DA chips on S3E/A/AN Starter Kits
+spi_master_slave	VHDL	3556	2020-03-06	SPI Master/Slave Interface
+spi_slave	VHDL	572	2014-07-17	OPB SPI Slave
+spi_verilog_master_slave		144	2014-07-16	SPI Verilog Master & Slave modules
+spiadc	VHDL	132	2014-07-17	spi master receiver for ADC (AD747x)
+spicc	Verilog	124	2014-07-17	No description
+spicxif	Verilog	132	2014-07-17	SPIxIF
+spidac	VHDL	124	2019-01-12	SPI serial DAC interface
+spiflashcontroller	VHDL	828	2019-01-08	SPI Flash controller
+spigpio	Verilog	124	2014-07-17	spigpio
+spimaster	Verilog	2824	2014-07-17	SD/MMC Controller
+spislave	Verilog	160	2014-07-17	spislave
+sqmusic	C	516	2014-07-17	AY-3-8910 compatible module in Verilog
+srdydrdy_lib	Verilog	344	2014-07-17	Srdy-Drdy Library
+srl_fifo	VHDL	304	2014-07-17	srl_fifo
+ss_pcm	Verilog	128	2014-07-17	Single Slot PCM Interface
+ssbcc	Python	404	2017-03-18	Small Stack Based Computer Compiler
+ssp_slv	Verilog	128	2014-07-17	SSP_Slv
+ssp_uart	Verilog	216	2014-07-17	SSP_UART
+ssram	VHDL	124	2015-04-21	SSRAM interface
+statled	Verilog	124	2014-07-17	Status LED
+steppermotordrive	VHDL	172	2014-07-17	Stepper Motor Controller
+storm_core	VHDL	5104	2014-07-17	Storm Core (ARM7 compatible)
+storm_soc	VHDL	4460	2014-07-17	STORM SoC
+structural_vhdl		464	2014-07-16	No description
+sub86	Verilog	132	2020-05-04	Small x86 subset core
+sudoku	Verilog	168	2014-07-17	Backtracking Sudoku solver
+superscalar_dlx		124	2014-07-16	Superscalar Version Of DLX
+sxp	Verilog	208	2014-07-17	SXP (Simple eXtensible Pipeline ) Processor
+synchronous_reset_fifo	SystemVerilog	124	2014-07-17	synchronous_reset_fifo with testbench
+synth		128	2014-07-16	No description
+system05	VHDL	152	2014-07-17	system05
+System09	VHDL	4196	2019-02-09	No description
+System11	VHDL	184	2014-07-17	No description
+System68	VHDL	316	2014-07-17	No description
+systemc_cordic	C++	172	2014-07-17	No description
+systemc_rng	C++	140	2019-03-18	SystemC/Verilog Random Number Generator
+systemcaes	C++	244	2016-03-02	128/192 AES
+systemcdes	C++	192	2014-07-17	SystemC/Verilog DES
+systemcmd5	C++	136	2020-10-01	SystemC/Verilog MD5
+systemverilog-uart16550	SystemVerilog	408	2019-12-19	SystemVerilog uart16550
+t400	VHDL	384	2014-07-17	T400 µController
+t48	VHDL	1800	2014-07-17	T48 µController
+t51	VHDL	356	2014-07-17	T51 mcu
+t65	VHDL	144	2017-02-07	T65 CPU
+t6507lp	Verilog	736	2014-07-17	T6507LP
+t80	VHDL	220	2014-07-17	T80 cpu
+tanhapprox	VHDL	128	2014-07-17	Tanh Approximation Custom Instruction for NIOS II
+tcp_socket	Verilog	1260	2018-09-06	TCP/IP socket
+tdm	VHDL	408	2019-05-01	TDM controller
+ternary_adder	VHDL	360	2020-05-25	Ternary (3-input) Adder
+test	Verilog	276	2014-07-17	No description
+test-1	C	192	2014-07-17	No description
+test_project	C	52716	2014-07-17	No description
+tg68	VHDL	164	2020-10-11	TG68 - execute 68000 Code
+the_wizardry_project	VHDL	1616	2014-07-17	The Wizardry Project
+theia_gpu	Verilog	14100	2020-10-07	Theia: ray graphic processing unit
+threeacompactaes	VHDL	140	2014-07-17	Three compact implementations of AES encryption
+threeaesc	VHDL	140	2014-07-17	AES cores (compact)
+timestamp	VHDL	1012	2014-07-17	CPU Code Execution Timestamp
+tiny64	VHDL	144	2019-08-29	Tiny64
+tiny8		464	2014-07-16	tiny8
+tiny_aes	Verilog	2104	2020-07-20	AES
+tiny_spi	C	136	2019-01-08	tiny SPI
+tiny_tate_bilinear_pairing	Verilog	1704	2017-09-01	Tiny Tate Bilinear Pairing
+tinycpu	VHDL	192	2014-07-17	TinyCPU
+tlc2	VHDL	180	2014-07-17	Simple Traffic Light Controller for modelmaking purposes
+tosnet	VHDL	8988	2014-07-17	TosNet framework
+totalcpu		232	2014-07-16	TotalCPU
+trigonometric_functions_in_double_fpu	Verilog	1392	2014-07-17	trigonometric functions (degrees) in double fpu
+ts7300_opencore	Verilog	224	2020-07-20	Technologic Systems TS-7300 FPGA Computer
+tsv		256	2014-07-16	Turbo/Toy System Verilog Compiler
+turbo8051	Verilog	2836	2020-09-18	turbo 8051
+tv80	Verilog	416	2017-03-29	TV80
+two_dimensional_fast_hartley_transform	Verilog	144	2015-11-10	2D FHT
+twofish	VHDL	840	2015-05-30	twofish 128/192/256
+uart	VHDL	168	2017-04-21	Serial UART
+uart16550	Verilog	1400	2020-07-16	UART 16550 core
+uart16750	VHDL	248	2014-07-17	UART16750
+uart2bus	VHDL	876	2018-09-06	UART to Bus
+uart2spi	Verilog	1416	2020-09-04	UART To SPI
+uart_block	TeX	14076	2014-07-17	Uart block
+uart_fiber	VHDL	140	2014-07-17	UART to / from fiber optic
+uart_fifo_cpu_if_sv_testbench	VHDL	132	2018-09-06	Uart (FIFO cpu interface) with SV Self-Checking Testbench
+uart_fpga_slow_control	VHDL	900	2014-07-17	FPGA remote slow control via UART 16550
+uart_plb	VHDL	268	2014-07-17	UART with PLB interface
+uart_serial	VHDL	132	2014-07-17	No description
+udp_ip__core	VHDL	296	2020-06-21	UDP/IP Core
+udp_ip_stack	VHDL	1768	2020-09-18	1G eth UDP / IP Stack
+ultimate_crc	VHDL	240	2017-02-08	Ultimate CRC
+unconfuser	Verilog	132	2014-07-17	unConfuser
+usb11	C++	532	2018-09-06	SystemC USB1.1 IP Core
+usb11_phy_translation	VHDL	132	2020-05-15	USB 1.1 PHY (VHDL)
+usb11_sim_model	VHDL	312	2019-08-31	USB 1.1 Simulation (VHDL)
+usb1_funct	Verilog	180	2018-09-06	USB 1.1 Function IP Core
+usb2uart	Verilog	244	2018-02-27	USB to UART
+usb_device_core	Verilog	156	2018-09-06	USB Device Core
+usb_dongle_fpga	VHDL	2840	2014-07-17	LPC ROM emulator on USB dongle FPGA core set
+usb_fpga_1_11	Java	8816	2014-07-17	USB FPGA Module 1.11
+usb_fpga_1_15	Java	1544	2014-07-17	USB-FPGA Module 1.15
+usb_fpga_1_2	Java	6724	2014-07-17	USB FPGA MODULE 1.2
+usb_fpga_2_13	Java	1284	2018-09-06	ZTEX USB-FPGA Module 2.13
+usb_fpga_2_16	Java	1304	2018-09-06	USB-FPGA Module 2.16
+usb_phy	Verilog	136	2018-09-06	USB 1.1 PHY
+usbhostslave	Verilog	16016	2019-10-17	USB 1.1 Host and Function IP core
+usimplez	VHDL	1116	2014-07-17	MicroSimplez
+utosnet	VHDL	7260	2014-07-17	uTosNet Framework
+vapi	C	188	2014-07-17	No description
+vectorial_generator		124	2014-07-16	gen_vectorial
+verilog_cordic_core	Verilog	240	2020-02-29	configurable cordic core in verilog
+verilog_fixed_point_math_library	Verilog	31584	2020-11-29	Fixed Point Math Library for Verilog
+veristruct	Perl	220	2014-09-10	veristruct
+versatile_counter	PHP	1528	2020-03-06	Versatile counter
+versatile_fft	VHDL	132	2020-11-01	Parametrized FFT engine
+versatile_fifo	Verilog	1608	2014-07-17	Versatile FIFO
+versatile_io	Verilog	148	2014-07-17	Versatile IO
+versatile_library	Verilog	2376	2014-07-17	Versatile library
+versatile_mem_ctrl	Verilog	2340	2014-07-17	Versatile memory controller
+vg_z80_sbc	Verilog	15200	2014-07-17	Z80-Based Vector Graphic Single-Board Computer
+vga_lcd	Verilog	3624	2014-07-17	VGA/LCD Controller
+vgafb		128	2017-11-28	FastMemoryLink VGA framebuffer controller
+vhdl-pipeline-mips	VHDL	1248	2017-07-15	pipeline mips in vhdl
+vhdl_cpu_emulator	VHDL	140	2014-07-17	VHDL File-based CPU Emulator
+vhdl_wavefiles	VHDL	132	2014-07-17	No description
+vhld_tb	VHDL	1292	2016-02-15	The VHDL Test Bench
+video_dithering	VHDL	388	2014-07-17	Video Dithering
+video_stream_scaler	Verilog	5452	2020-11-09	Video Stream Scaler
+video_systems	Verilog	556	2020-02-03	Video compression systems
+virtual_rs232_terminal_with_lvds_lcd	Verilog	11164	2015-06-23	Virtual RS232 Terminal with LVDS LCD Controller
+vitdec	Verilog	132	2014-07-17	Configurable High Speed Viterbi Decoder
+viterb_encoder_and_decoder	Verilog	572	2019-06-03	VIterbi_Tx_Rx
+viterbi_decoder		128	2014-07-16	No description
+viterbi_decoder_axi4s	VHDL	11196	2017-11-04	Viterbi Decoder (AXI4-Stream compliant)
+vspi	XSLT	3016	2014-07-17	vSPI
+vtach	C	3768	2019-12-17	VTACH - Bell Labs CARDIAC reimagined in Verilog
+w11	VHDL	1680	2014-07-17	PDP-11/70 CPU core and SoC
+warp	Verilog	156	2018-09-06	Image warping/Texture mapping core
+watchdog	Verilog	124	2014-07-17	No description
+waveform_gen	VHDL	392	2019-08-10	NCO / Periodic Waveform Generator
+wb2hpi	VHDL	284	2014-07-17	WB Interface for TI 5x DSP (WB2HPI)
+wb2mig		236	2014-07-16	High Latency Bursting WISHBONE Wrapper for Xilinx MIG
+wb4pb	VHDL	240	2014-07-17	Software Aided Wishbone Extension for Xilinx (R) PicoBlaze (TM)
+wb_3p_spram_wrapper	VHDL	140	2014-07-17	sp_ram to 3p_ram WISHBONE Wrapper
+wb_async_mem_bridge	Verilog	200	2014-07-17	wb_async_mem_bridge
+wb_builder	Perl	407	2020-04-29	WISHBONE Builder
+wb_conbus	Verilog	144	2014-07-17	WISHBONE Conbus IP Core
+wb_conmax	Verilog	708	2019-11-30	WISHBONE Conmax IP Core
+wb_dma	Verilog	552	2020-12-02	WISHBONE DMA/Bridge IP Core
+wb_fifo	VHDL	132	2018-09-06	Generic FIFO
+wb_flash	Verilog	124	2014-07-17	Wishbone FLASH Interface for Parallel FLASH
+wb_lcd	Verilog	220	2020-06-24	WB LCD Character Display Controller
+wb_lpc	Verilog	1380	2019-02-06	Wishbone LPC Host and Peripheral Bridge
+wb_mcs51	Verilog	124	2014-07-17	8051 Slave to Wishbone Master Interface
+wb_prefetch_spram	Verilog	136	2014-07-17	No description
+wb_sim_models	Verilog	128	2014-07-17	No description
+wb_size_bridge	Verilog	148	2014-07-17	wb_size_bridge
+wb_tk	VHDL	168	2014-07-17	WishboneTK toolkit
+wb_to_amba	Verilog	136	2014-07-17	wb_to_amba
+wb_uart	VHDL	152	2019-04-12	wb_uart
+wb_verilog	Verilog	180	2020-07-14	No description
+wb_vga	VHDL	180	2014-07-17	Wishbone Monitor Controller
+wb_z80	Verilog	1648	2020-12-18	Wishbone High Performance Z80
+wbc_parallel_master		288	2020-07-14	External parallel port to internal wishbone master interface
+wbif_68k	Verilog	124	2020-09-09	DragonBall/68K Wishbone interface
+wdsp	Verilog	5060	2020-07-21	DSP WishBone Compatible Cores
+wisbone_2_ahb	SystemVerilog	2928	2014-07-17	Wishbone to AHB Bridge
+wishbone_bfm	VHDL	180	2015-08-13	Wishbone BFM
+wishbone_out_port	VHDL	1488	2014-07-17	wishbone out port from b3 spec
+wishbone_spi_flash_interface	VHDL	580	2018-12-29	Wishbone Interface for SPI FLASH
+wishbone_uart_controller		152	2016-01-07	wishbone uart controller 8 bit
+workwithfiles	VHDL	124	2014-07-17	FROM and TO files
+wrimm	VHDL	208	2014-07-17	Wishbone Register Bank Intercon Multi-master Multi-slave
+ws2812	VHDL	616	2019-08-29	WS2812 RGB LED string driver
+xgate	Verilog	7148	2019-01-25	xgate
+xge_ll_mac	Objective-C	140	2019-09-10	Ethernet 10GE Low Latency MAC
+xge_mac	Verilog	976	2020-12-14	Ethernet 10GE MAC
+xilinx_virtex_fp_library	Verilog	1064	2020-04-29	Xilinx Virtex FLoating Point
+xtea	Verilog	144	2019-08-29	XTEA Crypto Core
+xteacore	VHDL	124	2019-08-29	XTEA Core
+y80e	Verilog	1304	2020-12-18	Y80e - Z80/Z180 compatible processor extended by eZ80 instructions
+yac	VHDL	328	2019-04-12	YAC - Yet Another CORDIC Core
+yacc	Verilog	4228	2019-12-10	YACC-Yet Another CPU CPU
+yadmc	Verilog	144	2020-06-26	Asynchronous WISHBONE-compatible SDRAM controller
+yavga	VHDL	184	2020-09-18	Yet Another VGA
+z80control	Pascal	3336	2018-11-13	z80control
+z80soc	VHDL	9592	2020-12-10	Z80 System on Chip
+zbt_sram_controller	VHDL	524	2015-04-21	ZBT SRAM Controller
+zet86	C	580	2020-09-18	Zet - The x86 (IA-32) open implementation
+zorro_to_wishbone_bridge		320	2014-07-16	Zorro bus to Wishbone bridge
+zpu	VHDL	188448	2020-08-23	ZPU - the worlds smallest 32 bit CPU with GCC toolchain
+zx_ula	Verilog	2888	2020-10-10	ULA chip for ZX Spectrum
