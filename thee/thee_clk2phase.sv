@@ -1,4 +1,4 @@
-module ehgu_clk2phase
+module thee_clk2phase
 # (
 parameter realtime D = 200ps
  )
@@ -18,10 +18,12 @@ always @(clkp1) begin
 end
 //always #D clkp0_d = clkp0 ;
 
-always @(clkp0) begin
+/*always @(clkp0) begin
  #D ;
  clkp0_d = clkp0;
-end
+end*/
+
+assign #D clkp0_d = clkp0;
 
 logic vikram ;
 endmodule
