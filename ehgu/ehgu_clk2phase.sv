@@ -8,12 +8,20 @@ output logic clkp0 ,
 output logic clkp1 
  ) ;
 
-logic clkp1_dn, clkp0_dn;
+logic clkp1_d, clkp0_d;
 
-assign clkp0 = ~ ( clkin  & clkp1_dn ) ;
-assign clkp1 = ~ ( ~clkin & clkp0_dn ) ;
-always clkp1_dn = #D ~clkp1;
-always clkp0_dn = #D ~clkp0 ;
+assign clkp0 = ~ ( clkin  | clkp1_d ) ;
+assign clkp1 = ~ ( ~clkin | clkp0_d ) ;
+always @(clkp1) begin
+ #D ;
+ clkp1_d = clkp1;
+end
+//always #D clkp0_d = clkp0 ;
+
+always @(clkp0) begin
+ #D ;
+ clkp0_d = clkp0;
+end
 
 logic vikram ;
 endmodule

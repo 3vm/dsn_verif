@@ -17,7 +17,7 @@ thee_clk_duty_meter dmeterr ( .clk ( clkin ) , .duty ( dutyr ) ) ;
 thee_clk_duty_meter dmeter0 ( .clk ( clkp0 ) , .duty ( duty0 ) ) ;
 thee_clk_duty_meter dmeter1 ( .clk ( clkp1 ) , .duty ( duty1 ) ) ;
 
-ehgu_clk2phase clk2phase
+ehgu_clk2phase #(.D(0.1ps)) clk2phase
  (
  .clkin ,
  .clkp0 ,
