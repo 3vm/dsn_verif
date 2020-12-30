@@ -15,4 +15,5 @@ timescale.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_clk_freq_meter.sv
 ../../thee/thee_clk_duty_meter.sv
+../../ehgu/ehgu_clk2phase.sv
 tb.sv
