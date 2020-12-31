@@ -7,6 +7,7 @@ real fin, fout0 , fout1 ;
 real dutyr, duty0, duty1 ;
 bit result0 , result1 ;
 bit overlap_found ;
+realtime nonoverlap;
 
 thee_clk_gen_module clk_gen ( .clk ( clkin ) ) ;
 
@@ -37,15 +38,36 @@ initial begin
   end
 end
 
+
 initial begin
-   realtime nonoverlap_time ;
+realtime f0r1, f1r0;
+
+repeat (2) @(posedge clkp0);
+@(negedge clkp0);
+f0r1 = $realtime();
+@(posedge clkp1);
+f0r1 = $realtime() - f0r1;
+
+@(negedge clkp1);
+f1r0 = $realtime();
+@(posedge clkp0);
+f1r0 = $realtime() - f1r0;
+
+nonoverlap = f0r1 < f1r0 ? f0r1 : f1r0 ;
+
+$display("Clock phase 0 to phase 1 non overlap %f",f0r1);
+$display("Clock phase 1 to phase 0 non overlap %f",f1r0);
+
+end
+
+initial begin
    repeat ( 2 ) @ ( posedge clkin ) ;
    repeat ( 10 ) @ ( posedge clkp0 ) ;
    repeat ( 10 ) @ ( posedge clkp1 ) ;
    $display ( " Clkout frequencies 0 %e , 1 %e" , fout0 , fout1 ) ;
    check_approx_equality ( .inp ( fout0 ) , .expected ( fin ) , .result ( result0 ) ) ;
    check_approx_equality ( .inp ( fout1 ) , .expected ( fin ) , .result ( result1 ) ) ;
-   get_clk_nonoverlap (.clk0(clkp0), .clk1(clkp1), .nonoverlap(nonoverlap_time));
+   //get_clk_nonoverlap (.clk0(clkp0), .clk1(clkp1), .nonoverlap(nonoverlap_time));
    if ( result1 == 1 && result0 == 1 && overlap_found == 0 ) begin
    $display ( " Duty Cycle - inp clk %3.2f, out clk0 %3.2f, out clk1 %3.2f ", dutyr, duty0, duty1  );
      repeat ( 3 ) $display ( "PASS" ) ;
@@ -60,28 +82,28 @@ end
   logic vikram;
 endmodule
 
-task automatic get_clk_nonoverlap (
-  const ref logic clk0,
-  const ref logic clk1,
-  output realtime nonoverlap
-);
+// task automatic get_clk_nonoverlap (
+//   const ref logic clk0,
+//   const ref logic clk1,
+//   output realtime nonoverlap
+// );
 
-realtime f0r1, f1r0;
+// realtime f0r1, f1r0;
 
-repeat (2) @(posedge clk0);
-@(negedge clk0);
-f0r1 = $realtime();
-@(posedge clk1);
-f0r1 = $realtime() - f0r1;
+// repeat (2) @(posedge clk0);
+// @(negedge clk0);
+// f0r1 = $realtime();
+// @(posedge clk1);
+// f0r1 = $realtime() - f0r1;
 
-@(negedge clk1);
-f1r0 = $realtime();
-@(posedge clk0);
-f1r0 = $realtime() - f1r0;
+// @(negedge clk1);
+// f1r0 = $realtime();
+// @(posedge clk0);
+// f1r0 = $realtime() - f1r0;
 
-nonoverlap = f0r1 < f1r0 ? f0r1 : f1r0 ;
+// nonoverlap = f0r1 < f1r0 ? f0r1 : f1r0 ;
 
-$display("Clock phase 0 to phase 1 non overlap %f",f0r1);
-$display("Clock phase 1 to phase 0 non overlap %f",f1r0);
+// $display("Clock phase 0 to phase 1 non overlap %f",f0r1);
+// $display("Clock phase 1 to phase 0 non overlap %f",f1r0);
 
-endtask
+// endtask
