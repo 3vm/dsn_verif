@@ -12,10 +12,10 @@ logic clkp1_d, clkp0_d;
 
 assign clkp0 = ~ ( clkin  | clkp1_d ) ;
 assign clkp1 = ~ ( ~clkin | clkp0_d ) ;
-always @(clkp1) begin
- #D ;
- clkp1_d = clkp1;
-end
+// always @(clkp1) begin
+//  #D ;
+//  clkp1_d = clkp1;
+// end
 //always #D clkp0_d = clkp0 ;
 
 /*always @(clkp0) begin
@@ -24,6 +24,7 @@ end
 end*/
 
 assign #D clkp0_d = clkp0;
+assign #D clkp1_d = clkp1;
 
 logic vikram ;
 endmodule
