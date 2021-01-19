@@ -14,23 +14,28 @@ timeunit 1ns ;
 timeprecision 100ps ;
 
 parameter RES_CNT = 2 ** WIDTH ;
-
+ parameter real R_FB = UNIT_R;
+parameter real VREF=1.0;
 import thee_utils_pkg :: urand_range_real ;
 
 logic [ RES_CNT-1 : 0 ] switch_sel ;
 real v_sources [ WIDTH-1 : 0 ] ;
-real r_series [ RES_CNT-1 : 0 ] = '{default:2*UNIT_R};
+real r_series [ RES_CNT-1 : 0 ] = '{default:UNIT_R};
 real r_source [ RES_CNT-1 : 0 ] = '{default:2*UNIT_R};
 real r_eff [ RES_CNT-1 : 0 ] ;
 
 initial begin
-  r_series[0]=UNIT_R;
+  r_series[0]=2*UNIT_R;
   for ( int i=WIDTH-1;i>=0;i--) begin
    r_eff[i]=get_source_r(i,WIDTH-1,UNIT_R);
   end
 end
 
-assign ana = v_sources [ dig ] ;
+always @(dig) begin
+  ana=0;
+  foreach (dig[i])
+	ana += VREF * R_FB / r_eff[i];
+end
 
 logic vikram ;
 
