@@ -2,7 +2,7 @@
 module r_string_dac
 # (
  parameter WIDTH = 8 ,
- parameter UNIT_R = 1000 ,
+ parameter real UNIT_R = 1000 ,
  parameter real TOLERANCE_PCNT = 1.0
  )
  (
