@@ -47,6 +47,7 @@ function automatic void thev_reduce ( input int vindex , input int nodeindex , i
 if ( nodeindex == 0 ) begin
     reff = get_eff_r_for_parallel (r_series[0],r_source[0]);
     vthev = (vindex == 0) ? VREF * r_series[0]/(r_series[0]+r_source[0]) : 0 ;
+    return;
  end
 	if (vindex!=nodeindex) begin
 		vbranch = 0 ;
