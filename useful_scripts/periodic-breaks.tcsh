@@ -1,5 +1,5 @@
 #!/usr/bin/tcsh
-set break_period=1200 ;#seconds
+set break_period=2400 ;#seconds
 while ( 1 )
   zenity --width 600 --height 600 \
   --question --title="Hi! I am your body" \
