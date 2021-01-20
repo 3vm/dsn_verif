@@ -26,7 +26,7 @@ real r_eff [ RES_CNT-1 : 0 ] ;
 
 initial begin
    r_series [ 0 ] = 2 * UNIT_R ;
-   for ( int i = WIDTH-1 ; i >= WIDTH-1 ; i-- ) begin
+   for ( int i = WIDTH-1 ; i >= 0 ; i-- ) begin
      thev_reduce ( i, WIDTH-1, r_eff[i], v_eff[i]);
    end
 end
