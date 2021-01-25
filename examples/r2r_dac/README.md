@@ -1,4 +1,4 @@
-Model of an R-string DAC
+Model of an R-2R DAC
 
 For further description refer to this book
 
