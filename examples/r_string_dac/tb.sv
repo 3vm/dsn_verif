@@ -14,12 +14,6 @@ logic [ WIDTH-1 : 0 ] dig ;
 real dig_out_real ;
 bit result ;
 
-parameter OVERSAMP_RATIO = 256 ;
-parameter real FREQ_CLK_OVERSAMP = 256 ;
-
-thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP / OVERSAMP_RATIO ) ) clk_gen ( .clk ( clk ) ) ;
-thee_clk_gen_module # ( .FREQ ( FREQ_CLK_OVERSAMP ) ) clk_gen_oversamp ( .clk ( clk_oversamp ) ) ;
-
 r_string_dac # ( .WIDTH ( WIDTH ) ) r_string_dac
  (
  .ana ,
@@ -30,14 +24,11 @@ r_string_dac # ( .WIDTH ( WIDTH ) ) r_string_dac
 initial begin
    import thee_utils_pkg :: urand_range_real ;
    fullscale = VREF*(2**WIDTH -1) / 2**WIDTH;
-   rstn = 0 ; repeat ( 2 ) @ ( posedge clk ) ; rstn = 1 ;
-  
-   repeat ( 10 ) @ ( posedge clk ) ;
   
    for ( int i = 0 ; i < 5 ; i ++ ) begin
      dig = $urandom_range(2**WIDTH-1);
      expected = fullscale * dig / (2**WIDTH-1) ;
-     repeat ( 1 ) @ ( posedge clk ) ;
+     #0;
      check_result ;
    end
   
