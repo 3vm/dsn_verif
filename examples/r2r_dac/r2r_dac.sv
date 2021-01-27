@@ -23,6 +23,7 @@ real r_source [ RES_CNT-1 : 0 ] ;
 real r_eff [ RES_CNT-1 : 0 ] ;
 
 initial begin
+  import thee_utils_pkg :: add_tolerance ;
    r_series [ RES_CNT-1 : 0 ] = '{ default : UNIT_R } ;
    r_series [ 0 ] = 2 * UNIT_R ;
    r_source [ RES_CNT-1 : 0 ] = '{ default : 2 * UNIT_R } ;
@@ -45,7 +46,6 @@ end
 
 logic vikram ;
 
- // https : // www.allaboutcircuits.com / technical-articles / voltage-mode-r2r-dacs-operation-and-characteristics /
 function automatic void thev_reduce ( input int vindex , input int nodeindex , inout real reff , inout real vthev ) ;
  real vbranch ;
  real vthev_prev , reff_prev ;
@@ -76,14 +76,3 @@ function automatic real get_eff_r_for_parallel ( input real r0 , input real r1 )
  return ( r0 * r1 / ( r0 + r1 ) ) ;
 endfunction
 
-function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;
- // tbd - back port to other places with tolerance
- import thee_utils_pkg :: urand_range_real ;
- real res ;
- res = aval ;
- if ( $urandom_range ( 1 ) )
- res *= ( 1 + urand_range_real ( 0 , tol_pcnt / 100.0 ) ) ;
- else
- res *= ( 1 - urand_range_real ( 0 , tol_pcnt / 100.0 ) ) ;
- return res ;
-endfunction

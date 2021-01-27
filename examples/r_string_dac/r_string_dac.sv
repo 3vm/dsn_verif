@@ -15,20 +15,17 @@ timeprecision 100ps ;
 
 parameter RES_CNT = 2 ** WIDTH ;
 
-import thee_utils_pkg :: urand_range_real ;
+import thee_utils_pkg :: add_tolerance ;
 
 logic [ RES_CNT-1 : 0 ] switch_sel ;
 real v_string [ RES_CNT-1 : 0 ] ;
 
 initial begin
-  real r_string [ RES_CNT-1 : 0 ] ;
+  real r_string [ RES_CNT-1 : 0 ] ='{default:UNIT_R};
   real r_total , r_div ;
    r_total = 0 ;
    foreach ( r_string [ i ] ) begin
-     if ( $urandom_range ( 1 ) )
-       r_string [ i ] = UNIT_R * ( 1 + urand_range_real ( 0 , TOLERANCE_PCNT / 100.0 ) ) ;
-     else
-       r_string [ i ] = UNIT_R * ( 1 - urand_range_real ( 0 , TOLERANCE_PCNT / 100.0 ) ) ;
+     r_string [ i ] = add_tolerance ( r_string [ i ] , TOLERANCE_PCNT ) ;
      $display ( "r_string %f" , r_string [ i ] ) ;
      r_total += r_string [ i ] ;
    end

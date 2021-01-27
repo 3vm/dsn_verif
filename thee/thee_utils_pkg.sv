@@ -192,5 +192,15 @@ fp=$fopen(fn,"w");
 $fclose(fp);
 endtask
 
+function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;
+ real res ;
+ res = aval ;
+ if ( $urandom_range ( 1 ) )
+ res *= ( 1 + urand_range_real ( 0 , tol_pcnt / 100.0 ) ) ;
+ else
+ res *= ( 1 - urand_range_real ( 0 , tol_pcnt / 100.0 ) ) ;
+ return res ;
+endfunction
+
   logic vikram ;
 endpackage
