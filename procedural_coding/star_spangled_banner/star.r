@@ -13,8 +13,8 @@ freq = c(0, 320 * 1.1 ^ c ( 0 : 20 ) )
 #a look up table for a note name and its frequency
 raga = data.frame ( freq, row.names = notes )
 t = 0.3 #duration to play a note in seconds
-n = t*fs # number of samples in one duration
 fs = 12500 # sampling rate or samples/sec
+n = t*fs # number of samples in one duration
 
 #Windows to get the effect of note stopping, playing continously, starting, starting and stopping in the same duration
 
