@@ -1,0 +1,17 @@
+//notes format - <note>,<window descriptor>
+p,b   g,b   s,a   s,f   dl,a  dl,f  pl,a  pl,f  s,a   s,0   s,f  
+g,a   g,f   r,b   s,a   s,f   dl,a  dl,f  m,a   m,f   p,a   p,f
+p,b   p,b   gh,a  gh,0  gh,f  rh,b  sh,a  sh,0  sh,f  n,a   n,f
+d,b   n,b   sh,a  sh,f  sh,a  sh,f  p,a   p,f   g,a   g,f   s,b
+p,b   g,b   s,a   s,f   dl,a  dl,f  pl,a  pl,f  s,a   s,0   s,f  
+g,a   g,f   r,b   s,a   s,f   dl,a  dl,f  m,a   m,f   p,a   p,f
+p,b   p,b   gh,a  gh,0  gh,f  rh,b  sh,a  sh,0  sh,f  n,a   n,f
+d,b   n,b   sh,a  sh,f  sh,a  sh,f  p,a   p,f   g,a   g,f   s,b
+gh,a  gh,f  gh,a  gh,f  mh,a  mh,f  ph,a  ph,f  ph,a  ph,0  ph,f 
+mh,b  gh,b  rh,a  rh,f  gh,a  gh,f  mh,a  mh,f  mh,a  mh,0  mh,f
+mh,a  mh,f  gh,a  gh,0  gh,f  rh,b  sh,a  sh,f  n,a   n,0   n,f
+d,b   n,b   sh,a  sh,f  d,a   d,f   m,a   m,f   p,a   p,0   p,f
+p,b   sh,a  sh,f  sh,a  sh,f  sh,b  n,d   d,a   d,f   d,a   d,f
+r,a   r,f   m,b   g,b   r,b   sh,b  sh,a  sh,0  sh,f  n,a   n,f
+p,b   p,b   sh,a  sh,0  sh,f  rh,b  gh,b  mh,b  ph,a  ph,0  ph,f
+sh,a  sh,f  rh,a  rh,f  gh,b  m,a   m,f   r,a   r,f   s,a   s,f
