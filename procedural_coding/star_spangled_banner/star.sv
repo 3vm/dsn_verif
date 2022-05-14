@@ -1,11 +1,9 @@
 //SystemVerilog Program to syzthesize the music of Star spangled banner song
 
-import audio_pkg::write_wave_header;
-import audio_pkg::write_wave_data;
+import audio_pkg::*;
 import carnatic_pkg::*;
 
-parameter real t = 0.3 ;//duration to play a note in seconds
-parameter int fs = 12500 ;// sampling rate or samples/sec
+parameter string song_file="USA-anthem-SV.wav";
 parameter int n = t*fs ;// number of samples in one duration
 
 //Windows to get the effect of note stopping, playing continously, starting, starting and stopping in the same duration
@@ -28,8 +26,13 @@ for (int i=WN-1;i>=0;i--) begin
 end
 end
 
-/*
+initial begin
+  create_swara_freq_table();
+  show_swaras;
+  write_wave_header(song_file);
+end
 
+/*
 music = c(NULL)
 snotes = strsplit(song,"\\s+")
 snotes = snotes[[1]]
