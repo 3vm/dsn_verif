@@ -27,9 +27,15 @@ end
 end
 
 initial begin
+  string this_str;
+  int fid;
   create_swara_freq_table();
   show_swaras;
   write_wave_header(song_file);
+  fid=$fopen(song_file,"r");
+  while(!$fscanf(fid,"%s",this_str)!=1) begin
+    $display(this_str);
+  end
 end
 
 /*
