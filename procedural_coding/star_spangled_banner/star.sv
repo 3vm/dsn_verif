@@ -4,6 +4,8 @@ import audio_pkg::*;
 import carnatic_pkg::*;
 import thee_mathsci_consts_pkg::const_pi;
 
+parameter string song_swaras="star-spangled-banner-carnatic.txt";
+//parameter string song_swaras="debug-song.txt";
 parameter string song_wave_file="USA-anthem-SV.wav";
 parameter int n = t*fs ;// number of samples in one duration
 
@@ -33,22 +35,21 @@ initial begin
 
   for (int i=0;i<WN;i++) begin
     wnone[i]=1.0;
-    wascending[i]=i/WN;
-    wboth[i]=wascending[i];
+    wascending[i]=1.0*i/WN;
+    wboth[i]=1.0*wascending[i];
   end
   
-  for (int i=WN-1;i>=0;i--) begin
-    wfalling[i]=(WN-i)/WN;
-    wboth[i]=wfalling[i];
+  for (int i=n-1,int j=0;i>=n-WN-1;i--,j++) begin
+    wfalling[i]=1.0*j/WN;
+    wboth[i]=1.0*wfalling[i];
   end
 
-  fid_rd=$fopen("star-spangled-banner-carnatic.txt","r");
+  fid_rd=$fopen(song_swaras,"r");
   code=$fgets(this_str,fid_rd); //comment line
 
   theta=0;
   delta_theta=0;
   while($fscanf(fid_rd,"%s",this_str)!=-1) begin
-    $display(this_str);
     if (this_str[1]==",") begin
       swara = this_str.substr(0,0);
       window = this_str.substr(2,2);
@@ -78,9 +79,10 @@ initial begin
       theta += delta_theta;
       theta = (theta > 2*const_pi) ? 2*const_pi -theta : theta;
       $cast (sample_value , (2**15) * dat);
-      //$display("Sample value real %1.2f char %4d",dat,sample_value);
+      //$display("Sample value real %1.2f char %4d window %1.2f",dat,sample_value, w[i]);
       write_wave_data16b(fid_wr, sample_value);
     end
+    $display("Swara end");
   
   end
   $fclose(fid_rd);

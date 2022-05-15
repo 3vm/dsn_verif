@@ -1,0 +1,2 @@
+//notes format - <note>,<window descriptor>
+s,b s,b s,b s,b s,b s,b 
