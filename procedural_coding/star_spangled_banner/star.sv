@@ -21,7 +21,7 @@ int scaling=0.9;//avoid full scale
 string this_str,swara,window;
 int code;
 real sin_fixed_arg, freq,dat ;
-int phase;
+int phase, bytes;
 
 initial begin
   create_swara_freq_table();
@@ -75,9 +75,10 @@ initial begin
     end
   
   end
-  
-  update_wave_header (fid_wr, bytes);
-  
   $fclose(fid_rd);
+
   $fclose(fid_wr);
+  
+  //update_wave_header (song_wave_file, bytes);
+
 end
