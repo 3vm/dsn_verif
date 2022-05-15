@@ -11,6 +11,19 @@ parameter real sl_freq = 320 ; //assuming 320Hz frequence for Sa lower swara
 
 real swara_freq [ string ];
 
+//Exercise create your own set of notes and their frequencies if you need
+/*
+real swara_freq [string] =
+initialize array values
+sl 342.2
+rl 431.9
+...
+or
+C# 423
+D# 553
+...
+*/
+
 function void create_swara_freq_table;
   foreach ( swaras[i] ) begin
     swara_freq[swaras[i]] = 320 * (1.104089514 ** i);

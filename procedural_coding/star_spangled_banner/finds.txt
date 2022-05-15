@@ -1,8 +1,0 @@
-finds.txt
-
-genome hex editor
-use file format website
-can only do 8 bit 16 bit etc, the audiosample function
-16b 12.5kHz may be low quality for music so song may be bad
-coding is 2-s complement signed number data field
-multibyte fields are stored as lsb first
