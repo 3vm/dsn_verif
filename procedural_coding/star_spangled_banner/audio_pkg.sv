@@ -63,7 +63,12 @@ task conv_16b_to_bytes (input int unsigned data16b , output byte unsigned data_b
    data_bytes[1]=tmp%256; tmp=tmp>>8;
 endtask
 
-task write_wave_data;
+task write_wave_data (fid,dat);
+	$fwrite(fid,"%c",dat);
+endtask
+
+task open_wave_for_data (string filename,output int fid);
+	fid=$fopen(filename,"a");
 endtask
 
 endpackage
