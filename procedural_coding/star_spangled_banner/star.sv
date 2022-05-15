@@ -3,7 +3,7 @@
 import audio_pkg::*;
 import carnatic_pkg::*;
 
-parameter string song_file="USA-anthem-SV.wav";
+parameter string song_wave_file="USA-anthem-SV.wav";
 parameter int n = t*fs ;// number of samples in one duration
 
 //Windows to get the effect of note stopping, playing continously, starting, starting and stopping in the same duration
@@ -27,15 +27,20 @@ end
 end
 
 initial begin
-  string this_str;
+  string this_str,swara,window;
   int fid;
+  int code;
   create_swara_freq_table();
   show_swaras;
-  write_wave_header(song_file);
-  fid=$fopen(song_file,"r");
-  while(!$fscanf(fid,"%s",this_str)!=1) begin
+  write_wave_header(song_wave_file);
+  fid=$fopen("star-spangled-banner-carnatic.txt","r");
+  code=$fgets(this_str,fid); //comment line
+  while($fscanf(fid,"%s",this_str)!=-1) begin
     $display(this_str);
+    code = $sscanf(this_str,"%s.%s", swara, window);
+    $display("This swara is %s with window %s",swara,window);
   end
+  $fclose(fid);
 end
 
 /*

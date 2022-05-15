@@ -19,7 +19,7 @@ endfunction
 
 task show_swaras;
     foreach (swaras[i]) begin
-        $display("Swara %s has frequency %4.2f",swaras[i], swara_freq[swaras[i]]);
+        $display("Swara %s has frequency %4.2f Hz",swaras[i], swara_freq[swaras[i]]);
     end
 endtask
 
