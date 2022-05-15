@@ -1,7 +1,7 @@
 package audio_pkg;
 
 parameter int fs = 12500 ;// sampling rate or samples/sec
-parameter bits_per_samp = 8 ; //currently supports only 8 bits per sample, other applicable value is 16
+parameter bits_per_samp = 16 ; //currently supports only 8 bits per sample, other applicable value is 16
 
 int unsigned file_size=1000044;//aribitrary initial value, to be overwritten later
 byte unsigned fsizebytes[4];
@@ -9,7 +9,7 @@ shortint unsigned fmt_type=1; //PCM format
 shortint unsigned channels=1; //mono=1/stereo=2/more.., only mono supported for now
 int unsigned sampling_rate=fs;
 int unsigned byte_rate=sampling_rate*bits_per_samp*channels/8;
-shortint unsigned channel_bit_fmt=1; //1-8bit mono, 2-8bit stereo, 3-16bit mono, 4-16 bit stereo
+shortint unsigned channel_bit_fmt=3; //1-8bit mono, 2-8bit stereo, 3-16bit mono, 4-16 bit stereo
 shortint unsigned bps=bits_per_samp;
 int unsigned data_size=1000000; //aribitrary initial value, to be overwritten later
 
@@ -64,8 +64,12 @@ task conv_16b_to_bytes (input int unsigned data16b , output byte unsigned data_b
 endtask
 
 //task write_wave_data (fid,dat);
-task write_wave_data (int fid, byte dat);
+task write_wave_data8b (int fid, byte dat);
 	$fwrite(fid,"%c",dat);
+endtask
+
+task write_wave_data16b (int fid, shortint signed dat);
+	write_wave_16b (.fid(fid),.data(fmt_type));
 endtask
 
 task open_wave_for_data (string filename,output int fid);
