@@ -72,4 +72,8 @@ task open_wave_for_data (string filename,output int fid);
 	fid=$fopen(filename,"a");
 endtask
 
+task update_wave_header (int fid, byte unsigned dat);
+	$fwrite(fid,"%c",dat);
+endtask
+
 endpackage

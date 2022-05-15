@@ -68,13 +68,15 @@ initial begin
 
     // phase of the sine wave from previous note to this note should be continuous to avoid hearing clicks between notes
     //thissteps = c((1+n*(i-1)):(i*n));
-    for(int i=0, phase=0;i<n;i++) begin
+    for(int i=0, phase=0, bytes=0;i<n;i++,bytes++) begin
       dat = $sin(sin_fixed_arg*phase)*w[i]; //suspect formula - attempting to get continuous phase
       phase = phase+1; //bug - need some time for overflow handling
       write_wave_data(fid_wr, dat);
     end
   
   end
+  
+  update_wave_header (fid_wr, bytes);
   
   $fclose(fid_rd);
   $fclose(fid_wr);
