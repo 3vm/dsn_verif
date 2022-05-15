@@ -64,7 +64,7 @@ task conv_16b_to_bytes (input int unsigned data16b , output byte unsigned data_b
 endtask
 
 //task write_wave_data (fid,dat);
-task write_wave_data (int fid, byte unsigned dat);
+task write_wave_data (int fid, byte dat);
 	$fwrite(fid,"%c",dat);
 endtask
 

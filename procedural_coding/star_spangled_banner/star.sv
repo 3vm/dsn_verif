@@ -12,16 +12,17 @@ parameter int WN = 120; //window length in samples
 
 int fid_rd, fid_wr;
 
-real wnone[n] = '{default:1};
-real wascending[n] = '{default:1};
-real wfalling[n] = '{default:1};
-real wboth[n] = '{default:1};
-real w[n];
-int scaling=0.9;//avoid full scale
+real wnone[n]      = '{default:1.0};
+real wascending[n] = '{default:1.0};
+real wfalling[n]   = '{default:1.0};
+real wboth[n]      = '{default:1.0};
+real w[n]          = '{default:1.0};
+real scaling=0.9;//avoid full scale
 string this_str,swara,window;
 int code;
-real sin_fixed_arg, freq,dat ;
+real sin_fixed_arg, freq,dat;
 int phase, bytes;
+byte sample_value;
 
 initial begin
   create_swara_freq_table();
@@ -30,12 +31,13 @@ initial begin
   open_wave_for_data(song_wave_file,fid_wr);
 
   for (int i=0;i<WN;i++) begin
-    wascending[i]=scaling*i/WN;
+    wnone[i]=1.0;
+    wascending[i]=i/WN;
     wboth[i]=wascending[i];
   end
   
   for (int i=WN-1;i>=0;i--) begin
-    wfalling[i]=scaling*(WN-i)/WN;
+    wfalling[i]=(WN-i)/WN;
     wboth[i]=wfalling[i];
   end
 
@@ -69,9 +71,11 @@ initial begin
     // phase of the sine wave from previous note to this note should be continuous to avoid hearing clicks between notes
     //thissteps = c((1+n*(i-1)):(i*n));
     for(int i=0, phase=0, bytes=0;i<n;i++,bytes++) begin
-      dat = $sin(sin_fixed_arg*phase)*w[i]; //suspect formula - attempting to get continuous phase
+      dat = scaling*$sin(sin_fixed_arg*phase)*w[i]; //suspect formula - attempting to get continuous phase
+      $cast (sample_value , (127 * dat));
+      $display("Sample value real %1.2f char %4d",dat,sample_value);
+      write_wave_data(fid_wr, sample_value);
       phase = phase+1; //bug - need some time for overflow handling
-      write_wave_data(fid_wr, dat);
     end
   
   end
