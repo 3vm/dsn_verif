@@ -37,8 +37,20 @@ initial begin
   code=$fgets(this_str,fid); //comment line
   while($fscanf(fid,"%s",this_str)!=-1) begin
     $display(this_str);
-    code = $sscanf(this_str,"%s.%s", swara, window);
-    $display("This swara is %s with window %s",swara,window);
+    if (this_str[1]==",") begin
+      swara = this_str.substr(0,0);
+      window = this_str.substr(2,2);
+    end else begin
+      swara = this_str.substr(0,1);
+      window = this_str.substr(3,3);
+    end      
+  
+
+//    code = $sscanf(this_str,"%s,%s", swara, window);
+    //if(swara!="" && window!="" && code!=-1 )
+      $display("This swara is %s with window %s",swara,window);
+    //else
+      //$display("Error");
   end
   $fclose(fid);
 end
