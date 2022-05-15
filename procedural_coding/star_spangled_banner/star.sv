@@ -23,7 +23,7 @@ int code;
 real freq,dat;
 real theta, delta_theta;
 int bytes;
-byte sample_value;
+shortint sample_value;
 
 initial begin
   create_swara_freq_table();
@@ -74,11 +74,11 @@ initial begin
 
     // phase of the sine wave from previous note to this note should be continuous to avoid hearing clicks between notes
     for(int i=0, bytes=0;i<n;i++,bytes++) begin
-      dat = scaling*$sin(theta)*w[i]; //suspect formula - attempting to get continuous phase
+      dat = scaling*$sin(theta)*w[i];
       theta += delta_theta;
-      theta = (theta > 2*pi) ? 2*pi -theta : theta;
+      theta = (theta > 2*const_pi) ? 2*const_pi -theta : theta;
       $cast (sample_value , (2**15) * dat);
-      $display("Sample value real %1.2f char %4d",dat,sample_value);
+      //$display("Sample value real %1.2f char %4d",dat,sample_value);
       write_wave_data16b(fid_wr, sample_value);
     end
   

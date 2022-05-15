@@ -3,15 +3,15 @@ package audio_pkg;
 parameter int fs = 12500 ;// sampling rate or samples/sec
 parameter bits_per_samp = 16 ; //currently supports only 8 bits per sample, other applicable value is 16
 
-int unsigned file_size=1000044;//aribitrary initial value, to be overwritten later
+int unsigned file_size=10000044;//aribitrary initial value, to be overwritten later
 byte unsigned fsizebytes[4];
 shortint unsigned fmt_type=1; //PCM format
 shortint unsigned channels=1; //mono=1/stereo=2/more.., only mono supported for now
 int unsigned sampling_rate=fs;
 int unsigned byte_rate=sampling_rate*bits_per_samp*channels/8;
-shortint unsigned channel_bit_fmt=3; //1-8bit mono, 2-8bit stereo, 3-16bit mono, 4-16 bit stereo
+shortint unsigned channel_bit_fmt=2; //1-8bit mono, 2-8bit stereo, 3-16bit mono, 4-16 bit stereo -- checkme encoding seems wrong
 shortint unsigned bps=bits_per_samp;
-int unsigned data_size=1000000; //aribitrary initial value, to be overwritten later
+int unsigned data_size=10000000; //aribitrary initial value, to be overwritten later
 
 task write_wave_header ( string filename );
 	int fid;
@@ -69,7 +69,7 @@ task write_wave_data8b (int fid, byte dat);
 endtask
 
 task write_wave_data16b (int fid, shortint signed dat);
-	write_wave_16b (.fid(fid),.data(fmt_type));
+	write_wave_16b (.fid(fid),.data(dat));
 endtask
 
 task open_wave_for_data (string filename,output int fid);
