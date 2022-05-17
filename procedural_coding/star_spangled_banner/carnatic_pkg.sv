@@ -59,7 +59,7 @@ real theta , delta_theta ;
 int bytes ;
 shortint sample_value ;
 
-task init_swara_windows;
+task init_swara_windows ;
 
  for ( int i = 0 ; i < WN ; i ++ ) begin
  wnone [ i ] = 1.0 ;
@@ -73,16 +73,32 @@ task init_swara_windows;
  end
 endtask
 
-task export_song_wav ( string song_carnatic_file, string song_wav_file );
- write_wav_header ( song_wav_file ) ;
- open_wav_for_data ( song_wav_file , fid_wr ) ;
-
+task parse_song_carnatic ( string song_carnatic_file , output swaras_n_windows ) ;
  fid_rd = $fopen ( song_carnatic_file , "r" ) ;
  code = $fgets ( this_str , fid_rd ) ; // comment line
 
  theta = 0 ;
  delta_theta = 0 ;
  while ( $fscanf ( fid_rd , "%s" , this_str ) != -1 ) begin
+ if ( this_str [ 1 ] == " , " ) begin
+ swara = this_str.substr ( 0 , 0 ) ;
+ window = this_str.substr ( 2 , 2 ) ;
+ end else begin
+ swara = this_str.substr ( 0 , 1 ) ;
+ window = this_str.substr ( 3 , 3 ) ;
+ end
+ $display ( "This swara is %s with window %s" , swara , window ) ;
+ $fclose ( fid_wr ) ;
+ endtask
+
+
+task export_song_wav ( string song_carnatic_file , string song_wav_file ) ;
+ write_wav_header ( song_wav_file ) ;
+ open_wav_for_data ( song_wav_file , fid_wr ) ;
+
+ theta = 0 ;
+ delta_theta = 0 ;
+ foreach ( swaras_n_windows [ n ] ) begin
  if ( this_str [ 1 ] == " , " ) begin
  swara = this_str.substr ( 0 , 0 ) ;
  window = this_str.substr ( 2 , 2 ) ;
@@ -119,8 +135,6 @@ task export_song_wav ( string song_carnatic_file, string song_wav_file );
 
  end
  $fclose ( fid_rd ) ;
-
- $fclose ( fid_wr ) ;
 
  // update_wav_header ( song_wav_file , bytes ) ;
 
