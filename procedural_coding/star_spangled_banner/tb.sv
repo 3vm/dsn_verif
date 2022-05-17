@@ -1,12 +1,20 @@
 
 program tb ;
 
-`include "star.sv"
+import carnatic_pkg :: * ;
+
+parameter string song_carnatic_file = "star-spangled-banner-carnatic.txt" ;
+ // parameter string song_carnatic = "debug-song.txt" ;
+parameter string song_wav_file = "USA-anthem-SV.wav" ;
 
 initial begin
- $display("Song Generated");
- $finish;
+  create_swara_freq_table ( ) ;
+  show_swaras ();
+  init_swara_windows();
+   export_song_wav ( song_carnatic_file, song_wav_file ) ;
+   $display ( "Song Generated" ) ;
+   $finish ;
 end
 
-  logic vikram;
+logic vikram ;
 endprogram

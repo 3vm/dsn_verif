@@ -1,4 +1,4 @@
-package audio_pkg;
+package thee_audio_pkg;
 
 parameter int fs = 12500 ;// sampling rate or samples/sec
 parameter bits_per_samp = 16 ; //currently supports only 8 bits per sample, other applicable value is 16
@@ -13,25 +13,25 @@ shortint unsigned channel_bit_fmt=2; //1-8bit mono, 2-8bit stereo, 3-16bit mono,
 shortint unsigned bps=bits_per_samp;
 int unsigned data_size=10000000; //aribitrary initial value, to be overwritten later
 
-task write_wave_header ( string filename );
+task write_wav_header ( string filename );
 	int fid;
 	fid =$fopen(filename,"w");
 	$fwrite(fid,"RIFF");
-	write_wave_32b (.fid(fid),.data(file_size));
-	$fwrite(fid,"WAVEfmt ");
-	write_wave_32b (.fid(fid),.data(32'd16)); //length of format data
-	write_wave_16b (.fid(fid),.data(fmt_type));
-	write_wave_16b (.fid(fid),.data(channels));
-	write_wave_32b (.fid(fid),.data(sampling_rate));
-	write_wave_32b (.fid(fid),.data(byte_rate));
-	write_wave_16b (.fid(fid),.data(channel_bit_fmt));
-	write_wave_16b (.fid(fid),.data(bits_per_samp));
+	write_wav_32b (.fid(fid),.data(file_size));
+	$fwrite(fid,"wavfmt ");
+	write_wav_32b (.fid(fid),.data(32'd16)); //length of format data
+	write_wav_16b (.fid(fid),.data(fmt_type));
+	write_wav_16b (.fid(fid),.data(channels));
+	write_wav_32b (.fid(fid),.data(sampling_rate));
+	write_wav_32b (.fid(fid),.data(byte_rate));
+	write_wav_16b (.fid(fid),.data(channel_bit_fmt));
+	write_wav_16b (.fid(fid),.data(bits_per_samp));
 	$fwrite(fid,"data");
-	write_wave_32b (.fid(fid),.data(data_size));
+	write_wav_32b (.fid(fid),.data(data_size));
 	$fclose(fid);
-endtask // write_wave_header
+endtask // write_wav_header
 
-task write_wave_32b ( int fid, int unsigned data );
+task write_wav_32b ( int fid, int unsigned data );
 	byte unsigned data_bytes[4];
     conv_32b_to_bytes(.data32b(data),.data_bytes(data_bytes));
 	$fwrite(fid,"%c",data_bytes[0]);
@@ -49,7 +49,7 @@ task conv_32b_to_bytes (input int unsigned data32b , output byte unsigned data_b
    data_bytes[3]=tmp%256; tmp=tmp>>8;
 endtask
 
-task write_wave_16b ( int fid, int unsigned data );
+task write_wav_16b ( int fid, int unsigned data );
 	byte unsigned data_bytes[2];
     conv_16b_to_bytes(.data16b(data),.data_bytes(data_bytes));
 	$fwrite(fid,"%c",data_bytes[0]);
@@ -63,25 +63,24 @@ task conv_16b_to_bytes (input int unsigned data16b , output byte unsigned data_b
    data_bytes[1]=tmp%256; tmp=tmp>>8;
 endtask
 
-//task write_wave_data (fid,dat);
-task write_wave_data8b (int fid, byte dat);
+task write_wav_data8b (int fid, byte dat);
 	$fwrite(fid,"%c",dat);
 endtask
 
-task write_wave_data16b (int fid, shortint signed dat);
-	write_wave_16b (.fid(fid),.data(dat));
+task write_wav_data16b (int fid, shortint signed dat);
+	write_wav_16b (.fid(fid),.data(dat));
 endtask
 
-task open_wave_for_data (string filename,output int fid);
+task open_wav_for_data (string filename,output int fid);
 	fid=$fopen(filename,"a");
 endtask
 
-task update_wave_header (string filename, byte unsigned bytes);
+task update_wav_header (string filename, byte unsigned bytes);
 	int fid;
 	fid=$fopen(filename,"r+");
 	$fseek(fid,40,0); //go to data size section
 	$display(bytes);
-	write_wave_32b (.fid(fid),.data(bytes));
+	write_wav_32b (.fid(fid),.data(bytes));
 	$fclose(fid);
 endtask
 
