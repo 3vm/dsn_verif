@@ -11,8 +11,8 @@ initial begin
    create_swara_freq_table ( ) ;
    show_swaras ( ) ;
    init_swara_windows ( ) ;
-  parse_song_carnatic ( ) ;
-   export_song_wav ( song_carnatic_file , song_wav_file ) ;
+   parse_song_carnatic ( song_carnatic_file ) ;
+   export_song_wav ( song_wav_file ) ;
    $display ( "Song Generated" ) ;
    $finish ;
 end
