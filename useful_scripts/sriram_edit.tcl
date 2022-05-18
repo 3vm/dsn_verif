@@ -62,13 +62,14 @@ proc format_one_file { fl } {
 		regsub -all {\t} $line {  } line
 		regsub -all {\s+$} $line {} line
 		set delayed_incr_ind 0
-		if { [regexp {^\s*end\s+.*?\s+begin$} $line] } {
-			incr ind_lvl -1
+		puts $line; puts "$ind_lvl $delayed_incr_ind"
+		if { [regexp {^\s*end\s+.*?\s+begin$} $line] || [regexp {^\s*task\s+} $line] || [regexp {^\s*function\s+} $line] } {
+			if { $ind_lvl >=1} { incr ind_lvl -1 } ;#checkme more elegant bug fix needed, spurious end begin should not be allowed to happen
 			set delayed_incr_ind 1
 		} elseif { [regexp {begin$} $line] } {
 			set delayed_incr_ind 1
-		} elseif { [regexp {^\s*end\s*} $line] } {
-			incr ind_lvl -1
+		} elseif { [regexp {^\s*end\s*} $line] || [regexp {^\s*endtask\s*} $line] || [regexp {^\s*endfunction\s*} $line] } {
+			if { $ind_lvl >=1} { incr ind_lvl -1 } ;#checkme
 		}
 		for {set i 0} {$i<$ind_lvl} {incr i} {
 			puts -nonewline $fpo "  "
@@ -95,4 +96,4 @@ if { $files == "" } {
   format_one_file $files
 }
 
-#3vm, start Jan 2020
+set author Vikram
