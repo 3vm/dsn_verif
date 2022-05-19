@@ -21,7 +21,7 @@ real wascending [ n ] = '{ default : 1.0 } ;
 real wfalling [ n ] = '{ default : 1.0 } ;
 real wboth [ n ] = '{ default : 1.0 } ;
 real wall [ 4 ] [ n ] ;
-bit [1:0] window_index_table [ string ] ; // code 0- no window , 1-ascending window , 2-falling , 3-ascending and falling
+bit [ 1 : 0 ] window_index_table [ string ] ; // code 0- no window , 1-ascending window , 2-falling , 3-ascending and falling
 
 int fid_rd , fid_wr ;
 real scaling = 0.9 ; // avoid full scale
@@ -32,10 +32,10 @@ shortint sample_value ;
 
 typedef struct {
  real freq ;
- bit [ 1 : 0 ] window_index ; 
+ bit [ 1 : 0 ] window_index ;
  } carnatic_swara_t ;
 
-carnatic_swara_t swaras_n_windows [ 1000 ] = '{real:0 , default:0}; //limit to 1000 swaras in one song
+carnatic_swara_t swaras_n_windows [ 1000 ] = '{ real : 0 , default : 0 } ; // limit to 1000 swaras in one song
 
 
  // Exercise create your own set of notes and their frequencies if you need
@@ -87,7 +87,7 @@ endtask
 
 task parse_song_carnatic ( string song_carnatic_file ) ;
    string this_str , swara , window_str ;
-   int i, code ;
+   int i , code ;
    fid_rd = $fopen ( song_carnatic_file , "r" ) ;
    code = $fgets ( this_str , fid_rd ) ; // comment line
   
@@ -100,7 +100,7 @@ task parse_song_carnatic ( string song_carnatic_file ) ;
        swara = this_str.substr ( 0 , 1 ) ;
        window_str = this_str.substr ( 3 , 3 ) ;
      end
-     $display ( "S.No. %5d: This swara is %s with window %s" , i, swara , window_str ) ;
+     $display ( "S.No. %5d : This swara is %s with window %s" , i , swara , window_str ) ;
      swaras_n_windows [ i ] .freq = swara_freq [ swara ] ;
      swaras_n_windows [ i ] .window_index = window_index_table [ window_str ] ;
      i ++ ;
@@ -109,7 +109,7 @@ task parse_song_carnatic ( string song_carnatic_file ) ;
 endtask
 
 task export_song_wav ( string song_wav_file ) ;
-   bit [1:0] window_index;
+   bit [ 1 : 0 ] window_index ;
    write_wav_header ( song_wav_file ) ;
    open_wav_for_data ( song_wav_file , fid_wr ) ;
   
@@ -118,9 +118,9 @@ task export_song_wav ( string song_wav_file ) ;
   
    foreach ( swaras_n_windows [ i ] ) begin
      freq = swaras_n_windows [ i ] .freq ;
-     if (freq==0) continue;
+     if ( freq == 0 ) continue ;
      window_index = swaras_n_windows [ i ] .window_index ;
-     $display("freq %4.2f win %1d",freq,window_index );
+     $display ( "freq %4.2f win %1d" , freq , window_index ) ;
      delta_theta = 2 * const_pi * freq / fs ;
      // for every note in the song play a single tone of the frequency obtained from the note name to frequency lookup table
      // Also include the appropriate start , stop , continuous play effects done using amplitude windows.
@@ -134,15 +134,13 @@ task export_song_wav ( string song_wav_file ) ;
        // $display ( "Sample value real %1.2f char %4d window %1.2f" , dat , sample_value , wall [ swaras_n_windows [ i ] .window_index ] [ j ] ) ;
        write_wav_data16b ( fid_wr , sample_value ) ;
      end
-     $display ( "Swara end" ) ;
-    
    end
   
    $fclose ( fid_rd ) ;
   
    // update_wav_header ( song_wav_file , bytes ) ;
-     $display ( "Song Generated" ) ;
-
+   $display ( "Song Generated" ) ;
+  
 endtask
 
 endpackage
