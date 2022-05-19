@@ -18,7 +18,7 @@ task write_wav_header ( string filename );
 	fid =$fopen(filename,"w");
 	$fwrite(fid,"RIFF");
 	write_wav_32b (.fid(fid),.data(file_size));
-	$fwrite(fid,"wavfmt ");
+	$fwrite(fid,"WAVEfmt ");
 	write_wav_32b (.fid(fid),.data(32'd16)); //length of format data
 	write_wav_16b (.fid(fid),.data(fmt_type));
 	write_wav_16b (.fid(fid),.data(channels));
