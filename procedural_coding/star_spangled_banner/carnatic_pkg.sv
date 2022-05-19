@@ -35,7 +35,7 @@ typedef struct {
  bit [ 1 : 0 ] window_index ; 
  } carnatic_swara_t ;
 
-carnatic_swara_t swaras_n_windows [ ] ;
+carnatic_swara_t swaras_n_windows [ 1000 ] = '{real:0 , default:0}; //limit to 1000 swaras in one song
 
 
  // Exercise create your own set of notes and their frequencies if you need
@@ -118,6 +118,7 @@ task export_song_wav ( string song_wav_file ) ;
   
    foreach ( swaras_n_windows [ i ] ) begin
      freq = swaras_n_windows [ i ] .freq ;
+     if (freq==0) continue;
      window_index = swaras_n_windows [ i ] .window_index ;
      $display("freq %4.2f win %1d",freq,window_index );
      delta_theta = 2 * const_pi * freq / fs ;
