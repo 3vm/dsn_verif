@@ -13,7 +13,6 @@ initial begin
    init_swara_windows ( ) ;
    parse_song_carnatic ( song_carnatic_file ) ;
    export_song_wav ( song_wav_file ) ;
-   $display ( "Song Generated" ) ;
    $finish ;
 end
 
