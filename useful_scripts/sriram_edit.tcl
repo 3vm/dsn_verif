@@ -31,7 +31,7 @@ proc format_one_file { fl } {
 		regsub -all {>\s*=} $line {>=} line
 		regsub -all {>\s+>} $line {>>} line
 		regsub -all {!==} $line { !== } line
-		regsub -all {,} $line { , } line
+		regsub -all {,} $line { , } line ; #checkme wrongly modifies string match operation like "," to " , ", need code to ignore this for all operators
 		regsub -all {:} $line { : } line
 		regsub -all {:\s+:} $line {::} line
 		regsub -all {\+} $line { + } line
