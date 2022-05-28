@@ -3,11 +3,13 @@ module tb ;
 import ehgu_hamming_secded_pkg :: * ;
 
 bit result ;
+  logic [ N-1 : 0 ] code ;
+ logic [ K-1 : 0 ] data ;
 
 initial begin
-   data = 1010 ;
+   data = 'b1010 ;
    #0 ;
-   calc_parity ( ) ;
+   calc_parity ( .code(code), .data(data)) ;
   
    if ( result == 1 ) begin
      $display ( ) ;
