@@ -8,7 +8,7 @@ logic [ K-1 : 0 ] data_in , data_out ;
 
 initial begin
    result=1;
-   repeat ( 10 ) run_once ( ) ;
+   repeat ( 100 ) run_once ( ) ;
    if ( result == 1 ) begin
      $display ( ) ;
      repeat ( 3 ) $display ( "PASS" ) ;

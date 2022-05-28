@@ -1,7 +1,7 @@
 package ehgu_hamming_secded_pkg ;
 
-parameter N = 7 ;
-parameter K = 4 ;
+parameter N = 16 ; //7
+parameter K = 11 ; //4
 parameter logic [ N-1 : 0 ] skip = get_parity_positions ( ) ;
 
 function automatic logic [ N-1 : 0 ] get_parity_positions ( ) ;
