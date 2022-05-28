@@ -4,10 +4,6 @@ parameter N = 7 ;
 parameter K = 4 ;
 parameter logic [ N-1 : 0 ] skip = get_parity_positions ( ) ;
 
-logic [ N-1 : 0 ] code ;
-logic [ K-1 : 0 ] data ;
-logic [ N-K-1 : 0 ] parity ;
-
 function automatic logic [ N-1 : 0 ] get_parity_positions ( ) ;
   logic [ N-1 : 0 ] skip ;
    skip = 0 ;
@@ -17,7 +13,13 @@ function automatic logic [ N-1 : 0 ] get_parity_positions ( ) ;
    return ( skip ) ;
 endfunction // get_parity_positions
 
-function automatic void calc_parity ( ) ;
+function automatic void calc_parity ( 
+output	logic [ N-1 : 0 ] code ,
+input logic [ K-1 : 0 ] data 
+);
+
+logic [ N-K-1 : 0 ] parity ;
+
    int j ;
    j = 0 ;
    for ( int i = 0 ; i < N ; i ++ ) begin
