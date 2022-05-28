@@ -14,8 +14,8 @@ function automatic logic [ N-1 : 0 ] get_parity_positions ( ) ;
 endfunction // get_parity_positions
 
 function automatic void init_code (
-  output logic [ N-1 : 0 ] code ,
-  input logic [ K-1 : 0 ] data
+   output logic [ N-1 : 0 ] code ,
+   input logic [ K-1 : 0 ] data
    ) ;
   
    int j ;
@@ -28,27 +28,28 @@ function automatic void init_code (
        j ++ ;
      end
    end
-   $display ( "Before encode : code %b" , code ) ;
 endfunction
 
 function automatic void calc_parity (
-  output logic [ N-K-1 : 0 ] parity ,
-  input logic [ N-1 : 0 ] code
+   output logic [ N-K-1 : 0 ] parity ,
+   input logic [ N-1 : 0 ] code
    ) ;
-  
+   int inc_bit ;
    parity = 0 ;
    for ( int i = 0 ; i < N ; i ++ ) begin
+     inc_bit = i + 1 ;
      for ( int j = 0 ; j < N-K ; j ++ ) begin
-       parity [ j ] ^= i [ j ] ? code [ i ] : 0 ;
+       parity [ j ] ^= inc_bit [ j ] ? code [ i ] : 0 ;
      end
    end
-   $display ( "skip %b" , skip ) ;
+   `ifndef SYNTHESIS
    $display ( "parity %b" , parity ) ;
+   `endif
 endfunction
 
 function automatic void ins_parity (
-  ref logic [ N-1 : 0 ] code ,
-  input logic [ N-K-1 : 0 ] parity
+   ref logic [ N-1 : 0 ] code ,
+   input logic [ N-K-1 : 0 ] parity
    ) ;
    int j ;
    j = 0 ;
@@ -58,39 +59,34 @@ function automatic void ins_parity (
        j ++ ;
      end
    end
- 
- $display ( "After encode : code %b" , code ) ;
 endfunction
 
 function automatic void hamming_enc (
-  output logic [ N-1 : 0 ] code ,
-  input logic [ K-1 : 0 ] data
+   output logic [ N-1 : 0 ] code ,
+   input logic [ K-1 : 0 ] data
    ) ;
   
   
-  logic [ N-K-1 : 0 ] parity ;
+   logic [ N-K-1 : 0 ] parity ;
   
    init_code ( .code ( code ) , .data ( data ) ) ;
    calc_parity ( .code ( code ) , .parity ( parity ) ) ;
    ins_parity ( .code ( code ) , .parity ( parity ) ) ;
 endfunction
 
-//-------- decoding -----------
+ // -------- decoding -----------
 function automatic void correct_code (
-  ref logic [ N-1 : 0 ] code ,
-  input logic [ N-K-1 : 0 ] parity
+   ref logic [ N-1 : 0 ] code ,
+   input logic [ N-K-1 : 0 ] parity
    ) ;
-   
-   if(parity!=0) 
-   	code[parity-1] ^= 1;
-
- 
- $display ( "After decode : code %b" , code ) ;
+  
+   if ( parity!= 0 )
+   code [ parity-1 ] ^= 1 ;
 endfunction
 
 function automatic void extract_data (
-  input logic [ N-1 : 0 ] code ,
-  output logic [ K-1 : 0 ] data
+   input logic [ N-1 : 0 ] code ,
+   output logic [ K-1 : 0 ] data
    ) ;
    int j ;
    j = 0 ;
@@ -100,22 +96,18 @@ function automatic void extract_data (
        j ++ ;
      end
    end
- 
- $display ( "After encode : code %b" , code ) ;
 endfunction
 
 
 function automatic void hamming_dec (
-  input logic [ N-1 : 0 ] code ,
-  output logic [ K-1 : 0 ] data
+   input logic [ N-1 : 0 ] code ,
+   output logic [ K-1 : 0 ] data
    ) ;
   
-  logic [ N-K-1 : 0 ] parity ;
-
+   logic [ N-K-1 : 0 ] parity ;
    calc_parity ( .code ( code ) , .parity ( parity ) ) ;
    correct_code ( .code ( code ) , .parity ( parity ) ) ;
    extract_data ( .code ( code ) , .data ( data ) ) ;
-  
 endfunction
 
 endpackage
