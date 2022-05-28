@@ -11,7 +11,9 @@ parameter int n = t * fs ; // number of samples in one duration
 string swaras [ ] = '{ "sl" , "rl" , "gl" , "ml" , "pl" , "dl" , "nl" ,
  "s" , "r" , "g" , "m" , "p" , "d" , "n" ,
  "sh" , "rh" , "gh" , "mh" , "ph" , "dh" , "nh" } ;
-parameter real sl_freq = 320 ; // assuming 320Hz frequence for Sa lower swara
+parameter real sl_freq = 240 ; //frequency for Sa lower swara
+parameter real ratio[7] = '{1, 9.0/8, 6.0/5, 4.0/3, 3.0/2, 5.0/3, 15.0/8  };
+
 real swara_freq [ string ] ;
 
  // Windows to get the effect of note stopping , playing continously , starting , starting and stopping in the same duration
@@ -37,7 +39,6 @@ typedef struct {
 
 carnatic_swara_t swaras_n_windows [ 1000 ] = '{ real : 0 , default : 0 } ; // limit to 1000 swaras in one song
 
-
  // Exercise create your own set of notes and their frequencies if you need
  /*
 real swara_freq [ string ] =
@@ -52,8 +53,12 @@ D# 553
  */
 
 function void create_swara_freq_table ;
+  int octave;
+  octave=1;
    foreach ( swaras [ i ] ) begin
-     swara_freq [ swaras [ i ] ] = 320 * ( 1.104089514 ** i ) ;
+     //swara_freq [ swaras [ i ] ] = sl_freq * ( 1.104089514 ** i ) ;
+     swara_freq [ swaras [ i ] ] = sl_freq * octave * ratio[i%7] ;
+     if((i+1)%7==0) octave *=2;
    end
 endfunction
 
