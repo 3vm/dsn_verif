@@ -38,11 +38,12 @@ proc format_one_file { fl } {
 		regsub -all {\+\s+\+} $line {++} line
 		regsub -all {\+\s+\=} $line {+=} line
 		regsub -all {\-\s+\=} $line {-=} line
+		regsub -all {\|\s+\=} $line {|=} line
+		regsub -all {\&\s+\=} $line {\&=} line
 
 		regsub -all {\*} $line { * } line
 		regsub -all {\*\s*\*} $line {**} line
 		regsub -all {\*\s*\=} $line {*=} line
-		regsub -all {&\s*=} $line {\&=} line
 
 		regsub -all {/} $line { / } line
 		regsub -all {/\s*/} $line {//} line
