@@ -9,7 +9,7 @@ bit result ;
 initial begin
    data = 'b1010 ;
    #0 ;
-   calc_parity ( .code(code), .data(data)) ;
+   hamming_enc ( .code(code), .data(data)) ;
   
    if ( result == 1 ) begin
      $display ( ) ;
