@@ -48,7 +48,7 @@ endfunction
 
 
 function automatic void ins_parity (
-  output logic [ N-1 : 0 ] code ,
+  ref logic [ N-1 : 0 ] code ,
   input logic [ K-1 : 0 ] parity
    ) ;
    int j ;
