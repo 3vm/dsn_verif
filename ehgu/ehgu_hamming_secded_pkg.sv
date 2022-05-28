@@ -46,10 +46,9 @@ function automatic void calc_parity (
    $display ( "parity %b" , parity ) ;
 endfunction
 
-
 function automatic void ins_parity (
   ref logic [ N-1 : 0 ] code ,
-  input logic [ K-1 : 0 ] parity
+  input logic [ N-K-1 : 0 ] parity
    ) ;
    int j ;
    j = 0 ;
@@ -74,13 +73,49 @@ function automatic void hamming_enc (
    init_code ( .code ( code ) , .data ( data ) ) ;
    calc_parity ( .code ( code ) , .parity ( parity ) ) ;
    ins_parity ( .code ( code ) , .parity ( parity ) ) ;
-  
-   parity = 0 ;
+endfunction
+
+//-------- decoding -----------
+function automatic void correct_code (
+  ref logic [ N-1 : 0 ] code ,
+  input logic [ N-K-1 : 0 ] parity
+   ) ;
+   
+   if(parity!=0) 
+   	code[parity-1] ^= 1;
+
+ 
+ $display ( "After decode : code %b" , code ) ;
+endfunction
+
+function automatic void extract_data (
+  input logic [ N-1 : 0 ] code ,
+  output logic [ K-1 : 0 ] data
+   ) ;
+   int j ;
+   j = 0 ;
    for ( int i = 0 ; i < N ; i ++ ) begin
-     for ( int j = 0 ; j < N-K ; j ++ ) begin
-       parity [ j ] ^= i [ j ] ? code [ i ] : 0 ;
+     if ( skip [ i ] == 0 ) begin
+       data [ j ] = code [ i ] ;
+       j ++ ;
      end
    end
+ 
+ $display ( "After encode : code %b" , code ) ;
+endfunction
+
+
+function automatic void hamming_dec (
+  input logic [ N-1 : 0 ] code ,
+  output logic [ K-1 : 0 ] data
+   ) ;
+  
+  logic [ N-K-1 : 0 ] parity ;
+
+   calc_parity ( .code ( code ) , .parity ( parity ) ) ;
+   correct_code ( .code ( code ) , .parity ( parity ) ) ;
+   extract_data ( .code ( code ) , .data ( data ) ) ;
+  
 endfunction
 
 endpackage
