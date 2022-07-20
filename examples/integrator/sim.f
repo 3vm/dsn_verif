@@ -13,4 +13,5 @@ timescale.sv
 ../../thee/thee_utils_pkg.sv
 ../../thee/thee_clk_gen_module.sv
 ../../thee/thee_pg_amp.sv
+../../thee/thee_integrator.sv
 tb.sv

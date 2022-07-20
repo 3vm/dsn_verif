@@ -4,30 +4,14 @@ module tb ;
 timeunit 1ns ;
 timeprecision 1ps ;
 
-real integral , ana_in , step ;
+real integral , ana_in ;
 logic rstn ;
 
-localparam real RST_VAL = 0.0 ;
-localparam realtime DT_STEP_SIZE = 1e-12 ; // to be matched to integration forever loop time step
-localparam real SCALE_FACTOR = 1.0 ;
- // COMMON MODE value?
-localparam real INTEG_MAX = 1.0 ;
-localparam real INTEG_MIN = -1.0 ;
-
-initial begin
-   integral = RST_VAL ;
-   forever begin
-     #1ps ;
-     step = ana_in * DT_STEP_SIZE * SCALE_FACTOR ;
-     if ( integral + step > INTEG_MAX ) begin
-       integral = INTEG_MAX ;
-     end else if ( integral + step < INTEG_MIN ) begin
-       integral = INTEG_MIN ;
-     end else begin
-       integral += step ;
-     end
-   end
-end
+thee_integrator integrator
+ (
+.ana_in ( ana_in ) ,
+.integral ( integral )
+ ) ;
 
 initial begin
    forever begin
