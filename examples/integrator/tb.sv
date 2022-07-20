@@ -9,6 +9,7 @@ logic rstn ;
 
 thee_integrator integrator
  (
+.rstn(rstn),
 .ana_in ( ana_in ) ,
 .integral ( integral )
  ) ;

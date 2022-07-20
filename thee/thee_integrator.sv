@@ -9,6 +9,7 @@ parameter real INTEG_MIN = -1.0
  )
  (
 input real ana_in ,
+input logic rstn,
 output real integral
  ) ;
 
@@ -18,9 +19,11 @@ timeprecision 1ps ;
 real step ;
 
 initial begin
-   integral = RST_VAL ;
    forever begin
      #1ps ;
+     if (!rstn) begin
+       integral = RST_VAL ;
+     end else begin
      step = ana_in * DT_STEP_SIZE * SCALE_FACTOR ;
      if ( integral + step > INTEG_MAX ) begin
        integral = INTEG_MAX ;
@@ -29,6 +32,7 @@ initial begin
      end else begin
        integral += step ;
      end
+   end
    end
 end
 
