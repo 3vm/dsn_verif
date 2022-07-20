@@ -5,16 +5,16 @@ module dl_slp_dig (
  input logic start ,
 
  output logic [ 7 : 0 ] dig_out ,
+ output logic integrator_sel,
+ output logic integrator_rstn,
  output logic eoc
  ) ;
 
-logic [ $clog2 ( 8 ) -1 : 0 ] index , cnt ;
+logic [ $clog2 ( 8 ) -1 : 0 ] cnt ;
 logic sync_clr ;
-logic [ 7 : 0 ] code ;
 
-logic conversion_running ;
+logic conversion_running, integrate_input, integrate_vref ;
 
-assign index = 8-1-cnt ;
 
 ehgu_cntr cntr (
 .clk ,
@@ -27,33 +27,25 @@ ehgu_cntr cntr (
 assign sync_clr = start ;
 
 always_comb begin
-   code = dig_out ;
-   if ( start ) begin
-     code = ( 2 ** ( 8-1 ) ) ;
-   end else if ( index == 8-1 ) begin
-     code [ index ] = 1'b1 ;
-   end else if ( index inside { [ 0 : 8-2 ] } ) begin
-     if ( cmp_out == 1'b1 ) begin
-       code [ index + 1 ] = 1'b1 ;
-       code [ index ] = 1'b1 ;
-     end else begin
-       code [ index + 1 ] = 1'b0 ;
-       code [ index ] = 1'b1 ;
-     end
-   end
+
 end
 
 always_ff @ ( posedge clk , negedge rstn ) begin
    if ( !rstn ) begin
-     conversion_running <= 0 ;
+     integrate_vref <= 0;
+     integrate_input <= 0;
      dig_out <= 0 ;
      eoc <= 0 ;
    end else begin
-     conversion_running <= start ? 1 : ( cnt == 8-1 ) ? 0 : conversion_running ;
-     dig_out <= code ;
-     eoc <= cnt == 8-1 ;
+     integrate_input <= start && (cnt<=8'hFF)? 1 : 0;
+     integrate_vref <= (cnt==8'hFF)&& !eoc;
+     dig_out <= eoc ? cnt : 0 ;
+     eoc <= start ? 0 : (conversion_running && cmp_out) ? 1 : eoc;
    end
 end
+assign conversion_running = integrate_vref | integrate_input ;
+assign integrator_sel = integrate_input;
+assign integrator_rstn = conversion_running;
 
   logic vikram;
 endmodule

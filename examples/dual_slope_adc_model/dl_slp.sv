@@ -8,20 +8,23 @@ output logic eoc
  ) ;
 
 logic [ 7 : 0 ] code ;
-logic cmp_out ;
+logic cmp_out, integrator_sel, integrator_rstn ;
 
 dl_slp_ana dl_slp_ana (
 .ana_in ,
 .start ,
 .rstn ,
 .cmp_out ,
-.dig_out
+.integrator_rstn,
+.integrator_sel
  ) ;
 
 dl_slp_dig dl_slp_dig (
 .clk ,
 .rstn ,
 .start ,
+.integrator_rstn,
+.integrator_sel,
 .cmp_out ,
 .dig_out ,
 .eoc
