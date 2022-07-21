@@ -9,9 +9,9 @@ output logic cmp_out
 parameter real VREF=1.0;
 
 real ana_sampled ;
-real integral ;
+real int_in, integral ;
 
-initial $monitor("Integral %1.3f, integrator select %b", integral, integrator_sel);
+//initial $monitor("Integral %1.3f, integrator select %b, ana_sampled %1.3f", integral, integrator_sel, ana_sampled);
 
 always@ ( posedge start ) begin
    ana_sampled <= ana_in ;
@@ -19,12 +19,12 @@ end
 
 assign cmp_out = integral > 0 ;
 
-assign int_in =  integrator_sel ? ana_in : -VREF;
+assign int_in = -1.0*( integrator_sel ? ana_in : -VREF);
 
 thee_integrator integrator
  (
 .rstn (integrator_rstn),
-.ana_in ( -1.0*int_in ) ,
+.ana_in ( int_in ) ,
 .integral ( integral )
  ) ;
 
