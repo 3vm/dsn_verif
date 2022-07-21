@@ -24,24 +24,14 @@ dl_slp_adc dut
 .eoc
  ) ;
 
-initial begin
-  clk = 0 ;
-  rstn = 0 ;
-  #1 ;
-  clk = 0 ;
-  rstn = 1 ;
-  #1 ;
-  forever begin
-     clk = ~clk ;
-     #5 ;
-  end
-end
+thee_clk_gen_module clk_gen ( .clk ( clk ) ) ;
 
 initial begin
    import thee_utils_pkg :: urand_range_real ;
-   start = 0 ;
-   repeat ( 10 ) @ ( posedge clk ) ;
-   
+   start = 0 ; rstn=0;
+   repeat ( 1 ) @ ( posedge clk ) ;
+   rstn=1;
+   repeat ( 2 ) @ ( posedge clk ) ;
    for ( int i = 0 ; i < 5 ; i ++ ) begin
      ana_in = urand_range_real ( 0 , 1.0 ) ;
      start = 1 ; @ ( posedge clk ) ; start = 0 ; @ ( posedge eoc ) ; @ ( posedge clk);
@@ -50,6 +40,8 @@ initial begin
 
    $finish ;
 end
+
+initial $monitor("Start %b, eoc %b, ana_in %f",start,eoc,ana_in);
 
 task check_result ;
  import thee_utils_pkg :: compare_real_fixed_err ;

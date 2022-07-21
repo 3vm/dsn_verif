@@ -3,7 +3,6 @@ input real ana_in ,
 input logic integrator_sel,
 input logic integrator_rstn,
 input logic start ,
-input logic rstn ,
 output logic cmp_out
  ) ;
 
@@ -11,6 +10,8 @@ parameter real VREF=1.0;
 
 real ana_sampled ;
 real integral ;
+
+initial $monitor("Integral %1.3f, integrator select %b", integral, integrator_sel);
 
 always@ ( posedge start ) begin
    ana_sampled <= ana_in ;

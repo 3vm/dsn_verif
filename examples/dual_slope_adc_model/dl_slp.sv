@@ -1,4 +1,6 @@
-module dl_slp_adc (
+module dl_slp_adc 
+#( parameter RESOLUTION=8 )
+(
 input real ana_in ,
 input logic start ,
 input logic rstn ,
@@ -13,13 +15,12 @@ logic cmp_out, integrator_sel, integrator_rstn ;
 dl_slp_ana dl_slp_ana (
 .ana_in ,
 .start ,
-.rstn ,
 .cmp_out ,
 .integrator_rstn,
 .integrator_sel
  ) ;
 
-dl_slp_dig dl_slp_dig (
+dl_slp_dig #(.RESOLUTION(RESOLUTION) ) dl_slp_dig (
 .clk ,
 .rstn ,
 .start ,
