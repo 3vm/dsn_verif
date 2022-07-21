@@ -49,6 +49,8 @@ always_comb begin
        next_state = INTG_VREF ;
      end else if ( state == INTG_VREF && (cmp_out==1 | cnt==MAX_CNT) ) begin
        next_state = DONE ;
+     end else if ( state == DONE ) begin
+       next_state = IDLE ;
      end else begin
        next_state = state ;
      end
@@ -62,11 +64,12 @@ assign cnt_en = (state == INTG_VREF) | (state == INTG_INPUT);
 assign integrator_sel = (state==INTG_INPUT) ? 1 : 0 ;
 assign integrator_rstn = cnt_en;
 
+/*
 initial $monitor("cnt %d, state %s",cnt, state.name());
 
 always @(posedge clk) begin
   $display("State %s, cnt_en %b, integrator_sel %b, integrator_rstn %b", state.name(), cnt_en, integrator_sel, integrator_rstn);
 end
-
+*/
   logic vikram;
 endmodule

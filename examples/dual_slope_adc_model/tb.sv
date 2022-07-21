@@ -41,7 +41,7 @@ initial begin
    $finish ;
 end
 
-initial $monitor("Start %b, eoc %b, ana_in %f",start,eoc,ana_in);
+//initial $monitor("Start %b, eoc %b, ana_in %f",start,eoc,ana_in);
 
 task check_result ;
  import thee_utils_pkg :: compare_real_fixed_err ;
