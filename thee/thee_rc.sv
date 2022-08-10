@@ -2,8 +2,8 @@ module thee_rc
 # (
 parameter real R = 1000.0 , //ohm
 parameter real C = 1e-9 , //F
-parameter realtime TIME_STEP = 1.0,  //To be matched with timepresision and timeunit
-parameter realtime TIME_STEP_UNIT = 1e-12  //To be matched with timepresision and timeunit
+parameter real TIME_STEP = 0.001,  //To be matched with timepresision and timeunit
+parameter real TIME_STEP_UNIT = 1e-9  //To be matched with timepresision and timeunit
  )
  (
 input real vin ,
