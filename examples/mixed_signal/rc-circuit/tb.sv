@@ -13,13 +13,6 @@ thee_rc rc
 .vcap ( cap_voltage )
  ) ;
 
-initial begin
-   forever begin
-     #20ps ;
-     // $display ( "Input %1.3f Step %1.3e cap_voltage %1.3e Current time %t" , ana_in , step , cap_voltage , $realtime ( ) ) ;
-   end
-end
-
  import thee_mathsci_consts_pkg :: const_pi ;
  real angle_rad ;
 int LUT_SIZE = 128 ;
@@ -29,9 +22,7 @@ initial begin
    if ( input_type == 0 ) begin
      ana_in = 0 ;
      #0.9ns ;
-     rstn = 0 ;
-     #1.9ns ;
-     rstn = 1 ; ana_in = 1 ;
+     ana_in = 1 ;
      #20ns ;
    end else begin
      for ( int i = 0 ; i < LUT_SIZE ; i = ( i + 1 ) %LUT_SIZE ) begin
@@ -43,7 +34,7 @@ initial begin
 end
 
 initial begin
-   #100ns ;
+   #1000ns ;
    $finish ;
 end
 
