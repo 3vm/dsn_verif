@@ -13,7 +13,7 @@ Tome of Chipping : Chip Design for All
 https://www.amazon.com/dp/B08GFRPZB4
 This book is the 27th version of Ehgu Proposal book available in paperback format
 
-If you like the idea of efficient hardware design ecosystem, become a patron here and generously support my work :)
+If you would like designs, models like these contact@valsid.in
 
-https://www.patreon.com/3vm
+
 
