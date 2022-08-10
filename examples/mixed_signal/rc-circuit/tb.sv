@@ -4,20 +4,19 @@ module tb ;
 timeunit 1ns ;
 timeprecision 1ps ;
 
-real integral , ana_in ;
+real cap_voltage , ana_in ;
 logic rstn ;
 
-thee_integrator integrator
+thee_rc rc
  (
-.rstn(rstn),
-.ana_in ( ana_in ) ,
-.integral ( integral )
+.vin ( ana_in ) ,
+.vcap ( cap_voltage )
  ) ;
 
 initial begin
    forever begin
      #20ps ;
-     // $display ( "Input %1.3f Step %1.3e Integral %1.3e Current time %t" , ana_in , step , integral , $realtime ( ) ) ;
+     // $display ( "Input %1.3f Step %1.3e cap_voltage %1.3e Current time %t" , ana_in , step , cap_voltage , $realtime ( ) ) ;
    end
 end
 
@@ -49,30 +48,30 @@ initial begin
 end
 
 realtime crossing , prev_crossing , wave_period ;
-real prev_integral ;
+real prev_cap_voltage ;
 initial begin
-   forever @ ( integral ) begin
-     if ( integral > 0 && prev_integral <= 0 ) begin
+   forever @ ( cap_voltage ) begin
+     if ( cap_voltage > 0 && prev_cap_voltage <= 0 ) begin
        prev_crossing = crossing ;
        crossing = $realtime ( ) ;
        wave_period = crossing - prev_crossing ;
        $display ( "Wave period output %t" , wave_period ) ;
      end
-     prev_integral = integral ;
+     prev_cap_voltage = cap_voltage ;
    end
 end
 
 initial begin
   realtime crossing , prev_crossing , wave_period ;
-  real prev_integral ;
+  real prev_cap_voltage ;
    forever @ ( ana_in ) begin
-     if ( ana_in > 0 && prev_integral <= 0 ) begin
+     if ( ana_in > 0 && prev_cap_voltage <= 0 ) begin
        prev_crossing = crossing ;
        crossing = $realtime ( ) ;
        wave_period = crossing - prev_crossing ;
        $display ( "Wave period input %t" , wave_period ) ;
      end
-     prev_integral = ana_in ;
+     prev_cap_voltage = ana_in ;
    end
 end
 

@@ -13,5 +13,5 @@ $EHGU_HOME/thee/thee_mathsci_consts_pkg.sv
 $EHGU_HOME/thee/thee_utils_pkg.sv
 $EHGU_HOME/thee/thee_clk_gen_module.sv
 $EHGU_HOME/thee/thee_pg_amp.sv
-$EHGU_HOME/thee/thee_integrator.sv
+$EHGU_HOME/thee/thee_rc.sv
 tb.sv
