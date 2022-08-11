@@ -16,4 +16,8 @@ $EHGU_HOME/thee/thee_clk_gen_module.sv
 $EHGU_HOME/thee/thee_clk_freq_meter.sv
 $EHGU_HOME/thee/thee_pg_amp.sv
 $EHGU_HOME/thee/thee_rc.sv
+sr_latch.sv
+ic555.sv
+rc_network.sv
+astable.sv
 tb.sv

@@ -13,15 +13,11 @@ localparam MEAS_WINDOW = 10 ;
 
 logic clk;
 logic result;
-
 real fout, exp_fout;
 
-import thee_sig_analysis_pkg::*;
-
-thee_clk_gen_module #(.FREQ(93), .FREQ_UNIT(1e6)) clk_gen2 (.clk(clk));
+astable #(.R1(R1), .R2(R2), .C(C))  dut (.clk(clk));
 
 thee_clk_freq_meter # ( .MEAS_WINDOW ( MEAS_WINDOW ) ) fmeter ( .clk ( clk ) , .freq_in_hertz ( fout ) ) ;
-
 
 initial begin
    exp_fout =  2.0/(R1*R2*C); //checkme
