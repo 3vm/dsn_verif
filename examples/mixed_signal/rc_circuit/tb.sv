@@ -18,12 +18,15 @@ thee_rc rc
 int LUT_SIZE = 128 ;
 
 initial begin
-   logic input_type = 1 ;
+   logic input_type = 0 ;
    if ( input_type == 0 ) begin
      ana_in = 0 ;
      #0.9ns ;
      ana_in = 1 ;
      #20ns ;
+     ana_in = 0 ;
+     #20ns ;
+     $finish ;
    end else begin
      for ( int i = 0 ; i < LUT_SIZE ; i = ( i + 1 ) %LUT_SIZE ) begin
        angle_rad = i * 2 * const_pi / LUT_SIZE ;
