@@ -1,43 +1,38 @@
 module ic555 (
-inout pin1_gnd,
-input real pin8_vcc,
+inout pin1_gnd ,
+input real pin8_vcc ,
 
-input real pin2_trigger,
-output logic pin3_output,
-input logic pin4_reset,
-input real pin5_vctl,
-input real pin6_thresh,
+input real pin2_trigger ,
+output logic pin3_output ,
+input logic pin4_reset ,
+input real pin5_vctl ,
+input real pin6_thresh ,
 output logic pin7_discharge
-);
+ ) ;
 
-real trig;
-logic rst;
-real vctl;
-real thresh;
- logic dis;
+logic q;
 
-//voltage divider
-real vcc_1by3, vcc_2by3;
+// voltage divider
+real vcc_1by3 , vcc_2by3 ;
+assign   vcc_1by3 = pin8_vcc / 3.0 ;
+assign   vcc_2by3 = 2.0 * vcc_1by3 ;
 
-always begin
-	vcc_1by3 = pin8_vcc/3.0;
-	vcc_2by3 = 2.0 * vcc_1by3;
-end
+ // comparators
+logic comp0_out , comp1_out ;
 
-//comparators
-logic comp0_out, comp1_out;
+assign comp0_out = ( pin6_thresh > vcc_2by3 ) ? 1'b1 : 1'b0 ;
+assign comp1_out = ( vcc_1by3 > pin2_trigger ) ? 1'b1 : 1'b0 ;
 
-assign comp0_out = (thresh > vcc_2by3) ? 1'b1 : 1'b0;
-assign comp1_out = (vcc_1by3 > trig) ? 1'b1 : 1'b0;
+sr_latch i_srlat (
+.async_rstn ( rst ) ,
+.s ( comp1_out ) ,
+.r ( comp0_out ) ,
+.q ( q )
+ ) ;
 
-sr_latch i_srlat(
-.async_rstn(rst),
-.s(comp0_out),
-.r(comp1_out),
-.q(q)
-);
+assign pin7_discharge = q ? 1'b0 : 1'b1 ;
+assign pin3_output = q ;
 
-assign dis = q ? 1'b0: 1'b1;
-assign pin3_output = q;
+//initial $monitor ( "Discharge %b, comp0 output  %b comp1 output %b" , dis, comp0_out, comp1_out ) ;
 
 endmodule
