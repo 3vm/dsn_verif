@@ -21,6 +21,7 @@ thee_clk_freq_meter # ( .MEAS_WINDOW ( MEAS_WINDOW ) ) fmeter ( .clk ( clk ) , .
 
 initial begin
    exp_fout = 1.0 / ( 0.69314718056 * ( R1 + 2*R2) * C ) ;
+   repeat ( 20 ) @ ( posedge clk ) ; // ignore some cycles
    repeat ( MEAS_WINDOW + 10 ) @ ( posedge clk ) ;
    $display ( " Clkout frequency %1.3e , expected %1.3e" , fout , exp_fout ) ;
    check_approx_equality ( .inp ( fout ) , .expected ( exp_fout ) , .result ( result ) ) ;
