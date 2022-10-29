@@ -116,10 +116,9 @@ generate
       end
     end
     
-    //name - date : time type parameter not useful -- ehgu_synqzx #(.T(time), .MAX_DELAY(100ps), .STAGES(SYNC_STG_W2R), .WIDTH(AWIDTH)) sync_waddr 
     ehgu_synqzx #(
 `ifndef SYNTHESIS
-  .MAX_DELAY(100ps),
+  .T(time), .MAX_DELAY(100ps),
 `endif
  .STAGES(SYNC_STG_W2R), .WIDTH(AWIDTH)) sync_waddr 
     ( 
@@ -146,7 +145,7 @@ generate
 
      ehgu_synqzx #(
 `ifndef SYNTHESIS
-  .MAX_DELAY(100ps),
+  .T(time), .MAX_DELAY(100ps),
 `endif
  .STAGES(SYNC_STG_R2W), .WIDTH(AWIDTH)) sync_raddr 
     ( 
