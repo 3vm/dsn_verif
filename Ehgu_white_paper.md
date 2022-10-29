@@ -30,7 +30,7 @@ James Izawa is just out of community college with an associate degree in mathema
 
 Tom Young is a senior engineer recently assigned to a team designing chips for simulating protein folding. Tom has a PhD in electrical engineering, but, he is puzzled by the requirement to design logic for simulating biological stuff. He refers to an open library called BiochemHDL that has a large number of reference designs for biochemistry related problems. He is able to quickly deploy a working design and get his product to work in first pass of silicon.
 
-Bala Daggula is an executive at Egde Logic Inc. He needs a design IP to preprocess DNA sequencing data coming out of a high throughput sequencer. Bala refers to a subscription based IP library and gets access to the latest algorithm for DNA sequence preprocessing. The best part is the subscription provider continuously updates and supports their IP as long as the subscription is active.
+Bala Daggula is an executive at Edge Logic Inc. He needs a design IP to preprocess DNA sequencing data coming out of a high throughput sequencer. Bala refers to a subscription based IP library and gets access to the latest algorithm for DNA sequence preprocessing. The best part is the subscription provider continuously updates and supports their IP as long as the subscription is active.
 
 Greg Razavi is a design manager at Saitel looking for talented digital design engineers. He reforms his hiring process by removing the requirement for advanced degrees. Soon, he gets many highly talented applicants from various backgrounds and extremely eager to start work in their new roles. 
 
