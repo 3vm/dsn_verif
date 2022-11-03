@@ -16,7 +16,11 @@ logic sync_in0 , sync_in1 ;
 
 assign sync_in0 = ~selc1 & ~sel ;
 
-ehgu_synqzx # ( .MAX_DELAY ( 0 ) , .STAGES ( CLK0_SYNC_STAGES ) , .WIDTH ( 1 ) ) sync0
+ehgu_synqzx # ( 
+`ifndef SYNTHESIS
+.MAX_DELAY ( 0 ) , 
+`endif
+.STAGES ( CLK0_SYNC_STAGES ) , .WIDTH ( 1 ) ) sync0
  (
 .clk ( clkin0 ) ,
 .rstn ( 1'b1 ) ,
@@ -26,7 +30,11 @@ ehgu_synqzx # ( .MAX_DELAY ( 0 ) , .STAGES ( CLK0_SYNC_STAGES ) , .WIDTH ( 1 ) )
 
 assign sync_in1 = ~selc0 & sel ;
 
-ehgu_synqzx # ( .MAX_DELAY ( 0 ) , .STAGES ( CLK1_SYNC_STAGES ) , .WIDTH ( 1 ) ) sync1
+ehgu_synqzx # ( 
+`ifndef SYNTHESIS
+.MAX_DELAY ( 0 ) , 
+`endif
+.STAGES ( CLK1_SYNC_STAGES ) , .WIDTH ( 1 ) ) sync1
  (
 .clk ( clkin1 ) ,
 .rstn ( 1'b1 ) ,
