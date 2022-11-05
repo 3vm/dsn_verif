@@ -69,7 +69,9 @@ module chkerr ( input clk, rn , valid, input [7:0] d, output logic err);
 		  err  <= chksum [7:0] != d;
 	   else if (cnt ==101)
 		  err  <= chksum [15:8] != d;
-      end
+      end else begin
+       chksum <= 0; cnt <=0;
+	  end
     end
 end
 
