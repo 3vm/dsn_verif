@@ -8,8 +8,8 @@ module tb;
   
   initial begin
     foreach (testdata[i]) testdata[i] = i;
-	testdata[100] = ((100*99)/2) / 256; //MSByte of sum
-	testdata[101] = ((100*99)/2)%256; //LSByte of sum
+	testdata[100] = ((100*99)/2)%256; //LSByte of sum
+	testdata[101] = ((100*99)/2) / 256; //MSByte of sum
  end
  
  chkerr i0 (.*);
@@ -20,7 +20,6 @@ module tb;
 	repeat (2) @(posedge clk);
     rn = 1; valid = 0; d = 0;
 	repeat (2) @(posedge clk);
-	cnt = 0 ;
 	foreach (testdata[i]) begin
 	  valid=1;
 	  d = testdata[i];
@@ -30,9 +29,22 @@ module tb;
 	repeat (2) @(posedge clk);
 	if ( err == 0 ) $display ("Test vector 0: PASS -- Calculated error %b", err); 
 	else $display ("Test vector 0: FAIL -- Calculated error %b", err); 
+
+	foreach (testdata[i]) begin
+	  valid=1;
+	  d = testdata[i];
+	  if ( i==1) d ^= 'h80;
+	  @(posedge clk);
+    end
+    valid = 0; d = 0;
+	repeat (2) @(posedge clk);
+	if ( err == 0 ) $display ("Test vector 1: PASS -- Calculated error %b", err); 
+	else $display ("Test vector 1: FAIL -- Calculated error %b", err); 
 	
 	$finish();
   end
+  
+  initial $monitor (i0.cnt, " ", d, " ", i0.chksum, " ",valid,  " ",err);
   
 endmodule
 
@@ -65,6 +77,6 @@ always @(posedge clk, negedge rn)
   if (rn == 0)	  valid_d <= 0;
   else valid_d <= valid;
 
-assign valid_r = valid && !valid_r  ;
+assign valid_r = valid && !valid_d  ;
 
 endmodule
