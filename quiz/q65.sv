@@ -63,7 +63,8 @@ module chkerr ( input clk, rn , valid, input [7:0] d, output logic err);
 	   else if (cnt ==100)
 		  err  <= chksum [7:0] != d;
 	   else if (cnt ==101)
-		  err  <= err | ( chksum [15:8] != d );
+		 // err  <= err | ( chksum [15:8] != d );
+		 err  <= chksum [15:8] != d;
       end else begin
        chksum <= 0; cnt <=0;
 	  end
