@@ -13,6 +13,3 @@ module tb;
 end
   
 endmodule
-
-
-
