@@ -44,6 +44,7 @@ proc format_one_file { fl } {
 		regsub -all {\*} $line { * } line
 		regsub -all {\*\s*\*} $line {**} line
 		regsub -all {\*\s*\=} $line {*=} line
+		regsub -all {\.\s+\*} $line {.*} line
 
 		regsub -all {/} $line { / } line
 		regsub -all {/\s*/} $line {//} line
@@ -64,12 +65,14 @@ proc format_one_file { fl } {
 		regsub -all {\s+$} $line {} line
 		set delayed_incr_ind 0
 		puts $line; puts "$ind_lvl $delayed_incr_ind"
-		if { [regexp {^\s*end\s+.*?\s+begin$} $line] || [regexp {^\s*task\s+} $line] || [regexp {^\s*function\s+} $line] } {
+		if { [regexp {^\s*end\s+.*?\s+begin$} $line] || [regexp {^\s*task\s+} $line] || [regexp {^\s*function\s+} $line]  } {
 			if { $ind_lvl >=1} { incr ind_lvl -1 } ;#checkme more elegant bug fix needed, spurious end begin should not be allowed to happen
+			set delayed_incr_ind 1
+		} elseif { [regexp {^\s*case\s+\(} $line]  || [regexp {^\s*always.*begin$} $line]  } {
 			set delayed_incr_ind 1
 		} elseif { [regexp {begin$} $line] } {
 			set delayed_incr_ind 1
-		} elseif { [regexp {^\s*end\s*} $line] || [regexp {^\s*endtask\s*} $line] || [regexp {^\s*endfunction\s*} $line] } {
+		} elseif { [regexp {^\s*end\s*} $line] || [regexp {^\s*endtask\s*} $line] || [regexp {^\s*endfunction\s*} $line]  || [regexp {^\s*endcase\s*} $line] } {
 			if { $ind_lvl >=1} { incr ind_lvl -1 } ;#checkme
 		}
 		for {set i 0} {$i<$ind_lvl} {incr i} {
