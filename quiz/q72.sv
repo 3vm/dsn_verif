@@ -17,13 +17,15 @@ module tb;
 	din=1; @(posedge clk);
 	din=0; @(posedge clk);
 	din=0; @(posedge clk);
+	din=0; @(posedge clk);
+	din=0; @(posedge clk);
 	$finish;
    end
    
   initial begin
 	 int cnt;
      @(posedge rstn);
-	 forever @(posedge clk)  $display ("Din %b  , Dout %b, Cycle %3d", din, dout, cnt++);
+	 forever @(posedge clk)  $display ("State %s, Din %b  , Dout %b, Cycle %3d", i0.state.name(), din, dout, cnt++);
 end
 
 dut i0 (.*);
@@ -36,7 +38,7 @@ module dut ( input din, clk,rstn, output logic dout);
   always_comb begin
      case (state)
 	   S0: begin if (din==1) next = S1; end
-	   S1: begin if (din==1) next = S2; else next = S2 ; end
+	   S1: begin if (din==1) next = S2; else next = S0 ; end
 	   S2: begin if (din==0) next = S0; end
        default: begin next = state; end	   
      endcase
