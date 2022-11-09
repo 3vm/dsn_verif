@@ -1,6 +1,6 @@
-`timescale 1ns/1ps
+`timescale 1ns/100ps
 module tb;
-  bit p,q;
+  int p,q;
   
   initial begin
     p=10; q=100;
@@ -16,7 +16,7 @@ module tb;
 	 #1;
 	 release p;
   end
-  
-  initial $monitor ("%3d %3d %t",p,q,$stime()); 
- 
+   
+   initial $monitor  ("%3d %3d %t",p,q,$stime()); 
+   
 endmodule
