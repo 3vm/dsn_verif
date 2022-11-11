@@ -25,7 +25,6 @@ task automatic apply ;
      ain += 0.2 ;
    end
    join
-   ain = 0;
    for ( int i = 0 ; i < 15 ; i ++ ) begin
      ain -= 0.1 ;
      #1 ;
