@@ -27,7 +27,7 @@ task automatic apply ;
    end
    begin
      if (noise_done == 0 )  begin
-	 wait ( ain >= 0.5 && old_ain <= 0.5 ) ;
+	 wait ( ain >= 0.55 && old_ain <= 0.55 ) ;
      ain -= 0.2 ;
      #2 ;
      ain += 0.2 ;
@@ -40,11 +40,16 @@ task automatic apply ;
      #1 ;
      if ( ain <= 0.01 ) break ;
    end
-   #10 ;
-    ->mark;
+   
+   ain = 0 ;
+   
+   #5 ;
+   
+   ->mark;
+   #1;
 endtask
 
-initial forever @(y or mark.triggered() )  $display ( "Time : %6d , Input %1.3f, Output %b" , $stime , ain, y ) ;
+always @( y or mark )  $display ( "Time : %6d , Input %1.3f, Output %b" , $stime , ain, y ) ;
 //initial $monitor ( "Time : %6d , Input %1.3f" , $stime , ain ) ;
 endmodule
 
@@ -62,6 +67,6 @@ always @ ( * )
  else if ( state == 1 && in < P0 )
  state = 0 ;
 
-assign out = ( mode == "special" ) ?~state : ( in > 0.5 ) ;
+assign out = ( mode == "special" ) ?~state : ( in < 0.5 ) ;
 
 endmodule
