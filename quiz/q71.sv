@@ -1,10 +1,11 @@
 module tb;
   logic p;
-  logic q; //wire q;
+  wire q;
+//  logic q; 
   
   initial begin
     p = 5;
-    //q = 10;
+    q = 10;
    end
    
    assign q = p;

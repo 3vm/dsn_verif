@@ -5,4 +5,3 @@ module tb ;
   q<=d;
   end
 endmodule
-

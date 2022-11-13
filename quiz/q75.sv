@@ -7,9 +7,9 @@ module tb ;
  
 generate
  if (TYPE==0) begin
-    // module mym1 (input [2:0] a, output b);
-	  // assign b = a[0] & a[1] & ~a[2];
-    // endmodule
+    module mym1 (input [2:0] a, output b);
+	  assign b = a[0] & a[1] & ~a[2];
+    endmodule
   end
   endgenerate
 endmodule

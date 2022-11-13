@@ -6,7 +6,7 @@ module tb;
     repeat (p) @(posedge clk) begin
 	  sum += p;
 	end
-	$finish;
+//	$finish;
   end
   
   final $display("%4d",sum);
