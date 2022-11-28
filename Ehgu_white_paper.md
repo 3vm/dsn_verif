@@ -68,7 +68,7 @@ Proposed Certifications
 -----------------------
 Chipping has evolved into two natural specializations,  one for ASIC design and another for FPGA. There is a lot of overlap between the two,  but,  there is a lot of specific learning as well. So,  I am recommending three curriculums,  Chipper Basics,  Chipper ASIC and Chipper FPGA. The basics certification is to get anyone a simple job in the ecosystem quickly. Other certifications are for career growth.
 
-##### Chipper Basics
+#### Chipper Basics
 
 Circuits: Kirchoff’s laws, Ohm’s law, power consumption in electrical circuits.
 
@@ -84,22 +84,22 @@ Design and verification
 FSM, counter/timer, data and reset synchronizers, FIFO with CDC modeling, arbiter, SPI, I2C, control-status registers, low power design, pipelining, retiming, FSM controlled datapath
 Verification concepts - coverage, randomization, regression
 
-Chipper ASIC
+#### Chipper ASIC
 
 Concepts from DFT, Standard cells, ROM and RAM compilation using OpenRAM and usage in designs, any one SerDes data packetization and depacketization logic, performing design ECOs,  basics of RISC-V ISA and one RV32I processor core, UVM basics
 Behavioral models for PLL, ADC – Flash and SAR ADC, DAC – String and ladder DAC
 
-Chipper FPGA
+#### Chipper FPGA
 
 FPGA resources – LUT, DSP, BRAMS, clocking. IP integration, basics of RISC-V ISA and one RV32I processor core, any one SerDes integration – MIPI/HDMI/DDR, interfacing with UART, AXI, APB, AHB, Tilelink, Synthesis and physical design for FPGA – pin assignment
 
-Advanced Specializations
+### Advanced Specializations
 
-Chipper Algorithms
+#### Chipper Algorithms
 
 Sorting – radix sort, quick sort, trees, graphs, depth first search, breadth first search. Creating C++ models for 10 algorithms targeted for chips
 
-Chipper Mixed Signal
+#### Chipper Mixed Signal
 
 Circuit theory - superposition theorem, Thevenin and Norton’s theorem, maximum power transfer theorem, small signal model of analog circuits
 Semiconductor device physics, P-N junction diode, Zener diode, BJT, MOS capacitor, MOSFET, JFET, LED, photodiode and solar cell, CMOS process technology
@@ -107,33 +107,33 @@ Continuous and discrete-time signals and systems theory: causality, stability, i
 Transforms: Laplace transform, discrete-time Fourier transform (DTFT), DFT, FFT, Z-transform, interpolation of discrete-time signals; digital filter design techniques.
 Verilog-A/Verilog AMS, SV wreal modeling
 
-Chipper SoC/Integration
+#### Chipper SoC/Integration
 
 Study of one RISC-V RV64 SoC, knowledge of older HDL standards like VHDL and Verilog 2001 for integrating legacy design IP. Bus interfaces - (AXI, APB, AHB) or Wishbone or Tilelink, Memory interface – DDR4
 
-Chipper Networking
+#### Chipper Networking
 
 Concept of OSI layering, TCP/IP protocol stack, switches, routers and routing algorithms, TCP/UDP sockets, congestion control, application layer protocols (DNS, SMTP, POP, FTP, HTTP), basics of Wi-Fi, network security: authentication, basics of public key and private key cryptography, firewalls, software tools – wireshark
 
-Chipper SerDes
+#### Chipper SerDes
 
 DC balance, line coding – 8b10b, manchester, NRZ, equalization, CDR, Spread Spectrum Clocking, PLL, BER, Forward Error Correction, ARQ, multiprotocol tunneling, channels – PCB trace, Coax, Shielded Twisted Pair, Optical Fiber
 
-Chipper Cryptography
+#### Chipper Cryptography
 
 Number theory, linear algebra, DES, AES, Eliptic Key Cryptography, Direct Sequence Spread Spectrum, Frequency Hop SS, RSA, Contemporary threats – DoS, DDoS, zero day exploits, bots, reverse engineering
 
-Chipper Processors
+#### Chipper Processors
 
 Computer architecture – ISA, cache, memory management, interrupts
 Hardware-software co-design, RISC-V ISA and cores – 64 bit high performance and 32 bit small cores
 System software: compiler, loader, linker, Linux operating system
 
-Chipper ML
+#### Chipper ML
 
 CNN, deep learning, statistics for ML applications, basics of rule based AI, image recognition, any one ML framework - Tensorflow or equivalent
 
-Chipper Neo
+#### Chipper **Neo**
 
 A chipper with all certifications!
 
@@ -148,6 +148,6 @@ Additional details about how to achieve a more efficient ecosystem is in the boo
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem
 https://www.amazon.com/dp/B07TZGPKC8
 
-About me
+##### About me
 
 I have about 15 years of experience in semiconductor industry, mostly as an engineer. I have spent time in design, synthesis, place and route, timing analysis, IP integration, verification and characterization. I like to design chips and also share my learning with others. I see immense value in many more people learning chip design skills.
