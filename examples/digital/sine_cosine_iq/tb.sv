@@ -16,7 +16,7 @@ sin_cos_iq_gen # (
 .LUT_SIZE ( LUT_SIZE ) , .LUT_DATA_WIDTH ( LUT_DATA_WIDTH )
  ) i_iqgen ( .* ) ;
 
-always clk = #1 clk; 
+always clk = #1 ~clk; 
 
 initial begin
    int cnt;
@@ -30,10 +30,12 @@ initial begin
    @(posedge clk);
    
    repeat ( 12*LUT_SIZE) @(posedge clk) begin
-     $display ( "Time %d, sin %d deg , cos %d" , cnt++, dsin, dcos ) ;
-     $fwrite ( fd, "%d,%d,%d" , cnt++, dsin, dcos ) ;
+     $display ( "Time %d, sin %d deg , cos %d" , cnt, dsin, dcos ) ;
+     $fwrite ( fd, "%d,%d,%d\n" , cnt, dsin, dcos ) ;
+	 cnt++;
    end
    $fclose ( fd ) ;
+   $finish;
 end
 
 initial begin
