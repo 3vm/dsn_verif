@@ -9,7 +9,7 @@ parameter int LUT_DATA_WIDTH = 12 ;
 real angle_rad , angle_deg ;
 real sin_val ;
 bit rstn , clk , en ;
-logic [ LUT_DATA_WIDTH-1 : 0 ] dsin , dcos ;
+logic signed [ LUT_DATA_WIDTH-1 : 0 ] dsin , dcos ;
 parameter string outfile = "IQ_out.txt" ;
 int fd ;
 sin_cos_iq_gen # (
@@ -30,7 +30,7 @@ initial begin
    @(posedge clk);
    
    repeat ( 12*LUT_SIZE) @(posedge clk) begin
-     $display ( "Time %d, sin %d deg , cos %d" , cnt, dsin, dcos ) ;
+     $display ( "Sample No. %d, sin %d , cos %d" , cnt, dsin, dcos ) ;
      $fwrite ( fd, "%d,%d,%d\n" , cnt, dsin, dcos ) ;
 	 cnt++;
    end
