@@ -1,7 +1,7 @@
 
 module sin_cos_iq_gen
 # (
-parameter int LUT_SIZE = 16 ,
+parameter int LUT_SIZE = 256 ,
 parameter int LUT_DATA_WIDTH = 12
  ) (
  input clk , rstn , 

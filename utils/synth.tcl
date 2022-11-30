@@ -1,6 +1,10 @@
 set EHGU_HOME $env(EHGU_HOME)
 source synth.cfg.tcl
+set synth_design_options ""
 
+if { [info exists part_num] } {
+  set synth_design_options "$synth_design_options -part $part_num"
+}
 set dirname syn
 #set curdir [ basename [ pwd ]]
 
@@ -21,7 +25,10 @@ foreach f $design_files {
 #add_files ../constraints.sdc
 
 set_property top $design_top [current_fileset]
-  synth_design
+
+#synth_design $synth_design_options
+eval "synth_design $synth_design_options"
+
 #  place_design
 #  route_design
   
