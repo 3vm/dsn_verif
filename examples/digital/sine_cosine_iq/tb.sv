@@ -16,26 +16,24 @@ sin_cos_iq_gen # (
 .LUT_SIZE ( LUT_SIZE ) , .LUT_DATA_WIDTH ( LUT_DATA_WIDTH )
  ) i_iqgen ( .* ) ;
 
-always clk = #1 ~clk; 
+always clk = #1 ~clk ;
 
 initial begin
-   int cnt;
+   int cnt ;
    fd = $fopen ( outfile , "w" ) ;
-
+  
    rstn = 0 ; en = 0 ;
-   repeat (2) @(posedge clk);
-   rstn = 1; 
-   @(posedge clk);
-   en = 1; 
-   @(posedge clk);
-   
-   repeat ( 12*LUT_SIZE) @(posedge clk) begin
-     $display ( "Sample No. %d, sin %d , cos %d" , cnt, dsin, dcos ) ;
-     $fwrite ( fd, "%d,%d,%d\n" , cnt, dsin, dcos ) ;
-	 cnt++;
+   repeat ( 2 ) @ ( posedge clk ) ;
+   rstn = 1 ;
+   @ ( posedge clk ) ;
+   en = 1 ;
+   repeat ( 12 * LUT_SIZE ) @ ( posedge clk ) begin
+     $display ( "Sample No. %d , sin %d , cos %d" , cnt , dsin , dcos ) ;
+     $fwrite ( fd , "%d , %d , %d\n" , cnt , dsin , dcos ) ;
+     cnt ++ ;
    end
    $fclose ( fd ) ;
-   $finish;
+   $finish ;
 end
 
 initial begin

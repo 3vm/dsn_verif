@@ -21,7 +21,7 @@ initial begin
   lut_processing_c #(.LUT_SIZE(LUT_SIZE) , .LUT_DATA_WIDTH(LUT_DATA_WIDTH))  :: gen_sinewave_lut ( lut ) ;
 
   for ( int i = 0 ; i < LUT_SIZE ; i++ ) begin
-  	$display("Angle %f rad, %f deg, sin(angle) %f", angle_rad, angle_deg, lut[i]);
+  	$display("Angle %f rad, %f deg, sin(angle) %f %d", angle_rad, angle_deg, lut[i], lut[i]);
   	$fwrite(fd,"%d\n", lut[i]);
   end
   $fclose(fd);
