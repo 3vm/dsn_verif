@@ -13,6 +13,7 @@ localparam MEAS_WINDOW = 10 ;
 
 logic clk ;
 logic result ;
+realtime tnow, tprev, delta;
 real fout , exp_fout ;
 
 astable # ( .R1 ( R1 ) , .R2 ( R2 ) , .C ( C ) ) dut ( .clk ( clk ) ) ;
@@ -34,8 +35,23 @@ initial begin
    $finish ;
 end
 
+real redge, fedge, period, duty_cycle;
 
-initial $monitor("Clock %b Time %t",clk, $realtime());
+initial begin
+  forever begin
+  @(negedge clk);
+  tnow = $realtime;
+  @(posedge clk);
+  redge = $realtime - tnow;
+  @(negedge clk);
+  fedge = $realtime - redge;
+  @(posedge clk);
+  period = $realtime - redge;
+  duty_cycle = (fedge - redge)/period;
+  end
+end
+
+initial $monitor("Clock %b Time %t, Duty Cycle %1.2f",clk, $realtime(),duty_cycle);
 
  logic vikram ;
 endmodule
