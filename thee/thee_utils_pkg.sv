@@ -6,7 +6,7 @@ timeunit 1ns ;
 timeprecision 100ps ;
 
  class util_tasks_c # ( string disp_type = "binary" , type T = int , int SIZE = 3 ) ;
- static function void arr_print ( T inp_array ) ;
+ static function void arr_print ( T inp_array [SIZE]) ;
  for ( int i = 0 ; i < SIZE ; i ++ ) begin
    if ( disp_type == "binary" ) begin
      $write ( "%b " , inp_array [ i ] ) ;
