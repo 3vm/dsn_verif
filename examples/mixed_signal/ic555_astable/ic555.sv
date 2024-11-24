@@ -17,14 +17,14 @@ real vcc_1by3 , vcc_2by3 ;
 assign   vcc_1by3 = pin8_vcc / 3.0 ;
 assign   vcc_2by3 = 2.0 * vcc_1by3 ;
 
- // comparators
+// comparators
 logic comp0_out , comp1_out ;
 
 assign comp0_out = ( pin6_thresh > vcc_2by3 ) ? 1'b1 : 1'b0 ;
 assign comp1_out = ( vcc_1by3 > pin2_trigger ) ? 1'b1 : 1'b0 ;
 
 sr_latch i_srlat (
-.async_rstn ( rst ) ,
+.async_rstn ( pin4_reset ) , //Check if reset is connected straight to latch?
 .s ( comp1_out ) ,
 .r ( comp0_out ) ,
 .q ( q )
