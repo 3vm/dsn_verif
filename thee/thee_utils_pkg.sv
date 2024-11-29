@@ -5,13 +5,20 @@ package thee_utils_pkg ;
 timeunit 1ns ;
 timeprecision 100ps ;
 
+function automatic void swap ( ref int a , b ) ;
+ int tmp ;
+ tmp = a ;
+ a = b ;
+ b = tmp ;
+endfunction
+
  class util_tasks_c # ( string disp_type = "binary" , type T = int , int SIZE = 3 ) ;
  static function void arr_print ( T inp_array [SIZE]) ;
  for ( int i = 0 ; i < SIZE ; i ++ ) begin
    if ( disp_type == "binary" ) begin
      $write ( "%b " , inp_array [ i ] ) ;
    end else begin
-     $write ( "%d " , inp_array [ i ] ) ;
+     $write ( "%3d " , inp_array [ i ] ) ;
    end
  end
  $write ( "\n" ) ;

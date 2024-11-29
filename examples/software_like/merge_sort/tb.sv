@@ -7,45 +7,47 @@ timeprecision 100ps ;
 
 
 int tv [ 9 ] = '{ 7 , 15 , 16 , 1 , 8 , 7 , 6 , 4 , 10 } ;
-int sorted [ 9 ] ;
+int arr [ 9 ] ;
+int buffer [ 9 ] ;
 
 initial begin
-   $display ( "Input unsorted data" ) ;
-   util.arr_print ( tv ) ;
-   merge_sort ( .arr ( tv ) , .low ( 0 ) , .high ( 9-1 ) , .sorted ( sorted ) ) ;
+   arr = tv ;
+   $display ( "Input arr data" ) ;
+   util.arr_print ( arr ) ;
+   merge_sort ( .arr ( arr ) , .buffer ( buffer ) , .low ( 0 ) , .high ( 9-1 ) ) ;
    $display ( "Output sorted data" ) ;
-   util.arr_print ( sorted ) ;
+   util.arr_print ( arr ) ;
 end
 
 endmodule
 
-function automatic void merge_sort ( ref int arr [ 9 ] , input int low , high , ref int sorted [ 9 ] ) ;
+function automatic void merge_sort ( ref int arr [ 9 ] , int buffer [ 9 ] , input int low , high ) ;
    int low_left , low_right ;
    int high_left , high_right ;
-                                     
+  
    if ( high -low <= 0 ) begin
      return ;
    end
   
-   split_arr ( .arr ( arr ) , .low ( low ) , .high ( high ) ,
+   split_arr ( .low ( low ) , .high ( high ) ,
    .low_left ( low_left ) , .high_left ( high_left ) ,
    .low_right ( low_right ) , .high_right ( high_right ) ) ;
-   $display ( "%3d %3d %3d %3d" , low_left , high_left , low_right , high_right ) ;
+   $display ( "left array : %3d %3d Right array : %3d %3d" , low_left , high_left , low_right , high_right ) ;
   
-   merge_sort ( .arr ( arr ) , .low ( low_left ) , .high ( high_left ) , .sorted ( sorted ) ) ;
-   merge_sort ( .arr ( arr ) , .low ( low_right ) , .high ( high_right ) , .sorted ( sorted ) ) ;
+   merge_sort ( .arr ( arr ) , .buffer ( buffer ) , .low ( low_left ) , .high ( high_left ) ) ;
+   merge_sort ( .arr ( arr ) , .buffer ( buffer ) , .low ( low_right ) , .high ( high_right ) ) ;
   
    $display ( "Before merge" ) ;
    util.arr_print ( arr ) ;
    $display ( "Merging left : %3d %3d with right : %3d %3d" , low_left , high_left , low_right , high_right ) ;
   
-   merge ( .arr ( arr ) , .low_left ( low_left ) , .high_left ( high_left ) , .low_right ( low_right ) , .high_right ( high_right ) , .sorted ( sorted ) ) ;
+   merge ( .arr ( arr ) , .low_left ( low_left ) , .high_left ( high_left ) , .low_right ( low_right ) , .high_right ( high_right ) , .buffer ( buffer ) ) ;
    $display ( "After merge" ) ;
-   util.arr_print ( sorted ) ;
+   util.arr_print ( arr ) ;
 endfunction
 
-function automatic void split_arr ( ref int arr [ 9 ] , input int low , high , output int low_left , low_right , high_left , high_right ) ;
-  $display ( "Splitting %3d to %3d" , low , high ) ;
+function automatic void split_arr ( input int low , high , output int low_left , low_right , high_left , high_right ) ;
+   $display ( "Splitting %3d to %3d" , low , high ) ;
    low_left = low ;
    high_right = high ;
    if ( high - low == 0 ) begin
@@ -60,23 +62,27 @@ function automatic void split_arr ( ref int arr [ 9 ] , input int low , high , o
    end
 endfunction
 
-function automatic void merge ( ref int arr [ 9 ] , input int low_left , low_right , high_left , high_right , ref int sorted [ 9 ] ) ;
+function automatic void merge ( ref int arr [ 9 ] , input int low_left , low_right , high_left , high_right , ref int buffer [ 9 ] ) ;
    for ( int k = low_left , i = low_left , j = low_right ; k <= high_right ; k ++ ) begin
      if ( i <= high_left && j <= high_right ) begin
        $display ( "Comparing locations %d and %d" , i , j ) ;
        if ( arr [ i ] > arr [ j ] ) begin
-         sorted [ k ] = arr [ j ] ;
+         buffer [ k ] = arr [ j ] ;
          j ++ ;
        end else begin
-         sorted [ k ] = arr [ i ] ;
+         buffer [ k ] = arr [ i ] ;
          i ++ ;
        end
      end else if ( i <= high_left ) begin
-       sorted [ k ] = arr [ i ] ;
+       buffer [ k ] = arr [ i ] ;
        i ++ ;
      end else begin
-       sorted [ k ] = arr [ j ] ;
+       buffer [ k ] = arr [ j ] ;
        j ++ ;
      end
+   end
+   // Overwrite the input arr
+   for ( int k = low_left ; k <= high_right ; k ++ ) begin
+     arr [ k ] = buffer [ k ] ;
    end
 endfunction
