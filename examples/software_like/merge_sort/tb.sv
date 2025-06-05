@@ -9,10 +9,13 @@ timeprecision 100ps ;
 int tv [ 9 ] = '{ 7 , 15 , 16 , 1 , 8 , 7 , 6 , 4 , 10 } ;
 int arr [ 9 ] ;
 int buffer [ 9 ] ;
+int tmp [2][2] = '{ '{1,2}, '{3,4}};
 
 initial begin
    arr = tv ;
    $display ( "Input arr data" ) ;
+   $display ( arr );
+   $display ( tmp );
    util.arr_print ( arr ) ;
    merge_sort ( .arr ( arr ) , .buffer ( buffer ) , .low ( 0 ) , .high ( 9-1 ) ) ;
    $display ( "Output sorted data" ) ;
