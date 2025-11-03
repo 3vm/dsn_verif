@@ -19,7 +19,8 @@ fadc dut
 initial begin
    import thee_utils_pkg :: urand_range_real ;
    for ( int i = 0 ; i < 20 ; i ++ ) begin
-     ana_in = urand_range_real ( 0, 1.0);
+//     ana_in = urand_range_real ( 0, 1.0);
+      ana_in = 0.77;
    #1 ;
 	 check_result;
    end

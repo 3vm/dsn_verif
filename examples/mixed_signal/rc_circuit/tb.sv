@@ -17,8 +17,6 @@ thee_rc #(.R(R), .C(C)) rc
 
 import thee_mathsci_consts_pkg :: const_pi ;
 import thee_utils_pkg :: compare_real_fixed_err ;
-real angle_rad ;
-int LUT_SIZE = 128 ;
 
 initial begin
      ana_in = 0 ;
@@ -62,5 +60,17 @@ initial begin
    end
 end
 
-  logic vikram;
+int fd;
+
+initial begin
+ fd = $fopen("Wave.dat","w");
+ forever begin
+   #0.1ns;
+   $fwrite(fd,"%e,%e,%e\n", $realtime(),ana_in,cap_voltage);
+   end
+   $fclose(fd);
+end
+
+logic vikram;
+
 endmodule
