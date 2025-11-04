@@ -4,6 +4,7 @@ module tb ;
 timeunit 1ns ; 
 timeprecision 1ps ;
 parameter real TIMEUNIT_SCALING=1e-9; //keep same as timeunit
+localparam real TIME_CONST_10TO90 = $ln(9);
 
 parameter real R = 1000, C = 10e-12;
 real cap_voltage , ana_in ;
@@ -42,14 +43,14 @@ initial begin
        cross10pcnt = $realtime ( ) ;
        $display ( "Crossing 10 percent voltage at %t" , cross10pcnt ) ;
        $display ( "Time Constant for falling edge" ) ;
-       timeconstant = -(cross90pcnt -cross10pcnt)/2.2 * TIMEUNIT_SCALING ;
+       timeconstant = -(cross90pcnt -cross10pcnt)/TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
        compare_real_fixed_err ( .expected ( R*C ) ,  .actual ( timeconstant ) , .result ( result ) , .max_err ( R*C*(2/100.0) ) ) ;
        $display ( "Expected RC time constant %1.3e, Actual time constant %1.3e", R*C, timeconstant );
      end else if  ( cap_voltage > 0.9 && prev_cap_voltage <= 0.9 ) begin
        cross90pcnt = $realtime ( ) ;
        $display ( "Crossing 90 percent voltage at %t" , cross90pcnt ) ;
        $display ( "Time Constant for rising edge" ) ;
-       timeconstant = (cross90pcnt -cross10pcnt)/2.2 * TIMEUNIT_SCALING ;
+       timeconstant = (cross90pcnt -cross10pcnt)/TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
        compare_real_fixed_err ( .expected ( R*C ) ,  .actual ( timeconstant ) , .result ( result ) , .max_err ( R*C*(2/100.0) ) ) ;
        $display ( "Expected RC time constant %1.3e, Actual time constant %1.3e", R*C, timeconstant );
      end else if  ( cap_voltage < 0.9 && prev_cap_voltage >= 0.9 ) begin
