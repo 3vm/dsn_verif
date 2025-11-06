@@ -30,7 +30,7 @@ thee_rc #(.R(R), .C(C)) rc2
 .vcap ( net2 )
  ) ;
 
-localparam real GAIN_PT_IN0 = 0.4, GAIN_PT_IN1=0.6, GAIN_PT_OUT0=0.0, GAIN_PT_OUT1=1.0;
+localparam real GAIN_PT_IN0 = 0.47, GAIN_PT_IN1=0.53, GAIN_PT_OUT0=0.0, GAIN_PT_OUT1=1.0;
 always @(net2) begin
  if (net2 < GAIN_PT_IN0)
 	 fb = 1.0;
@@ -48,7 +48,7 @@ initial begin
 	 force net0 = 0.002;
 	 #0.1ns;
 	 release net0;
-     #150ns ;
+     #500ns ;
      $finish ;
 end
 
@@ -90,7 +90,7 @@ initial begin
  fd = $fopen("Wave.dat","w");
  forever begin
    #0.1ns;
-   $fwrite(fd,"%e,%e,%e\n", $realtime(),fb,net2);
+   $fwrite(fd,"%e,%e,%e,%e,%e\n", $realtime(),fb,net0,net1,net2);
    end
    $fclose(fd);
 end
