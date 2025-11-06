@@ -48,10 +48,10 @@ import thee_mathsci_consts_pkg :: const_pi ;
 import thee_utils_pkg :: compare_real_fixed_err ;
 
 initial begin
-     // #0.1ns;
-	 // force net0 = 0.002;
-	 // #0.1ns;
-	 // release net0;
+     #0.1ns;
+	 force net0 = 0.002;
+	 #0.1ns;
+	 release net0;
      #150ns ;
      $finish ;
 end
