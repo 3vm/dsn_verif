@@ -30,16 +30,16 @@ thee_rc #(.R(R), .C(C)) rc2
 .vcap ( net2 )
  ) ;
 
-
+localparam real GAIN_PT_IN0 = 0.4, GAIN_PT_IN1=0.6, GAIN_PT_OUT0=0.1, GAIN_PT_OUT1=0.9;
 always @(net2) begin
   if (net2 < 0.1)
      fb = 1.0;
-  else if (net2 < 0.3)
-	 fb = 0.9;
-  else if (net2 < 0.7) //amplifing range
-	 fb = 0.5 - (net2-0.5)*(0.9-0.1)/(0.7-0.3);
-  else if (net2<0.9)
-	 fb = 0.1;
+  else if (net2 < GAIN_PT_IN0)
+	 fb = GAIN_PT_OUT1;
+  else if (net2 < GAIN_PT_IN1) //amplifing range
+	 fb = 0.5 - (net2-0.5)*(GAIN_PT_OUT1-GAIN_PT_OUT0)/(GAIN_PT_IN1-GAIN_PT_IN0);
+  else if (net2< 0.9)
+	 fb = GAIN_PT_OUT1;
   else
 	 fb = 0;
 end  
