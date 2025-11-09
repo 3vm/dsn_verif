@@ -1,4 +1,4 @@
-module sr_latch (
+module ehgu_sr_latch (
 input logic async_rstn ,
 input logic s ,
 input logic r ,

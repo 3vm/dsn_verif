@@ -17,7 +17,8 @@ $EHGU_HOME/thee/thee_clk_gen_module.sv
 $EHGU_HOME/thee/thee_clk_freq_meter.sv
 $EHGU_HOME/thee/thee_pg_amp.sv
 $EHGU_HOME/thee/thee_rc.sv
-ic555.sv
+
+$EHGU_HOME/examples/mixed_signal/ic555_astable/ic555.sv
 rc_network.sv
-astable.sv
+monostable.sv
 tb.sv

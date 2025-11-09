@@ -3,3 +3,7 @@ Possible bugs
 cdc problems in analog to digital transfer - sample and hold
 
 data === expected_data will pass when both data and expd are x. Need to add !$isunknown(data) to the check
+
+Fractional PLL uses Moving Average filter as loop filter. This does not provide the phase compensation to keep the loop stable. Need to check.
+
+RC phase shift oscillator uses C connected to ground but literature shows C in high pass mode, 2. each RC section is acting independently of the next (internal impedance contribution is missing)
