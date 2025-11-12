@@ -12,7 +12,8 @@ function automatic void swap ( ref int a , b ) ;
  b = tmp ;
 endfunction
 
- class util_tasks_c # ( string disp_type = "binary" , type T = int , int SIZE = 3 ) ;
+ class util_tasks_c # ( string disp_type = "binary" , type T = int , int SIZE = 3, ROWS=2, COLS=2 ) ;
+ 
  static function void arr_print ( T inp_array [SIZE]) ;
  for ( int i = 0 ; i < SIZE ; i ++ ) begin
    if ( disp_type == "binary" ) begin
@@ -24,10 +25,27 @@ endfunction
  $write ( "\n" ) ;
 
  endfunction
+ 
+ static function void arr_print2d ( T inp_array [ROWS][COLS]) ;
+ for ( int i = 0 ; i < ROWS ; i ++ ) begin
+ for ( int j = 0 ; j < COLS ; j ++ ) begin
+   if ( disp_type == "binary" ) begin
+     $write ( "%b " , inp_array [ i ][j] ) ;
+   end else begin
+     $write ( "%3d " , inp_array [ i ] [j]) ;
+   end
+ end
+ $write ( "\n" ) ;
+ end
+ endfunction
+
  endclass
 
  class lut_processing_c # ( int LUT_SIZE = 32 , int LUT_DATA_WIDTH = 10 ) ;
  typedef logic signed [ LUT_DATA_WIDTH-1 : 0 ] lut_t [ LUT_SIZE ] ;
+
+//LUT gENERATION may be moved to Ehgu design lib
+ 
  static function void gen_sinewave_lut ( output lut_t lut ) ;
  import thee_mathsci_consts_pkg :: const_pi ;
  real angle_rad ;
