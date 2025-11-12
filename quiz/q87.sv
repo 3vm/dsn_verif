@@ -10,7 +10,7 @@ bit [9:0] tv = 'b 0101100101 ;
 always ck = #1ns ~ck;
 
 //always w = $past (q,3,,@(posedge ck));
-//WARNING: [VRFC 10-1771] potential always loop found [/home/velai/Desktop/RTL_design/dsn_verif/quiz/q87.sv:12]
+//WARNING: [VRFC 10-1771] potential always loop found [~/Desktop/RTL_design/dsn_verif/quiz/q87.sv:12]
 
 always @(ck)
   x = $past (q,3,,@(posedge ck));
