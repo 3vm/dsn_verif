@@ -32,6 +32,19 @@ for(int i = 0 ; i<10;i++) begin
 	else
 		$display ("Vector pass dec_out %b addr %d ",dec_out, addr);
 end
+		
+$display("Test for segmented decoder");
+
+for(int i = 0 ; i<10;i++) begin
+	addr = $urandom();
+	#0;
+	if ( (dec_out_block[addr] !== 1) || ($countones(dec_out_block) !== 1) ) begin
+		result = 0;
+		$display ("Vector fail dec_out %b addr %d ",dec_out_block, addr);
+	end
+	else
+		$display ("Vector pass dec_out %b addr %d ",dec_out_block, addr);	
+end
 
 if ( result ) 
   $display ("All Vectors passed");

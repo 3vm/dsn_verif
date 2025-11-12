@@ -16,10 +16,7 @@ generate
 	begin : gendec
 		ehgu_decoder_big_segment #(.WIDTH(WIDTH) , .SEG_WIDTH(SEG_WIDTH), .LOCAL_ADDR(i) ) dec_unit_i (
 			.addr,
-//			.dec_out (dec_out[i+:2**SEG_WIDTH-1])
-//			.dec_out (dec_out[i+:2**SEG_WIDTH])
-//			.dec_out (dec_out[2**(i+1)-1 -: 2**SEG_WIDTH-1])
-			.dec_out (dec_out[2**(i+SEG_WIDTH)-1 +: 2**SEG_WIDTH])
+			.dec_out (dec_out[(i+1)*(2**SEG_WIDTH)-1 : (i)*(2**SEG_WIDTH) ])
 		);
 	end
 endgenerate
