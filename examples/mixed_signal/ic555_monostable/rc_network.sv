@@ -8,7 +8,7 @@ parameter real TIME_STEP_UNIT = 1e-9 // To be matched with timepresision and tim
  (
  input logic dis ,
  input real vcc ,
-output real vcap
+ output real vcap
  ) ;
 
 timeunit 1ns ;
