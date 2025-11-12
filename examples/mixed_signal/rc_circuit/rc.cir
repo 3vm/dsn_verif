@@ -1,0 +1,5 @@
+.title RC
+V1 in 0 dc 0 PULSE (0 5 1u 1u 1u 10u 20u)
+R in out 10k
+C out 0 50p
+.end
