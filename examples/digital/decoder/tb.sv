@@ -5,12 +5,19 @@ parameter WIDTH=4;
 
 logic result ;
 logic [WIDTH-1:0] addr;
-logic [2**WIDTH-1:0] dec_out;
+logic [2**WIDTH-1:0] dec_out, dec_out_block;
 
 decoder_large # ( .WIDTH(WIDTH) ) dut 
 (
 	.addr,
 	.dec_out
+);
+
+
+ehgu_decoder_big # ( .WIDTH(WIDTH) ) dut2 
+(
+	.addr,
+	.dec_out (dec_out_block)
 );
 
 initial begin

@@ -3,7 +3,9 @@
 //2019 Nov
 module decoder_large
 # ( 
-parameter WIDTH=8
+parameter WIDTH=8,
+
+parameter UNIT_WIDTH=2
 )
 (
 	input logic [WIDTH-1:0] addr,
