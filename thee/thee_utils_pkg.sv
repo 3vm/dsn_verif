@@ -5,6 +5,56 @@ package thee_utils_pkg ;
 timeunit 1ns ;
 timeprecision 100ps ;
 
+ task automatic print_test_result
+ (
+ logic result
+ ) ;
+
+string pstr = "\
+  PP  PP          PP             PP  PP       PP  PP        \n\
+  PP    PP      PP  PP        PP       PP   PP       PP   \n\
+  PP    PP    PP      PP        PP            PP             \n\
+  PP  PP     PP   PP   PP        PP  PP        PP  PP   \n\
+  PP        PP          PP             PP            PP           \n\
+  PP       PP            PP    PP     PP     PP     PP       \n\
+  PP      PP              PP     PP PP         PP PP         \n\
+ ";
+ if ( result === 1 ) begin
+   repeat ( 4 ) $display ( "Test Pass" ) ;
+   $display(pstr);
+ end else if ( result === 1'bx )
+   repeat ( 4 ) $display ( "Test Incomplete" ) ;
+ else
+   repeat ( 4 ) $display ( "Test Fail" ) ;
+ endtask
+
+ task automatic update_test_status
+ (
+ input logic this_result,
+ inout logic result
+ ) ;
+ if ( this_result === 1 && result === 'x )
+   result = 1 ;
+ else if ( this_result != 1 )
+   result = 0 ;
+ endtask
+
+task automatic create_test_result_file
+(
+ logic result
+ ) ;
+string fn;
+int fp;
+ if ( result === 1 )
+   fn="touch_pass.txt";
+ else if ( result === 1'bx )
+   fn="touch_incomplete.txt";
+ else
+   fn="touch_fail.txt";
+fp=$fopen(fn,"w"); 
+$fclose(fp);
+endtask
+
 function automatic void swap ( ref int a , b ) ;
  int tmp ;
  tmp = a ;
@@ -177,45 +227,6 @@ endtask
  out = ( low + ( tmp * 1.0 / MAX_VALUE ) * ( high-low ) ) ;
  return out ;
  endfunction
-
- task automatic print_test_result
- (
- logic result
- ) ;
- if ( result === 1 )
-   repeat ( 4 ) $display ( "Test Pass" ) ;
- else if ( result === 1'bx )
-   repeat ( 4 ) $display ( "Test Incomplete" ) ;
- else
-   repeat ( 4 ) $display ( "Test Fail" ) ;
- endtask
-
- task automatic update_test_status
- (
- input logic this_result,
- inout logic result
- ) ;
- if ( this_result === 1 && result === 'x )
-   result = 1 ;
- else if ( this_result != 1 )
-   result = 0 ;
- endtask
-
-task automatic create_test_result_file
-(
- logic result
- ) ;
-string fn;
-int fp;
- if ( result === 1 )
-   fn="touch_pass.txt";
- else if ( result === 1'bx )
-   fn="touch_incomplete.txt";
- else
-   fn="touch_fail.txt";
-fp=$fopen(fn,"w"); 
-$fclose(fp);
-endtask
 
 function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;
  real res ;

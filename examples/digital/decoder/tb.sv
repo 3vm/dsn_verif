@@ -1,6 +1,6 @@
 
 module tb ;
-
+import thee_utils_pkg::print_test_result;
 parameter WIDTH=4;
 
 logic result ;
@@ -46,10 +46,7 @@ for(int i = 0 ; i<10;i++) begin
 		$display ("Vector pass dec_out %b addr %d ",dec_out_block, addr);	
 end
 
-if ( result ) 
-  $display ("All Vectors passed");
-else
-  $display ("Some Vectors failed");
+print_test_result(result);
 
 $finish;
 end
