@@ -11,21 +11,46 @@ timeprecision 100ps ;
  ) ;
 
 string pstr = "\
-  PP  PP          PP             PP  PP       PP  PP        \n\
+  PP  PP          PP             PP  PP       PP  PP      \n\
   PP    PP      PP  PP        PP       PP   PP       PP   \n\
-  PP    PP    PP      PP        PP            PP             \n\
-  PP  PP     PP   PP   PP        PP  PP        PP  PP   \n\
-  PP        PP          PP             PP            PP           \n\
-  PP       PP            PP    PP     PP     PP     PP       \n\
-  PP      PP              PP     PP PP         PP PP         \n\
+  PP    PP    PP      PP        PP            PP          \n\
+  PP  PP     PP   PP   PP        PP  PP        PP  PP     \n\
+  PP        PP          PP             PP            PP   \n\
+  PP       PP            PP    PP     PP     PP     PP    \n\
+  PP      PP              PP     PP PP         PP PP      \n\
  ";
+ 
+string fstr = "\
+  FFFFFFFF      FF        FFFFFF FF         \n\
+  FF           FF FF        FF   FF         \n\
+  FF          FF   FF       FF   FF         \n\
+  FFFFFFFF   FFFFFFFFF      FF   FF         \n\
+  FF        FF       FF     FF   FF         \n\
+  FF       FF         FF    FF   FF         \n\
+  FF      FF           FF FFFFFF FFFFFFFFF  \n\
+ ";
+
+string fbstr = "\
+  FFFFFF   FF              FF        FF        FF   FFFFFF   FF   FF   \n\
+  FF    FF FF             FF FF      FFF       FF  FF        FF  FF    \n\
+  FF    FF FF            FF   FF     FF  FF    FF  FF        FF FF     \n\
+  FFFFFF   FF           FFFFFFFFF    FF    FF  FF  FF        FFFF      \n\
+  FF    FF FF          FF       FF   FF     FF FF  FF        FF FF     \n\
+  FF    FF FF         FF         FF  FF       FFF  FF        FF  FF    \n\
+  FFFFFF   FFFFFFFFF FF           FF FF        FF   FFFFFFF  FF   FF   \n\
+ ";
+  
  if ( result === 1 ) begin
-   repeat ( 4 ) $display ( "Test Pass" ) ;
+   repeat ( 1 ) $display ( "Test Pass" ) ;
    $display(pstr);
- end else if ( result === 1'bx )
-   repeat ( 4 ) $display ( "Test Incomplete" ) ;
- else
-   repeat ( 4 ) $display ( "Test Fail" ) ;
+ end else if ( result === 1'bx ) begin
+   repeat ( 1 ) $display ( "Test Incomplete" ) ;
+   $display(fstr);
+   $display(fbstr);
+ end else begin
+   repeat ( 1 ) $display ( "Test Fail" ) ;
+   $display(fstr);
+ end
  endtask
 
  task automatic update_test_status
