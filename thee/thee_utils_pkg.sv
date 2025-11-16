@@ -10,14 +10,15 @@ timeprecision 100ps ;
  logic result
  ) ;
 
+//Used vi block selection ctrl+v mode to edit this or gedit. Notepad++ is not formatting it correctly, need a monospace font as as the font used in terminal.
 string pstr = "\
-  PP  PP          PP             PP  PP       PP  PP      \n\
-  PP    PP      PP  PP        PP       PP   PP       PP   \n\
-  PP    PP    PP      PP        PP            PP          \n\
-  PP  PP     PP   PP   PP        PP  PP        PP  PP     \n\
-  PP        PP          PP             PP            PP   \n\
-  PP       PP            PP    PP     PP     PP     PP    \n\
-  PP      PP              PP     PP PP         PP PP      \n\
+  PP PP        PP        PPPPP     PPPPP   \n\
+  PP   PP     PPPP     PP        PP        \n\
+  PP   PP    PP  PP    PP        PP        \n\
+  PP PP     PPPPPPPP     PPPP      PPPP    \n\
+  PP       PP      PP         PP        PP \n\
+  PP      PP        PP        PP        PP \n\
+  PP     PP          PP  PPPPP     PPPPP   \n\
  ";
  
 string fstr = "\
@@ -29,23 +30,22 @@ string fstr = "\
   FF       FF         FF    FF   FF         \n\
   FF      FF           FF FFFFFF FFFFFFFFF  \n\
  ";
-
+ 
 string fbstr = "\
-  FFFFFF   FF              FF        FF        FF   FFFFFF   FF   FF   \n\
-  FF    FF FF             FF FF      FFF       FF  FF        FF  FF    \n\
-  FF    FF FF            FF   FF     FF  FF    FF  FF        FF FF     \n\
-  FFFFFF   FF           FFFFFFFFF    FF    FF  FF  FF        FFFF      \n\
-  FF    FF FF          FF       FF   FF     FF FF  FF        FF FF     \n\
-  FF    FF FF         FF         FF  FF       FFF  FF        FF  FF    \n\
-  FFFFFF   FFFFFFFFF FF           FF FF        FF   FFFFFFF  FF   FF   \n\
+  FFFFFFFF      FF        FFFFFF FF           FFFFFF   FF              FF        FF       FF  FF    FF \n\
+  FF           FF FF        FF   FF           FF    FF FF             FF FF      FFF      FF  FF   FF  \n\
+  FF          FF   FF       FF   FF           FF    FF FF            FF   FF     FF FF    FF  FF FF    \n\
+  FFFFFFFF   FFFFFFFFF      FF   FF           FFFFFF   FF           FFFFFFFFF    FF   FF  FF  FFF      \n\
+  FF        FF       FF     FF   FF           FF    FF FF          FF       FF   FF    FF FF  FF FF    \n\
+  FF       FF         FF    FF   FF           FF    FF FF         FF         FF  FF      FFF  FF   FF  \n\
+  FF      FF           FF FFFFFF FFFFFFFFF    FFFFFF   FFFFFFFFF FF           FF FF       FF  FF    FF \n\
  ";
-  
+ 
  if ( result === 1 ) begin
    repeat ( 1 ) $display ( "Test Pass" ) ;
    $display(pstr);
  end else if ( result === 1'bx ) begin
    repeat ( 1 ) $display ( "Test Incomplete" ) ;
-   $display(fstr);
    $display(fbstr);
  end else begin
    repeat ( 1 ) $display ( "Test Fail" ) ;
