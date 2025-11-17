@@ -5,6 +5,17 @@ package thee_utils_pkg ;
 timeunit 1ns ;
 timeprecision 100ps ;
 
+task automatic update_test_status
+ (
+ input logic this_result,
+ inout logic result
+ ) ;
+ if ( this_result === 1 && result === 'x )
+   result = 1 ;
+ else if ( this_result != 1 )
+   result = 0 ;
+endtask
+
  task automatic print_test_result
  (
  logic result
@@ -53,17 +64,6 @@ string fbstr = "\
  end
  endtask
 
- task automatic update_test_status
- (
- input logic this_result,
- inout logic result
- ) ;
- if ( this_result === 1 && result === 'x )
-   result = 1 ;
- else if ( this_result != 1 )
-   result = 0 ;
- endtask
-
 task automatic create_test_result_file
 (
  logic result
@@ -73,11 +73,19 @@ int fp;
  if ( result === 1 )
    fn="touch_pass.txt";
  else if ( result === 1'bx )
-   fn="touch_incomplete.txt";
+   fn="touch_fail_blank.txt";
  else
    fn="touch_fail.txt";
 fp=$fopen(fn,"w"); 
 $fclose(fp);
+endtask
+
+task automatic save_test_result
+(
+ logic result
+) ;
+print_test_result(result);
+create_test_result_file(result);
 endtask
 
 function automatic void swap ( ref int a , b ) ;
