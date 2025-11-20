@@ -1,3 +1,4 @@
+
 import thee_utils_pkg :: util_tasks_c ;
 util_tasks_c # ( .disp_type ( "int" ) , .SIZE ( 9 ) ) util ;
 
@@ -5,21 +6,44 @@ module tb ;
 timeunit 1ns ;
 timeprecision 100ps ;
 
+localparam RANDOMIZE_TV = 1;
 
 int tv [ 9 ] = '{ 7 , 15 , 16 , 1 , 8 , 7 , 6 , 4 , 10 } ;
-int arr [ 9 ] ;
+int arr [ 9 ] , arr_chk [ 9 ] ;
 int buffer [ 9 ] ;
-int tmp [2][2] = '{ '{1,2}, '{3,4}};
+int tmp [ 2 ] [ 2 ] = '{ '{ 1 , 2 } , '{ 3 , 4 } } ;
+logic tresult ;
+
+import thee_utils_pkg :: save_test_result ;
+import thee_utils_pkg :: update_test_status ;
 
 initial begin
+   if ( RANDOMIZE_TV) begin
+      foreach (tv[i]) tv[i] = $urandom();
+   end	  
    arr = tv ;
+   arr_chk = tv ;
+  
    $display ( "Input arr data" ) ;
-   $display ( arr );
-   $display ( tmp );
+   $display ( arr ) ;
+   $display ( tmp ) ;
    util.arr_print ( arr ) ;
    merge_sort ( .arr ( arr ) , .buffer ( buffer ) , .low ( 0 ) , .high ( 9-1 ) ) ;
    $display ( "Output sorted data" ) ;
    util.arr_print ( arr ) ;
+   $display ( "Output SV sorted data" ) ;
+   $display ( "Before SV sort" ) ;
+   util.arr_print ( arr_chk ) ;
+   arr_chk.sort ;
+   $display ( "After SV sort" ) ;
+   util.arr_print ( arr_chk ) ;
+   if ( arr == arr_chk ) begin
+     update_test_status ( .result ( tresult ) , .this_result ( 1 ) ) ;
+   end else begin
+     update_test_status ( .result ( tresult ) , .this_result ( 0 ) ) ;
+   end
+   save_test_result ( tresult ) ;
+  
 end
 
 endmodule
