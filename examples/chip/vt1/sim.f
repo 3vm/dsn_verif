@@ -1,0 +1,8 @@
+timescale.sv
+//$EHGU_HOME/ehgu/ehgu_hamming_secded_pkg.sv
+pads.sv
+dac_r2r_ana_core.sv
+dac_r2r_dig_core.sv
+tb.sv
+dac_die_top.sv
+vt1.sv
