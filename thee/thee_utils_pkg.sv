@@ -196,6 +196,7 @@ endfunction
 
  task automatic check_approx_equality
  (
+ //add fail and pass message
  input real inp ,
  input real expected ,
  input real tolerance = 0.01 ,
@@ -231,6 +232,7 @@ endfunction
  endtask
  
  task automatic compare_real_fixed_err (
+ //merge with check_approx_equality - this function used in mixed signal examples
  input real expected,
  input real actual,
  input real max_err,
