@@ -3,7 +3,7 @@ package thee_utils_pkg ;
  // localparam time PKG_TIME_UNIT = 1ns ;
  // timeunit PKG_TIME_UNIT ;
 timeunit 1ns ;
-timeprecision 100ps ;
+timeprecision 1ps ;
 
 task automatic update_test_status
  (
