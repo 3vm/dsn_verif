@@ -6,3 +6,5 @@ dac_r2r_dig_core.sv
 tb.sv
 dac_die_top.sv
 vt1.sv
+i2c_ep.sv
+csr.sv

@@ -6,6 +6,9 @@ logic clk ;
 real fout ;
 real duty ;
 logic result;
+logic tresult ;
+import thee_utils_pkg :: save_test_result ;
+import thee_utils_pkg :: update_test_status ;
 
 localparam real FREQ = 520;
 
@@ -26,13 +29,11 @@ initial begin
    $display ( " Clkout frequency: %1.3e" , fout ) ;
    $display ( " Duty Cycle: %3.2f", duty );
    check_approx_equality ( .inp ( fout ) , .expected ( FREQ*1e6 ) , .result ( result ) ) ;
-     //TBD - Add automation for duty cycle check
-   if ( result == 1 ) begin
-     repeat ( 3 ) $display ( "PASS" ) ;
-   end else begin
-     repeat ( 3 ) $display ( "FAIL" ) ;
-   end
-  
+   update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
+   check_approx_equality ( .inp ( duty ) , .expected ( 0.5 ) , .result ( result ) ) ;
+   update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
+   save_test_result ( tresult ) ;
+
    $finish ;
 end
 
