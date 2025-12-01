@@ -1,16 +1,21 @@
 
 module tb ;
 
-timeunit 1ns ; 
+timeunit 1ns ;
 timeprecision 1ps ;
-parameter real TIMEUNIT_SCALING=1e-9; //keep same as timeunit
-localparam real TIME_CONST_10TO90 = $ln(9);
 
-parameter real R = 1000, C = 10e-12;
+logic tresult ;
+import thee_utils_pkg :: save_test_result ;
+import thee_utils_pkg :: update_test_status ;
+
+parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
+localparam real TIME_CONST_10TO90 = $ln ( 9 ) ;
+
+parameter real R = 1000 , C = 10e-12 ;
 real cap_voltage , ana_in ;
 logic rstn ;
 
-thee_rc #(.R(R), .C(C)) rc 
+thee_rc # ( .R ( R ) , .C ( C ) ) rc
  (
 .vin ( ana_in ) ,
 .vcap ( cap_voltage )
@@ -20,40 +25,43 @@ import thee_mathsci_consts_pkg :: const_pi ;
 import thee_utils_pkg :: compare_real_fixed_err ;
 
 initial begin
-     ana_in = 0 ;
-     #0.9ns ;
-     ana_in = 1 ;
-     #50ns ;
-     ana_in = 0 ;
-     #50ns ;
-     $finish ;
+   ana_in = 0 ;
+   #0.9ns ;
+   ana_in = 1 ;
+   #50ns ;
+   ana_in = 0 ;
+   #50ns ;
+   save_test_result ( tresult ) ;
+   $finish ;
 end
 
 initial begin
-  realtime cross10pcnt, cross90pcnt ;
-  real prev_cap_voltage, timeconstant ;
-  logic result;
-  enum { RISE, FALL } mode;
+   realtime cross10pcnt , cross90pcnt ;
+   real prev_cap_voltage , timeconstant ;
+   logic result ;
+   enum { RISE , FALL } mode ;
    forever @ ( cap_voltage ) begin
      if ( cap_voltage > 0.1 && prev_cap_voltage <= 0.1 ) begin
        cross10pcnt = $realtime ( ) ;
        $display ( "Crossing 10 percent voltage at %t" , cross10pcnt ) ;
-       mode=RISE;
+       mode = RISE ;
      end else if ( cap_voltage < 0.1 && prev_cap_voltage >= 0.1 ) begin
        cross10pcnt = $realtime ( ) ;
        $display ( "Crossing 10 percent voltage at %t" , cross10pcnt ) ;
        $display ( "Time Constant for falling edge" ) ;
-       timeconstant = -(cross90pcnt -cross10pcnt)/TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
-       compare_real_fixed_err ( .expected ( R*C ) ,  .actual ( timeconstant ) , .result ( result ) , .max_err ( R*C*(2/100.0) ) ) ;
-       $display ( "Expected RC time constant %1.3e, Actual time constant %1.3e", R*C, timeconstant );
-     end else if  ( cap_voltage > 0.9 && prev_cap_voltage <= 0.9 ) begin
+       timeconstant = - ( cross90pcnt -cross10pcnt ) / TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
+       compare_real_fixed_err ( .expected ( R * C ) , .actual ( timeconstant ) , .result ( result ) , .max_err ( R * C * ( 2 / 100.0 ) ) ) ;
+       update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
+       $display ( "Expected RC time constant %1.3e , Actual time constant %1.3e" , R * C , timeconstant ) ;
+     end else if ( cap_voltage > 0.9 && prev_cap_voltage <= 0.9 ) begin
        cross90pcnt = $realtime ( ) ;
        $display ( "Crossing 90 percent voltage at %t" , cross90pcnt ) ;
        $display ( "Time Constant for rising edge" ) ;
-       timeconstant = (cross90pcnt -cross10pcnt)/TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
-       compare_real_fixed_err ( .expected ( R*C ) ,  .actual ( timeconstant ) , .result ( result ) , .max_err ( R*C*(2/100.0) ) ) ;
-       $display ( "Expected RC time constant %1.3e, Actual time constant %1.3e", R*C, timeconstant );
-     end else if  ( cap_voltage < 0.9 && prev_cap_voltage >= 0.9 ) begin
+       timeconstant = ( cross90pcnt -cross10pcnt ) / TIME_CONST_10TO90 * TIMEUNIT_SCALING ;
+       compare_real_fixed_err ( .expected ( R * C ) , .actual ( timeconstant ) , .result ( result ) , .max_err ( R * C * ( 2 / 100.0 ) ) ) ;
+       update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
+       $display ( "Expected RC time constant %1.3e , Actual time constant %1.3e" , R * C , timeconstant ) ;
+     end else if ( cap_voltage < 0.9 && prev_cap_voltage >= 0.9 ) begin
        cross90pcnt = $realtime ( ) ;
        $display ( "Crossing 90 percent voltage at %t" , cross90pcnt ) ;
      end
@@ -61,17 +69,17 @@ initial begin
    end
 end
 
-int fd;
+int fd ;
 
 initial begin
- fd = $fopen("Wave.dat","w");
- forever begin
-   #0.1ns;
-   $fwrite(fd,"%e,%e,%e\n", $realtime(),ana_in,cap_voltage);
+   fd = $fopen ( "Wave.dat" , "w" ) ;
+   forever begin
+     #0.1ns ;
+     $fwrite ( fd , "%e , %e , %e\n" , $realtime ( ) , ana_in , cap_voltage ) ;
    end
-   $fclose(fd);
+   $fclose ( fd ) ;
 end
 
-logic vikram;
+logic vikram ;
 
 endmodule
