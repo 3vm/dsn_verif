@@ -31,5 +31,7 @@ initial begin
    $finish ;
 end
 
+initial $monitor ( clkout);
+
  logic vikram ;
 endmodule
