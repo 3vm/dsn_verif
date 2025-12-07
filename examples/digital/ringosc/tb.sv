@@ -5,21 +5,26 @@ logic clkout ;
 real fout;
 real duty;
 bit result;
+logic en;
 
 thee_clk_freq_meter fmeter0 ( .clk ( clkout ) , .freq_in_hertz ( fout ) ) ;
 thee_clk_duty_meter dmeterr ( .clk ( clkout ) , .duty ( duty ) ) ;
 
 ring_osc osc
  (
- .en ( 1'b1 ) ,
- .clkout ( clkout )
+ .en ,
+ .clkout 
  ) ;
 
 initial begin
    $display ( " start");
+   #10;
+   en = 0;
+   #10;
+   en = 1; 
    repeat ( 10 ) @ ( posedge clkout ) ;
    $display ( " Clkout frequency %e" , fout ) ;
-   check_approx_equality ( .inp ( fout ) , .expected ( 0.5e9 ) , .result ( result ) ) ;
+   check_approx_equality ( .inp ( fout ) , .expected ( 1.0/12 * 1e9 ) , .result ( result ) ) ;
    if ( result == 1 ) begin
      $display ( " Duty Cycle - inp clk %3.2f " , duty) ;
      repeat ( 3 ) $display ( "PASS" ) ;
@@ -30,8 +35,6 @@ initial begin
   
    $finish ;
 end
-
-initial $monitor ( clkout);
 
  logic vikram ;
 endmodule
