@@ -10,7 +10,7 @@ logic en ;
 thee_clk_freq_meter fmeter ( .clk ( clkout ) , .freq_in_hertz ( fout ) ) ;
 thee_clk_duty_meter dmeter ( .clk ( clkout ) , .duty ( duty ) ) ;
 localparam CNT = 17 ;
-localparam real INV_DEL = 2;
+localparam real INV_DEL = 2 ;
 ring_osc # ( .CNT ( CNT ) ) osc
  (
  .en ,
@@ -21,10 +21,10 @@ initial begin
    $display ( " start" ) ;
    #10 ;
    en = 0 ;
-   repeat (100) begin
-      if ( clkout == 0 ) break;
-	  #10;
-	end;
+   repeat ( 100 ) begin
+     if ( clkout == 0 ) break ;
+     #10 ;
+   end ;
    en = 1 ;
    repeat ( 50 ) @ ( posedge clkout ) ;
    $display ( " Clkout frequency %e" , fout ) ;
