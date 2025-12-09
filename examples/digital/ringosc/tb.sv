@@ -5,7 +5,7 @@ logic clkout ;
 real fout ;
 real duty ;
 bit result ;
-logic en ;
+logic ena ;
 
 thee_clk_freq_meter fmeter ( .clk ( clkout ) , .freq_in_hertz ( fout ) ) ;
 thee_clk_duty_meter dmeter ( .clk ( clkout ) , .duty ( duty ) ) ;
@@ -13,19 +13,19 @@ localparam CNT = 17 ;
 localparam real INV_DEL = 2 ;
 ring_osc # ( .CNT ( CNT ) ) osc
  (
- .en ,
+ .ena ,
  .clkout
  ) ;
 
 initial begin
    $display ( " start" ) ;
    #10 ;
-   en = 0 ;
+   ena = 0 ;
    repeat ( 100 ) begin
      if ( clkout == 0 ) break ;
      #10 ;
    end ;
-   en = 1 ;
+   ena = 1 ;
    repeat ( 50 ) @ ( posedge clkout ) ;
    $display ( " Clkout frequency %e" , fout ) ;
    $display ( " Duty Cycle %3.2f " , duty ) ;
