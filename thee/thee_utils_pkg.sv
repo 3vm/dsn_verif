@@ -259,8 +259,10 @@ endtask
  int unsigned tmp ;
  real out ;
  tmp = $urandom ( ) ;
+ $display(tmp);
  out = ( low + ( tmp * 1.0 / MAX_VALUE ) * ( high-low ) ) ;
  return out ;
+ $display(out);
  endfunction
 
 function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;

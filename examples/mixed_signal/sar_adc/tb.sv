@@ -43,7 +43,7 @@ initial begin
    repeat ( 10 ) @ ( posedge clk ) ;
   
    for ( int i = 0 ; i < 5 ; i ++ ) begin
-     ana_in = urand_range_real ( 0 , 1.0 ) ;
+     ana_in = urand_range_real ( 0.0 , 1.0 ) ;
 	 $display(ana_in);
      start = 1 ;
      @ ( posedge clk ) ;
@@ -56,7 +56,7 @@ initial begin
    $finish ;
 end
 
-task check_result ;
+task automatic check_result ;
    import thee_utils_pkg :: compare_real_fixed_err ;
    $display ( "Analog input %f , Digital output %d , Output reconverted to analog %f" , ana_in , dig_out , dig_out_real ) ;
    compare_real_fixed_err ( .expected ( ana_in ) , .actual ( dig_out_real ) , .result ( result ) , .max_err ( 1.001 * 1.0 / 256 ) ) ;
@@ -64,7 +64,7 @@ task check_result ;
    $display ( "PASS" ) ;
    else begin
      $display ( "FAIL" ) ;
-     $finish ;
+     //$finish ;
    end
  endtask
 
