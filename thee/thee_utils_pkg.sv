@@ -262,7 +262,7 @@ endtask
  tmp = 1.0 * $urandom ( ) ;
  out = ( low + ( tmp / MAX_VALUE_REAL ) * ( high-low ) ) ;
  return out ;
- //out = out+1;
+ out = out+1; //This should not be required, Most likely simulator bug. The sar_adc tb failed without this line.
  endfunction
 
 function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;
