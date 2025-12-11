@@ -3,43 +3,34 @@ module thee_low_pass_filter
 parameter real STEP_SIZE_IN_NS = 1.0 ,
 parameter real VMAX = 1.0 ,
 parameter real VMIN = -1.0 ,
-parameter int TAPS = 4
+parameter int TAPS = 4,
+parameter real ri =100, rg=1000, c=10e-12,
+parameter real TIME_STEP = 0.1,  //To be matched with timepresision and timeunit
+parameter real TIME_STEP_UNIT = 1e-12  //To be matched with timepresision and timeunit
  )
  (
 input real sig_in ,
 output real filtered_out
  ) ;
- // CHECKME more realistic filter model needed
-timeunit 1ns ;
-timeprecision 1ps ;
+
+timeunit 1ps ;
+timeprecision 10fs ;
 
 real step ;
-real tap_outputs [ TAPS ] ;
-real tap_inputs [ TAPS ] ;
+real vo, i, vcap;
 
-generate
- for ( genvar i = 0 ; i < TAPS ; i ++ ) begin
-   if ( i == 0 ) begin
-     assign tap_inputs [ i ] = sig_in ;
-   end else begin
-     assign tap_inputs [ i ] = tap_outputs [ i-1 ] ;
-   end
- end
- for ( genvar i = 0 ; i < TAPS ; i ++ ) begin
-   always begin
-     # ( STEP_SIZE_IN_NS ) ;
-     tap_outputs [ i ] = tap_inputs [ i ] ;
-   end
- end
-endgenerate
+//lets have a loop filter like this >--- Rin ---------> fork (one branch has RC to ground and another to output)
 
-always_comb begin
- filtered_out = 0 ;
- foreach ( tap_outputs [ i ] ) begin
-   filtered_out += tap_outputs [ i ] ;
- end
- filtered_out /= 1.0 * TAPS ;
+initial begin
+   forever begin
+     #TIME_STEP ;
+     i = ( vo - vcap ) / rg ;
+     step = i * TIME_STEP * TIME_STEP_UNIT / c ;
+     vcap += step;
+   end
 end
+
+assign filtered_out = sig_in -i*ri;
 
   logic vikram;
 endmodule
