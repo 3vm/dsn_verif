@@ -256,10 +256,10 @@ endtask
  input real high
  ) ;
  const int unsigned MAX_VALUE = '1 ;
+ const real MAX_VALUE_REAL = 1.0 * MAX_VALUE;
  int unsigned tmp ;
  real out ;
  tmp = $urandom ( ) ;
- $display(tmp);
  out = ( low + ( tmp * 1.0 / MAX_VALUE ) * ( high-low ) ) ;
  return out ;
  endfunction
