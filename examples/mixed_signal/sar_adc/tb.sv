@@ -43,8 +43,8 @@ initial begin
    repeat ( 10 ) @ ( posedge clk ) ;
   
    for ( int i = 0 ; i < 5 ; i ++ ) begin
-     //ana_in = urand_range_real ( 0.0 , 1.0 ) ;
-	 ana_in = $urandom ()*1.0/32'hFFFF_FFFF;
+     ana_in = urand_range_real ( 0.0 , 1.0 ) ;
+	 //ana_in = $urandom ()*1.0/32'hFFFF_FFFF;
 	 $display(ana_in);
      start = 1 ;
      @ ( posedge clk ) ;

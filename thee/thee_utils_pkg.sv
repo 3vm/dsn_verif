@@ -255,13 +255,14 @@ endtask
  input real low ,
  input real high
  ) ;
- const int unsigned MAX_VALUE = '1 ;
- const real MAX_VALUE_REAL = 1.0 * MAX_VALUE;
- int unsigned tmp ;
+ const int unsigned MAX_VALUE = 32'hFFFF_FFFF;
+ const real MAX_VALUE_REAL = 1.0*MAX_VALUE;
+ real tmp ;
  real out ;
- tmp = $urandom ( ) ;
- out = ( low + ( tmp * 1.0 / MAX_VALUE ) * ( high-low ) ) ;
+ tmp = 1.0 * $urandom ( ) ;
+ out = ( low + ( tmp / MAX_VALUE_REAL ) * ( high-low ) ) ;
  return out ;
+ //out = out+1;
  endfunction
 
 function automatic real add_tolerance ( input real aval , input real tol_pcnt ) ;
