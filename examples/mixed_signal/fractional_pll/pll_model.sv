@@ -30,12 +30,12 @@ thee_pfd pfd
 thee_charge_pump cp (
 .up ,
 .down ,
-.vout ( cp_out )
+.iout ( cp_out )
  ) ;
 
 thee_low_pass_filter lpf (
- .sig_in ( cp_out ) ,
- .filtered_out ( lpf_out )
+ .cur_in ( cp_out ) ,
+ .vout ( lpf_out )
  ) ;
 
 thee_vco vco (
