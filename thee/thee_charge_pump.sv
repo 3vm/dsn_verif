@@ -5,7 +5,7 @@ input logic down ,
 output real iout
  ) ;
  
- parameter real SOURCE_I = 1e-6; //assume 1uA
+ parameter real SOURCE_I = 10e-6; //unit A
  
 always_comb begin
    case ( {up , down} )
