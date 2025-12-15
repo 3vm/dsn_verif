@@ -11,7 +11,7 @@ thee_clk_freq_meter fmeter ( .clk ( clkout ) , .freq_in_hertz ( fout ) ) ;
 thee_clk_duty_meter dmeter ( .clk ( clkout ) , .duty ( duty ) ) ;
 localparam CNT = 17 ;
 localparam real INV_DEL = 2 ;
-ring_osc # ( .CNT ( CNT ) ) osc
+ehgu_ring_osc # ( .CNT ( CNT ) ) osc
  (
  .ena ,
  .clkout

@@ -1,4 +1,5 @@
-module delay_line
+//Forms the delay stages of a digital ring oscillator
+module ehgu_delay_line
 # (
 parameter CNT = 3
  )

@@ -1,6 +1,12 @@
 timescale.sv
-//$EHGU_HOME/ehgu/ehgu_hamming_secded_pkg.sv
+MYPADOUT.sv
 pads.sv
-tb.sv
+$EHGU_HOME/ehgu/ehgu_delay_line.sv
+$EHGU_HOME/ehgu/ehgu_ring_osc.sv
+$EHGU_HOME/ehgu/ehgu_config_pkg.sv
+$EHGU_HOME/ehgu/ehgu_basic_pkg.sv
+$EHGU_HOME/ehgu/ehgu_clkdiv.sv
+core.sv
 osc_die_top.sv
 vt0.sv
+tb.sv
