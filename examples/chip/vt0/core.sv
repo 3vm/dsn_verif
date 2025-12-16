@@ -3,8 +3,8 @@ module core (
 output logic uclk
  ) ;
 
-localparam CNT = 3 ;
-localparam DIVISION = 52083 ;
+localparam CNT = 21 ;
+localparam DIVISION = 65535 ;
 logic rclk , dclk0 , dclk1 , rstn ;
 
 assign rstn = 1'b1 ;
@@ -38,10 +38,6 @@ ehgu_ring_osc # ( .CNT ( CNT ) ) osc
  .en ( 1'b1 ) ,
  .clkout ( uclk )
  ) ;
-
-initial begin
-  $display ( "%m" ) ;
-end
 
 endmodule
 

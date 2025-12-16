@@ -2,8 +2,8 @@ module tb ;
 wire VDD , VSS ;
 wire CLKOUT ;
 
-localparam CNT = 3 , PREDIV = 4 * 4 , DIV = 52083 ;
-localparam real INV_DEL = 2 ;
+localparam CNT = 21 , PREDIV = 4 * 4 , DIV = 5000 ;
+`define RO_INV_DEL  10
 
 real fout ;
 real duty ;
@@ -43,11 +43,11 @@ initial begin
   @ ( posedge tb.vt0.die_top.u_core.dclk1 ) ;
    $display ( " dclk1 up" ) ;
   
-   repeat ( 5 ) @ ( posedge clkout ) ;
+   repeat ( 2 ) @ ( posedge clkout ) ;
    $display ( " Clkout frequency %e" , fout ) ;
    $display ( " Duty Cycle %3.2f " , duty ) ;
   
-   check_approx_equality ( .inp ( fout ) , .expected ( 1.0 / ( 2 * PREDIV * INV_DEL * CNT * DIV ) * 1e9 ) , .result ( result ) ) ;
+   check_approx_equality ( .inp ( fout ) , .expected ( 1.0 / ( 2 * PREDIV * `RO_INV_DEL * CNT * DIV ) * 1e9 ) , .result ( result ) ) ;
    if ( result == 1 ) begin
      repeat ( 3 ) $display ( "PASS" ) ;
      // TBD - Add automation for duty cycle check
