@@ -1,0 +1,6 @@
+
+{signal: [
+  {name: 'clk' , wave: 'p.......'},
+  {name: 'ena' , wave: '1..0..1.',phase:0.5},
+  {name: 'gclk', wave: 'p..l..pp'},
+]}
