@@ -10,6 +10,12 @@ logic [ N : 0 ] code_secded ;
 logic [ 1 : 0 ] errors ;
 
 initial begin
+   int p ;
+   for ( int i = 1 ; i < 1035 ; i ++ ) begin
+     p = get_parity_size ( i ) ;
+     $display ( "Data Size %4d , Parity Size %2d, Check result %b", i , p, check_parity_size ( i, p) );
+   end
+  
    result = 1 ;
    repeat ( 10 ) run_once ( ) ;
    if ( result == 1 ) begin
@@ -25,6 +31,7 @@ initial begin
    end else begin
      repeat ( 3 ) $display ( "FAIL" ) ;
    end
+   
    $finish ;
 end
 
@@ -80,7 +87,7 @@ task run_secded_once ( ) ;
      this_result = errors == 2 ;
    end
    $display ( "errors found during Decoding %2d" , errors ) ;
-
+  
    if ( this_result == 0 ) $display ( "Error found in previous data" ) ;
    result &= this_result ;
    $display ( " _________________ SECDED : Vector End _________________ \n" ) ;

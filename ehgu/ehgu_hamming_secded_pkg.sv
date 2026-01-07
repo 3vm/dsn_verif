@@ -2,6 +2,35 @@ package ehgu_hamming_secded_pkg ;
 
 parameter N = 16 ; // 7
 parameter K = 11 ; // 4
+
+function automatic int get_parity_size ( input int K ) ;
+// fails   return ( $clog2 ( K + $clog2 ( K  ) + 1 ) ) ; 
+// Data Size    1 , Parity Size  1, Check result 0
+// Data Size    2 , Parity Size  2, Check result 0
+// Data Size    3 , Parity Size  3, Check result 1
+
+//fails   return ( $clog2 ( K + $clog2 ( K + 1 ) ) ) ;
+// Data Size    4 , Parity Size  3, Check result 1
+// Data Size    5 , Parity Size  3, Check result 0
+// Data Size    6 , Parity Size  4, Check result 1
+// Data Size   11 , Parity Size  4, Check result 1
+// Data Size   12 , Parity Size  4, Check result 0
+// Data Size   13 , Parity Size  5, Check result 1
+// Data Size   26 , Parity Size  5, Check result 1
+// Data Size   27 , Parity Size  5, Check result 0
+// Data Size   28 , Parity Size  6, Check result 1
+
+   return ( $clog2 ( K + $clog2 ( K + 1 )  + 1 ) ) ;
+endfunction
+
+function automatic bit check_parity_size ( input int K , input int P ) ;
+  if ( P >= $clog2 ( K + P + 1 ) ) begin
+     return 1 ;
+  end else begin
+     return 0 ;
+  end
+endfunction
+
 parameter logic [ N-1 : 0 ] skip = get_parity_positions ( ) ;
 
 function automatic logic [ N-1 : 0 ] get_parity_positions ( ) ;
