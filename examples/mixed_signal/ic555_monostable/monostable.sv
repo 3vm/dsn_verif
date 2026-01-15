@@ -1,9 +1,10 @@
-module astable
+module monostable
 # (
-parameter real R1 = 100 , R2 = 100000 ,
+parameter real R = 100 ,
 parameter real C = 1e-9
  )
  (
+ input logic trigger ,
 output logic clk
  ) ;
 
@@ -21,7 +22,7 @@ ic555 i_ic555 (
 .pin1_gnd ( gnd ) ,
 .pin8_vcc ( vcc ) ,
 
-.pin2_trigger ( vcap ) ,
+.pin2_trigger ( trigger ) ,
 .pin3_output ( clk ) ,
 .pin4_reset ( 1'b1 ) ,
 .pin5_vctl ( vcc * 2.0 / 3.0 ) ,
@@ -29,11 +30,11 @@ ic555 i_ic555 (
 .pin7_discharge ( dis )
  ) ;
 
-rc_network # ( .R1 ( R1 ) , .R2 ( R2 ) , .C ( C ) ) i_rc 
-(
-.vcc(vcc),
-.vcap(vcap),
-.dis(dis)
-);
+rc_network # ( .R ( R ) , .C ( C ) ) i_rc
+ (
+.vcc ( vcc ) ,
+.vcap ( vcap ) ,
+.dis ( dis )
+ ) ;
 
 endmodule
