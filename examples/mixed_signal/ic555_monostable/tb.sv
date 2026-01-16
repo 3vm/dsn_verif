@@ -4,7 +4,7 @@ module tb ;
 timeunit 1ns ;
 timeprecision 1ps ;
 
-localparam real THIS_TIME_UNIT = 1e-9; //match to timeunit statement;
+localparam real TIME_UNIT = 1e-9 ; // match to timeunit statement ;
 
 import thee_utils_pkg :: check_approx_equality ;
 
@@ -16,11 +16,9 @@ localparam MEAS_WINDOW = 10 ;
 logic clk ;
 logic result , result2 ;
 logic trigger ;
-real pulse_width , expected_pw_seconds , expected_pw_simunits, redge , fedge ;
+real pulse_width , expected_pw_seconds , expected_pw_simunits , redge , fedge ;
 
 monostable # ( .R ( R ) , .C ( C ) ) dut ( .trigger ( trigger ) , .clk ( clk ) ) ;
-
-thee_clk_freq_meter # ( .MEAS_WINDOW ( MEAS_WINDOW ) ) fmeter ( .clk ( clk ) , .freq_in_hertz ( fout ) ) ;
 
 task pull_trigger ;
    trigger = 0 ;
@@ -31,27 +29,31 @@ endtask
 
 
 initial begin
-   expected_pw_simunits = ($ln ( 3 ) * R * C ) / THIS_TIME_UNIT;
+   expected_pw_simunits = ( $ln ( 3 ) * R * C ) / TIME_UNIT ;
    trigger = 1 ;
-   #(2 * expected_pw_simunits) ;
+   # ( 2 * expected_pw_simunits ) ;
    pull_trigger ;
-   #(2 * expected_pw_simunits) ;
+   # ( 2 * expected_pw_simunits ) ;
    pull_trigger ;
-   #(2 * expected_pw_simunits) ;
-      
-       $finish ;
-    end
-    
-    initial begin
-       forever begin
-         @ ( posedge clk ) ;
-         redge = $realtime ;
-         @ ( negedge clk ) ;
-         fedge = $realtime ;
-         pulse_width = fedge - redge ;
-         $display ( "Pulse width = %1.3e Expected = %1.3e" , pulse_width, expected_pw_simunits ) ;
-       end
-    end
-        
-    logic vikram ;
-  endmodule
+   # ( 2 * expected_pw_simunits ) ;
+  
+  $finish ;
+end
+
+initial begin
+  forever begin
+     @ ( posedge clk ) ;
+     redge = $realtime ;
+     @ ( negedge clk ) ;
+     fedge = $realtime ;
+     pulse_width = fedge - redge ;
+     $display ( "Pulse width = %1.3e Expected = %1.3e" , pulse_width , expected_pw_simunits ) ;
+   end
+ end
+
+initial begin
+   $dumpports ( dut, dut.i_ic555, dut.i_ic555.i_srlat , "timing.evcd" ) ;
+end
+
+logic vikram ;
+endmodule

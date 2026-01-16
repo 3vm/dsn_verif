@@ -18,11 +18,15 @@ logic dis ;
 
 assign vcc = 5.0 ;
 
+real trig_real;
+
+assign trig_real = vcc * trigger ; //Convert to real
+
 ic555 i_ic555 (
 .pin1_gnd ( gnd ) ,
 .pin8_vcc ( vcc ) ,
 
-.pin2_trigger ( trigger ) ,
+.pin2_trigger ( trig_real ) ,
 .pin3_output ( clk ) ,
 .pin4_reset ( 1'b1 ) ,
 .pin5_vctl ( vcc * 2.0 / 3.0 ) ,
@@ -32,9 +36,9 @@ ic555 i_ic555 (
 
 rc_network # ( .R ( R ) , .C ( C ) ) i_rc
  (
-.vcc ( vcc ) ,
-.vcap ( vcap ) ,
-.dis ( dis )
+.vcc ,
+.dis ,
+.vcap 
  ) ;
 
 endmodule

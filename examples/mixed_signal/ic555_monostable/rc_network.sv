@@ -6,8 +6,8 @@ parameter real TIME_STEP = 0.001 , // To be matched with timepresision and timeu
 parameter real TIME_STEP_UNIT = 1e-9 // To be matched with timepresision and timeunit
  )
  (
- input logic dis ,
  input real vcc ,
+ input logic dis ,
  output real vcap
  ) ;
 
@@ -30,12 +30,5 @@ initial begin
    end
 end
 
- // initial begin
-   // forever begin
-     // #100ps ;
-     // $display ( "Discharge %b , current %1.7e Step %1.7e cap_voltage %1.7e Current time %t" , dis , ir , step , vcap , $realtime ( ) ) ;
-     // end
-     // end
-    
-     logic vikram ;
-  endmodule
+ logic vikram ;
+ endmodule
