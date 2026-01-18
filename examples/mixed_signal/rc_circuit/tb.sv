@@ -11,7 +11,7 @@ import thee_utils_pkg :: update_test_status ;
 parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
 localparam real TIME_CONST_10TO90 = $ln ( 9 ) ;
 
-parameter real R = 1000 , C = 10e-12 ;
+parameter real R = 13e3 , C = 100e-12 ;
 real cap_voltage , ana_in ;
 logic rstn ;
 
@@ -28,9 +28,9 @@ initial begin
    ana_in = 0 ;
    #0.9ns ;
    ana_in = 1 ;
-   #50ns ;
+   #(10*R*C/TIMEUNIT_SCALING); //#50ns ;
    ana_in = 0 ;
-   #50ns ;
+   #(10*R*C/TIMEUNIT_SCALING); //#50ns ;
    save_test_result ( tresult ) ;
    $finish ;
 end
