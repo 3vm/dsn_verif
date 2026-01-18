@@ -45,7 +45,7 @@ initial begin
    forever begin
      #20ps ;
 //     $display ( "Input %1.3f current %1.7e Step %1.7e cap_voltage %1.7e Current time %t" , vin , ic1, step , vnet1 , $realtime ( ) ) ;
-     $display ( "Input %1.3f  R1 current %1.7e  cap_voltage %1.7e Output Voltage %1.7e Current time %t" , vin , ir2, vnet1, vout , $realtime ( ) ) ;
+//     $display ( "Input %1.3f  R1 current %1.7e  cap_voltage %1.7e Output Voltage %1.7e Current time %t" , vin , ir2, vnet1, vout , $realtime ( ) ) ;
    end
 end
 
