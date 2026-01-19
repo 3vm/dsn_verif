@@ -1,0 +1,13 @@
+.title RC
+
+*For AC analysis
+*V1 in 0 dc 0 ac 1
+
+*For Tran
+V1 in 0 dc 0 PULSE (0 1 1p 1p 1p 20u 40u)
+
+R1 in      net0  13k
+C1 net0  0       100p
+C2 net0  out    220p
+R2 out    0       33k
+.end
