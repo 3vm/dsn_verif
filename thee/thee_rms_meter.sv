@@ -1,6 +1,6 @@
 module thee_rms_meter
  # ( parameter real PERIOD_IN_PS = 10000 ,
- parameter real TIME_STEP_IN_PS = 10 // Pico seconds -- align with timeprecision
+ parameter real TIME_STEP_IN_PS = 10 // Pico seconds -- align with timeprecision/timeunit
  )(
  input real sig ,
  output real rms
@@ -46,7 +46,7 @@ real sum_sqrd ;
        sum_sqrd += sig * sig ;
        samples ++ ;
        nowtime = $realtime ;
-       #TIME_STEP_IN_PS ;
+       #(TIME_STEP_IN_PS / 1000) ; //convert to timeunit
        if ( nowtime - starttime >= PERIOD_IN_PS ) begin
          break ;
        end
