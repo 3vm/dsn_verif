@@ -1,35 +1,40 @@
 module tb ;
 
-parameter GB = 4 ;
-parameter real GS = 0.5 ;
-real sig_in ;
-logic [ GB-1 : 0 ] dig_gain ;
-real sig_out , exp ;
-localparam NG = 2 ** GB ;
+timeunit 1ns ;
+timeprecision 1ps ;
 
-thee_pg_amp # ( .GAIN_BITS ( GB ) , .GAIN_STEP ( GS ) ) pga
+logic tresult , result ;
+import thee_utils_pkg :: save_test_result ;
+import thee_utils_pkg :: update_test_status ;
+import thee_utils_pkg :: check_approx_equality ;
+
+real vin , vout ;
+real in_amp , out_amp, actl_gain ;
+
+parameter real GAIN = 87 ;
+parameter real MEAS_WINDOW = 1000e3 ;
+
+thee_amplifier # ( .GAIN ( GAIN ) ) amplifier
  (
- .sig_in ,
- .dig_gain ,
- .sig_out
+ .vin ,
+ .vout
  ) ;
 
+thee_wave_gen wave_gen ( .freq ( 100e6 ) , .init_phase ( 0 ) , .amp ( 0.001 ) , .sig_out ( vin ) ) ;
+thee_rms_meter # ( .PERIOD_IN_PS ( MEAS_WINDOW ) ) rms_meter0 ( .sig ( vin ) , .rms ( in_amp ) ) ;
+thee_rms_meter # ( .PERIOD_IN_PS ( MEAS_WINDOW ) ) rms_meter1 ( .sig ( vout ) , .rms ( out_amp ) ) ;
+
+assign actl_gain = out_amp / in_amp ;
+
 initial begin
-   import thee_utils_pkg :: check_approx_equality ;
-   bit result ;
-   sig_in = 0.32 ; dig_gain = 3 ;
-   #0 ;
-   check_approx_equality ( .inp ( sig_out ) , .expected ( exp ) , .result ( result ) ) ;
-   if ( result )
-   $display ( "PASS" ) ;
-   else
-   $display ( "FAIL" ) ;
-  
-   $display ( "Signal output %f , Expected %f" , sig_out , exp ) ;
-  
+   # ( MEAS_WINDOW / 1000 ) ;
+   check_approx_equality ( .inp ( actl_gain ) , .expected ( GAIN ) , .result ( result ) ) ;
+   update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
+   $display ( "Expected gain %1.3e , Actual gain %1.3e" , GAIN , actl_gain ) ;
+   $display ( "Input amplitude %f , output amplitude %f" , in_amp , out_amp ) ;
+   save_test_result ( tresult ) ;
+   $finish ;
 end
 
-assign exp = sig_in * ( 1 + dig_gain ) * GS ;
-
-  logic vikram;
+logic vikram ;
 endmodule

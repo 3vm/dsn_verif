@@ -1,5 +1,5 @@
 
-module amplifier
+module thee_amplifier
 # (
 parameter real GAIN = -10 , VPWRP = 1, VPWRN = -1
  ) (
@@ -13,7 +13,7 @@ real tmp;
 always @ ( vin ) begin
    tmp = vin * GAIN; //Using tmp to avoid 0 delay events on vout
    if ( tmp > VPWRP ) vout = VPWRP;
-   else ( tmp < VPWRN ) vout = VPWRN;
+   else if ( tmp < VPWRN ) vout = VPWRN;
    else vout = tmp;
 end
 
