@@ -42,6 +42,7 @@ initial begin
 
      step = ic1 * TIME_STEP * TIME_STEP_UNIT / C1 ;
      vc1 += step ;
+	 $display("Step of VC1 - %1.8e", step);
      step = ic2 * TIME_STEP * TIME_STEP_UNIT / C2 ;
      vc2 += step ;
      step = ic3 * TIME_STEP * TIME_STEP_UNIT / C3 ;
@@ -125,7 +126,7 @@ initial begin
 //     $display ( "Input %1.3f R1 current %1.7e V(n0) %1.7e R2 current %1.7e \t V(out) %1.7e  R3 current %1.7e \t time %t" , vin , ir1 , vn0 , ir2 , vout, ir3, $realtime ( ) ) ;
 //     $display ( "Input %1.3f R1 current %1.7e V(n0) %1.7e V(n1) %1.7e \t V(out) %1.7e \t time %t" , vin , vn0 , vn1 , vout, ir3, $realtime ( ) ) ;
 //     $display ( "Input %1.3f V(n0) %1.7e V(C1) %1.7e \t time %t" , vin , vn0 , vc1 , $realtime ( ) ) ;
-     $display ( "Input %1.3f vout %1.7e V(C3) %1.7e ic3 %1.5e \t time %t" , vin , vout , vc3 , ic3, $realtime ( ) ) ;
+     $display ( "Input %1.3f vout %1.3e V(C3) %1.3e ic3 %1.3e V(C2) %1.3e ic2 %1.3e V(C1) %1.3e ic1 %1.3e vn0 %1.3e ir1 %1.3e @time %7t" , vin , vout , vc3 , ic3, vc2, ic2, vc1, ic1, vn0, ir1, $realtime ( ) ) ;
    end
 end
 

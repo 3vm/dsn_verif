@@ -13,8 +13,7 @@ $EHGU_HOME/thee/thee_mathsci_consts_pkg.sv
 $EHGU_HOME/thee/thee_utils_pkg.sv
 $EHGU_HOME/thee/thee_clk_freq_meter.sv
 $EHGU_HOME/thee/thee_pg_amp.sv
-//$EHGU_HOME/thee/thee_rc.sv
 fb_network.sv
-saturating_amp.sv
+$EHGU_HOME/thee/thee_amplifier.sv
 ../schmitt_trigger_inv/schmitt_trigger_inv.sv
 tb.sv

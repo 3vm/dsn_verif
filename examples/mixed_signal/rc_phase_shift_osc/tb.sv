@@ -22,7 +22,7 @@ import thee_utils_pkg :: update_test_status ;
 import thee_utils_pkg :: check_approx_equality ;
 
 fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb ) , .vout ( vout ) ) ;
-saturating_amp saturating_amp ( .vin(vout), .vout(fb));
+thee_amplifier  #(.GAIN(-100.0)) amp ( .vin(vout), .vout(fb));
 
 schmitt_trigger_inv # ( .LT ( 0.1 ) , .UT ( 0.15 ) ) sinv ( .in ( vout ) , .out ( clk_out ) ) ;
 thee_clk_freq_meter # ( .MEAS_WINDOW ( 50 ) ) fmeter ( .clk ( clk_out ) , .freq_in_hertz ( fout ) ) ;
@@ -31,6 +31,7 @@ import thee_mathsci_consts_pkg :: const_pi ;
 import thee_utils_pkg :: compare_real_fixed_err ;
 
 initial begin
+   #0.1; //otherwise inject_noise const value may not tigger task-- tbd warning message on call of inject_noise
    inject_noise (0.01) ; // power on noise may be sufficient
 /*
    force fb = 0;
@@ -42,7 +43,7 @@ initial begin
    force fb = 0.5;
    #1ns;
 */
-   #50ns ;
+   #150ns ;
   
    
   
