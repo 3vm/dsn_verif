@@ -1,10 +1,10 @@
-Example of Euclid's GCD algorithm
+Pretty print an array
 For further description refer to this book
 
 Ehgu Proposal: An experiment towards an efficient HW design ecosystem
 by Thrivikraman Murali
 
-https://www.amazon.com/dp/B07TZGPKC8/ref=rdr_kindle_ext_tmb
+https://www.amazon.com/dp/B07TZGPKC8
 
 If you would like designs, models like these contact@valsid.in
 
