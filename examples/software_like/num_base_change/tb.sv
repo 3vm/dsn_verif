@@ -1,12 +1,12 @@
 program tb ;
-parameter M = 2 , N = 10 ;
+parameter M = 16 , N = 2 ;
 parameter MAX_DIGITS = 20 ;
 parameter string symbolsall = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" ;
 int symbol_val_map[256];
 byte symbolsm [ M ] , symbolsn [ N ] ;
 
 
-string num_m = "1011" , num_n ;
+string num_m = "1a" , num_n ;
 int num ;
 
 function automatic void get_symbol_val_map ( );
@@ -50,9 +50,14 @@ function automatic string conv_from_int ( int i , int base ) ;
      i = i / base ;
      $display ( dig , i ) ;
      $display ( m ) ;
-     m = { m , " " , string' ( dig ) } ;
+//	 $display(symbolsall[dig]);
+	 $display("%c",symbolsall.getc(11));
+     m = { m ,  symbolsall.getc(dig)} ;
      $display ( m ) ;
-     if ( i == 0 ) break ;
+     if ( i == 0 ) begin
+	 m = {<<8{m}}; //reverse
+	 break ;
+	 end
    end
    return ( m ) ;
 endfunction
