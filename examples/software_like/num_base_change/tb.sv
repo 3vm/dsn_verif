@@ -4,14 +4,25 @@ parameter string symbolsall = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 int symbol_val_map [ 256 ] ;
 parameter MAX_DIGITS = 20 ;
 
-// parameter M = 16 , N = 2 ;
-// string num_m = "1a" , num_n ;
+typedef struct {
+ string num ;
+ int unsigned base ;
+ } base_num_t ;
 
-parameter M = 10 , N = 36 ;
-string num_m = "1024" , num_n ;
+typedef struct {
+ base_num_t nin ;
+ base_num_t nout ;
+ } tv_t ;
 
-
-int num ;
+tv_t tv [ ] = '{
+ '{ '{ "100" , 10 } , '{ "64" , 16 } } ,
+ '{ '{ "ff" , 16 } , '{ "255" , 16 } } ,
+ '{ '{ "1024" , 10 } , '{ "sg" , 36 } } ,
+ '{ '{ "1a" , 16 } , '{ "11010" , 2 } },
+ '{ '{ "11111111" , 2 } , '{ "377" , 8 } },
+ '{ '{ "ffff" , 16 } , '{ "65535" , 10 } },
+ '{ '{ "900d_daad" , 16 } , '{ "65535" , 10 } }
+ } ;
 
 function automatic void get_symbol_val_map ( ) ;
    // assigns integer value to ascii symbols
@@ -20,26 +31,28 @@ function automatic void get_symbol_val_map ( ) ;
    end
 endfunction
 
-function automatic int conv_to_int ( string m , int base ) ;
+function automatic int unsigned conv_to_int ( string m , int base ) ;
    // $display ( m.len ( ) ) ;
-   int i = 0 ;
-   int power = 1 ;
+   int unsigned i = 0 ;
+   int unsigned power = 1 ;
+   $display ( "\nConverting number %s in base %d to decimal" , m , base ) ;
    for ( int j = m.len ( ) -1 ; j >= 0 ; j -- ) begin
      i += power * symbol_val_map [ m [ j ] ] ;
      power *= base ;
-     $display ( m [ j ] , i , power ) ;
+     $display ( "%c , int %d , placevalue %d" , m [ j ] , i , power ) ;
    end
    return ( i ) ;
 endfunction
 
-function automatic string conv_from_int ( int i , int base ) ;
+function automatic string conv_from_int ( int unsigned i , int base ) ;
    string m = "" ;
    int dig ;
+   $display ( "\nConverting decimal %d to base %d" , i , base ) ;
    for ( int k = 0 ; k < MAX_DIGITS ; k ++ ) begin
      dig = i%base ;
-     i = i / base ;
-     $display ( dig , i, m ) ;
      m = { m , symbolsall.getc ( dig ) } ;
+     $display ( "Digit %c , integer %d , Output base num %s" , symbolsall.getc ( dig ) , i , m ) ;
+     i = i / base ;
      if ( i == 0 ) begin
        m = { << 8{ m } } ; // reverse
        break ;
@@ -49,11 +62,22 @@ function automatic string conv_from_int ( int i , int base ) ;
 endfunction
 
 initial begin
+   int unsigned num, m, n ;
+   string num_m, num_n, exp_num_n;
    get_symbol_val_map ( ) ;
-   $display ( "Input number %s in base %2d" , num_m , M ) ;
-   num = conv_to_int ( num_m , M ) ;
-   $display ( "Number in integer %d" , num ) ;
-   num_n = conv_from_int ( num , N ) ;
-   $display ( "Number in base %d is %s" , N , num_n ) ;
+   foreach ( tv [ i ] ) begin
+     num_m = tv [ i ] .nin.num ;
+     m = tv [ i ] .nin.base ;
+	 exp_num_n =tv [ i ] .nout.num ;
+     n = tv [ i ] .nout.base ;
+     $display ( "Input number %s in base %2d" , num_m , m ) ;
+     num = conv_to_int ( num_m , m ) ;
+     $display ( "Number in integer %d" , num ) ;
+     num_n = conv_from_int ( num , n ) ;
+     $display ( "Number in base %d is %s" , n , num_n ) ;
+	 if ( num_n == exp_num_n ) $display("TV PASS");
+	 else $display("TV FAIL");
+	 $display("\n--------------------------------------------------\n");
+   end
 end
 endprogram
