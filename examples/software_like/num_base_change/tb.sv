@@ -6,7 +6,7 @@ parameter MAX_DIGITS = 20 ;
 
 typedef struct {
  string num ;
- int unsigned base ;
+ longint unsigned base ;
  } base_num_t ;
 
 typedef struct {
@@ -21,7 +21,7 @@ tv_t tv [ ] = '{
  '{ '{ "1a" , 16 } , '{ "11010" , 2 } },
  '{ '{ "11111111" , 2 } , '{ "377" , 8 } },
  '{ '{ "ffff" , 16 } , '{ "65535" , 10 } },
- '{ '{ "900d_daad" , 16 } , '{ "65535" , 10 } }
+ '{ '{ "900ddaad" , 16 } , '{ "2416827053" , 10 } }
  } ;
 
 function automatic void get_symbol_val_map ( ) ;
@@ -31,10 +31,10 @@ function automatic void get_symbol_val_map ( ) ;
    end
 endfunction
 
-function automatic int unsigned conv_to_int ( string m , int base ) ;
+function automatic longint unsigned conv_to_int ( string m , int base ) ;
    // $display ( m.len ( ) ) ;
-   int unsigned i = 0 ;
-   int unsigned power = 1 ;
+   longint unsigned i = 0 ;
+   longint unsigned power = 1 ;
    $display ( "\nConverting number %s in base %d to decimal" , m , base ) ;
    for ( int j = m.len ( ) -1 ; j >= 0 ; j -- ) begin
      i += power * symbol_val_map [ m [ j ] ] ;
@@ -44,7 +44,7 @@ function automatic int unsigned conv_to_int ( string m , int base ) ;
    return ( i ) ;
 endfunction
 
-function automatic string conv_from_int ( int unsigned i , int base ) ;
+function automatic string conv_from_int ( longint unsigned i , int base ) ;
    string m = "" ;
    int dig ;
    $display ( "\nConverting decimal %d to base %d" , i , base ) ;
@@ -62,7 +62,7 @@ function automatic string conv_from_int ( int unsigned i , int base ) ;
 endfunction
 
 initial begin
-   int unsigned num, m, n ;
+   longint unsigned num, m, n ;
    string num_m, num_n, exp_num_n;
    get_symbol_val_map ( ) ;
    foreach ( tv [ i ] ) begin
