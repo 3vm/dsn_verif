@@ -16,11 +16,15 @@ typedef struct {
 
 tv_t tv [ ] = '{
  '{ '{ "100" , 10 } , '{ "64" , 16 } } ,
- '{ '{ "ff" , 16 } , '{ "255" , 16 } } ,
+ '{ '{ "ff" , 16 } , '{ "255" , 10 } } ,
+ '{ '{ "f" , 16 } , '{ "111111111111111" , 1 } } ,
+ '{ '{ "11111111111111" , 1 } , '{ "1110" , 2 }  } ,
  '{ '{ "1024" , 10 } , '{ "sg" , 36 } } ,
  '{ '{ "1a" , 16 } , '{ "11010" , 2 } },
  '{ '{ "11111111" , 2 } , '{ "377" , 8 } },
  '{ '{ "ffff" , 16 } , '{ "65535" , 10 } },
+ '{ '{ "67" , 10 } , '{ "43" , 16 } },
+ '{ '{ "67" , 10 } , '{ "1000011" , 2 } },
  '{ '{ "900ddaad" , 16 } , '{ "2416827053" , 10 } }
  } ;
 
@@ -48,6 +52,12 @@ function automatic string conv_from_int ( longint unsigned i , int base ) ;
    string m = "" ;
    int dig ;
    $display ( "\nConverting decimal %d to base %d" , i , base ) ;
+   if ( base == 1 ) begin
+     for ( longint k = 0 ; k < i ; k++) begin
+	    m = { m , symbolsall.getc (1)} ;
+	 end 
+	 return (m);
+   end
    for ( int k = 0 ; k < MAX_DIGITS ; k ++ ) begin
      dig = i%base ;
      m = { m , symbolsall.getc ( dig ) } ;
