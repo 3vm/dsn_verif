@@ -1,7 +1,7 @@
 package ehgu_hamming_secded_pkg ;
 
-parameter N = 16 ; // 7
-parameter K = 11 ; // 4
+parameter N =  7 ; // 16 ; // 7
+parameter K =  4 ; // 11 ; // 4
 
 function automatic int get_parity_size ( input int K ) ;
 // fails   return ( $clog2 ( K + $clog2 ( K  ) + 1 ) ) ; 

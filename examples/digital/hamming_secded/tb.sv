@@ -1,7 +1,8 @@
 
 module tb ;
 import ehgu_hamming_secded_pkg :: * ;
-
+parameter IS_DEMO = 1 ;
+parameter STDINPUT = 32'h8000_0000 ;
 bit result ;
 logic [ N-1 : 0 ] code ;
 logic [ K-1 : 0 ] data_in , data_out ;
@@ -11,27 +12,46 @@ logic [ 1 : 0 ] errors ;
 
 initial begin
    int p ;
-   for ( int i = 1 ; i < 1035 ; i ++ ) begin
-     p = get_parity_size ( i ) ;
-     $display ( "Data Size %4d , Parity Size %2d, Check result %b", i , p, check_parity_size ( i, p) );
-   end
-  
-   result = 1 ;
-   repeat ( 10 ) run_once ( ) ;
-   if ( result == 1 ) begin
-     $display ( ) ;
-     repeat ( 3 ) $display ( "PASS" ) ;
-   end else begin
-     repeat ( 3 ) $display ( "FAIL" ) ;
-   end
-   repeat ( 1000 ) run_secded_once ( ) ;
-   if ( result == 1 ) begin
-     $display ( ) ;
-     repeat ( 3 ) $display ( "PASS" ) ;
-   end else begin
-     repeat ( 3 ) $display ( "FAIL" ) ;
-   end
-   
+   if ( IS_DEMO == 0 ) begin
+     for ( int i = 1 ; i < 1035 ; i ++ ) begin
+       p = get_parity_size ( i ) ;
+       $display ( "Data Size %4d , Parity Size %2d , Check result %b" , i , p , check_parity_size ( i , p ) ) ;
+     end
+    
+     result = 1 ;
+     repeat ( 10 ) run_once ( ) ;
+     if ( result == 1 ) begin
+       $display ( ) ;
+       repeat ( 3 ) $display ( "PASS" ) ;
+     end else begin
+       repeat ( 3 ) $display ( "FAIL" ) ;
+     end
+    
+     repeat ( 1000 ) run_secded_once ( ) ;
+    
+     if ( result == 1 ) begin
+       $display ( ) ;
+       repeat ( 3 ) $display ( "PASS" ) ;
+     end else begin
+       repeat ( 3 ) $display ( "FAIL" ) ;
+     end
+    
+  end else begin
+//     static logic [ N : 0 ]  tv[] = '{ 'b 00011011, 'b 11111111, 'b 00011010, 'b 01001111 };
+	 static logic [ N : 0 ]  tv[] = '{ 'b 01000101, 'b 11011101, 'b 11111101, 'b 00101101 };
+
+     //for ( int i = 0 ; i < 1 ; i ++ ) begin
+     foreach (tv[i]) begin
+       // $fscanf ( STDIN , code , "%b" ) ;
+       $display("Vector %d -----------", i);
+       code_secded = tv[i] ;//'b 00011011;
+       $display ( " Input Code %b" , code_secded ) ;
+       hamming_secded_dec ( .code ( code_secded ) , .data ( data_out ) , .errors ( errors ) ) ;
+       $display ( "Data output %b" , data_out ) ;
+       hamming_secded_enc ( .code ( code_secded ) , .data ( data_out ) ) ;
+       $display ( " Corrected Code %b, Error count %1d" , code_secded, errors ) ;
+    end
+  end
    $finish ;
 end
 
@@ -40,6 +60,7 @@ task run_once ( ) ;
    bit [ N-1 : 0 ] err ;
    data_in = $urandom ( ) ;
    #0 ;
+   $display ( " ---------- Hamming Code Test ------------------- " ) ;
    $display ( " _________________ Vector Start _________________ " ) ;
    $display ( "Data input %b" , data_in ) ;
    hamming_enc ( .code ( code ) , .data ( data_in ) ) ;
@@ -64,7 +85,8 @@ task run_secded_once ( ) ;
    int inserted_errors ;
    data_in = $urandom ( ) ;
    #0 ;
-   $display ( " _________________ SECDED : Vector Start _________________ " ) ;
+   $display ( " --------------- SECDED Code Test --------------- " ) ;
+   $display ( " _________________ Vector Start _________________ " ) ;
    $display ( "Data input %b" , data_in ) ;
    hamming_secded_enc ( .code ( code_secded ) , .data ( data_in ) ) ;
    $display ( "Code %b" , code_secded ) ;
@@ -90,7 +112,7 @@ task run_secded_once ( ) ;
   
    if ( this_result == 0 ) $display ( "Error found in previous data" ) ;
    result &= this_result ;
-   $display ( " _________________ SECDED : Vector End _________________ \n" ) ;
+   $display ( " _________________ Vector End _________________ \n" ) ;
 endtask // run_secded_once
 
 logic vikram ;
