@@ -1,4 +1,4 @@
-A model of multiple RC circuit
+A model of multiple RC circuit (3 resistors)
 
 For further description refer to this book
 

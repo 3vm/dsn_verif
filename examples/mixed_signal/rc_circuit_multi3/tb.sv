@@ -12,6 +12,7 @@ parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
 
 parameter real R1 = 13e3 , C1 = 100e-12 ;
 parameter real R2 = 33e3 , C2 = 220e-12 ;
+parameter real R3 = 33e3 , C3 = 220e-12 ;
 
 parameter real tr_exp = 7.515519e-07 / TIMEUNIT_SCALING ;
 parameter real tf_exp = 7.350237e-06 / TIMEUNIT_SCALING ;
@@ -22,7 +23,7 @@ logic rstn ;
 
 real tr, tf;
 
-rc_multi # ( .R1 ( R1 ) , .C1 ( C1 ) , .R2 ( R2 ) , .C2 ( C2 ) ) rc
+rc_multi # ( .R1 ( R1 ) , .C1 ( C1 ) , .R2 ( R2 ) , .C2 ( C2 )  , .R3 ( R3 ) , .C3 ( C3 ) ) rc
  (
 .vin (vin),
 .vout 
@@ -36,18 +37,18 @@ initial begin
    vin = 0 ;
    #0.9ns ;
    vin = 1 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
    vin = 0 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
-   vin = 1 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
-   vin = 0 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   // vin = 1 ;
+   // #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   // vin = 0 ;
+   // #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
    ->cir_settled; 
    vin = 1 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
    vin = 0 ;
-   #20us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
+   #10us; //#(2*R1*C1/TIMEUNIT_SCALING); //#50ns ;
    save_test_result ( tresult ) ;
    $finish ;
 end

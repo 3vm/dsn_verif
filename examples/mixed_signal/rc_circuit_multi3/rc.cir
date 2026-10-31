@@ -6,8 +6,10 @@
 *For Tran
 V1 in 0 dc 0 PULSE (0 1 1p 1p 1p 20u 40u)
 
-R1 in      net0  13k
-C1 net0  0       100p
-C2 net0  out    220p
-R2 out    0       33k
+C1 in  net1    100p
+R1 net1    0  13k
+C2 net1 net2  220p
+R2 net2    0       33k
+C3 net2  out    220p
+R3 out    0       33k
 .end
