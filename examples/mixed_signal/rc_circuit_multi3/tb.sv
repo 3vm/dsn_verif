@@ -14,8 +14,10 @@ parameter real R1 = 13e3 , C1 = 100e-12 ;
 parameter real R2 = 33e3 , C2 = 220e-12 ;
 parameter real R3 = 33e3 , C3 = 220e-12 ;
 
-parameter real tr_exp = 7.515519e-07 / TIMEUNIT_SCALING ;
-parameter real tf_exp = 7.350237e-06 / TIMEUNIT_SCALING ;
+
+//From NGSPICE
+parameter real tr_exp = 7.515519e-07 / TIMEUNIT_SCALING ; //TBD
+parameter real tf_exp = 6.761700e-07 / TIMEUNIT_SCALING ;
 
 
 real vout , vin ;
@@ -71,7 +73,7 @@ initial begin
        compare_real_fixed_err ( .expected ( tf_exp ) , .actual ( tf ) , .result ( result ) , .max_err ( tf_exp * ( 2 / 100.0 ) ) ) ;
        update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;	   
        $display ( "Expected fall time %1.3e , Actual fall time %1.3e" , tf_exp,  tf) ;
-     end else if ( vout > 0.4 && prev_vout <= 0.4 ) begin
+     end else if ( vout > 0.8 && prev_vout <= 0.8 ) begin
        cross_high = $realtime ( ) ;
        $display ( "Crossing high point at %t" , cross_high ) ;
        tr = $realtime ( ) - cross_low;
@@ -79,7 +81,7 @@ initial begin
        compare_real_fixed_err ( .expected ( tr_exp ) , .actual ( tr ) , .result ( result ) , .max_err ( tr_exp * ( 2 / 100.0 ) ) ) ;
        update_test_status ( .result ( tresult ) , .this_result ( result ) ) ;
        $display ( "Expected rise time %1.3e , Actual rise time %1.3e" , tr_exp,  tr) ;
-     end else if ( vout < 0.4 && prev_vout >= 0.4 ) begin
+     end else if ( vout < 0.8 && prev_vout >= 0.8 ) begin
        cross_high= $realtime ( ) ;
        $display ( "Crossing high point at %t" , cross_high ) ;
      end
