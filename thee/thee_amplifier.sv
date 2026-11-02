@@ -9,9 +9,14 @@ output real vout
 
 //localparam real GAIN = -( GAIN_PT_OUT1-GAIN_PT_OUT0 ) / ( GAIN_PT_IN1-GAIN_PT_IN0 ) ;
 real tmp;
-
+real local_gain;
 always @ ( vin ) begin
-   tmp = vin * GAIN; //Using tmp to avoid 0 delay events on vout
+   //To model decrease in gain as swing increases
+   if ( vin > 0.9 * VPWRP ) local_gain = 0.9;
+   else if ( vin < 0.9 * VPWRN ) local_gain = 0.9;
+   else local_gain = GAIN;
+   
+   tmp = vin * local_gain ;// GAIN; //Using tmp to avoid 0 delay events on vout
    if ( tmp > VPWRP ) vout = VPWRP;
    else if ( tmp < VPWRN ) vout = VPWRN;
    else vout = tmp;
