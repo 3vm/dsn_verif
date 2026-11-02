@@ -6,7 +6,7 @@ timeprecision 1ps ;
 parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
 localparam real TIME_CONST_10TO90 = $ln ( 9 ) ;
 
-parameter real R = 1e3 , C = 100e-12 ;
+parameter real R = 1.0e3 , C = 10.0e-9 ;
 import thee_mathsci_consts_pkg :: const_pi ;
 
 parameter real EXP_FOUT = 1 / (2*const_pi* $sqrt(6)* ( R * C ) );
@@ -21,23 +21,25 @@ import thee_utils_pkg :: update_test_status ;
 
 import thee_utils_pkg :: check_approx_equality ;
 
-fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb_d ) , .vout ( vout ) ) ;
-thee_amplifier  #(.GAIN(-1.5)) amp ( .vin(vout), .vout(fb));
+//fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb_d ) , .vout ( vout ) ) ;
+//no delay
+fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb ) , .vout ( vout ) ) ;
+thee_amplifier  #(.GAIN(-29.5)) amp ( .vin(vout), .vout(fb));
 
-always @(fb) begin
-real tmp[3];
-  tmp[0] = fb;
-  #0.1ns;
-  tmp[1] = fb;
-  #0.1ns;
-  tmp[2] = fb;
-  
-  //#1ns; //models stray low pass capacitances - if not oscillations are going into +delta, -delta ...
-  fb_d = (tmp[0] + tmp[1]+tmp[2])/3;
-end
-  
-  
+//assign fb_d  = #(10ns) fb;
 
+// always @(fb) begin
+// real tmp[3];
+  // tmp[0] = fb;
+  // #0.1ns;
+  // tmp[1] = fb;
+  // #0.1ns;
+  // tmp[2] = fb;
+  
+  // //#1ns; //models stray low pass capacitances - if not oscillations are going into +delta, -delta ...
+  // fb_d = (tmp[0] + tmp[1]+tmp[2])/3;
+// end
+ 
 schmitt_trigger_inv # ( .LT ( 0.1 ) , .UT ( 0.12 ) ) sinv ( .in ( fb ) , .out ( clk_out ) ) ;
 thee_clk_freq_meter # ( .MEAS_WINDOW ( 10 ) ) fmeter ( .clk ( clk_out ) , .freq_in_hertz ( fout ) ) ;
 
@@ -57,7 +59,7 @@ initial begin
    force fb = 0.5;
    #1ns;
 */
-   #2000ns ;
+   #20us ;
   
    
   
@@ -87,7 +89,8 @@ initial begin
    fd = $fopen ( "Wave.dat" , "w" ) ;
      $fwrite ( fd , "Time, Amp out/fb, int net0, int net1, Amplifier in \n" ) ;
    forever begin
-     #0.1ns ;
+     //#0.1ns ;
+	 #10ns;
      $fwrite ( fd , "%e , %e , %e , %e , %e\n" , $realtime ( ) , fb , fb_network.vn0 , fb_network.vn1 , vout ) ;
    end
    $fclose ( fd ) ;

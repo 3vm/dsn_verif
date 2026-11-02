@@ -19,7 +19,7 @@ parameter real C1 = C , C2 = C , C3 = C ;
 parameter real Rl = R/1.0e3;
 parameter real Cl = C/1.0e3;
 
-real step ;
+real step, step2 ;
 real ir1 , ir2 , ir3 , ic1 , ic2 , ic3 , vc1 , vc2 , vc3 , vn0 , vn1,vn2 ;
 
 real vnet1 ;
@@ -28,47 +28,45 @@ real vcl, icl, vout_ideal;
 
 //R3 not in series , symmetric connection somehow did not work
 
+//R3 alone may have to be in series
+
 //no small low pass
 initial begin
-   vc1 = 0 ; vc2 = 0 ; vc3 = 0 ; 
+   vc1 = 0 ;
+   vc2 = 0 ;
+   vc3=0;
    forever begin
-   vout = vin -vc1 -vc2 -vc3;
-   if ( vout > 1 ) vout = 1;
-   if ( vout < -1 ) vout = -1;
-
-     ir3 = vout / R3 ;
-	 ic3 = ir3;
-
-     vn1 = vout + vc3 ;
-     ir2 = vn1 / R2 ;	 
-     ic2 = ir2 + ir3 ;
-
-
-     vn0 = vn1 + vc2 ;
-     ir1 = vn0 / R1 ;
-     ic1 = ir1 + ic2 ;
-	 // $display("ic2 %1.3e    ir2 %1.3e", ic2,ir2);
-	 // $display("ic3 %1.3e    ir3 %1.3e", ic3,ir3);
-     // $display("vin %1.3e    vn0 %1.3e", vin, vn0);
-
-     step = ic1 * TIME_STEP * TIME_STEP_UNIT / C1 ;
-     vc1 += step ;
-	 // $display("Step of VC1 - %1.8e, ic1 %1.3e", step, ic1);
-     step = ic2 * TIME_STEP * TIME_STEP_UNIT / C2 ;
-     vc2 += step ;
-     step = ic3 * TIME_STEP * TIME_STEP_UNIT / C3 ;
-     vc3 += step ;
-           
      #TIME_STEP ;
-    
+     vn0 = vin - vc1;
+
+     ir1 = vn0 / R1 ;
+	 vn1 = vn0 - vc2;
+	 
+	 ir2 = vn1 / R2;
+
+	 vout = vn1 - vc3;
+	 ir3 = vout / R3;
+
+	 ic3 = ir3;
+	 ic2= ic3+ir2;
+	 ic1 = ic2+ir1;
+
+	 step = ic1 * TIME_STEP * TIME_STEP_UNIT / C1 ;
+     vc1 += step;
+     step = ic2 * TIME_STEP * TIME_STEP_UNIT / C2 ;
+     vc2 += step;
+     step = ic3 * TIME_STEP * TIME_STEP_UNIT / C2 ;
+     vc3 += step;
+   
    end
 end
 
-//Using a small low pass to check if zero delay feedback avoids deadlock
+// //Using a small low pass to check if zero delay feedback avoids deadlock
 // initial begin
    // vc1 = 0 ; vc2 = 0 ; vc3 = 0 ; 
    // forever begin
-   // vout_ideal = vin -vc1 -vc2 -vc3;
+   // if ( vout_ideal > 1 ) vout_ideal = 1;
+   // if ( vout_ideal < -1 ) vout_ideal = -1;
 
      // ir3 = vout_ideal / R3 ;
 	 // ic3 = ir3;
@@ -92,8 +90,11 @@ end
      // vc2 += step ;
      // step = ic3 * TIME_STEP * TIME_STEP_UNIT / C3 ;
      // vc3 += step ;
-           
+     
      // #TIME_STEP ;
+	 
+	    // vout_ideal = vin -vc1 -vc2 -vc3;
+
     
    // end
 // end
@@ -101,15 +102,14 @@ end
 // initial begin
    // vcl = 0;
    // forever begin
-   // // icl = (vout_ideal - vcl)/Rl;
-     // // step = icl* TIME_STEP * TIME_STEP_UNIT / Cl ;
-     // // vcl += step ;
-	 // vcl = vout_ideal;
+   // icl = (vout_ideal - vcl)/Rl;
+     // step2 = icl* TIME_STEP * TIME_STEP_UNIT / Cl ;
+     // vcl += step2 ;
+// //	 vcl = vout_ideal;
+	 // vout = vcl;
      // #TIME_STEP ;
    // end
 // end
-
-// assign vout = vcl;
 
 /* Grows unbounded may be because the C1 is updated 3 times per time step , C2 two per tstep c1 once per tstep
 initial begin
