@@ -16,8 +16,8 @@ timeprecision 1ps ;
 parameter real R1 = R , R2 = R , R3 = R ;
 parameter real C1 = C , C2 = C , C3 = C ;
 
-parameter real Rl = R/1.0e3;
-parameter real Cl = C/1.0e3;
+parameter real Rl = R/5;
+parameter real Cl = C/5;
 
 real step, step2 ;
 real ir1 , ir2 , ir3 , ic1 , ic2 , ic3 , vc1 , vc2 , vc3 , vn0 , vn1,vn2 ;
@@ -30,12 +30,49 @@ real vcl, icl, vout_ideal;
 
 //R3 alone may have to be in series
 
-//no small low pass
+// //no small low pass
+// initial begin
+   // vc1 = 0 ;
+   // vc2 = 0 ;
+   // vc3=0;
+   // forever begin
+     // #TIME_STEP ;
+     // vn0 = vin - vc1;
+
+     // ir1 = vn0 / R1 ;
+	 // vn1 = vn0 - vc2;
+	 
+	 // ir2 = vn1 / R2;
+
+	 // vout = vn1 - vc3;
+	 // ir3 = vout / R3;
+
+	 // ic3 = ir3;
+	 // ic2= ic3+ir2;
+	 // ic1 = ic2+ir1;
+
+	 // step = ic1 * TIME_STEP * TIME_STEP_UNIT / C1 ;
+     // vc1 += step;
+     // step = ic2 * TIME_STEP * TIME_STEP_UNIT / C2 ;
+     // vc2 += step;
+     // step = ic3 * TIME_STEP * TIME_STEP_UNIT / C2 ;
+     // vc3 += step;
+   
+   // end
+// end
+
+//no small low pass, R3 in series
 initial begin
    vc1 = 0 ;
    vc2 = 0 ;
    vc3=0;
    forever begin
+
+ // $display("ic2 %1.3e    ir2 %1.3e", ic2,ir2);
+	 // $display("ic3 %1.3e    ir3 %1.3e", ic3,ir3);
+     // $display("vin %1.3e    vn0 %1.3e", vin, vn0);
+
+
      #TIME_STEP ;
      vn0 = vin - vc1;
 
@@ -44,8 +81,8 @@ initial begin
 	 
 	 ir2 = vn1 / R2;
 
-	 vout = vn1 - vc3;
-	 ir3 = vout / R3;
+	 vn2 = vn1 - vc3;
+	 ir3 = vn2 / R3;
 
 	 ic3 = ir3;
 	 ic2= ic3+ir2;
@@ -57,9 +94,23 @@ initial begin
      vc2 += step;
      step = ic3 * TIME_STEP * TIME_STEP_UNIT / C2 ;
      vc3 += step;
-   
+     //vout = vn2/29.0 ; //models RC network attenuation
    end
 end
+
+initial begin
+   vcl = 0;
+   forever begin
+        #TIME_STEP ;
+
+   icl = (vn2 - vcl)/Rl;
+     step2 = icl* TIME_STEP * TIME_STEP_UNIT / Cl ;
+     vcl += step2 ;
+
+	 vout = vcl/29.0;
+   end
+end
+
 
 // //Using a small low pass to check if zero delay feedback avoids deadlock
 // initial begin
