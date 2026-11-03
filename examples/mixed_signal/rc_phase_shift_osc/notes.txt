@@ -1,0 +1,11 @@
+When pure 3RC high pass configuration as in textbook is used, a high frequency oscillation occurs possibly because of the zero attenuation and zero phase response for infinite frequency for a HPF. If a low pass filter with pole about 100 times the frequency of the oscillator natural frequency is added to the network, the frequency of oscillations seems to come close to the expected frequency.
+
+The gain of the amplifier may need AGC to get high quality waveform.
+
+2026 Nov 3 result: some percentage points away from expected f.
+Expected frequency 1.299e+06 , Actual frequency 1.267e+06
+Update 2:
+When gain is 1000, higher error in output frequency
+when gain is 750, oscillations died
+when gain is 900, expected frequency closely matched, test passed , frequency within set tolerance band
+

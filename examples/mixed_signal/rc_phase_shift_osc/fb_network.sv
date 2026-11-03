@@ -16,8 +16,8 @@ timeprecision 1ps ;
 parameter real R1 = R , R2 = R , R3 = R ;
 parameter real C1 = C , C2 = C , C3 = C ;
 
-parameter real Rl = R/5;
-parameter real Cl = C/5;
+parameter real Rl = R/30;
+parameter real Cl = C/30;
 
 real step, step2 ;
 real ir1 , ir2 , ir3 , ic1 , ic2 , ic3 , vc1 , vc2 , vc3 , vn0 , vn1,vn2 ;

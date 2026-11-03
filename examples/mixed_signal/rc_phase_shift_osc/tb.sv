@@ -5,7 +5,7 @@ timeunit 1ns ;
 timeprecision 1ps ;
 parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
 
-parameter real R = 1.0e3 , C = 10.0e-12 ;
+parameter real R = 5.0e3 , C = 10.0e-12 ;
 import thee_mathsci_consts_pkg :: const_pi ;
 
 parameter real EXP_FOUT = 1.0 / (2.0*const_pi* $sqrt(6)* ( R * C ) );
@@ -21,7 +21,7 @@ import thee_utils_pkg :: update_test_status ;
 import thee_utils_pkg :: check_approx_equality ;
 
 fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb ) , .vout ( vout ) ) ;
-thee_amplifier  #(.GAIN(-2500.0)) amp ( .vin(vout), .vout(fb));
+thee_amplifier  #(.GAIN(-900.0)) amp ( .vin(vout), .vout(fb));
 
  
 schmitt_trigger_inv # ( .LT ( 0.1 ) , .UT ( 0.12 ) ) sinv ( .in ( fb ) , .out ( clk_out ) ) ;
