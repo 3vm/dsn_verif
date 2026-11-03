@@ -10,8 +10,8 @@ output real osc_out
 
 real fb;
 
-fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( fb ) , .vout ( osc_out ) ) ;
-thee_amplifier # ( .GAIN ( GAIN ) ) amp ( .vin ( osc_out ) , .vout ( fb ) ) ;
+fb_network # ( .R ( R ) , .C ( C ) ) fb_network ( .vin ( osc_out ) , .vout ( fb ) ) ;
+thee_amplifier # ( .GAIN ( GAIN ) ) amp ( .vin ( fb ) , .vout ( osc_out ) ) ;
 
      logic vikram ;
   endmodule
