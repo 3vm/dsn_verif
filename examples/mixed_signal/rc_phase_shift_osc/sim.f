@@ -14,6 +14,7 @@ $EHGU_HOME/thee/thee_utils_pkg.sv
 $EHGU_HOME/thee/thee_clk_freq_meter.sv
 $EHGU_HOME/thee/thee_pg_amp.sv
 fb_network.sv
+rc_phase_shift_osc.sv
 $EHGU_HOME/thee/thee_amplifier.sv
 ../schmitt_trigger_inv/schmitt_trigger_inv.sv
 tb.sv
