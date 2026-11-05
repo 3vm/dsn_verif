@@ -5,7 +5,7 @@ timeunit 1ns ;
 timeprecision 1ps ;
 parameter real TIMEUNIT_SCALING = 1e-9 ; // keep same as timeunit
 
-parameter real L = 5.0e-6 , C1 = 1.0e-9,  C2 = 3.0e-9 ;
+parameter real L = 5.0e-6 , C1 = 2.2e-9,  C2 = 1.3e-9 ;
 import thee_mathsci_consts_pkg :: const_pi ;
 
 //parameter real Ceff = C2 ;// What is correct Ceff ? ;C1 * C2 / ( C1 + C2 );
