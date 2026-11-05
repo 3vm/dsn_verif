@@ -20,7 +20,7 @@ import thee_utils_pkg :: update_test_status ;
 
 import thee_utils_pkg :: check_approx_equality ;
 
-rc_phase_shift_osc # ( .R ( R ) , .C ( C ) , .GAIN(-900.0)) osc ( .osc_out ( osc_out ) ) ;
+rc_phase_shift_osc # ( .R ( R ) , .C ( C ) , .GAIN(-31.0)) osc ( .osc_out ( osc_out ) ) ;
 
 schmitt_trigger_inv # ( .LT ( 0.1 ) , .UT ( 0.12 ) ) sinv ( .in ( osc_out ) , .out ( clk_out ) ) ;
 thee_clk_freq_meter # ( .MEAS_WINDOW ( 10 ) ) fmeter ( .clk ( clk_out ) , .freq_in_hertz ( fout ) ) ;

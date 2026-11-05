@@ -68,7 +68,7 @@ initial begin
      step2 = icl * TIME_STEP * TIME_STEP_UNIT / Cl ;
      vcl += step2 ;
     
-     vout = vcl / 29.0 ;
+     vout = vcl ;
    end
 end
 
