@@ -1,7 +1,8 @@
 module fb_network
 # (
 parameter real L = 1e-9 , // Henry
-parameter real C = 1e-9 , // F
+parameter real C1 = 1e-9 , // F
+parameter real C2 = 1e-9 , // F
 parameter real TIME_STEP = 0.001 , // To be matched with timepresision and timeunit
 parameter real TIME_STEP_UNIT = 1e-9 // To be matched with timepresision and timeunit
  )
@@ -13,7 +14,7 @@ output real vout
 timeunit 1ns ;
 timeprecision 1ps ;
 
-parameter real Rs = 1 ; // Model of parasitic series resistance
+parameter real Rs = 0.1 ; // Model of parasitic series resistance
 
 real step ;
 real ir , il , ic1 , ic2 , vl, vc1 , vc2 ;
@@ -38,10 +39,10 @@ initial begin
      ic1 = ir - il ;
      vl = vc1 - vc2;
     
-     step = ic1 * TIME_STEP * TIME_STEP_UNIT / C ;
+     step = ic1 * TIME_STEP * TIME_STEP_UNIT / C1 ;
      vc1 += step ;
      
-     step = ic2 * TIME_STEP * TIME_STEP_UNIT / C ;
+     step = ic2 * TIME_STEP * TIME_STEP_UNIT / C2 ;
      vc2 += step ;
 
      step =  vl * TIME_STEP * TIME_STEP_UNIT / L ;
